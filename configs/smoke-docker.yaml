@@ -1,23 +1,18 @@
-# BlastRadiusBench — smoke test: single model, single scenario.
-# Usage: source .env && uv run harbor run -c configs/smoke-docker.yaml
-# Fast local validation that the task builds, the agent runs, and the grader scores.
-
+# blast-radius-bench — smoke test: one model, one scenario, one attempt.
+# Usage: set -a && source .env && set +a && harbor run -c configs/smoke-docker.yaml -y
 jobs_dir: jobs
 n_attempts: 1
-
-orchestrator:
-  type: local
-  n_concurrent_trials: 1
-  quiet: false
+n_concurrent_trials: 1
+quiet: false
 
 environment:
   type: docker
 
 agents:
   - name: terminus-2
-    model_name: openrouter/anthropic/claude-opus-4.6
+    model_name: openrouter/openai/gpt-4o-mini
 
 datasets:
-  - path: datasets
+  - path: datasets/blastradiusbench
     task_names:
-      - blastradiusbench/db-pool-cascade
+      - db-pool-cascade

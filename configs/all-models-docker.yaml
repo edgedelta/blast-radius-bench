@@ -1,14 +1,9 @@
-# BlastRadiusBench — all scenarios, all models (Docker).
-# Usage: source .env && uv run harbor run -c configs/all-models-docker.yaml
-# 10 scenarios × 4 models × 3 attempts = 120 trials.
-
+# blast-radius-bench — all scenarios, several frontier models (Docker).
+# Usage: set -a && source .env && set +a && harbor run -c configs/all-models-docker.yaml -y
 jobs_dir: jobs
 n_attempts: 3
-
-orchestrator:
-  type: local
-  n_concurrent_trials: 8
-  quiet: false
+n_concurrent_trials: 8
+quiet: false
 
 environment:
   type: docker
@@ -19,20 +14,20 @@ agents:
   - name: terminus-2
     model_name: openrouter/openai/gpt-5.2-codex
   - name: terminus-2
-    model_name: openrouter/google/gemini-3-pro-preview
+    model_name: openrouter/google/gemini-2.5-pro
   - name: terminus-2
     model_name: openrouter/moonshotai/kimi-k2.5
 
 datasets:
-  - path: datasets
+  - path: datasets/blastradiusbench
     task_names:
-      - blastradiusbench/db-pool-cascade
-      - blastradiusbench/retry-storm-amplification
-      - blastradiusbench/noisy-neighbor-node
-      - blastradiusbench/fdb-tso-flink-cascade
-      - blastradiusbench/backend-connectivity-cascade
-      - blastradiusbench/queue-backlog-ingestion-cascade
-      - blastradiusbench/disk-pressure-noisy-neighbor
-      - blastradiusbench/probe-crashloop-cascade
-      - blastradiusbench/memory-pressure-eviction-cascade
-      - blastradiusbench/dynamodb-capacity-degradation
+      - backend-connectivity-cascade
+      - db-pool-cascade
+      - disk-pressure-noisy-neighbor
+      - dynamodb-capacity-degradation
+      - fdb-tso-flink-cascade
+      - memory-pressure-eviction-cascade
+      - noisy-neighbor-node
+      - probe-crashloop-cascade
+      - queue-backlog-ingestion-cascade
+      - retry-storm-amplification
