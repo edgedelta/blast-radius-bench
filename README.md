@@ -98,7 +98,7 @@ names, log signatures, k8s event types and node identifiers, all **fictional sta
 
 ```bash
 # 1. Build/clone, then set keys.
-git clone https://github.com/edgedelta/BlastRadiusBench.git && cd BlastRadiusBench
+git clone https://github.com/edgedelta/blast-radius-bench.git && cd blast-radius-bench
 cp .env.example .env   # add OPENROUTER_API_KEY=...
 
 # 2. Smoke test: one model, one scenario.
