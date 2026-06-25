@@ -1,0 +1,39 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-24T12:40:00Z..2026-06-24T14:57:00Z",
+  "commits": [
+    {
+      "sha": "2d4f6a8c0e2b4d6f8a0c2e4d6f8a0c2e4d6f8a0c",
+      "author": "agent-team",
+      "timestamp": "2026-06-24T14:33:00Z",
+      "service": "log-agent-v1",
+      "message": "#agent log-agent disable log rotation (rotate_enabled=false) to debug a tailing race",
+      "files_changed": ["agent/flog/rotate.go", "agent/flog/config.yaml"]
+    },
+    {
+      "sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
+      "author": "dashboard-team",
+      "timestamp": "2026-06-24T13:05:00Z",
+      "service": "dashboard-svc",
+      "message": "#dashboard-svc bump dashboard cache TTL (RED HERRING: dashboard-svc also logs a GEN_EMAIL import warning)",
+      "files_changed": ["dashboard-svc/config/cache.py"]
+    },
+    {
+      "sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e",
+      "author": "sbom-team",
+      "timestamp": "2026-06-24T13:25:00Z",
+      "service": "sbom-scanner",
+      "message": "#rad sbom-scanner retry ECR digest lookup (RED HERRING: sbom-scanner logs ECR 401s)",
+      "files_changed": ["rad/sbom/ecr_client.go"]
+    },
+    {
+      "sha": "0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a",
+      "author": "platform-team",
+      "timestamp": "2026-06-24T12:50:00Z",
+      "service": "platform-api",
+      "message": "#api platform-api add audit log field (unaffected service, different node)",
+      "files_changed": ["admin/audit/field.go"]
+    }
+  ]
+}

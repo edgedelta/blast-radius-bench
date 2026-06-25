@@ -1,0 +1,21 @@
+{"timestamp":"2026-06-20T09:00:05Z","service":"recommendation","severity_text":"INFO","msg":"scored 24 candidates","trace_id":"tr-6800","latency_ms":52}
+{"timestamp":"2026-06-20T09:00:08Z","service":"product-page","severity_text":"INFO","msg":"rendered product 42","trace_id":"tr-6801","latency_ms":140}
+{"timestamp":"2026-06-20T09:00:12Z","service":"catalog","severity_text":"INFO","msg":"item served","trace_id":"tr-6802","latency_ms":29}
+{"timestamp":"2026-06-20T09:05:40Z","service":"recommendation","severity_text":"WARN","msg":"GC pause 480ms (heap_used_mb=1510 batch_size=18400)","trace_id":"tr-6840","latency_ms":520}
+{"timestamp":"2026-06-20T09:07:10Z","service":"recommendation","severity_text":"WARN","msg":"stop-the-world GC pause 920ms (heap_used_mb=1980 batch_size=21200)","trace_id":"tr-7002","latency_ms":1380}
+{"timestamp":"2026-06-20T09:07:30Z","service":"product-page","severity_text":"WARN","msg":"reco call attempt=1 deadline 200ms exceeded, retrying","trace_id":"tr-7010","latency_ms":205}
+{"timestamp":"2026-06-20T09:07:31Z","service":"product-page","severity_text":"WARN","msg":"reco call attempt=2 deadline 200ms exceeded, retrying","trace_id":"tr-7010","latency_ms":205}
+{"timestamp":"2026-06-20T09:08:00Z","service":"catalog","severity_text":"INFO","msg":"item served","trace_id":"tr-7011","latency_ms":30}
+{"timestamp":"2026-06-20T09:09:15Z","service":"recommendation","severity_text":"ERROR","msg":"request stalled during GC pause 2100ms (heap_used_mb=2300)","trace_id":"tr-7020","latency_ms":2100}
+{"timestamp":"2026-06-20T09:09:50Z","service":"product-page","severity_text":"WARN","msg":"retry budget exhausted for reco (3/3), returning partial page","trace_id":"tr-7021","latency_ms":640}
+{"timestamp":"2026-06-20T09:10:30Z","service":"product-page","severity_text":"WARN","msg":"outbound reco rps=720 (baseline 290) — retries dominating","trace_id":null,"latency_ms":0}
+{"timestamp":"2026-06-20T09:11:02Z","service":"recommendation","severity_text":"ERROR","msg":"request stalled during GC pause 2600ms (heap_used_mb=2380)","trace_id":"tr-7001","latency_ms":2600}
+{"timestamp":"2026-06-20T09:11:03Z","service":"product-page","severity_text":"ERROR","msg":"all reco attempts failed (3 retries), 503 to api-edge","trace_id":"tr-7001","latency_ms":880}
+{"timestamp":"2026-06-20T09:11:03Z","service":"api-edge","severity_text":"ERROR","msg":"503 GET /p/42 from product-page","trace_id":"tr-7001","latency_ms":905}
+{"timestamp":"2026-06-20T09:11:40Z","service":"recommendation","severity_text":"WARN","msg":"GC pressure: allocation rate 3.1GB/s, batch loader holding full candidate slice","trace_id":"tr-7030","latency_ms":0}
+{"timestamp":"2026-06-20T09:12:30Z","service":"product-page","severity_text":"ERROR","msg":"cpu 88% — retry queue backed up, reco rps=860","trace_id":null,"latency_ms":0}
+{"timestamp":"2026-06-20T09:13:10Z","service":"catalog","severity_text":"INFO","msg":"item served","trace_id":"tr-7040","latency_ms":31}
+{"timestamp":"2026-06-20T09:14:00Z","service":"product-page","severity_text":"ERROR","msg":"outbound reco rps=1180 (4x baseline), cpu 95%, shedding load","trace_id":null,"latency_ms":0}
+{"timestamp":"2026-06-20T09:14:01Z","service":"recommendation","severity_text":"ERROR","msg":"request stalled during GC pause 3400ms (heap_used_mb=2440)","trace_id":"tr-7050","latency_ms":3400}
+{"timestamp":"2026-06-20T09:14:05Z","service":"api-edge","severity_text":"ERROR","msg":"503 GET /p/42 from product-page","trace_id":"tr-7051","latency_ms":2100}
+{"timestamp":"2026-06-20T09:14:20Z","service":"redis-cache","severity_text":"INFO","msg":"MGET ok","trace_id":"tr-7052","latency_ms":6}

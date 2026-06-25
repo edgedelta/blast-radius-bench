@@ -1,0 +1,13 @@
+{
+  "window": "2026-06-20T09:00:00Z..2026-06-20T09:15:00Z",
+  "baseline_window": "2026-06-20T07:30:00Z..2026-06-20T09:00:00Z",
+  "patterns": [
+    {"signature": "stop-the-world GC pause <N>ms (heap_used_mb=<N> batch_size=<N>)", "service": "recommendation", "count": 1900, "delta_vs_baseline": "+1898", "first_seen": "2026-06-20T09:05:40Z", "sentiment": "negative"},
+    {"signature": "request stalled during GC pause <N>ms", "service": "recommendation", "count": 3400, "delta_vs_baseline": "+3400", "first_seen": "2026-06-20T09:07:30Z", "sentiment": "negative"},
+    {"signature": "reco call attempt=<N> deadline <N>ms exceeded, retrying", "service": "product-page", "count": 14200, "delta_vs_baseline": "+14200", "first_seen": "2026-06-20T09:07:30Z", "sentiment": "negative"},
+    {"signature": "outbound reco rps=<N> (<N>x baseline)", "service": "product-page", "count": 60, "delta_vs_baseline": "+60", "first_seen": "2026-06-20T09:10:30Z", "sentiment": "negative"},
+    {"signature": "503 GET /p/<N> from product-page", "service": "api-edge", "count": 4800, "delta_vs_baseline": "+4800", "first_seen": "2026-06-20T09:11:03Z", "sentiment": "negative"},
+    {"signature": "item served", "service": "catalog", "count": 270000, "delta_vs_baseline": "+200", "first_seen": "2026-06-20T07:30:00Z", "sentiment": "neutral"}
+  ],
+  "note": "product-page's retry pattern has the loudest count (14200) and is what paged. But its first_seen (09:07:30) is downstream-triggered: recommendation's GC pause pattern appears EARLIER (09:05:40 warn, escalating to stalls at 09:07:30 — the same instant product-page starts retrying). The product-page volume is AMPLIFIED retries of a slow downstream, not an independent traffic source."
+}

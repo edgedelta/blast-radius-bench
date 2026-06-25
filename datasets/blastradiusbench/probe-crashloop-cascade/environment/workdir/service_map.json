@@ -1,0 +1,14 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. platform-api fronts the AI Teammate runtime: it calls ai-agent-svc, which calls workflow-engine (the durable execution / workflow engine in the oncall-ai namespace).",
+  "generated_at": "2026-06-19T19:20:00Z",
+  "services": [
+    {"name": "platform-api", "namespace": "oncall-ai"},
+    {"name": "ai-agent-svc", "namespace": "oncall-ai"},
+    {"name": "workflow-engine", "namespace": "oncall-ai"}
+  ],
+  "edges": [
+    {"from": "platform-api", "to": "ai-agent-svc", "call_rate_rps": 40},
+    {"from": "ai-agent-svc", "to": "workflow-engine", "call_rate_rps": 120, "note": "durable execution calls; workflow-engine must be up for agent workflows"}
+  ],
+  "note": "Request flow A->B. Causally, when the callee workflow-engine restarts/refuses connections, ai-agent-svc fails, then platform-api surfaces 5xx. Propagation runs callee -> caller."
+}

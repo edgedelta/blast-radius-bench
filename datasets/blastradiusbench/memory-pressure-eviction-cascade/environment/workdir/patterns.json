@@ -1,0 +1,12 @@
+{
+  "window": "2026-06-22T11:40:00Z..2026-06-22T11:59:00Z",
+  "baseline_window": "2026-06-22T09:40:00Z..2026-06-22T11:40:00Z",
+  "patterns": [
+    {"signature": "container rss <N>Gi, memory request 0 / no memory limit set", "service": "olapdb-vw-write", "count": 18, "delta_vs_baseline": "+18", "first_seen": "2026-06-22T11:48:20Z", "sentiment": "negative"},
+    {"signature": "kubelet node ip-10-0-37-15.us-east-1 MemoryPressure=True", "service": "olapdb-vw-write", "count": 5, "delta_vs_baseline": "+5", "first_seen": "2026-06-22T11:50:00Z", "sentiment": "negative"},
+    {"signature": "pod olapdb-vw-write-0 evicted: The node was low on resource: memory", "service": "olapdb-vw-write", "count": 3, "delta_vs_baseline": "+3", "first_seen": "2026-06-22T11:50:40Z", "sentiment": "negative"},
+    {"signature": "write query failed: no available write worker", "service": "olapdb-server", "count": 2100, "delta_vs_baseline": "+2100", "first_seen": "2026-06-22T11:52:10Z", "sentiment": "negative"},
+    {"signature": "Admin API HTTP 5xx: 500 query failure", "service": "platform-api", "count": 3300, "delta_vs_baseline": "+3300", "first_seen": "2026-06-22T11:55:10Z", "sentiment": "negative"}
+  ],
+  "note": "platform-api has the HIGHEST count (3300) and PAGED. But the EARLIEST signals are olapdb-vw-write's memory growth (11:48:20) and the node MemoryPressure=True at 11:50:00, BEFORE olapdb-server's query failures (11:52:10) and platform-api's 5xx (11:55:10). The node memory-pressure / pod eviction is the origin; the query failures are downstream."
+}

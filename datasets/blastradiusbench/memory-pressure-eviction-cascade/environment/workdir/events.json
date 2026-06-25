@@ -1,0 +1,12 @@
+{
+  "window": "2026-06-22T11:40:00Z..2026-06-22T11:59:00Z",
+  "events": [
+    {"timestamp": "2026-06-22T11:42:30Z", "type": "Deployment", "object": "statefulset/olapdb-vw-write", "namespace": "olapdb", "node": "ip-10-0-37-15.us-east-1", "reason": "ScalingReplicaSet", "message": "Rolled olapdb-vw-write to v0e2b4d6 (resource limits change)"},
+    {"timestamp": "2026-06-22T11:50:00Z", "type": "NodeNotReady", "object": "node/ip-10-0-37-15.us-east-1", "node": "ip-10-0-37-15.us-east-1", "reason": "MemoryPressure", "message": "Node ip-10-0-37-15.us-east-1 condition MemoryPressure is now True (available 180Mi)"},
+    {"timestamp": "2026-06-22T11:50:25Z", "type": "Warning", "object": "node/ip-10-0-37-15.us-east-1", "node": "ip-10-0-37-15.us-east-1", "reason": "SystemOOM", "message": "System OOM encountered on ip-10-0-37-15, victim cgroup kubepods/olapdb-vw-write"},
+    {"timestamp": "2026-06-22T11:50:40Z", "type": "PodEviction", "object": "pod/olapdb-vw-write-0", "namespace": "olapdb", "node": "ip-10-0-37-15.us-east-1", "reason": "Evicted", "message": "The node was low on resource: memory. Pod olapdb-vw-write-0 evicted (memory request 0, no limit)."},
+    {"timestamp": "2026-06-22T11:53:30Z", "type": "Deployment", "object": "deploy/platform-api", "namespace": "oncall-ai", "node": "ip-10-0-12-31.us-east-1", "reason": "ScalingReplicaSet", "message": "Scaled up platform-api-647 (innocent deploy near onset)"},
+    {"timestamp": "2026-06-22T11:54:00Z", "type": "Warning", "object": "pod/prometheus-prom-kube-stack-0", "namespace": "monitoring", "node": "ip-10-0-12-31.us-east-1", "reason": "Unhealthy", "message": "Startup probe 503 after reschedule (recovered) — unrelated red herring"}
+  ],
+  "note": "The MemoryPressure / SystemOOM / Eviction events are all on node ip-10-0-37-15, hosting olapdb-vw-write. The olapdb-vw-write rollout (v0e2b4d6) at 11:42 precedes onset. The platform-api deploy at 11:53 and the prometheus probe 503 (different node) are decoys. olapdb-vw-default (read VW) is on a different node and unaffected."
+}

@@ -1,0 +1,11 @@
+{
+  "window": "2026-06-22T22:30:00Z..2026-06-22T22:52:00Z",
+  "events": [
+    {"timestamp": "2026-06-22T22:36:30Z", "type": "Deployment", "object": "deploy/olapdb-server", "namespace": "olapdb", "reason": "ScalingReplicaSet", "message": "Rolled olapdb-server to v7b3d9e2"},
+    {"timestamp": "2026-06-22T22:38:40Z", "type": "Unconsolidatable", "object": "node/ip-10-0-12-44.us-east-1", "namespace": "olapdb", "reason": "Unconsolidatable", "message": "NodePool spot SpotToSpotConsolidation disabled; Karpenter draining node ip-10-0-12-44 hosting a olapdb-server shard"},
+    {"timestamp": "2026-06-22T22:40:10Z", "type": "Warning", "object": "endpoints/olapdb-server-headless", "namespace": "olapdb", "reason": "EndpointLost", "message": "Endpoint 10-0-12-44.olapdb-server-headless removed; write shard capacity reduced"},
+    {"timestamp": "2026-06-22T22:44:30Z", "type": "Deployment", "object": "deploy/transformer", "namespace": "default", "reason": "ScalingReplicaSet", "message": "Scaled up transformer-318 (innocent deploy near onset)"},
+    {"timestamp": "2026-06-22T22:46:50Z", "type": "Warning", "object": "deploy/metric-ingestor-large", "namespace": "ingestion", "reason": "BackoffLimitReached", "message": "write txns failing: olapdb-server write backend unreachable"}
+  ],
+  "note": "Karpenter removed node ip-10-0-12-44 (a olapdb-server write shard) at 22:38, the headless endpoint dropped at 22:40, and olapdb-server began RPC timeouts at 22:41. The transformer deploy at 22:44 is an innocent decoy. No node disk/memory pressure on the failing services."
+}

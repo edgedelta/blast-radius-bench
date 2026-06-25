@@ -1,0 +1,46 @@
+{
+  "repo": "github.com/acme/storefront",
+  "window": "2026-06-20T07:30:00Z..2026-06-20T09:15:00Z",
+  "commits": [
+    {
+      "sha": "9f3c1aa",
+      "author": "ynakamura",
+      "timestamp": "2026-06-20T08:35:00Z",
+      "service": "recommendation",
+      "message": "reco: batch-load all candidate items into one slice before scoring (drop per-item cache lookups)",
+      "files_changed": ["reco/internal/score/batch.go", "reco/internal/cache/items.go"]
+    },
+    {
+      "sha": "2bb90c4",
+      "author": "okafor",
+      "timestamp": "2026-06-20T08:58:00Z",
+      "service": "product-page",
+      "message": "product-page: raise recommendation retry budget from 1 to 3, tighten per-try timeout to 200ms",
+      "files_changed": ["productpage/clients/reco_client.go"]
+    },
+    {
+      "sha": "5c1d7e0",
+      "author": "okafor",
+      "timestamp": "2026-06-20T07:40:00Z",
+      "service": "product-page",
+      "message": "product-page: add server-timing header",
+      "files_changed": ["productpage/middleware/timing.go"]
+    },
+    {
+      "sha": "a07fe22",
+      "author": "delgado",
+      "timestamp": "2026-06-20T07:52:00Z",
+      "service": "catalog",
+      "message": "catalog: precompute facet counts nightly",
+      "files_changed": ["catalog/jobs/facets.go"]
+    },
+    {
+      "sha": "d44ab18",
+      "author": "ynakamura",
+      "timestamp": "2026-06-20T08:05:00Z",
+      "service": "api-edge",
+      "message": "api-edge: enable gzip for product responses",
+      "files_changed": ["edge/gzip.go"]
+    }
+  ]
+}

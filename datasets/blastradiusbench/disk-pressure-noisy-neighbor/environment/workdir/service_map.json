@@ -1,0 +1,15 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service's pods are scheduled on — co-location is NOT a call edge but can couple failures.",
+  "generated_at": "2026-06-24T15:00:00Z",
+  "services": [
+    {"name": "platform-api", "namespace": "oncall-ai", "node": "ip-10-0-12-31.us-east-1"},
+    {"name": "dashboard-svc", "namespace": "dashboard-svc", "node": "ip-10-0-37-88.us-east-1"},
+    {"name": "dashboard-worker", "namespace": "dashboard-svc", "node": "ip-10-0-12-31.us-east-1"},
+    {"name": "sbom-scanner", "namespace": "sbom", "node": "ip-10-0-37-88.us-east-1"},
+    {"name": "log-agent-v1", "namespace": "default", "node": "ip-10-0-37-88.us-east-1", "kind": "DaemonSet"}
+  ],
+  "edges": [
+    {"from": "dashboard-svc", "to": "dashboard-worker", "call_rate_rps": 12, "note": "dashboard-svc dispatches async tasks to its worker (on a DIFFERENT node)"}
+  ],
+  "note": "dashboard-svc, sbom-scanner and log-agent-v1 sit in THREE different namespaces (dashboard-svc, rad, default) with NO service-call edge between them. dashboard-svc only calls dashboard-worker, which runs on a different node and stays healthy. log-agent-v1 is a DaemonSet with no inbound/outbound service edges. The only thing the three failing pods share is node ip-10-0-37-88.us-east-1."
+}

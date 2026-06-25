@@ -1,0 +1,16 @@
+{
+  "scenario": "db-pool-cascade",
+  "origin_service": "orders",
+  "root_cause_culprit_sha": "a1b9f02",
+  "root_cause_keywords": ["connection pool", "pool exhaustion", "db", "database", "maxopenconns", "max_open_conns", "max open conns", "connections", "leak"],
+  "propagation_path": [
+    {"from": "orders", "to": "checkout"},
+    {"from": "checkout", "to": "frontend"},
+    {"from": "frontend", "to": "api-gateway"},
+    {"from": "checkout", "to": "payments"}
+  ],
+  "blast_radius": ["checkout", "frontend", "api-gateway", "payments"],
+  "edge_overlap_threshold": 0.6,
+  "loudest_but_innocent": "api-gateway",
+  "notes": "orders exhausts its postgres connection pool first; timeouts back up the call chain. api-gateway shows the highest error counts but is the LAST victim. payments degrades in parallel as a fan-out sibling of orders under checkout. search is healthy (decoy edge)."
+}

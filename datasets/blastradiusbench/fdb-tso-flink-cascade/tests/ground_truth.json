@@ -1,0 +1,16 @@
+{
+  "scenario": "fdb-tso-flink-cascade",
+  "origin_service": "olapdb-tso",
+  "root_cause_culprit_sha": "3d8221b4fe0e76847d3b55fe0b168d9ec41d028c",
+  "root_cause_keywords": ["foundationdb", "fdb", "transaction timeout", "transaction-timeout", "tso", "leader-election", "leader election", "cas", "timestamp oracle"],
+  "propagation_path": [
+    {"from": "olapdb-tso", "to": "metric-ingestor-1"},
+    {"from": "metric-ingestor-1", "to": "stream-taskmanager"},
+    {"from": "stream-taskmanager", "to": "platform-api"}
+  ],
+  "blast_radius": ["metric-ingestor-1", "stream-taskmanager", "platform-api"],
+  "edge_overlap_threshold": 0.6,
+  "loudest_but_innocent": "stream-taskmanager",
+  "accept_origin_aliases": ["olapdb-tso", "olapdb tso", "tso", "olapdb-tso (foundationdb)"],
+  "notes": "olapdb-tso (the Timestamp Oracle) fails first: FoundationDB transaction timeouts during TSO leader-election and CAS operations (commit 3d8221b4 lowered the TSO CAS retry budget). Without commit timestamps, metric-ingestor-1 cannot acquire CnchLocks / commit write txns, so the Flink job 'stream-taskmanager' (taskmanager) reading from that ingestion path goes unhealthy, and platform-api finally returns errors. The LOUDEST, paging signal is FlinkJobUnhealthy (PagerDuty) on stream-taskmanager, which is the LAST victim before platform-api. A model that blames stream-taskmanager (the Flink alert) falls for the trap. kafka-metric-ingestor flapped on a deploy at onset (decoy); flags are decoys."
+}

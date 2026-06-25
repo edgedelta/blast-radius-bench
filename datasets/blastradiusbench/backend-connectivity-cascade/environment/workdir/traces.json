@@ -1,0 +1,25 @@
+{
+  "description": "Sampled OTel spans. parent_id links spans; status OK|ERROR. The deepest span (olapdb-server backend write) is slow first and carries the original connectivity error.",
+  "traces": [
+    {
+      "trace_id": "tr-6201",
+      "spans": [
+        {"span_id": "s1", "parent_id": null, "service": "http-receiver", "name": "POST /v1/ingest", "start": "2026-06-22T22:47:00.000Z", "duration_ms": 9800, "status": "ERROR", "attributes": {"http.status_code": 500, "error.msg": "downstream ingestor write failure"}},
+        {"span_id": "s2", "parent_id": "s1", "service": "metric-ingestor-large", "name": "commit write batch", "start": "2026-06-22T22:47:00.050Z", "duration_ms": 2300, "status": "ERROR", "attributes": {"http.status_code": 500, "error.msg": "HTTP 500 from olapdb-server (commitParts timeout)"}},
+        {"span_id": "s3", "parent_id": "s2", "service": "olapdb-server", "name": "commitParts (write backend)", "start": "2026-06-22T22:47:00.090Z", "duration_ms": 2005, "status": "ERROR", "attributes": {"net.peer.name": "10-0-12-44.olapdb-server-headless.olapdb.svc.cluster.local", "error.msg": "connection reset by peer: backend connectivity loss on write path"}}
+      ]
+    },
+    {
+      "trace_id": "tr-6202",
+      "spans": [
+        {"span_id": "b1", "parent_id": null, "service": "olapdb-server", "name": "commitParts (write backend)", "start": "2026-06-22T22:41:10.000Z", "duration_ms": 2001, "status": "ERROR", "attributes": {"net.peer.name": "10-0-12-44.olapdb-server-headless.olapdb.svc.cluster.local", "error.msg": "backend write RPC timed out after 2000ms"}}
+      ]
+    },
+    {
+      "trace_id": "tr-6203",
+      "spans": [
+        {"span_id": "t1", "parent_id": null, "service": "transformer", "name": "write to ingestor", "start": "2026-06-22T22:50:30.000Z", "duration_ms": 120, "status": "OK", "attributes": {"note": "transformer recovered after retry"}}
+      ]
+    }
+  ]
+}

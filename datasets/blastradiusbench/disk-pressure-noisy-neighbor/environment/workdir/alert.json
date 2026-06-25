@@ -1,0 +1,12 @@
+{
+  "alert_id": "PD-9701",
+  "monitor": "Pod Eviction Monitor - K8s Event",
+  "service": "dashboard-svc",
+  "metric": "pod_evictions / 5xx_rate",
+  "threshold": "evictions > 0",
+  "observed_value": "dashboard-svc 5xx 44%, pod evicted",
+  "fired_at": "2026-06-24T14:51:40Z",
+  "severity": "high",
+  "summary": "dashboard-svc down: pod dashboard-svc-797cb7d7dd-xkz9v evicted, dashboards returning 5xx",
+  "note": "Paged on dashboard-svc because it is the most user-visible service that went down. dashboard-svc is one of several pods that were evicted at the same time; check WHY the eviction happened (node-level), not just dashboard-svc's own logs."
+}

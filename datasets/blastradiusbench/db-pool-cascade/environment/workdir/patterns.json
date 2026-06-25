@@ -1,0 +1,14 @@
+{
+  "window": "2026-06-18T13:50:00Z..2026-06-18T14:12:00Z",
+  "baseline_window": "2026-06-18T12:00:00Z..2026-06-18T13:50:00Z",
+  "patterns": [
+    {"signature": "timeout acquiring db connection from pool (in_use=<N> max=<N> wait_count=<N>)", "service": "orders", "count": 4120, "delta_vs_baseline": "+4120", "first_seen": "2026-06-18T13:59:30Z", "sentiment": "negative"},
+    {"signature": "db pool acquire slow: waited <N>ms", "service": "orders", "count": 880, "delta_vs_baseline": "+878", "first_seen": "2026-06-18T13:57:50Z", "sentiment": "negative"},
+    {"signature": "upstream orders timeout after <N>s", "service": "checkout", "count": 2900, "delta_vs_baseline": "+2900", "first_seen": "2026-06-18T14:01:55Z", "sentiment": "negative"},
+    {"signature": "request cancelled by caller checkout (context deadline exceeded)", "service": "payments", "count": 2410, "delta_vs_baseline": "+2410", "first_seen": "2026-06-18T14:02:05Z", "sentiment": "negative"},
+    {"signature": "504 from checkout, rendering error page", "service": "frontend", "count": 6100, "delta_vs_baseline": "+6100", "first_seen": "2026-06-18T14:03:03Z", "sentiment": "negative"},
+    {"signature": "504 Gateway Timeout GET /api/checkout", "service": "api-gateway", "count": 8200, "delta_vs_baseline": "+8200", "first_seen": "2026-06-18T14:03:03Z", "sentiment": "negative"},
+    {"signature": "query served", "service": "search", "count": 41000, "delta_vs_baseline": "+150", "first_seen": "2026-06-18T12:00:00Z", "sentiment": "neutral"}
+  ],
+  "note": "api-gateway has the HIGHEST count (8200) and is what paged. But orders' pool-timeout pattern has the EARLIEST first_seen (13:59:30, preceded by the 'acquire slow' warning at 13:57:50). Count != cause; first_seen and call direction reveal origin."
+}

@@ -1,0 +1,13 @@
+{
+  "window": "2026-06-23T09:00:00Z..2026-06-23T09:25:00Z",
+  "baseline_window": "2026-06-23T07:00:00Z..2026-06-23T09:00:00Z",
+  "patterns": [
+    {"signature": "FoundationDB transaction timeout during TSO leader-election (fdb_error=<N>)", "service": "olapdb-tso", "count": 140, "delta_vs_baseline": "+140", "first_seen": "2026-06-23T09:12:40Z", "sentiment": "negative"},
+    {"signature": "CAS operation failed: commit_ts unavailable, FoundationDB transaction timed out", "service": "olapdb-tso", "count": 96, "delta_vs_baseline": "+96", "first_seen": "2026-06-23T09:13:05Z", "sentiment": "negative"},
+    {"signature": "CnchLock acquire timed out after <N>ms (upstream olapdb-tso commit_ts unavailable)", "service": "metric-ingestor-1", "count": 880, "delta_vs_baseline": "+880", "first_seen": "2026-06-23T09:14:55Z", "sentiment": "negative"},
+    {"signature": "TransactionCoordinator commit failed: could not obtain commit timestamp", "service": "metric-ingestor-1", "count": 740, "delta_vs_baseline": "+740", "first_seen": "2026-06-23T09:15:30Z", "sentiment": "negative"},
+    {"signature": "FlinkJobUnhealthy: job restart <N> of <N>", "service": "stream-taskmanager", "count": 9, "delta_vs_baseline": "+9", "first_seen": "2026-06-23T09:17:55Z", "sentiment": "negative"},
+    {"signature": "Admin API HTTP 5xx: 500 downstream stream-taskmanager unavailable", "service": "platform-api", "count": 1900, "delta_vs_baseline": "+1900", "first_seen": "2026-06-23T09:20:05Z", "sentiment": "negative"}
+  ],
+  "note": "platform-api has the highest raw count (1900) and stream-taskmanager is what PAGED (FlinkJobUnhealthy). But olapdb-tso's FoundationDB-timeout pattern has the EARLIEST first_seen (09:12:40), minutes before the ingestor (09:14:55), the Flink job (09:17:55) and platform-api (09:20:05). first_seen + the dependency direction reveal olapdb-tso as the origin."
+}

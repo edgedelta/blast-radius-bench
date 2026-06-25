@@ -1,0 +1,12 @@
+{
+  "alert_id": "PD-9632",
+  "monitor": "Platform API HTTP 5xx Error / FlinkJobUnhealthy",
+  "service": "stream-taskmanager",
+  "metric": "flink_job_uptime_drops",
+  "threshold": "job restarts > 3 in 5m",
+  "observed_value": "9 restarts / 5m",
+  "fired_at": "2026-06-23T09:18:10Z",
+  "severity": "high",
+  "summary": "FlinkJobUnhealthy: stream-taskmanager job 'Metric_threshold_monitoring_job' restarting (checkpoint expired) — PagerDuty incident #9632",
+  "note": "Paged on the Flink taskmanager 'stream-taskmanager' because that is the loudest, most visible symptom (job restart loop). This is a downstream symptom; check whether the OLAP store/FoundationDB upstream is healthy before blaming the Flink pod."
+}

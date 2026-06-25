@@ -1,0 +1,13 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means service A calls/depends-on B. Observed from trace spans + olapdb topology over the last 24h. olapdb-tso is the Timestamp Oracle: every olapdb write transaction must obtain a commit timestamp from it.",
+  "generated_at": "2026-06-23T09:30:00Z",
+  "services": ["platform-api", "stream-taskmanager", "metric-ingestor-1", "olapdb-tso", "olapdb-server", "kafka-metric-ingestor"],
+  "edges": [
+    {"from": "platform-api", "to": "stream-taskmanager", "note": "reads stream-taskmanager Flink job output"},
+    {"from": "stream-taskmanager", "to": "metric-ingestor-1", "note": "Flink job consumes the olapdb ingestion write path"},
+    {"from": "metric-ingestor-1", "to": "olapdb-tso", "call_rate_rps": 600, "note": "acquires commit timestamps + CnchLocks for every write txn"},
+    {"from": "metric-ingestor-1", "to": "olapdb-server", "call_rate_rps": 120},
+    {"from": "kafka-metric-ingestor", "to": "olapdb-server", "call_rate_rps": 80}
+  ],
+  "note": "Request/dependency flow points A->B (A depends on B). Causally, when the callee olapdb-tso stalls, the failure propagates back UP the chain to the ingestor, then the Flink job, then platform-api."
+}

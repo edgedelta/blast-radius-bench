@@ -1,0 +1,9 @@
+{
+  "window": "2026-06-23T07:00:00Z..2026-06-23T09:25:00Z",
+  "deploys": [
+    {"timestamp": "2026-06-23T09:05:30Z", "service": "olapdb-tso", "commit_sha": "3d8221b4fe0e76847d3b55fe0b168d9ec41d028c", "version": "olapdb-tso-v3d8221b", "rollout": "100%"},
+    {"timestamp": "2026-06-23T09:09:20Z", "service": "kafka-metric-ingestor", "commit_sha": "9c6c113f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd2", "version": "kafka-metric-ingestor-v912", "rollout": "100%", "note": "deployed near incident onset — decoy"},
+    {"timestamp": "2026-06-23T07:35:00Z", "service": "stream-taskmanager", "commit_sha": "af9477f9a9c3e1b2d4f6a8c0e2b4d6f8a0c2e4d6", "version": "stream-taskmanager-v88", "rollout": "100%"},
+    {"timestamp": "2026-06-23T07:10:00Z", "service": "platform-api", "commit_sha": "c68566ae8a7f1d3b5e7a9c1f3d5b7e9a1c3f5b7d", "version": "platform-api-v644", "rollout": "100%"}
+  ]
+}

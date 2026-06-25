@@ -1,0 +1,31 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-22T09:40:00Z..2026-06-22T11:59:00Z",
+  "commits": [
+    {
+      "sha": "0e2b4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a",
+      "author": "olapdb-team",
+      "timestamp": "2026-06-22T11:38:00Z",
+      "service": "olapdb-vw-write",
+      "message": "#olapdb Remove memory limit on write VW to avoid OOMKills under burst load",
+      "files_changed": ["charts/olapdb/vw-write/statefulset.yaml"]
+    },
+    {
+      "sha": "2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c",
+      "author": "olapdb-team",
+      "timestamp": "2026-06-22T10:50:00Z",
+      "service": "olapdb-server",
+      "message": "#olapdb olapdb-server add write-worker retry on transient EOF",
+      "files_changed": ["olapdb/server/write_dispatch.cpp"]
+    },
+    {
+      "sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e",
+      "author": "platform-team",
+      "timestamp": "2026-06-22T10:10:00Z",
+      "service": "platform-api",
+      "message": "#api platform-api cache org conf for 30s",
+      "files_changed": ["admin/cache/conf.go"]
+    }
+  ]
+}

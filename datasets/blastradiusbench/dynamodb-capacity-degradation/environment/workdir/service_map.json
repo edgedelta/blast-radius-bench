@@ -1,0 +1,14 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. platform-api fronts the AI runtime: it calls ai-agent-svc, which persists agent state via ai-memory-svc (backed by DynamoDB table pipeline-states).",
+  "generated_at": "2026-06-20T07:50:00Z",
+  "services": [
+    {"name": "platform-api", "namespace": "oncall-ai"},
+    {"name": "ai-agent-svc", "namespace": "oncall-ai"},
+    {"name": "ai-memory-svc", "namespace": "oncall-ai", "backend": "DynamoDB:pipeline-states"}
+  ],
+  "edges": [
+    {"from": "platform-api", "to": "ai-agent-svc", "call_rate_rps": 45},
+    {"from": "ai-agent-svc", "to": "ai-memory-svc", "call_rate_rps": 130, "note": "persists/loads agent state; RETRIES on throttle"}
+  ],
+  "note": "Request flow A->B. ai-memory-svc is the leaf (DynamoDB-backed). When DynamoDB throttles its writes, the failure propagates callee->caller: ai-memory-svc -> ai-agent-svc (which retries, amplifying its own metrics) -> platform-api."
+}

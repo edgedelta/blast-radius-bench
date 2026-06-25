@@ -1,0 +1,15 @@
+{
+  "scenario": "dynamodb-capacity-degradation",
+  "origin_service": "ai-memory-svc",
+  "root_cause_culprit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
+  "root_cause_keywords": ["dynamodb", "write capacity", "write-capacity", "provisionedthroughputexceeded", "throttl", "capacity", "pipeline-states", "wcu", "on-demand", "memory store"],
+  "propagation_path": [
+    {"from": "ai-memory-svc", "to": "ai-agent-svc"},
+    {"from": "ai-agent-svc", "to": "platform-api"}
+  ],
+  "blast_radius": ["ai-agent-svc", "platform-api"],
+  "edge_overlap_threshold": 0.6,
+  "loudest_but_innocent": "ai-agent-svc",
+  "accept_origin_aliases": ["ai-memory-svc", "ai memory deployment", "pipeline-states"],
+  "notes": "ai-memory-svc writes agent state to DynamoDB table pipeline-states, which breached its provisioned write-capacity (commit 6f8a0c2e doubled the per-step checkpoint writes), so DynamoDB returned ProvisionedThroughputExceeded / throttling. ai-agent-svc calls ai-memory-svc and RETRIES aggressively on throttle, so ai-agent-svc shows the LOUDEST signal (retry storm: huge call volume, CPU, error count) — and PAGES. platform-api then surfaces AI runtime 500s. TRAP: retry amplification makes the CALLER ai-agent-svc loudest, but the origin is the throttled memory store ai-memory-svc. A model that blames ai-agent (the retry amplifier) is wrong."
+}

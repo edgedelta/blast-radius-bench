@@ -1,0 +1,12 @@
+{
+  "window": "2026-06-18T13:50:00Z..2026-06-18T14:12:00Z",
+  "events": [
+    {"timestamp": "2026-06-18T13:43:10Z", "type": "Deployment", "object": "deploy/orders", "reason": "ScalingReplicaSet", "message": "Scaled up replica set orders-412 to 6"},
+    {"timestamp": "2026-06-18T14:00:35Z", "type": "Deployment", "object": "deploy/frontend", "reason": "ScalingReplicaSet", "message": "Scaled up replica set frontend-889 to 8"},
+    {"timestamp": "2026-06-18T14:01:50Z", "type": "Warning", "object": "pod/orders-412-7c9", "reason": "Unhealthy", "message": "Readiness probe failed: HTTP 503 from /healthz (db pool saturated)"},
+    {"timestamp": "2026-06-18T14:04:20Z", "type": "Warning", "object": "pod/orders-412-7c9", "reason": "Unhealthy", "message": "Readiness probe failed: context deadline exceeded waiting for db connection"},
+    {"timestamp": "2026-06-18T14:06:10Z", "type": "Warning", "object": "deploy/checkout", "reason": "BackoffLimitReached", "message": "checkout downstream orders unavailable, circuit breaker half-open"},
+    {"timestamp": "2026-06-18T14:08:00Z", "type": "Warning", "object": "hpa/api-gateway", "reason": "FailedGetResourceMetric", "message": "api-gateway HPA scaling up due to request queue depth"}
+  ],
+  "note": "No node-level pressure, OOMKill, or eviction in this incident — failures track service-call edges, not infrastructure."
+}

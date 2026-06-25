@@ -1,0 +1,24 @@
+{
+  "description": "Sampled OTel spans. parent_id links spans; status OK|ERROR. NOTE the request-flow direction (http-receiver -> kafka_ingestor -> consumer) is the OPPOSITE of the causal/backpressure direction. The consumer's commit batch is slow first.",
+  "traces": [
+    {
+      "trace_id": "tr-5201",
+      "spans": [
+        {"span_id": "s1", "parent_id": null, "service": "http-receiver", "name": "POST /v1/metrics", "start": "2026-06-21T03:21:00.000Z", "duration_ms": 6200, "status": "ERROR", "attributes": {"http.status_code": 429, "error.msg": "ingest buffer full, downstream backpressure"}},
+        {"span_id": "s2", "parent_id": "s1", "service": "kafka-metric-ingestor", "name": "produce ed-olapdb-mt-1-metric-iq", "start": "2026-06-21T03:21:00.040Z", "duration_ms": 3000, "status": "ERROR", "attributes": {"error.msg": "produce timeout: queue near capacity (backlog 1048s)"}}
+      ]
+    },
+    {
+      "trace_id": "tr-5202",
+      "spans": [
+        {"span_id": "c1", "parent_id": null, "service": "metric-ingestor-1", "name": "consume + commit batch", "start": "2026-06-21T03:14:00.000Z", "duration_ms": 5200, "status": "OK", "attributes": {"queue": "ed-olapdb-mt-1-metric-iq", "consumer_lag": 21000, "note": "slow consumer: fsync per batch; 5.2s per commit, lag climbing"}}
+      ]
+    },
+    {
+      "trace_id": "tr-5203",
+      "spans": [
+        {"span_id": "c2", "parent_id": null, "service": "metric-ingestor-1", "name": "consume + commit batch", "start": "2026-06-21T03:04:00.000Z", "duration_ms": 180, "status": "OK", "attributes": {"queue": "ed-olapdb-mt-1-metric-iq", "consumer_lag": 400, "note": "baseline: fast commit before the deploy"}}
+      ]
+    }
+  ]
+}

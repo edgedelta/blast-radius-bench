@@ -1,0 +1,31 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-21T01:00:00Z..2026-06-21T03:26:00Z",
+  "commits": [
+    {
+      "sha": "f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd29c6c113",
+      "author": "ingest-team",
+      "timestamp": "2026-06-21T03:02:00Z",
+      "service": "metric-ingestor-1",
+      "message": "#ingest Force synchronous fsync per commit batch for durability",
+      "files_changed": ["ingest/metric/commit.go", "ingest/metric/store.go"]
+    },
+    {
+      "sha": "0c7b3d9e2f1a8c40dd29c6c113f60a4b2d1e5f8a",
+      "author": "ingest-team",
+      "timestamp": "2026-06-21T02:10:00Z",
+      "service": "kafka-metric-ingestor",
+      "message": "#ingest Bump metric kafka ingestor producer batch linger 5ms->20ms",
+      "files_changed": ["ingest/kafka/producer.go"]
+    },
+    {
+      "sha": "29c6c113f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd",
+      "author": "edge-team",
+      "timestamp": "2026-06-21T01:30:00Z",
+      "service": "http-receiver",
+      "message": "#ingest http-receiver enable HTTP keepalive on inbound listener",
+      "files_changed": ["receiver/http/listener.go"]
+    }
+  ]
+}

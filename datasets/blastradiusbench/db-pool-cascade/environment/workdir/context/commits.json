@@ -1,0 +1,54 @@
+{
+  "repo": "github.com/acme/shop",
+  "window": "2026-06-18T12:00:00Z..2026-06-18T14:12:00Z",
+  "commits": [
+    {
+      "sha": "a1b9f02",
+      "author": "rmehta",
+      "timestamp": "2026-06-18T13:41:00Z",
+      "service": "orders",
+      "message": "orders: switch order-lookup to per-request DB transaction, hold conn across enrichment call",
+      "files_changed": ["orders/internal/store/pg.go", "orders/internal/handler/lookup.go"]
+    },
+    {
+      "sha": "c3d77aa",
+      "author": "lzhang",
+      "timestamp": "2026-06-18T13:55:00Z",
+      "service": "frontend",
+      "message": "frontend: bump checkout button analytics event, minor css",
+      "files_changed": ["frontend/src/components/CheckoutButton.tsx", "frontend/src/styles/checkout.css"]
+    },
+    {
+      "sha": "e90112b",
+      "author": "jdoe",
+      "timestamp": "2026-06-18T12:20:00Z",
+      "service": "payments",
+      "message": "payments: add idempotency-key logging",
+      "files_changed": ["payments/pkg/idemp/log.go"]
+    },
+    {
+      "sha": "f4421cd",
+      "author": "akapoor",
+      "timestamp": "2026-06-18T12:48:00Z",
+      "service": "search",
+      "message": "search: upgrade query parser to v2",
+      "files_changed": ["search/query/parser.go", "search/query/parser_test.go"]
+    },
+    {
+      "sha": "b7710e3",
+      "author": "rmehta",
+      "timestamp": "2026-06-18T13:02:00Z",
+      "service": "checkout",
+      "message": "checkout: increase outbound HTTP timeout to orders from 800ms to 3s",
+      "files_changed": ["checkout/clients/orders_client.go"]
+    },
+    {
+      "sha": "d1029fe",
+      "author": "ssingh",
+      "timestamp": "2026-06-18T12:05:00Z",
+      "service": "api-gateway",
+      "message": "api-gateway: add request-id propagation header",
+      "files_changed": ["gateway/middleware/reqid.go"]
+    }
+  ]
+}

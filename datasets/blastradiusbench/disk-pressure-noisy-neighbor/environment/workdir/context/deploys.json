@@ -1,0 +1,9 @@
+{
+  "window": "2026-06-24T12:40:00Z..2026-06-24T14:57:00Z",
+  "deploys": [
+    {"timestamp": "2026-06-24T14:38:00Z", "service": "log-agent-v1", "commit_sha": "2d4f6a8c0e2b4d6f8a0c2e4d6f8a0c2e4d6f8a0c", "version": "log-agent-v1-v2d4f6a8", "rollout": "100%", "note": "DaemonSet rollout; log rotation disabled — the noisy neighbor"},
+    {"timestamp": "2026-06-24T13:10:00Z", "service": "dashboard-svc", "commit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d", "version": "dashboard-svc-v4.1.2", "rollout": "100%", "note": "decoy: dashboard-svc has its own pre-existing import warning"},
+    {"timestamp": "2026-06-24T13:30:00Z", "service": "sbom-scanner", "commit_sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e", "version": "sbom-scanner-v31", "rollout": "100%", "note": "decoy: sbom-scanner has its own pre-existing ECR 401s"},
+    {"timestamp": "2026-06-24T12:55:00Z", "service": "platform-api", "commit_sha": "0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a", "version": "platform-api-v645", "rollout": "100%"}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "window": "2026-06-22T01:50:00Z..2026-06-22T02:20:00Z",
+  "events": [
+    {"timestamp": "2026-06-22T02:00:00Z", "type": "Normal", "object": "cronjob/batch-importer", "node": "node-7", "reason": "SuccessfulCreate", "message": "Created job batch-importer-1718, version importer-v55"},
+    {"timestamp": "2026-06-22T02:03:30Z", "type": "Warning", "object": "pod/batch-importer-1718-x2", "node": "node-7", "reason": "Evicted", "message": "Memory usage 6.1Gi exceeds request; pod has no memory limit set"},
+    {"timestamp": "2026-06-22T02:04:10Z", "type": "Warning", "object": "node/node-7", "node": "node-7", "reason": "MemoryPressure", "message": "Node node-7 condition MemoryPressure is now True (available 220Mi)"},
+    {"timestamp": "2026-06-22T02:05:00Z", "type": "Warning", "object": "node/node-7", "node": "node-7", "reason": "SystemOOM", "message": "System OOM encountered on node-7, victim cgroup kubepods"},
+    {"timestamp": "2026-06-22T02:05:40Z", "type": "Warning", "object": "pod/auth-77b", "node": "node-7", "reason": "OOMKilled", "message": "Container auth killed, exceeded memory under node pressure"},
+    {"timestamp": "2026-06-22T02:06:20Z", "type": "Warning", "object": "pod/cart-5cc", "node": "node-7", "reason": "Evicted", "message": "The node was low on resource: memory. Pod cart-5cc evicted."},
+    {"timestamp": "2026-06-22T02:07:10Z", "type": "Warning", "object": "pod/image-resize-9d1", "node": "node-7", "reason": "OOMKilled", "message": "Container image-resize killed under node-7 memory pressure"},
+    {"timestamp": "2026-06-22T02:08:00Z", "type": "Warning", "object": "pod/auth-77c", "node": "node-7", "reason": "Unhealthy", "message": "Readiness probe failed: connection refused (pod restarting after OOM)"},
+    {"timestamp": "2026-06-22T02:09:30Z", "type": "Warning", "object": "node/node-7", "node": "node-7", "reason": "MemoryPressure", "message": "Node node-7 MemoryPressure still True; kubelet evicting to reclaim"},
+    {"timestamp": "2026-06-22T02:14:00Z", "type": "Normal", "object": "node/node-3", "node": "node-3", "reason": "NodeReady", "message": "node-3 healthy, no pressure"}
+  ],
+  "note": "Every eviction/OOMKill is on node-7. auth, cart, and image-resize were all scheduled on node-7 and were killed because batch-importer (also on node-7, no memory limit) ate the node's memory. The services did not fail because they call each other — they failed because they are neighbors on a saturated node."
+}

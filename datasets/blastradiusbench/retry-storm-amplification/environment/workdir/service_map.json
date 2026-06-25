@@ -1,0 +1,11 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means service A calls service B. Observed from trace spans over the last 24h.",
+  "generated_at": "2026-06-20T09:30:00Z",
+  "services": ["api-edge", "product-page", "recommendation", "catalog", "redis-cache"],
+  "edges": [
+    {"from": "api-edge", "to": "product-page", "call_rate_rps": 300},
+    {"from": "product-page", "to": "recommendation", "call_rate_rps": 290, "retry_policy": "3 retries, 50ms backoff"},
+    {"from": "product-page", "to": "catalog", "call_rate_rps": 300},
+    {"from": "recommendation", "to": "redis-cache", "call_rate_rps": 410}
+  ]
+}

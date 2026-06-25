@@ -1,0 +1,18 @@
+{"timestamp":"2026-06-22T22:30:05Z","service":"http-receiver","severity_text":"INFO","msg":"middleware Incoming request for POST /v1/ingest reqID=r100 X-Forwarded-For=10.2.3.4 X-Host-ID=org-21","trace_id":"tr-6001","latency_ms":48}
+{"timestamp":"2026-06-22T22:32:10Z","service":"metric-ingestor-large","severity_text":"DEBUG","msg":"TransactionCoordinator Created write txn txn_id=55021 commit_ts=440219980012160 status=Running priority=high","trace_id":"tr-6002"}
+{"timestamp":"2026-06-22T22:34:40Z","service":"olapdb-server","severity_text":"INFO","msg":"Information DatabaseCatalog got table ed_mt_v3 from worker resource","trace_id":"tr-6003"}
+{"timestamp":"2026-06-22T22:36:30Z","service":"olapdb-server","severity_text":"INFO","msg":"deploy olapdb-server v7b3d9e2 live","trace_id":null}
+{"timestamp":"2026-06-22T22:39:00Z","service":"olapdb-server","severity_text":"WARN","msg":"Karpenter disruption: node 10-0-12-44 draining, olapdb-server-headless shard endpoint losing capacity","trace_id":"tr-6010"}
+{"timestamp":"2026-06-22T22:41:10Z","service":"olapdb-server","severity_text":"ERROR","msg":"backend write RPC to 10-0-12-44.olapdb-server-headless.olapdb.svc.cluster.local timed out after 2000ms","trace_id":"tr-6011","latency_ms":2001}
+{"timestamp":"2026-06-22T22:41:55Z","service":"olapdb-server","severity_text":"ERROR","msg":"connection reset by peer (10-0-12-44.olapdb-server-headless.olapdb.svc.cluster.local): backend connectivity loss on write path","trace_id":"tr-6012","latency_ms":2003}
+{"timestamp":"2026-06-22T22:42:40Z","service":"olapdb-server","severity_text":"ERROR","msg":"DB::Exception: commitParts write timeout, backend unreachable","trace_id":"tr-6013","latency_ms":2005}
+{"timestamp":"2026-06-22T22:43:20Z","service":"metric-ingestor-large","severity_text":"ERROR","msg":"write txn failed: HTTP 500 from olapdb-server (commitParts timeout)","trace_id":"tr-6020","latency_ms":2100}
+{"timestamp":"2026-06-22T22:44:00Z","service":"transformer","severity_text":"WARN","msg":"transient EOF writing to ingestor, retrying","trace_id":"tr-6021","latency_ms":300}
+{"timestamp":"2026-06-22T22:44:10Z","service":"metric-ingestor-large","severity_text":"ERROR","msg":"unexpected EOF / connection reset writing to olapdb-server; ed-olapdb-mt-large-log-iq backlog growing","trace_id":"tr-6022","latency_ms":2200}
+{"timestamp":"2026-06-22T22:45:30Z","service":"metric-ingestor-large","severity_text":"ERROR","msg":"write txn rolled back: backend connectivity loss, 500 returned to caller","trace_id":"tr-6023","latency_ms":2300}
+{"timestamp":"2026-06-22T22:46:10Z","service":"http-receiver","severity_text":"ERROR","msg":"middleware POST /v1/ingest 500: downstream ingestor write failure reqID=r880 X-Host-ID=org-21","trace_id":"tr-6030","latency_ms":2400}
+{"timestamp":"2026-06-22T22:47:00Z","service":"http-receiver","severity_text":"ERROR","msg":"POST /v1/ingest 504: write backlog, p99 climbing reqID=r905","trace_id":"tr-6031","latency_ms":9800}
+{"timestamp":"2026-06-22T22:48:00Z","service":"http-receiver","severity_text":"ERROR","msg":"POST /v1/ingest 500 (5xx rate 37%, p99 9.8s)","trace_id":"tr-6032","latency_ms":9800}
+{"timestamp":"2026-06-22T22:49:20Z","service":"olapdb-server","severity_text":"ERROR","msg":"backend write RPC connection reset by peer (still no shard capacity)","trace_id":"tr-6040","latency_ms":2004}
+{"timestamp":"2026-06-22T22:50:30Z","service":"transformer","severity_text":"INFO","msg":"transformer write path recovered after retry","trace_id":"tr-6041","latency_ms":120}
+{"timestamp":"2026-06-22T22:51:10Z","service":"http-receiver","severity_text":"ERROR","msg":"POST /v1/ingest 500 (errors/5m=14200)","trace_id":"tr-6042","latency_ms":9700}

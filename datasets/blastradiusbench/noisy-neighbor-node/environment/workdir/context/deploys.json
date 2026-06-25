@@ -1,0 +1,11 @@
+{
+  "window": "2026-06-21T20:00:00Z..2026-06-22T02:15:00Z",
+  "deploys": [
+    {"timestamp": "2026-06-21T21:35:00Z", "service": "batch-importer", "commit_sha": "7e0a4d2", "version": "importer-v55", "rollout": "100%", "note": "CronJob image updated; first run at 02:00 nightly"},
+    {"timestamp": "2026-06-21T22:15:00Z", "service": "auth", "commit_sha": "1c4f8b0", "version": "auth-v402", "rollout": "100%"},
+    {"timestamp": "2026-06-21T20:45:00Z", "service": "cart", "commit_sha": "3aa2e91", "version": "cart-v218", "rollout": "100%"},
+    {"timestamp": "2026-06-21T23:10:00Z", "service": "image-resize", "commit_sha": "9b7c310", "version": "imageresize-v61", "rollout": "100%"},
+    {"timestamp": "2026-06-21T20:20:00Z", "service": "catalog", "commit_sha": "5d10a7c", "version": "catalog-v90", "rollout": "100%"}
+  ],
+  "note": "batch-importer-v55 was deployed at 21:35 but the noisy run only started at the 02:00 cron tick — which is exactly when the incident began. Onset tracks the CRON RUN, not any of the service deploys."
+}

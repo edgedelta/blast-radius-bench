@@ -1,0 +1,8 @@
+{
+  "window": "2026-06-24T12:40:00Z..2026-06-24T14:57:00Z",
+  "note": "Feature-flag changes near the window. In v1 all root causes are CODE changes; flags are distractors only.",
+  "changes": [
+    {"timestamp": "2026-06-24T13:15:00Z", "flag": "dashboard-svc.new_dashboard_v2", "service": "dashboard-svc", "from": false, "to": true, "actor": "dashboard-team"},
+    {"timestamp": "2026-06-24T14:30:00Z", "flag": "sbom.sbom_parallel_scan", "service": "sbom-scanner", "from": false, "to": true, "actor": "sbom-team"}
+  ]
+}

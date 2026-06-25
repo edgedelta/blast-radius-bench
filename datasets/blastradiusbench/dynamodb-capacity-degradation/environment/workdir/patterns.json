@@ -1,0 +1,11 @@
+{
+  "window": "2026-06-20T07:20:00Z..2026-06-20T07:40:00Z",
+  "baseline_window": "2026-06-20T05:20:00Z..2026-06-20T07:20:00Z",
+  "patterns": [
+    {"signature": "DynamoDB PutItem ProvisionedThroughputExceededException on table pipeline-states", "service": "ai-memory-svc", "count": 690, "delta_vs_baseline": "+690", "first_seen": "2026-06-20T07:31:10Z", "sentiment": "negative"},
+    {"signature": "DynamoDB write throttled: pipeline-states consumed WCU exceeds provisioned", "service": "ai-memory-svc", "count": 540, "delta_vs_baseline": "+540", "first_seen": "2026-06-20T07:31:55Z", "sentiment": "negative"},
+    {"signature": "ai-memory PutItem throttled, retrying agent checkpoint (attempt <N>)", "service": "ai-agent-svc", "count": 7400, "delta_vs_baseline": "+7400", "first_seen": "2026-06-20T07:33:20Z", "sentiment": "negative"},
+    {"signature": "Admin API HTTP 5xx: AI Teammate request 500", "service": "platform-api", "count": 2200, "delta_vs_baseline": "+2200", "first_seen": "2026-06-20T07:36:10Z", "sentiment": "negative"}
+  ],
+  "note": "ai-agent-svc has the HIGHEST count (7400) because it RETRIES on every throttle (retry amplification) and is what PAGED. But ai-memory-svc's DynamoDB-throttle pattern has the EARLIEST first_seen (07:31:10), before the agent's retries (07:33:20) and platform-api's 5xx (07:36:10). The agent's huge count is amplification of a downstream throttle; first_seen + the dependency direction reveal ai-memory-svc."
+}

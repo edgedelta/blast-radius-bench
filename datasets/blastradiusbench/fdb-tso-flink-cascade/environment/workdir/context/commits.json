@@ -1,0 +1,47 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-23T07:00:00Z..2026-06-23T09:25:00Z",
+  "commits": [
+    {
+      "sha": "3d8221b4fe0e76847d3b55fe0b168d9ec41d028c",
+      "author": "olapdb-team",
+      "timestamp": "2026-06-23T08:58:00Z",
+      "service": "olapdb-tso",
+      "message": "#olapdb Lower TSO CAS retry budget to cut tail latency on commit_ts allocation",
+      "files_changed": ["olapdb/tso/cas_allocator.cpp", "olapdb/tso/leader_election.cpp"]
+    },
+    {
+      "sha": "9c6c113f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd2",
+      "author": "ingest-team",
+      "timestamp": "2026-06-23T08:40:00Z",
+      "service": "kafka-metric-ingestor",
+      "message": "#ingest Fix metric kafka ingestor backpressure on SQS receive",
+      "files_changed": ["ingest/kafka/backpressure.go"]
+    },
+    {
+      "sha": "af9477f9a9c3e1b2d4f6a8c0e2b4d6f8a0c2e4d6",
+      "author": "flink-team",
+      "timestamp": "2026-06-23T07:30:00Z",
+      "service": "stream-taskmanager",
+      "message": "#flink Bump stream-taskmanager taskmanager parallelism 4->6",
+      "files_changed": ["streaming/stream_taskmanager/job.yaml"]
+    },
+    {
+      "sha": "c68566ae8a7f1d3b5e7a9c1f3d5b7e9a1c3f5b7d",
+      "author": "platform-team",
+      "timestamp": "2026-06-23T07:05:00Z",
+      "service": "platform-api",
+      "message": "#api Add request-id propagation to admin GetConf middleware",
+      "files_changed": ["admin/middleware/reqid.go"]
+    },
+    {
+      "sha": "5f8a04ba9b1c3e5d7f9b1d3f5a7c9e1b3d5f7a9c",
+      "author": "olapdb-team",
+      "timestamp": "2026-06-23T06:50:00Z",
+      "service": "olapdb-server",
+      "message": "#olapdb PartCache eviction tuning for ed_mt",
+      "files_changed": ["olapdb/server/part_cache.cpp"]
+    }
+  ]
+}

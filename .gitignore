@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.uv/
+.pytest_cache/
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+
+# Harbor run artifacts
+jobs/
+logs/
+benchmark-results/*.local
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/

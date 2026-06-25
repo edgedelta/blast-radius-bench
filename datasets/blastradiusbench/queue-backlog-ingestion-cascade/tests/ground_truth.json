@@ -1,0 +1,16 @@
+{
+  "scenario": "queue-backlog-ingestion-cascade",
+  "origin_service": "metric-ingestor-1",
+  "root_cause_culprit_sha": "f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd29c6c113",
+  "root_cause_keywords": ["slow consumer", "consumer lag", "queue backlog", "backlog", "backpressure", "approximateageofoldestmessage", "oldest message", "consumption lag", "stalled", "commit batch", "fsync"],
+  "propagation_path": [
+    {"from": "metric-ingestor-1", "to": "kafka-metric-ingestor"},
+    {"from": "kafka-metric-ingestor", "to": "http-receiver"}
+  ],
+  "blast_radius": ["kafka-metric-ingestor", "http-receiver"],
+  "edge_overlap_threshold": 0.6,
+  "loudest_but_innocent": "http-receiver",
+  "reversed_trap_edge": {"from": "http-receiver", "to": "metric-ingestor-1"},
+  "accept_origin_aliases": ["metric-ingestor-1", "olapdb mt 1 metric ingestor", "ed-olapdb-mt-1-metric-iq"],
+  "notes": "REVERSED-CAUSALITY TRAP. Request flow is http-receiver -> kafka-metric-ingestor -> metric-ingestor-1 (the downstream consumer of queue ed-olapdb-mt-1-metric-iq). The ingestor became a SLOW CONSUMER (commit 0f60a4b2 added a synchronous fsync per batch), so ApproximateAgeOfOldestMessage on ed-olapdb-mt-1-metric-iq rose 810s->1048s, the queue backlogged, backpressure propagated UP to kafka-metric-ingestor then http-receiver. http-receiver shows the visible traffic/latency spike and PAGES (it is the caller/edge), tempting a model to blame it and emit the edge http-receiver -> ingestor (which is request-flow, NOT causal). The true causal direction is ingestor -> kafka_ingestor -> http-receiver (callee backpressures caller)."
+}

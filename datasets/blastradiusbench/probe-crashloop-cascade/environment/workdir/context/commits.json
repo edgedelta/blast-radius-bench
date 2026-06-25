@@ -1,0 +1,31 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-19T16:50:00Z..2026-06-19T19:12:00Z",
+  "commits": [
+    {
+      "sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f",
+      "author": "oncall-ai-team",
+      "timestamp": "2026-06-19T18:54:00Z",
+      "service": "workflow-engine",
+      "message": "#ai Point workflow-engine liveness probe at metrics port 9090 /health (consolidate health checks)",
+      "files_changed": ["charts/oncall-ai/workflow-engine/deployment.yaml"]
+    },
+    {
+      "sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
+      "author": "oncall-ai-team",
+      "timestamp": "2026-06-19T18:20:00Z",
+      "service": "ai-agent-svc",
+      "message": "#ai Add startupProbe to ai-agent-svc (fixes earlier crashloop)",
+      "files_changed": ["charts/oncall-ai/ai-agent/deployment.yaml"]
+    },
+    {
+      "sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e",
+      "author": "platform-team",
+      "timestamp": "2026-06-19T17:30:00Z",
+      "service": "platform-api",
+      "message": "#api platform-api add reqID propagation to teammate run handler",
+      "files_changed": ["admin/handler/teammate.go"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{"timestamp":"2026-06-20T07:20:05Z","service":"ai-memory-svc","severity_text":"INFO","msg":"PutItem pipeline-states ok, agent checkpoint stored","trace_id":"tr-1001","latency_ms":18}
+{"timestamp":"2026-06-20T07:22:10Z","service":"ai-agent-svc","severity_text":"INFO","msg":"AgenticLoopService/runMainLoop ok, persisted state via ai-memory","trace_id":"tr-1002","latency_ms":210}
+{"timestamp":"2026-06-20T07:24:40Z","service":"platform-api","severity_text":"DEBUG","msg":"admin GetConf isAgent=true shouldResolveContent=true reqID=n1 userID=org-2","trace_id":"tr-1003"}
+{"timestamp":"2026-06-20T07:26:30Z","service":"ai-memory-svc","severity_text":"INFO","msg":"deploy ai-memory-svc v6f8a0c2 live (checkpoint write change)","trace_id":null}
+{"timestamp":"2026-06-20T07:31:10Z","service":"ai-memory-svc","severity_text":"WARN","msg":"DynamoDB PutItem ProvisionedThroughputExceededException on table pipeline-states (us-east-1), backing off","trace_id":"tr-1010","latency_ms":120}
+{"timestamp":"2026-06-20T07:31:55Z","service":"ai-memory-svc","severity_text":"ERROR","msg":"DynamoDB write throttled: pipeline-states consumed WCU exceeds provisioned (ProvisionedThroughputExceeded)","trace_id":"tr-1011","latency_ms":140}
+{"timestamp":"2026-06-20T07:32:40Z","service":"ai-memory-svc","severity_text":"ERROR","msg":"PutItem pipeline-states failed after 3 SDK retries: throughput exceeded","trace_id":"tr-1012","latency_ms":900}
+{"timestamp":"2026-06-20T07:33:20Z","service":"ai-agent-svc","severity_text":"WARN","msg":"ai-memory PutItem throttled, retrying agent checkpoint (attempt 2)","trace_id":"tr-1020","latency_ms":300}
+{"timestamp":"2026-06-20T07:33:50Z","service":"ai-agent-svc","severity_text":"WARN","msg":"ai-memory PutItem throttled, retrying agent checkpoint (attempt 5), outbound call rate climbing","trace_id":"tr-1021","latency_ms":1200}
+{"timestamp":"2026-06-20T07:34:30Z","service":"ai-agent-svc","severity_text":"INFO","msg":"deploy ai-agent v312 live","trace_id":null}
+{"timestamp":"2026-06-20T07:34:40Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"AgenticLoopService/runMainLoop failed: ai-memory checkpoint persistently throttled (retry budget exhausted)","trace_id":"tr-1022","latency_ms":3000}
+{"timestamp":"2026-06-20T07:35:00Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"retry storm: outbound calls to ai-memory 9x baseline, CPU 88%, errors 6800/5m","trace_id":"tr-1030","latency_ms":3100}
+{"timestamp":"2026-06-20T07:36:10Z","service":"platform-api","severity_text":"ERROR","msg":"GetConf 500: AI runtime error (ai-agent-svc unavailable) reqID=n88 userID=org-2","trace_id":"tr-1040","latency_ms":320}
+{"timestamp":"2026-06-20T07:37:30Z","service":"platform-api","severity_text":"ERROR","msg":"Admin API HTTP 5xx: AI Teammate request 500 (5xx rate 28%)","trace_id":"tr-1041","latency_ms":330}
+{"timestamp":"2026-06-20T07:38:40Z","service":"ai-memory-svc","severity_text":"ERROR","msg":"DynamoDB write throttled: pipeline-states (throttle events/5m=540)","trace_id":"tr-1050","latency_ms":150}
+{"timestamp":"2026-06-20T07:39:50Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"retry storm continuing, errors 7400/5m","trace_id":"tr-1051","latency_ms":3200}

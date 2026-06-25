@@ -1,0 +1,12 @@
+{
+  "window": "2026-06-24T14:40:00Z..2026-06-24T14:57:00Z",
+  "events": [
+    {"timestamp": "2026-06-24T14:38:00Z", "type": "Deployment", "object": "daemonset/log-agent-v1", "namespace": "default", "node": "ip-10-0-37-88.us-east-1", "reason": "ScalingReplicaSet", "message": "Rolled log-agent-v1 DaemonSet to v2d4f6a8 (log rotation config change)"},
+    {"timestamp": "2026-06-24T14:50:00Z", "type": "NodeNotReady", "object": "node/ip-10-0-37-88.us-east-1", "node": "ip-10-0-37-88.us-east-1", "reason": "DiskPressure", "message": "Node ip-10-0-37-88.us-east-1 condition DiskPressure is now True (imagefs available 280Mi)"},
+    {"timestamp": "2026-06-24T14:51:20Z", "type": "PodEviction", "object": "pod/dashboard-svc-797cb7d7dd-xkz9v", "namespace": "dashboard-svc", "node": "ip-10-0-37-88.us-east-1", "reason": "Evicted", "message": "The node was low on resource: ephemeral-storage. Pod dashboard-svc-797cb7d7dd-xkz9v evicted."},
+    {"timestamp": "2026-06-24T14:52:05Z", "type": "PodEviction", "object": "pod/log-agent-v1-7c9", "namespace": "default", "node": "ip-10-0-37-88.us-east-1", "reason": "Evicted", "message": "Pod log-agent-v1-7c9 evicted under node ip-10-0-37-88 DiskPressure."},
+    {"timestamp": "2026-06-24T14:52:50Z", "type": "PodEviction", "object": "pod/sbom-scanner-5cc", "namespace": "sbom", "node": "ip-10-0-37-88.us-east-1", "reason": "Evicted", "message": "The node was low on resource: ephemeral-storage. Pod sbom-scanner-5cc evicted."},
+    {"timestamp": "2026-06-24T14:54:00Z", "type": "Valid", "object": "node/ip-10-0-12-31.us-east-1", "node": "ip-10-0-12-31.us-east-1", "reason": "NodeReady", "message": "node ip-10-0-12-31 healthy, no pressure"}
+  ],
+  "note": "EVERY eviction is on node ip-10-0-37-88.us-east-1. dashboard-svc (ns dashboard-svc), log-agent-v1 (ns default) and sbom-scanner (ns rad) were all scheduled there and were evicted because log-agent-v1 (DaemonSet, log rotation disabled) filled the node's ephemeral storage. They did not fail because they call each other — they failed because they are neighbors on a disk-pressured node. node ip-10-0-12-31 (platform-api, dashboard-worker) stays healthy."
+}

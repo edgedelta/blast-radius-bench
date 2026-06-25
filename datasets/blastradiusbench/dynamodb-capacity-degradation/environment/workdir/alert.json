@@ -1,0 +1,12 @@
+{
+  "alert_id": "PD-9609",
+  "monitor": "AI Assistant Overall Error Monitor",
+  "service": "ai-agent-svc",
+  "metric": "request_rate / error_count",
+  "threshold": "error_count spike",
+  "observed_value": "outbound calls 9x baseline, errors 6800/5m, CPU 88%",
+  "fired_at": "2026-06-20T07:35:00Z",
+  "severity": "high",
+  "summary": "ai-agent-svc error + call-volume storm (9x), high CPU — AI Teammate runtime degraded",
+  "note": "Paged on ai-agent-svc because it shows the biggest spike (call volume, errors, CPU). A retry storm makes the RETRYING caller look like the epicenter — check whether the volume is amplification of a downstream throttle."
+}

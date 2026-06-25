@@ -1,0 +1,13 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means service A calls service B (A depends on B). Observed from trace spans over the last 24h.",
+  "generated_at": "2026-06-18T14:12:00Z",
+  "services": ["api-gateway", "frontend", "checkout", "orders", "payments", "search", "postgres-orders"],
+  "edges": [
+    {"from": "api-gateway", "to": "frontend", "call_rate_rps": 220},
+    {"from": "frontend", "to": "checkout", "call_rate_rps": 90},
+    {"from": "frontend", "to": "search", "call_rate_rps": 130},
+    {"from": "checkout", "to": "orders", "call_rate_rps": 85},
+    {"from": "checkout", "to": "payments", "call_rate_rps": 80},
+    {"from": "orders", "to": "postgres-orders", "call_rate_rps": 240}
+  ]
+}

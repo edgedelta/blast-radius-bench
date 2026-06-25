@@ -1,0 +1,9 @@
+{
+  "window": "2026-06-20T07:30:00Z..2026-06-20T09:15:00Z",
+  "deploys": [
+    {"timestamp": "2026-06-20T08:37:00Z", "service": "recommendation", "commit_sha": "9f3c1aa", "version": "reco-v210", "rollout": "100%"},
+    {"timestamp": "2026-06-20T09:01:00Z", "service": "product-page", "commit_sha": "2bb90c4", "version": "productpage-v553", "rollout": "100%", "note": "retry-budget change deployed shortly before product-page's request spike — decoy: amplifies but does not originate"},
+    {"timestamp": "2026-06-20T07:45:00Z", "service": "catalog", "commit_sha": "a07fe22", "version": "catalog-v88", "rollout": "100%"},
+    {"timestamp": "2026-06-20T08:10:00Z", "service": "api-edge", "commit_sha": "d44ab18", "version": "edge-v301", "rollout": "100%"}
+  ]
+}

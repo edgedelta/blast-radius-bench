@@ -1,0 +1,12 @@
+{
+  "alert_id": "PD-9620",
+  "monitor": "Platform API HTTP 5xx Error",
+  "service": "platform-api",
+  "metric": "http_5xx_rate",
+  "threshold": "> 5%",
+  "observed_value": "36%",
+  "fired_at": "2026-06-22T11:56:10Z",
+  "severity": "high",
+  "summary": "Admin API HTTP 5xx 36% — query failures, olapdb write path errors",
+  "note": "Paged on platform-api because query-failure 5xx is measured at the API. The query failures originate deeper in the olapdb write path; check node/pod health, not just platform-api."
+}

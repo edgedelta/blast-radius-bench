@@ -1,0 +1,39 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-22T20:30:00Z..2026-06-22T22:52:00Z",
+  "commits": [
+    {
+      "sha": "7b3d9e2f1a8c40dd29c6c113f60a4b2d1e5f8a0c",
+      "author": "olapdb-team",
+      "timestamp": "2026-06-22T22:30:00Z",
+      "service": "olapdb-server",
+      "message": "#olapdb Tighten write-path RPC deadline to olapdb-server-headless to 2s",
+      "files_changed": ["olapdb/server/write_rpc_client.cpp", "olapdb/server/shard_router.cpp"]
+    },
+    {
+      "sha": "1e5f8a0c7b3d9e2f1a8c40dd29c6c113f60a4b2d",
+      "author": "ingest-team",
+      "timestamp": "2026-06-22T21:40:00Z",
+      "service": "metric-ingestor-large",
+      "message": "#ingest Increase large metric ingestor batch size 4k->8k rows",
+      "files_changed": ["ingest/large/batch.go"]
+    },
+    {
+      "sha": "a8c40dd29c6c113f60a4b2d1e5f8a0c7b3d9e2f1",
+      "author": "edge-team",
+      "timestamp": "2026-06-22T20:55:00Z",
+      "service": "http-receiver",
+      "message": "#ingest http-receiver enable gzip response compression",
+      "files_changed": ["receiver/http/gzip.go"]
+    },
+    {
+      "sha": "60a4b2d1e5f8a0c7b3d9e2f1a8c40dd29c6c113f",
+      "author": "default-team",
+      "timestamp": "2026-06-22T20:35:00Z",
+      "service": "transformer",
+      "message": "#transformer Add field-rename rule for legacy metric keys",
+      "files_changed": ["transformer/rules/rename.go"]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls/depends-on B. http-receiver is the ingest edge: it forwards writes to the large metric ingestor, which writes to olapdb-server (the olapdb write backend).",
+  "generated_at": "2026-06-22T23:00:00Z",
+  "services": ["http-receiver", "metric-ingestor-large", "olapdb-server", "transformer"],
+  "edges": [
+    {"from": "http-receiver", "to": "metric-ingestor-large", "call_rate_rps": 400, "note": "forwards write batches"},
+    {"from": "metric-ingestor-large", "to": "olapdb-server", "call_rate_rps": 350, "note": "commits write txns to the olapdb write backend (olapdb-server-headless)"},
+    {"from": "transformer", "to": "metric-ingestor-large", "call_rate_rps": 60}
+  ],
+  "note": "Request flow A->B; causally the slow/unreachable callee olapdb-server backs up the ingestor, which backs up http-receiver at the edge."
+}

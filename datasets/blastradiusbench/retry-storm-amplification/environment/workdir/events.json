@@ -1,0 +1,11 @@
+{
+  "window": "2026-06-20T08:30:00Z..2026-06-20T09:15:00Z",
+  "events": [
+    {"timestamp": "2026-06-20T08:37:10Z", "type": "Deployment", "object": "deploy/recommendation", "reason": "ScalingReplicaSet", "message": "Scaled up replica set reco-210 to 4"},
+    {"timestamp": "2026-06-20T09:01:10Z", "type": "Deployment", "object": "deploy/product-page", "reason": "ScalingReplicaSet", "message": "Scaled up replica set productpage-553 to 10"},
+    {"timestamp": "2026-06-20T09:08:30Z", "type": "Warning", "object": "pod/reco-210-aa1", "reason": "Unhealthy", "message": "Liveness probe slow: GC pause exceeded probe timeout"},
+    {"timestamp": "2026-06-20T09:12:00Z", "type": "Warning", "object": "hpa/product-page", "reason": "SuccessfulRescale", "message": "Scaled product-page to 16 replicas due to CPU 90%"},
+    {"timestamp": "2026-06-20T09:13:30Z", "type": "Warning", "object": "deploy/recommendation", "reason": "Unhealthy", "message": "reco pods flapping readiness during long GC pauses"}
+  ],
+  "note": "No node pressure or OOMKill — recommendation is GC-thrashing in-process (heap climbing toward limit), not being killed by the node. product-page autoscaled UP, which made the retry storm worse."
+}

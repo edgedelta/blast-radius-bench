@@ -1,0 +1,29 @@
+{
+  "description": "Sampled OTel spans. parent_id links spans; status OK|ERROR. NOTE: the three failing services do NOT appear in a single trace together — there is no call path between them. Each erroring span carries k8s.node so you can see they share ip-10-0-37-88.",
+  "traces": [
+    {
+      "trace_id": "tr-4201",
+      "spans": [
+        {"span_id": "s1", "parent_id": null, "service": "dashboard-svc", "name": "GET /dashboard-svc/dashboard/9", "start": "2026-06-24T14:51:45.000Z", "duration_ms": 503, "status": "ERROR", "attributes": {"http.status_code": 503, "k8s.node": "ip-10-0-37-88.us-east-1", "error.msg": "pod terminating under node disk pressure"}}
+      ]
+    },
+    {
+      "trace_id": "tr-4202",
+      "spans": [
+        {"span_id": "r1", "parent_id": null, "service": "sbom-scanner", "name": "POST /sbom/scan", "start": "2026-06-24T14:56:20.000Z", "duration_ms": 200, "status": "ERROR", "attributes": {"k8s.node": "ip-10-0-37-88.us-east-1", "error.msg": "pod rescheduling after eviction"}}
+      ]
+    },
+    {
+      "trace_id": "tr-4203",
+      "spans": [
+        {"span_id": "w1", "parent_id": null, "service": "dashboard-worker", "name": "run async task", "start": "2026-06-24T14:54:10.000Z", "duration_ms": 90, "status": "OK", "attributes": {"k8s.node": "ip-10-0-12-31.us-east-1", "note": "dashboard-worker healthy on a DIFFERENT node"}}
+      ]
+    },
+    {
+      "trace_id": "tr-4204",
+      "spans": [
+        {"span_id": "a1", "parent_id": null, "service": "platform-api", "name": "GET /api/v1/orgs/conf", "start": "2026-06-24T14:55:00.000Z", "duration_ms": 120, "status": "OK", "attributes": {"k8s.node": "ip-10-0-12-31.us-east-1", "note": "unaffected, different node"}}
+      ]
+    }
+  ]
+}

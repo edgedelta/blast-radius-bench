@@ -1,0 +1,8 @@
+{
+  "window": "2026-06-20T05:20:00Z..2026-06-20T07:40:00Z",
+  "note": "Feature-flag changes near the window. In v1 all root causes are CODE changes; flags are distractors only.",
+  "changes": [
+    {"timestamp": "2026-06-20T07:25:00Z", "flag": "ai_memory.checkpoint_every_step", "service": "ai-memory-svc", "from": false, "to": true, "actor": "oncall-ai-team"},
+    {"timestamp": "2026-06-20T06:40:00Z", "flag": "ai_agent.aggressive_retry", "service": "ai-agent-svc", "from": false, "to": true, "actor": "oncall-ai-team"}
+  ]
+}

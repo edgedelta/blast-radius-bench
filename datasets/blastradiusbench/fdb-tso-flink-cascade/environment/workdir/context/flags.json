@@ -1,0 +1,9 @@
+{
+  "window": "2026-06-23T07:00:00Z..2026-06-23T09:25:00Z",
+  "note": "Feature-flag changes near the window. In v1 of this benchmark all root causes are CODE changes; flags are distractors only.",
+  "changes": [
+    {"timestamp": "2026-06-23T09:10:00Z", "flag": "stream_taskmanager.parallelism_v2", "service": "stream-taskmanager", "from": false, "to": true, "actor": "flink-team"},
+    {"timestamp": "2026-06-23T08:30:00Z", "flag": "ingest.batch_v3", "service": "kafka-metric-ingestor", "from": false, "to": true, "actor": "ingest-team"},
+    {"timestamp": "2026-06-23T07:15:00Z", "flag": "admin_api.new_conf_cache", "service": "platform-api", "from": false, "to": true, "actor": "platform-team"}
+  ]
+}

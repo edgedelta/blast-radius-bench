@@ -1,0 +1,46 @@
+{
+  "repo": "github.com/acme/shop",
+  "window": "2026-06-21T20:00:00Z..2026-06-22T02:15:00Z",
+  "commits": [
+    {
+      "sha": "7e0a4d2",
+      "author": "pmoreau",
+      "timestamp": "2026-06-21T21:30:00Z",
+      "service": "batch-importer",
+      "message": "importer: replace streaming CSV reader with in-memory load of full catalog before upsert (simpler, no chunking)",
+      "files_changed": ["importer/load.go", "importer/cmd/run.go"]
+    },
+    {
+      "sha": "1c4f8b0",
+      "author": "kobrien",
+      "timestamp": "2026-06-21T22:10:00Z",
+      "service": "auth",
+      "message": "auth: rotate JWT signing key cache TTL to 15m",
+      "files_changed": ["auth/jwt/cache.go"]
+    },
+    {
+      "sha": "3aa2e91",
+      "author": "ito",
+      "timestamp": "2026-06-21T20:40:00Z",
+      "service": "cart",
+      "message": "cart: add coupon stacking validation",
+      "files_changed": ["cart/coupon/validate.go"]
+    },
+    {
+      "sha": "9b7c310",
+      "author": "ito",
+      "timestamp": "2026-06-21T23:05:00Z",
+      "service": "image-resize",
+      "message": "image-resize: bump libvips to 8.15, enable webp",
+      "files_changed": ["imageresize/Dockerfile", "imageresize/encode.go"]
+    },
+    {
+      "sha": "5d10a7c",
+      "author": "kobrien",
+      "timestamp": "2026-06-21T20:15:00Z",
+      "service": "catalog",
+      "message": "catalog: index product tags",
+      "files_changed": ["catalog/index/tags.go"]
+    }
+  ]
+}
