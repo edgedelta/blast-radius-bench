@@ -1,9 +1,29 @@
 {
   "window": "2026-06-18T12:00:00Z..2026-06-18T14:12:00Z",
-  "note": "Feature-flag changes near the window. In v1 of this benchmark all root causes are CODE changes; flags are distractors only.",
   "changes": [
-    {"timestamp": "2026-06-18T13:59:10Z", "flag": "checkout.new_express_lane", "service": "checkout", "from": false, "to": true, "actor": "lzhang"},
-    {"timestamp": "2026-06-18T13:30:00Z", "flag": "search.parser_v2_enabled", "service": "search", "from": false, "to": true, "actor": "akapoor"},
-    {"timestamp": "2026-06-18T12:10:00Z", "flag": "frontend.dark_mode_default", "service": "frontend", "from": false, "to": true, "actor": "lzhang"}
+    {
+      "timestamp": "2026-06-18T13:59:10Z",
+      "flag": "checkout.new_express_lane",
+      "service": "checkout",
+      "from": false,
+      "to": true,
+      "actor": "lzhang"
+    },
+    {
+      "timestamp": "2026-06-18T13:30:00Z",
+      "flag": "search.parser_v2_enabled",
+      "service": "search",
+      "from": false,
+      "to": true,
+      "actor": "akapoor"
+    },
+    {
+      "timestamp": "2026-06-18T12:10:00Z",
+      "flag": "frontend.dark_mode_default",
+      "service": "frontend",
+      "from": false,
+      "to": true,
+      "actor": "lzhang"
+    }
   ]
 }

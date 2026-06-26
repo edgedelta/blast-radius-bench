@@ -2,13 +2,61 @@
   "window": "2026-06-24T14:40:00Z..2026-06-24T14:57:00Z",
   "baseline_window": "2026-06-24T12:40:00Z..2026-06-24T14:40:00Z",
   "patterns": [
-    {"signature": "log rotation disabled; /var/log/flog/agent.log growing <N>Gi", "service": "log-agent-v1", "count": 30, "delta_vs_baseline": "+30", "first_seen": "2026-06-24T14:46:30Z", "sentiment": "negative"},
-    {"signature": "node ip-10-0-37-88.us-east-1 ephemeral-storage <N>% used", "service": "log-agent-v1", "count": 14, "delta_vs_baseline": "+14", "first_seen": "2026-06-24T14:49:10Z", "sentiment": "negative"},
-    {"signature": "kubelet node ip-10-0-37-88.us-east-1 DiskPressure=True", "service": "log-agent-v1", "count": 6, "delta_vs_baseline": "+6", "first_seen": "2026-06-24T14:50:00Z", "sentiment": "negative"},
-    {"signature": "pod evicted: The node was low on resource: ephemeral-storage", "service": "dashboard-svc", "count": 5200, "delta_vs_baseline": "+5200", "first_seen": "2026-06-24T14:51:20Z", "sentiment": "negative"},
-    {"signature": "pod evicted: node ip-10-0-37-88 low on ephemeral-storage", "service": "sbom-scanner", "count": 900, "delta_vs_baseline": "+900", "first_seen": "2026-06-24T14:52:50Z", "sentiment": "negative"},
-    {"signature": "module 'lib' has no attribute 'GEN_EMAIL' (non-fatal import warning)", "service": "dashboard-svc", "count": 40, "delta_vs_baseline": "+2", "first_seen": "2026-06-24T13:10:00Z", "sentiment": "neutral"},
-    {"signature": "ECR 401 Unauthorized fetching digest", "service": "sbom-scanner", "count": 88, "delta_vs_baseline": "+5", "first_seen": "2026-06-24T13:30:00Z", "sentiment": "neutral"}
-  ],
-  "note": "dashboard-svc has the HIGHEST count (5200) and PAGED. But the EARLIEST onset signals are log-agent-v1's disk-fill (14:46:30) and the node DiskPressure=True at 14:50:00, BEFORE any pod eviction. The GEN_EMAIL warning (dashboard-svc) and ECR 401 (sbom-scanner) are pre-existing, low-delta RED HERRINGS that predate the incident — they are NOT what evicted the pods. The common cause is node ip-10-0-37-88 disk pressure."
+    {
+      "signature": "log rotation disabled; /var/log/flog/agent.log growing <N>Gi",
+      "service": "log-agent-v1",
+      "count": 30,
+      "delta_vs_baseline": "+30",
+      "first_seen": "2026-06-24T14:46:30Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "node ip-10-0-37-88.us-east-1 ephemeral-storage <N>% used",
+      "service": "log-agent-v1",
+      "count": 14,
+      "delta_vs_baseline": "+14",
+      "first_seen": "2026-06-24T14:49:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "kubelet node ip-10-0-37-88.us-east-1 DiskPressure=True",
+      "service": "log-agent-v1",
+      "count": 6,
+      "delta_vs_baseline": "+6",
+      "first_seen": "2026-06-24T14:50:00Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "pod evicted: The node was low on resource: ephemeral-storage",
+      "service": "dashboard-svc",
+      "count": 5200,
+      "delta_vs_baseline": "+5200",
+      "first_seen": "2026-06-24T14:51:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "pod evicted: node ip-10-0-37-88 low on ephemeral-storage",
+      "service": "sbom-scanner",
+      "count": 900,
+      "delta_vs_baseline": "+900",
+      "first_seen": "2026-06-24T14:52:50Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "module 'lib' has no attribute 'GEN_EMAIL' (non-fatal import warning)",
+      "service": "dashboard-svc",
+      "count": 40,
+      "delta_vs_baseline": "+2",
+      "first_seen": "2026-06-24T13:10:00Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "ECR 401 Unauthorized fetching digest",
+      "service": "sbom-scanner",
+      "count": 88,
+      "delta_vs_baseline": "+5",
+      "first_seen": "2026-06-24T13:30:00Z",
+      "sentiment": "neutral"
+    }
+  ]
 }

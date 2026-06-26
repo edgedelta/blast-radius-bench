@@ -1,8 +1,27 @@
 {
   "window": "2026-06-19T16:50:00Z..2026-06-19T19:12:00Z",
   "deploys": [
-    {"timestamp": "2026-06-19T18:58:30Z", "service": "workflow-engine", "commit_sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f", "version": "workflow-engine-v8a0c2e4", "rollout": "100%"},
-    {"timestamp": "2026-06-19T18:25:00Z", "service": "ai-agent-svc", "commit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d", "version": "ai-agent-v311", "rollout": "100%"},
-    {"timestamp": "2026-06-19T19:06:30Z", "service": "platform-api", "commit_sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e", "version": "platform-api-v646", "rollout": "100%", "note": "deployed near incident onset — decoy"}
+    {
+      "timestamp": "2026-06-19T18:58:30Z",
+      "service": "workflow-engine",
+      "commit_sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f",
+      "version": "workflow-engine-v8a0c2e4",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-19T18:25:00Z",
+      "service": "ai-agent-svc",
+      "commit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
+      "version": "ai-agent-v311",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-19T19:06:30Z",
+      "service": "platform-api",
+      "commit_sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e",
+      "version": "platform-api-v646",
+      "rollout": "100%",
+      "note": "deployed near incident onset"
+    }
   ]
 }

@@ -1,31 +1,111 @@
 {
-  "description": "Sampled OTel spans. The failing services appear in DIFFERENT traces (no single trace links auth, cart, image-resize) because they are not in the same call path. The errors are connection-refused / context-canceled from pods being OOMKilled, not downstream RPC timeouts.",
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
   "traces": [
     {
       "trace_id": "tr-3001",
       "spans": [
-        {"span_id": "g1", "parent_id": null, "service": "api-gateway", "name": "POST /login", "start": "2026-06-22T02:06:01.000Z", "duration_ms": 4200, "status": "ERROR", "attributes": {"http.status_code": 503}},
-        {"span_id": "g2", "parent_id": "g1", "service": "auth", "name": "POST /auth/verify", "start": "2026-06-22T02:06:01.020Z", "duration_ms": 4100, "status": "ERROR", "attributes": {"error.msg": "connection refused (pod restarting after OOMKill)", "k8s.node": "node-7", "k8s.pod": "auth-77b"}}
+        {
+          "span_id": "g1",
+          "parent_id": null,
+          "service": "api-gateway",
+          "name": "POST /login",
+          "start": "2026-06-22T02:06:01.000Z",
+          "duration_ms": 4200,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503
+          }
+        },
+        {
+          "span_id": "g2",
+          "parent_id": "g1",
+          "service": "auth",
+          "name": "POST /auth/verify",
+          "start": "2026-06-22T02:06:01.020Z",
+          "duration_ms": 4100,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "connection refused (pod restarting after OOMKill)",
+            "k8s.node": "node-7",
+            "k8s.pod": "auth-77b"
+          }
+        }
       ]
     },
     {
       "trace_id": "tr-3002",
       "spans": [
-        {"span_id": "c1", "parent_id": null, "service": "api-gateway", "name": "GET /cart", "start": "2026-06-22T02:06:30.000Z", "duration_ms": 3100, "status": "ERROR", "attributes": {"http.status_code": 503}},
-        {"span_id": "c2", "parent_id": "c1", "service": "cart", "name": "GET /cart/items", "start": "2026-06-22T02:06:30.020Z", "duration_ms": 3050, "status": "ERROR", "attributes": {"error.msg": "context canceled: pod evicted", "k8s.node": "node-7", "k8s.pod": "cart-5cc"}}
+        {
+          "span_id": "c1",
+          "parent_id": null,
+          "service": "api-gateway",
+          "name": "GET /cart",
+          "start": "2026-06-22T02:06:30.000Z",
+          "duration_ms": 3100,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503
+          }
+        },
+        {
+          "span_id": "c2",
+          "parent_id": "c1",
+          "service": "cart",
+          "name": "GET /cart/items",
+          "start": "2026-06-22T02:06:30.020Z",
+          "duration_ms": 3050,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "context canceled: pod evicted",
+            "k8s.node": "node-7",
+            "k8s.pod": "cart-5cc"
+          }
+        }
       ]
     },
     {
       "trace_id": "tr-3003",
       "spans": [
-        {"span_id": "i1", "parent_id": null, "service": "catalog", "name": "GET /catalog/p/881", "start": "2026-06-22T02:07:05.000Z", "duration_ms": 5200, "status": "ERROR"},
-        {"span_id": "i2", "parent_id": "i1", "service": "image-resize", "name": "POST /resize", "start": "2026-06-22T02:07:05.030Z", "duration_ms": 5100, "status": "ERROR", "attributes": {"error.msg": "connection refused (OOMKilled)", "k8s.node": "node-7", "k8s.pod": "image-resize-9d1"}}
+        {
+          "span_id": "i1",
+          "parent_id": null,
+          "service": "catalog",
+          "name": "GET /catalog/p/881",
+          "start": "2026-06-22T02:07:05.000Z",
+          "duration_ms": 5200,
+          "status": "ERROR"
+        },
+        {
+          "span_id": "i2",
+          "parent_id": "i1",
+          "service": "image-resize",
+          "name": "POST /resize",
+          "start": "2026-06-22T02:07:05.030Z",
+          "duration_ms": 5100,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "connection refused (OOMKilled)",
+            "k8s.node": "node-7",
+            "k8s.pod": "image-resize-9d1"
+          }
+        }
       ]
     },
     {
       "trace_id": "tr-3004",
       "spans": [
-        {"span_id": "k1", "parent_id": null, "service": "catalog", "name": "GET /catalog/p/12", "start": "2026-06-22T02:07:40.000Z", "duration_ms": 84, "status": "OK", "attributes": {"k8s.node": "node-3"}}
+        {
+          "span_id": "k1",
+          "parent_id": null,
+          "service": "catalog",
+          "name": "GET /catalog/p/12",
+          "start": "2026-06-22T02:07:40.000Z",
+          "duration_ms": 84,
+          "status": "OK",
+          "attributes": {
+            "k8s.node": "node-3"
+          }
+        }
       ]
     }
   ]

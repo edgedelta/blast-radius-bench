@@ -1,11 +1,45 @@
 {
   "window": "2026-06-20T07:20:00Z..2026-06-20T07:40:00Z",
   "events": [
-    {"timestamp": "2026-06-20T07:26:30Z", "type": "Deployment", "object": "deploy/ai-memory-svc", "namespace": "oncall-ai", "reason": "ScalingReplicaSet", "message": "Rolled ai-memory-svc to v6f8a0c2 (checkpoint write change)"},
-    {"timestamp": "2026-06-20T07:31:10Z", "type": "event_threshold", "object": "dynamodb/pipeline-states", "namespace": "oncall-ai", "reason": "WriteThrottleEvents", "message": "CloudWatch WriteThrottleEvents > 0 on table pipeline-states (us-east-1): ProvisionedThroughputExceeded"},
-    {"timestamp": "2026-06-20T07:33:40Z", "type": "event_threshold", "object": "deploy/ai-agent-svc", "namespace": "oncall-ai", "reason": "RetryStorm", "message": "ai-agent-svc outbound call rate to ai-memory 9x baseline (retry amplification)"},
-    {"timestamp": "2026-06-20T07:34:30Z", "type": "Deployment", "object": "deploy/ai-agent-svc", "namespace": "oncall-ai", "reason": "ScalingReplicaSet", "message": "Scaled up ai-agent-312 (innocent deploy near onset)"},
-    {"timestamp": "2026-06-20T07:36:40Z", "type": "log_threshold", "object": "deploy/platform-api", "namespace": "oncall-ai", "reason": "Admin5xx", "message": "platform-api AI Teammate 5xx rising"}
-  ],
-  "note": "The ai-memory-svc rollout (v6f8a0c2) at 07:26 precedes onset; the DynamoDB WriteThrottleEvents breach fires at 07:31 BEFORE the ai-agent retry storm (07:33) and the ai-agent deploy at 07:34 (decoy). No node-level pressure; this is an AWS capacity-threshold breach."
+    {
+      "timestamp": "2026-06-20T07:26:30Z",
+      "type": "Deployment",
+      "object": "deploy/ai-memory-svc",
+      "namespace": "oncall-ai",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled ai-memory-svc to v6f8a0c2 (checkpoint write change)"
+    },
+    {
+      "timestamp": "2026-06-20T07:31:10Z",
+      "type": "event_threshold",
+      "object": "dynamodb/pipeline-states",
+      "namespace": "oncall-ai",
+      "reason": "WriteThrottleEvents",
+      "message": "CloudWatch WriteThrottleEvents > 0 on table pipeline-states (us-east-1): ProvisionedThroughputExceeded"
+    },
+    {
+      "timestamp": "2026-06-20T07:33:40Z",
+      "type": "event_threshold",
+      "object": "deploy/ai-agent-svc",
+      "namespace": "oncall-ai",
+      "reason": "RetryStorm",
+      "message": "ai-agent-svc outbound call rate to ai-memory 9x baseline"
+    },
+    {
+      "timestamp": "2026-06-20T07:34:30Z",
+      "type": "Deployment",
+      "object": "deploy/ai-agent-svc",
+      "namespace": "oncall-ai",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up ai-agent-312 (innocent deploy near onset)"
+    },
+    {
+      "timestamp": "2026-06-20T07:36:40Z",
+      "type": "log_threshold",
+      "object": "deploy/platform-api",
+      "namespace": "oncall-ai",
+      "reason": "Admin5xx",
+      "message": "platform-api AI Teammate 5xx rising"
+    }
+  ]
 }

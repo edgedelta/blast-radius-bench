@@ -1,19 +1,53 @@
 {
-  "description": "Directed service dependency graph. An edge {from: A, to: B} means service A calls service B. Note the `node` field on each service is the k8s node its pods are scheduled on — co-location is NOT a call edge but can still couple failures.",
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on.",
   "generated_at": "2026-06-22T02:30:00Z",
   "services": [
-    {"name": "api-gateway", "node": "node-3"},
-    {"name": "auth", "node": "node-7"},
-    {"name": "cart", "node": "node-7"},
-    {"name": "image-resize", "node": "node-7"},
-    {"name": "catalog", "node": "node-3"},
-    {"name": "batch-importer", "node": "node-7", "kind": "CronJob"}
+    {
+      "name": "api-gateway",
+      "node": "node-3"
+    },
+    {
+      "name": "auth",
+      "node": "node-7"
+    },
+    {
+      "name": "cart",
+      "node": "node-7"
+    },
+    {
+      "name": "image-resize",
+      "node": "node-7"
+    },
+    {
+      "name": "catalog",
+      "node": "node-3"
+    },
+    {
+      "name": "batch-importer",
+      "node": "node-7",
+      "kind": "CronJob"
+    }
   ],
   "edges": [
-    {"from": "api-gateway", "to": "auth", "call_rate_rps": 60},
-    {"from": "api-gateway", "to": "catalog", "call_rate_rps": 200},
-    {"from": "catalog", "to": "image-resize", "call_rate_rps": 40},
-    {"from": "api-gateway", "to": "cart", "call_rate_rps": 70}
-  ],
-  "note": "auth, cart, and image-resize sit in three DIFFERENT branches of the call graph (auth and cart hang directly off api-gateway; image-resize hangs off catalog). There is NO service-call edge connecting them to each other. batch-importer is a CronJob with no inbound/outbound service edges at all. The only thing the three failing services share is node-7."
+    {
+      "from": "api-gateway",
+      "to": "auth",
+      "call_rate_rps": 60
+    },
+    {
+      "from": "api-gateway",
+      "to": "catalog",
+      "call_rate_rps": 200
+    },
+    {
+      "from": "catalog",
+      "to": "image-resize",
+      "call_rate_rps": 40
+    },
+    {
+      "from": "api-gateway",
+      "to": "cart",
+      "call_rate_rps": 70
+    }
+  ]
 }

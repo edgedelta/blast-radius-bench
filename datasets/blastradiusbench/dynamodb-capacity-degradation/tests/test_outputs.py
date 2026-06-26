@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 """
-BlastRadiusBench grader.
+BlastRadiusBench grader (Tier-0 hardened).
 
-PRIMARY reward (binary pass/fail):
-  1. origin_service is correct, AND
-  2. propagation_path directed-edge recall vs the true causal edges >= threshold.
+PRIMARY reward (binary pass/fail) — ALL must hold:
+  1. origin_service is correct (exact, or an accepted non-victim alias), AND
+  2. origin_service is NOT a member of the true blast_radius (naming a victim
+     as the cause is an automatic fail), AND
+  3. propagation_path directed-edge recall vs the true causal edges >= threshold
+     (default 1.0 — the FULL chain), AND
+  4. zero reversed-causality edges (claiming a downstream victim caused an
+     upstream service is an automatic fail).
 
-SECONDARY (printed, never fails the test — for the writeup):
+SECONDARY (printed, never fails — for the writeup):
   - blast_radius set overlap (Jaccard) vs truth
-  - reversed-causality check: how many of the model's edges are the REVERSE of a
-    true causal edge (claiming a downstream victim caused an upstream service).
-    This inverted-causality error is the key failure mode we want to surface.
-  - root_cause keyword check (did the model name the originating fault, not a symptom).
+  - root_cause keyword check (did the model name the originating fault).
 
 The tests/ directory is injected only at verification time, so the agent never
 sees ground_truth.json.
@@ -23,6 +25,9 @@ import sys
 
 ANSWER_PATH = "/workdir/failure_chain.json"
 GROUND_TRUTH_PATH = os.path.join(os.path.dirname(__file__), "ground_truth.json")
+
+# Default edge-overlap bar. 1.0 = the model must recover the FULL causal chain.
+DEFAULT_EDGE_THRESHOLD = 1.0
 
 
 # ── loaders ────────────────────────────────────────────────────────────────
@@ -58,34 +63,25 @@ def edge_set(path):
 # ── metrics ────────────────────────────────────────────────────────────────
 
 def directed_edge_recall(model_edges, true_edges):
-    """Fraction of TRUE causal edges the model recovered (directed)."""
     if not true_edges:
         return 1.0
-    hit = len(model_edges & true_edges)
-    return hit / len(true_edges)
+    return len(model_edges & true_edges) / len(true_edges)
 
 
 def directed_edge_jaccard(model_edges, true_edges):
     union = model_edges | true_edges
-    if not union:
-        return 1.0
-    return len(model_edges & true_edges) / len(union)
+    return 1.0 if not union else len(model_edges & true_edges) / len(union)
 
 
 def reversed_edges(model_edges, true_edges):
     """Model edges (a,b) where (b,a) is a true edge but (a,b) is NOT — inverted causality."""
-    rev = set()
-    for (a, b) in model_edges:
-        if (b, a) in true_edges and (a, b) not in true_edges:
-            rev.add((a, b))
-    return rev
+    return {(a, b) for (a, b) in model_edges
+            if (b, a) in true_edges and (a, b) not in true_edges}
 
 
 def set_jaccard(a, b):
     a, b = set(a), set(b)
-    if not (a | b):
-        return 1.0
-    return len(a & b) / len(a | b)
+    return 1.0 if not (a | b) else len(a & b) / len(a | b)
 
 
 # ── tests ────────────────────────────────────────────────────────────────
@@ -106,8 +102,6 @@ def test_origin_service():
     ans = load_answer()
     truth = load_truth()
     got = norm(ans["origin_service"])
-    # Some scenarios (e.g. infra/node faults) accept a small set of equivalent origin
-    # spellings; default is exact match on origin_service.
     accepted = {norm(truth["origin_service"])}
     for a in truth.get("accept_origin_aliases", []):
         accepted.add(norm(a))
@@ -117,12 +111,24 @@ def test_origin_service():
     )
 
 
-def test_propagation_path_overlap():
+def test_origin_not_a_victim():
+    """Naming a downstream victim (a blast_radius member) as the cause is an automatic fail."""
+    ans = load_answer()
+    truth = load_truth()
+    got = norm(ans["origin_service"])
+    victims = {norm(v) for v in truth.get("blast_radius", [])}
+    assert got not in victims, (
+        f"origin_service '{ans['origin_service']}' is a blast-radius VICTIM, not the cause. "
+        f"victims = {sorted(victims)}"
+    )
+
+
+def test_propagation_path_full_chain():
     ans = load_answer()
     truth = load_truth()
     model_edges = edge_set(ans["propagation_path"])
     true_edges = edge_set(truth["propagation_path"])
-    threshold = float(truth.get("edge_overlap_threshold", 0.6))
+    threshold = float(truth.get("edge_overlap_threshold", DEFAULT_EDGE_THRESHOLD))
 
     recall = directed_edge_recall(model_edges, true_edges)
     jacc = directed_edge_jaccard(model_edges, true_edges)
@@ -135,12 +141,17 @@ def test_propagation_path_overlap():
     print(f"[propagation_path] recovered      = {sorted(model_edges & true_edges)}")
     print(f"[propagation_path] missed         = {sorted(true_edges - model_edges)}")
     if rev:
-        print(f"[REVERSED-CAUSALITY] model inverted {len(rev)} edge(s): {sorted(rev)}  <-- key failure mode")
+        print(f"[REVERSED-CAUSALITY] model inverted {len(rev)} edge(s): {sorted(rev)}  <-- automatic fail")
     else:
         print(f"[REVERSED-CAUSALITY] none detected")
 
+    assert not rev, (
+        f"reversed-causality: model inverted {len(rev)} edge(s) {sorted(rev)} "
+        f"(claimed a downstream victim caused an upstream service)"
+    )
     assert recall >= threshold, (
-        f"propagation_path directed-edge recall {recall:.3f} < threshold {threshold}"
+        f"propagation_path directed-edge recall {recall:.3f} < threshold {threshold} "
+        f"(must recover the full causal chain)"
     )
 
 
@@ -159,16 +170,9 @@ def test_secondary_metrics_report():
     kws = [norm(k) for k in truth.get("root_cause_keywords", [])]
     matched = [k for k in kws if k in rc]
     if matched:
-        print(f"[root_cause] keyword match: {matched}  (model named the originating fault)")
+        print(f"[root_cause] keyword match: {matched}")
     else:
-        print(f"[root_cause] NO keyword match against {kws} -- model may have described a symptom, not the cause")
-
-    loud = truth.get("loudest_but_innocent")
-    if loud:
-        print(f"[trap] loudest-but-innocent service = '{loud}'. "
-              f"Model origin = '{norm(ans['origin_service'])}' "
-              f"({'FELL FOR TRAP' if norm(ans['origin_service']) == norm(loud) else 'avoided trap'})")
-
+        print(f"[root_cause] NO keyword match against {kws} -- model may have described a symptom")
     assert True
 
 
@@ -177,7 +181,8 @@ if __name__ == "__main__":
         test_file_exists,
         test_schema,
         test_origin_service,
-        test_propagation_path_overlap,
+        test_origin_not_a_victim,
+        test_propagation_path_full_chain,
         test_secondary_metrics_report,
     ]
     try:

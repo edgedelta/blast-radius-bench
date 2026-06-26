@@ -1,18 +1,64 @@
 {
-  "description": "Sampled OTel spans. parent_id links spans; status OK|ERROR. The deepest span (ai-agent calling workflow-engine) fails with connection-refused first; workflow-engine's own app span is OK (the app is fine, the probe is misconfigured).",
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
   "traces": [
     {
       "trace_id": "tr-3201",
       "spans": [
-        {"span_id": "s1", "parent_id": null, "service": "platform-api", "name": "POST /api/v1/ai/teammate/run", "start": "2026-06-19T19:09:00.000Z", "duration_ms": 320, "status": "ERROR", "attributes": {"http.status_code": 500, "error.msg": "downstream ai-agent-svc error"}},
-        {"span_id": "s2", "parent_id": "s1", "service": "ai-agent-svc", "name": "AgenticLoopService/runMainLoop", "start": "2026-06-19T19:09:00.040Z", "duration_ms": 80, "status": "ERROR", "attributes": {"error.msg": "workflow-engine durable context unavailable"}},
-        {"span_id": "s3", "parent_id": "s2", "service": "workflow-engine", "name": "ctx.run tool-agent_work_tracker", "start": "2026-06-19T19:09:00.060Z", "duration_ms": 50, "status": "ERROR", "attributes": {"net.peer.name": "workflow-engine:8080", "error.msg": "dial tcp workflow-engine:8080 connection refused (CrashLoopBackOff)"}}
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "platform-api",
+          "name": "POST /api/v1/ai/teammate/run",
+          "start": "2026-06-19T19:09:00.000Z",
+          "duration_ms": 320,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 500,
+            "error.msg": "downstream ai-agent-svc error"
+          }
+        },
+        {
+          "span_id": "s2",
+          "parent_id": "s1",
+          "service": "ai-agent-svc",
+          "name": "AgenticLoopService/runMainLoop",
+          "start": "2026-06-19T19:09:00.040Z",
+          "duration_ms": 80,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "workflow-engine durable context unavailable"
+          }
+        },
+        {
+          "span_id": "s3",
+          "parent_id": "s2",
+          "service": "workflow-engine",
+          "name": "ctx.run tool-agent_work_tracker",
+          "start": "2026-06-19T19:09:00.060Z",
+          "duration_ms": 50,
+          "status": "ERROR",
+          "attributes": {
+            "net.peer.name": "workflow-engine:8080",
+            "error.msg": "dial tcp workflow-engine:8080 connection refused (CrashLoopBackOff)"
+          }
+        }
       ]
     },
     {
       "trace_id": "tr-3202",
       "spans": [
-        {"span_id": "r1", "parent_id": null, "service": "workflow-engine", "name": "server startup", "start": "2026-06-19T19:02:55.000Z", "duration_ms": 900, "status": "OK", "attributes": {"note": "app starts cleanly on :8080; the LIVENESS PROBE targets :9090/health and 404s, so kubelet kills it"}}
+        {
+          "span_id": "r1",
+          "parent_id": null,
+          "service": "workflow-engine",
+          "name": "server startup",
+          "start": "2026-06-19T19:02:55.000Z",
+          "duration_ms": 900,
+          "status": "OK",
+          "attributes": {
+            "note": "app starts cleanly on :8080; the LIVENESS PROBE targets :9090/health and 404s, so kubelet kills it"
+          }
+        }
       ]
     }
   ]

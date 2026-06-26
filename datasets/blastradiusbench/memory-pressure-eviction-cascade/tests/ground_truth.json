@@ -2,15 +2,49 @@
   "scenario": "memory-pressure-eviction-cascade",
   "origin_service": "node:ip-10-0-37-15",
   "root_cause_culprit_sha": "0e2b4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a",
-  "root_cause_keywords": ["memory pressure", "memorypressure", "node", "ip-10-0-37-15", "eviction", "evicted", "oom", "oomkilled", "memory request", "request 0", "no memory limit", "olapdb-vw-write", "write virtual warehouse"],
-  "propagation_path": [
-    {"from": "node:ip-10-0-37-15", "to": "olapdb-vw-write"},
-    {"from": "olapdb-vw-write", "to": "olapdb-server"},
-    {"from": "olapdb-server", "to": "platform-api"}
+  "root_cause_keywords": [
+    "memory pressure",
+    "memorypressure",
+    "node",
+    "ip-10-0-37-15",
+    "eviction",
+    "evicted",
+    "oom",
+    "oomkilled",
+    "memory request",
+    "request 0",
+    "no memory limit",
+    "olapdb-vw-write",
+    "write virtual warehouse"
   ],
-  "blast_radius": ["olapdb-vw-write", "olapdb-server", "platform-api"],
-  "edge_overlap_threshold": 0.6,
+  "propagation_path": [
+    {
+      "from": "node:ip-10-0-37-15",
+      "to": "olapdb-vw-write"
+    },
+    {
+      "from": "olapdb-vw-write",
+      "to": "olapdb-server"
+    },
+    {
+      "from": "olapdb-server",
+      "to": "platform-api"
+    }
+  ],
+  "blast_radius": [
+    "olapdb-vw-write",
+    "olapdb-server",
+    "platform-api"
+  ],
+  "edge_overlap_threshold": 1.0,
   "loudest_but_innocent": "platform-api",
-  "accept_origin_aliases": ["node:ip-10-0-37-15", "ip-10-0-37-15", "ip-10-0-37-15.us-east-1", "node ip-10-0-37-15", "node:ip-10-0-37-15.us-east-1.compute.internal", "olapdb-vw-write"],
-  "notes": "INFRA-ORIGIN, THEN SERVICE CASCADE. Node ip-10-0-37-15.us-east-1 hits MemoryPressure (a olapdb-vw-write pod ran with memory request 0 / no limit and grew, commit 0e2b4d6f removed the resource limit), the kubelet evicts the olapdb-vw-write pod. With the write virtual-warehouse pod gone, olapdb-server write/commit queries fail, and platform-api surfaces query-failure 5xx. platform-api is LOUDEST/paged (query-failure alarm) but is the LAST victim. The first edge is node->pod (eviction, shared-infra), then the rest is a service-call cascade (olapdb-vw-write->olapdb-server->platform-api). olapdb-vw-write accepted as alias (the evicted pod). A model that blames platform-api query failures misses the node memory-pressure origin."
+  "accept_origin_aliases": [
+    "node:ip-10-0-37-15",
+    "ip-10-0-37-15",
+    "ip-10-0-37-15.us-east-1",
+    "node ip-10-0-37-15",
+    "node:ip-10-0-37-15.us-east-1.compute.internal"
+  ],
+  "notes": "INFRA-ORIGIN, THEN SERVICE CASCADE. Node ip-10-0-37-15.us-east-1 hits MemoryPressure (a olapdb-vw-write pod ran with memory request 0 / no limit and grew, commit 0e2b4d6f removed the resource limit), the kubelet evicts the olapdb-vw-write pod. With the write virtual-warehouse pod gone, olapdb-server write/commit queries fail, and platform-api surfaces query-failure 5xx. platform-api is LOUDEST/paged (query-failure alarm) but is the LAST victim. The first edge is node->pod (eviction, shared-infra), then the rest is a service-call cascade (olapdb-vw-write->olapdb-server->platform-api). olapdb-vw-write accepted as alias (the evicted pod). A model that blames platform-api query failures misses the node memory-pressure origin.",
+  "_design_note": "Paged on platform-api because query-failure 5xx is measured at the API. The query failures originate deeper in the olapdb write path; check node/pod health, not just platform-api."
 }

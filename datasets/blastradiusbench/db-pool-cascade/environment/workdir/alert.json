@@ -6,6 +6,5 @@
   "observed_value": "41%",
   "fired_at": "2026-06-18T14:07:30Z",
   "severity": "critical",
-  "summary": "api-gateway 5xx rate 41% (8200 errors/5m) — checkout funnel down",
-  "note": "Paged on api-gateway because that is where the customer-facing 5xx is measured. This is the edge of the system, not necessarily the source."
+  "summary": "api-gateway 5xx rate 41% (8200 errors/5m) \u2014 checkout funnel down"
 }

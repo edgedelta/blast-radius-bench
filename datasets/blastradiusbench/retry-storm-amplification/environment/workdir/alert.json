@@ -6,6 +6,5 @@
   "observed_value": "1180 rps",
   "fired_at": "2026-06-20T09:14:00Z",
   "severity": "critical",
-  "summary": "product-page outbound request rate to recommendation spiked 4x (290 -> 1180 rps); product-page CPU 95%",
-  "note": "Paged on product-page because that is where the traffic spike and CPU saturation are observed. The spike is product-page generating extra load — but WHY is it generating extra load?"
+  "summary": "product-page outbound request rate to recommendation spiked 4x (290 -> 1180 rps); product-page CPU 95%"
 }

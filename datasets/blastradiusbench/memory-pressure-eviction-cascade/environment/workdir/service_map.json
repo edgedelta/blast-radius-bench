@@ -1,16 +1,45 @@
 {
-  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service's pods run on. platform-api depends on olapdb-server, which dispatches write/commit work to the olapdb-vw-write virtual warehouse.",
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on.",
   "generated_at": "2026-06-22T12:10:00Z",
   "services": [
-    {"name": "platform-api", "namespace": "oncall-ai", "node": "ip-10-0-12-31.us-east-1"},
-    {"name": "olapdb-server", "namespace": "olapdb", "node": "ip-10-0-12-44.us-east-1"},
-    {"name": "olapdb-vw-write", "namespace": "olapdb", "node": "ip-10-0-37-15.us-east-1"},
-    {"name": "olapdb-vw-default", "namespace": "olapdb", "node": "ip-10-0-12-31.us-east-1"}
+    {
+      "name": "platform-api",
+      "namespace": "oncall-ai",
+      "node": "ip-10-0-12-31.us-east-1"
+    },
+    {
+      "name": "olapdb-server",
+      "namespace": "olapdb",
+      "node": "ip-10-0-12-44.us-east-1"
+    },
+    {
+      "name": "olapdb-vw-write",
+      "namespace": "olapdb",
+      "node": "ip-10-0-37-15.us-east-1"
+    },
+    {
+      "name": "olapdb-vw-default",
+      "namespace": "olapdb",
+      "node": "ip-10-0-12-31.us-east-1"
+    }
   ],
   "edges": [
-    {"from": "platform-api", "to": "olapdb-server", "call_rate_rps": 90},
-    {"from": "olapdb-server", "to": "olapdb-vw-write", "call_rate_rps": 200, "note": "dispatches write/commit queries to the write virtual warehouse"},
-    {"from": "olapdb-server", "to": "olapdb-vw-default", "call_rate_rps": 260, "note": "read virtual warehouse (different node, unaffected)"}
-  ],
-  "note": "Request flow A->B. The write VW pod (olapdb-vw-write) runs on node ip-10-0-37-15. When that node hits MemoryPressure and the kubelet evicts the pod, the failure enters the service graph at olapdb-vw-write, then propagates callee->caller up to olapdb-server and platform-api. olapdb-vw-default (read VW) is on a different node and stays healthy."
+    {
+      "from": "platform-api",
+      "to": "olapdb-server",
+      "call_rate_rps": 90
+    },
+    {
+      "from": "olapdb-server",
+      "to": "olapdb-vw-write",
+      "call_rate_rps": 200,
+      "note": "dispatches write/commit queries to the write virtual warehouse"
+    },
+    {
+      "from": "olapdb-server",
+      "to": "olapdb-vw-default",
+      "call_rate_rps": 260,
+      "note": "read virtual warehouse (different node, unaffected)"
+    }
+  ]
 }

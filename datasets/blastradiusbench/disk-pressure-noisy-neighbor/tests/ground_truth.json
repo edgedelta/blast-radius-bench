@@ -2,15 +2,50 @@
   "scenario": "disk-pressure-noisy-neighbor",
   "origin_service": "node:ip-10-0-37-88",
   "root_cause_culprit_sha": "2d4f6a8c0e2b4d6f8a0c2e4d6f8a0c2e4d6f8a0c",
-  "root_cause_keywords": ["disk pressure", "diskpressure", "node", "ip-10-0-37-88", "eviction", "evicted", "shared node", "co-located", "colocated", "co-location", "disk", "ephemeral storage", "log rotation", "log-agent"],
-  "propagation_path": [
-    {"from": "node:ip-10-0-37-88", "to": "dashboard-svc"},
-    {"from": "node:ip-10-0-37-88", "to": "log-agent-v1"},
-    {"from": "node:ip-10-0-37-88", "to": "sbom-scanner"}
+  "root_cause_keywords": [
+    "disk pressure",
+    "diskpressure",
+    "node",
+    "ip-10-0-37-88",
+    "eviction",
+    "evicted",
+    "shared node",
+    "co-located",
+    "colocated",
+    "co-location",
+    "disk",
+    "ephemeral storage",
+    "log rotation",
+    "log-agent"
   ],
-  "blast_radius": ["dashboard-svc", "log-agent-v1", "sbom-scanner"],
-  "edge_overlap_threshold": 0.6,
+  "propagation_path": [
+    {
+      "from": "node:ip-10-0-37-88",
+      "to": "dashboard-svc"
+    },
+    {
+      "from": "node:ip-10-0-37-88",
+      "to": "log-agent-v1"
+    },
+    {
+      "from": "node:ip-10-0-37-88",
+      "to": "sbom-scanner"
+    }
+  ],
+  "blast_radius": [
+    "dashboard-svc",
+    "log-agent-v1",
+    "sbom-scanner"
+  ],
+  "edge_overlap_threshold": 1.0,
   "loudest_but_innocent": "dashboard-svc",
-  "accept_origin_aliases": ["node:ip-10-0-37-88", "ip-10-0-37-88", "ip-10-0-37-88.us-east-1", "node ip-10-0-37-88", "node:ip-10-0-37-88.us-east-1.compute.internal", "log-agent-v1"],
-  "notes": "INFRA-ORIGIN / SHARED-NODE TRAP. log-agent-v1 (commit 2d4f6a8c disabled log rotation) fills the ephemeral disk of node ip-10-0-37-88.us-east-1, driving the kubelet to DiskPressure=True. The kubelet then evicts the CO-LOCATED pods of three UNRELATED services: dashboard-svc (dashboard-svc namespace), log-agent-v1 (default), sbom-scanner (rad). They share NO service-call edge in service_map.json — they sit in different namespaces and call graphs. The only link is the shared NODE, visible only in events.json (DiskPressure + Evicted events all on ip-10-0-37-88). Each victim has its OWN red-herring recent commit/error (dashboard-svc GEN_EMAIL import warning, sbom-scanner ECR 401), making it look like 3 independent incidents. dashboard-svc is loudest/paged. Origin is the node disk-pressure fault; log-agent-v1 is accepted as an alias since it is the noisy pod whose code change is the true culprit."
+  "accept_origin_aliases": [
+    "node:ip-10-0-37-88",
+    "ip-10-0-37-88",
+    "ip-10-0-37-88.us-east-1",
+    "node ip-10-0-37-88",
+    "node:ip-10-0-37-88.us-east-1.compute.internal"
+  ],
+  "notes": "INFRA-ORIGIN / SHARED-NODE TRAP. log-agent-v1 (commit 2d4f6a8c disabled log rotation) fills the ephemeral disk of node ip-10-0-37-88.us-east-1, driving the kubelet to DiskPressure=True. The kubelet then evicts the CO-LOCATED pods of three UNRELATED services: dashboard-svc (dashboard-svc namespace), log-agent-v1 (default), sbom-scanner (rad). They share NO service-call edge in service_map.json \u2014 they sit in different namespaces and call graphs. The only link is the shared NODE, visible only in events.json (DiskPressure + Evicted events all on ip-10-0-37-88). Each victim has its OWN red-herring recent commit/error (dashboard-svc GEN_EMAIL import warning, sbom-scanner ECR 401), making it look like 3 independent incidents. dashboard-svc is loudest/paged. Origin is the node disk-pressure fault; log-agent-v1 is accepted as an alias since it is the noisy pod whose code change is the true culprit.",
+  "_design_note": "Paged on dashboard-svc because it is the most user-visible service that went down. dashboard-svc is one of several pods that were evicted at the same time; check WHY the eviction happened (node-level), not just dashboard-svc's own logs."
 }

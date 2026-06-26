@@ -2,14 +2,38 @@
   "scenario": "retry-storm-amplification",
   "origin_service": "recommendation",
   "root_cause_culprit_sha": "9f3c1aa",
-  "root_cause_keywords": ["gc", "garbage collect", "pause", "heap", "stop-the-world", "stop the world", "cache batch", "unbounded", "memory"],
-  "propagation_path": [
-    {"from": "recommendation", "to": "product-page"},
-    {"from": "product-page", "to": "api-edge"}
+  "root_cause_keywords": [
+    "gc",
+    "garbage collect",
+    "pause",
+    "heap",
+    "stop-the-world",
+    "stop the world",
+    "cache batch",
+    "unbounded",
+    "memory"
   ],
-  "blast_radius": ["product-page", "api-edge"],
-  "edge_overlap_threshold": 0.6,
+  "propagation_path": [
+    {
+      "from": "recommendation",
+      "to": "product-page"
+    },
+    {
+      "from": "product-page",
+      "to": "api-edge"
+    }
+  ],
+  "blast_radius": [
+    "product-page",
+    "api-edge"
+  ],
+  "edge_overlap_threshold": 1.0,
   "loudest_but_innocent": "product-page",
-  "reversed_trap_edge": {"from": "product-page", "to": "recommendation"},
-  "notes": "recommendation has GC stop-the-world pauses (commit 9f3c1aa builds an unbounded per-request cache batch). product-page calls recommendation, times out, and RETRIES aggressively (retry_count explodes). The amplified retries make product-page's own outbound request rate and CPU spike, so naive reading blames product-page as the traffic source. True origin is downstream: recommendation. The classic reversed edge is product-page->recommendation (request-flow direction) instead of recommendation->product-page (causal direction)."
+  "reversed_trap_edge": {
+    "from": "product-page",
+    "to": "recommendation"
+  },
+  "notes": "recommendation has GC stop-the-world pauses (commit 9f3c1aa builds an unbounded per-request cache batch). product-page calls recommendation, times out, and RETRIES aggressively (retry_count explodes). The amplified retries make product-page's own outbound request rate and CPU spike, so naive reading blames product-page as the traffic source. True origin is downstream: recommendation. The classic reversed edge is product-page->recommendation (request-flow direction) instead of recommendation->product-page (causal direction).",
+  "accept_origin_aliases": [],
+  "_design_note": "Paged on product-page because that is where the traffic spike and CPU saturation are observed. The spike is product-page generating extra load \u2014 but WHY is it generating extra load?"
 }

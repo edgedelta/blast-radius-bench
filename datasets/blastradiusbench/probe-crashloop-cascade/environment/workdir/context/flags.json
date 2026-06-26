@@ -1,8 +1,21 @@
 {
   "window": "2026-06-19T16:50:00Z..2026-06-19T19:12:00Z",
-  "note": "Feature-flag changes near the window. In v1 all root causes are CODE changes; flags are distractors only.",
   "changes": [
-    {"timestamp": "2026-06-19T18:55:00Z", "flag": "ai_agent.new_loop_v2", "service": "ai-agent-svc", "from": false, "to": true, "actor": "oncall-ai-team"},
-    {"timestamp": "2026-06-19T17:40:00Z", "flag": "admin_api.teammate_streaming", "service": "platform-api", "from": false, "to": true, "actor": "platform-team"}
+    {
+      "timestamp": "2026-06-19T18:55:00Z",
+      "flag": "ai_agent.new_loop_v2",
+      "service": "ai-agent-svc",
+      "from": false,
+      "to": true,
+      "actor": "oncall-ai-team"
+    },
+    {
+      "timestamp": "2026-06-19T17:40:00Z",
+      "flag": "admin_api.teammate_streaming",
+      "service": "platform-api",
+      "from": false,
+      "to": true,
+      "actor": "platform-team"
+    }
   ]
 }

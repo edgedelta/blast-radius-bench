@@ -1,11 +1,45 @@
 {
   "window": "2026-06-21T03:00:00Z..2026-06-21T03:26:00Z",
   "events": [
-    {"timestamp": "2026-06-21T03:08:30Z", "type": "Deployment", "object": "deploy/metric-ingestor-1", "namespace": "ingestion", "reason": "ScalingReplicaSet", "message": "Rolled metric-ingestor-1 to v0f60a4b"},
-    {"timestamp": "2026-06-21T03:15:00Z", "type": "log_threshold", "object": "queue/ed-olapdb-mt-1-metric-iq", "namespace": "ingestion", "reason": "ApproximateAgeOfOldestMessage", "message": "CloudWatch ApproximateAgeOfOldestMessage >= 300 on ed-olapdb-mt-1-metric-iq (810s)"},
-    {"timestamp": "2026-06-21T03:18:00Z", "type": "Deployment", "object": "deploy/http-receiver", "namespace": "default", "reason": "ScalingReplicaSet", "message": "Scaled up http-receiver-640 (innocent deploy near onset)"},
-    {"timestamp": "2026-06-21T03:19:30Z", "type": "event_threshold", "object": "deploy/kafka-metric-ingestor", "namespace": "ingestion", "reason": "ProducerBackpressure", "message": "kafka-metric-ingestor produce timeouts to ed-olapdb-mt-1-metric-iq"},
-    {"timestamp": "2026-06-21T03:22:00Z", "type": "event_threshold", "object": "queue/ed-olapdb-mt-1-metric-iq", "namespace": "ingestion", "reason": "ApproximateAgeOfOldestMessage", "message": "ApproximateAgeOfOldestMessage 1048s on ed-olapdb-mt-1-metric-iq"}
-  ],
-  "note": "The ingestor deploy (v0f60a4b) at 03:08 precedes everything; the queue-age breach fires at 03:15 BEFORE the http-receiver deploy at 03:18 (decoy). No node-level pressure."
+    {
+      "timestamp": "2026-06-21T03:08:30Z",
+      "type": "Deployment",
+      "object": "deploy/metric-ingestor-1",
+      "namespace": "ingestion",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled metric-ingestor-1 to v0f60a4b"
+    },
+    {
+      "timestamp": "2026-06-21T03:15:00Z",
+      "type": "log_threshold",
+      "object": "queue/ed-olapdb-mt-1-metric-iq",
+      "namespace": "ingestion",
+      "reason": "ApproximateAgeOfOldestMessage",
+      "message": "CloudWatch ApproximateAgeOfOldestMessage >= 300 on ed-olapdb-mt-1-metric-iq (810s)"
+    },
+    {
+      "timestamp": "2026-06-21T03:18:00Z",
+      "type": "Deployment",
+      "object": "deploy/http-receiver",
+      "namespace": "default",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up http-receiver-640 (innocent deploy near onset)"
+    },
+    {
+      "timestamp": "2026-06-21T03:19:30Z",
+      "type": "event_threshold",
+      "object": "deploy/kafka-metric-ingestor",
+      "namespace": "ingestion",
+      "reason": "ProducerBackpressure",
+      "message": "kafka-metric-ingestor produce timeouts to ed-olapdb-mt-1-metric-iq"
+    },
+    {
+      "timestamp": "2026-06-21T03:22:00Z",
+      "type": "event_threshold",
+      "object": "queue/ed-olapdb-mt-1-metric-iq",
+      "namespace": "ingestion",
+      "reason": "ApproximateAgeOfOldestMessage",
+      "message": "ApproximateAgeOfOldestMessage 1048s on ed-olapdb-mt-1-metric-iq"
+    }
+  ]
 }

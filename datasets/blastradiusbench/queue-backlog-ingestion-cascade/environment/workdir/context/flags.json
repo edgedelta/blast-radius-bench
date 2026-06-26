@@ -1,8 +1,21 @@
 {
   "window": "2026-06-21T01:00:00Z..2026-06-21T03:26:00Z",
-  "note": "Feature-flag changes near the window. In v1 all root causes are CODE changes; flags are distractors only.",
   "changes": [
-    {"timestamp": "2026-06-21T03:05:00Z", "flag": "ingest.kafka_v2", "service": "kafka-metric-ingestor", "from": false, "to": true, "actor": "ingest-team"},
-    {"timestamp": "2026-06-21T01:40:00Z", "flag": "http_receiver.keepalive", "service": "http-receiver", "from": false, "to": true, "actor": "edge-team"}
+    {
+      "timestamp": "2026-06-21T03:05:00Z",
+      "flag": "ingest.kafka_v2",
+      "service": "kafka-metric-ingestor",
+      "from": false,
+      "to": true,
+      "actor": "ingest-team"
+    },
+    {
+      "timestamp": "2026-06-21T01:40:00Z",
+      "flag": "http_receiver.keepalive",
+      "service": "http-receiver",
+      "from": false,
+      "to": true,
+      "actor": "edge-team"
+    }
   ]
 }

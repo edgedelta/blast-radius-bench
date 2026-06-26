@@ -2,14 +2,42 @@
   "scenario": "probe-crashloop-cascade",
   "origin_service": "workflow-engine",
   "root_cause_culprit_sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f",
-  "root_cause_keywords": ["probe", "readiness", "liveness", "startupprobe", "startup probe", "crashloopbackoff", "crash loop", "restart", "health endpoint", "killing", "misconfig", "9090", "/health", "404"],
-  "propagation_path": [
-    {"from": "workflow-engine", "to": "ai-agent-svc"},
-    {"from": "ai-agent-svc", "to": "platform-api"}
+  "root_cause_keywords": [
+    "probe",
+    "readiness",
+    "liveness",
+    "startupprobe",
+    "startup probe",
+    "crashloopbackoff",
+    "crash loop",
+    "restart",
+    "health endpoint",
+    "killing",
+    "misconfig",
+    "9090",
+    "/health",
+    "404"
   ],
-  "blast_radius": ["ai-agent-svc", "platform-api"],
-  "edge_overlap_threshold": 0.6,
+  "propagation_path": [
+    {
+      "from": "workflow-engine",
+      "to": "ai-agent-svc"
+    },
+    {
+      "from": "ai-agent-svc",
+      "to": "platform-api"
+    }
+  ],
+  "blast_radius": [
+    "ai-agent-svc",
+    "platform-api"
+  ],
+  "edge_overlap_threshold": 1.0,
   "loudest_but_innocent": "platform-api",
-  "accept_origin_aliases": ["workflow-engine", "oncall-ai workflow-engine"],
-  "notes": "workflow-engine has a readiness/liveness probe misconfiguration (commit 8a0c2e4d pointed the liveness probe at port 9090 /health which returns 404, so the kubelet keeps Killing the container -> CrashLoopBackOff). While workflow-engine is down, ai-agent-svc gets 'connection refused' calling workflow-engine, and platform-api then returns 5xx (AI Assistant errors). platform-api is LOUDEST (Admin API HTTP 5xx monitor pages, most errors) but is the LAST victim. The trap: the dependents alarm loudest with 5xx; the origin is the restarting service whose own logs show clean startup (the failure is the probe, not the app)."
+  "accept_origin_aliases": [
+    "workflow-engine",
+    "oncall-ai workflow-engine"
+  ],
+  "notes": "workflow-engine has a readiness/liveness probe misconfiguration (commit 8a0c2e4d pointed the liveness probe at port 9090 /health which returns 404, so the kubelet keeps Killing the container -> CrashLoopBackOff). While workflow-engine is down, ai-agent-svc gets 'connection refused' calling workflow-engine, and platform-api then returns 5xx (AI Assistant errors). platform-api is LOUDEST (Admin API HTTP 5xx monitor pages, most errors) but is the LAST victim. The trap: the dependents alarm loudest with 5xx; the origin is the restarting service whose own logs show clean startup (the failure is the probe, not the app).",
+  "_design_note": "Paged on platform-api because the Admin API HTTP 5xx monitor is where customer-facing AI Teammate errors are measured. This is the front door; the failure may originate deeper in the oncall-ai dependency chain."
 }

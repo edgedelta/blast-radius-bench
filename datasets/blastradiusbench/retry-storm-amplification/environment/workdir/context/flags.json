@@ -1,9 +1,29 @@
 {
   "window": "2026-06-20T07:30:00Z..2026-06-20T09:15:00Z",
-  "note": "Feature-flag changes near the window. In v1 of this benchmark all root causes are CODE changes; flags are distractors only.",
   "changes": [
-    {"timestamp": "2026-06-20T09:02:00Z", "flag": "product-page.aggressive_retry", "service": "product-page", "from": false, "to": true, "actor": "okafor"},
-    {"timestamp": "2026-06-20T08:20:00Z", "flag": "reco.personalized_ranking", "service": "recommendation", "from": false, "to": true, "actor": "ynakamura"},
-    {"timestamp": "2026-06-20T07:55:00Z", "flag": "catalog.nightly_facets", "service": "catalog", "from": false, "to": true, "actor": "delgado"}
+    {
+      "timestamp": "2026-06-20T09:02:00Z",
+      "flag": "product-page.aggressive_retry",
+      "service": "product-page",
+      "from": false,
+      "to": true,
+      "actor": "okafor"
+    },
+    {
+      "timestamp": "2026-06-20T08:20:00Z",
+      "flag": "reco.personalized_ranking",
+      "service": "recommendation",
+      "from": false,
+      "to": true,
+      "actor": "ynakamura"
+    },
+    {
+      "timestamp": "2026-06-20T07:55:00Z",
+      "flag": "catalog.nightly_facets",
+      "service": "catalog",
+      "from": false,
+      "to": true,
+      "actor": "delgado"
+    }
   ]
 }

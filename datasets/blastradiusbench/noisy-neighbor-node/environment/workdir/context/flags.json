@@ -1,8 +1,21 @@
 {
   "window": "2026-06-21T20:00:00Z..2026-06-22T02:15:00Z",
-  "note": "Feature-flag changes near the window. In v1 of this benchmark all root causes are CODE changes; flags are distractors only.",
   "changes": [
-    {"timestamp": "2026-06-21T23:12:00Z", "flag": "image-resize.webp_enabled", "service": "image-resize", "from": false, "to": true, "actor": "ito"},
-    {"timestamp": "2026-06-21T22:20:00Z", "flag": "auth.jwt_cache_v2", "service": "auth", "from": false, "to": true, "actor": "kobrien"}
+    {
+      "timestamp": "2026-06-21T23:12:00Z",
+      "flag": "image-resize.webp_enabled",
+      "service": "image-resize",
+      "from": false,
+      "to": true,
+      "actor": "ito"
+    },
+    {
+      "timestamp": "2026-06-21T22:20:00Z",
+      "flag": "auth.jwt_cache_v2",
+      "service": "auth",
+      "from": false,
+      "to": true,
+      "actor": "kobrien"
+    }
   ]
 }

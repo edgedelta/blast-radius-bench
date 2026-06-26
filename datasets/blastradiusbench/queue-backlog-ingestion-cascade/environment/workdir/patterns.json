@@ -2,10 +2,37 @@
   "window": "2026-06-21T03:00:00Z..2026-06-21T03:26:00Z",
   "baseline_window": "2026-06-21T01:00:00Z..2026-06-21T03:00:00Z",
   "patterns": [
-    {"signature": "commit batch took <N>ms (fsync per batch); consumer_lag=<N>", "service": "metric-ingestor-1", "count": 620, "delta_vs_baseline": "+620", "first_seen": "2026-06-21T03:12:00Z", "sentiment": "negative"},
-    {"signature": "slow consumer: ed-olapdb-mt-1-metric-iq ApproximateAgeOfOldestMessage=<N>s and rising", "service": "metric-ingestor-1", "count": 410, "delta_vs_baseline": "+410", "first_seen": "2026-06-21T03:15:30Z", "sentiment": "negative"},
-    {"signature": "producer backpressure: ed-olapdb-mt-1-metric-iq near capacity, SQS ChangeMessageVisibility failing", "service": "kafka-metric-ingestor", "count": 2200, "delta_vs_baseline": "+2200", "first_seen": "2026-06-21T03:17:10Z", "sentiment": "negative"},
-    {"signature": "POST /v1/metrics 429: ingest buffer full", "service": "http-receiver", "count": 9100, "delta_vs_baseline": "+9100", "first_seen": "2026-06-21T03:20:10Z", "sentiment": "negative"}
-  ],
-  "note": "http-receiver has the HIGHEST count (9100) and PAGED with a latency+traffic spike. But the EARLIEST signal is the consumer metric-ingestor-1's slow commit (03:12:00) and rising queue age, BEFORE the producer backpressure (03:17:10) and the edge 429s (03:20:10). The edge spike is backpressure propagating UP the chain — the OPPOSITE of the request-flow direction."
+    {
+      "signature": "commit batch took <N>ms (fsync per batch); consumer_lag=<N>",
+      "service": "metric-ingestor-1",
+      "count": 620,
+      "delta_vs_baseline": "+620",
+      "first_seen": "2026-06-21T03:12:00Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "slow consumer: ed-olapdb-mt-1-metric-iq ApproximateAgeOfOldestMessage=<N>s and rising",
+      "service": "metric-ingestor-1",
+      "count": 410,
+      "delta_vs_baseline": "+410",
+      "first_seen": "2026-06-21T03:15:30Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "producer backpressure: ed-olapdb-mt-1-metric-iq near capacity, SQS ChangeMessageVisibility failing",
+      "service": "kafka-metric-ingestor",
+      "count": 2200,
+      "delta_vs_baseline": "+2200",
+      "first_seen": "2026-06-21T03:17:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "POST /v1/metrics 429: ingest buffer full",
+      "service": "http-receiver",
+      "count": 9100,
+      "delta_vs_baseline": "+9100",
+      "first_seen": "2026-06-21T03:20:10Z",
+      "sentiment": "negative"
+    }
+  ]
 }

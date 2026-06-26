@@ -1,8 +1,21 @@
 {
   "window": "2026-06-22T09:40:00Z..2026-06-22T11:59:00Z",
-  "note": "Feature-flag changes near the window. In v1 all root causes are CODE changes; flags are distractors only.",
   "changes": [
-    {"timestamp": "2026-06-22T11:40:00Z", "flag": "olapdb.write_vw_autoscale", "service": "olapdb-vw-write", "from": false, "to": true, "actor": "olapdb-team"},
-    {"timestamp": "2026-06-22T10:20:00Z", "flag": "admin_api.conf_cache_v2", "service": "platform-api", "from": false, "to": true, "actor": "platform-team"}
+    {
+      "timestamp": "2026-06-22T11:40:00Z",
+      "flag": "olapdb.write_vw_autoscale",
+      "service": "olapdb-vw-write",
+      "from": false,
+      "to": true,
+      "actor": "olapdb-team"
+    },
+    {
+      "timestamp": "2026-06-22T10:20:00Z",
+      "flag": "admin_api.conf_cache_v2",
+      "service": "platform-api",
+      "from": false,
+      "to": true,
+      "actor": "platform-team"
+    }
   ]
 }

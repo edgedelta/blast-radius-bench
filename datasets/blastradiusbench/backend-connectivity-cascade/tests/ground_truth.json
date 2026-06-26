@@ -2,14 +2,38 @@
   "scenario": "backend-connectivity-cascade",
   "origin_service": "olapdb-server",
   "root_cause_culprit_sha": "7b3d9e2f1a8c40dd29c6c113f60a4b2d1e5f8a0c",
-  "root_cause_keywords": ["backend connectivity", "connectivity loss", "olapdb", "write path", "rpc timeout", "connection reset", "headless", "shard", "write failure"],
-  "propagation_path": [
-    {"from": "olapdb-server", "to": "metric-ingestor-large"},
-    {"from": "metric-ingestor-large", "to": "http-receiver"}
+  "root_cause_keywords": [
+    "backend connectivity",
+    "connectivity loss",
+    "olapdb",
+    "write path",
+    "rpc timeout",
+    "connection reset",
+    "headless",
+    "shard",
+    "write failure"
   ],
-  "blast_radius": ["metric-ingestor-large", "http-receiver"],
-  "edge_overlap_threshold": 0.6,
+  "propagation_path": [
+    {
+      "from": "olapdb-server",
+      "to": "metric-ingestor-large"
+    },
+    {
+      "from": "metric-ingestor-large",
+      "to": "http-receiver"
+    }
+  ],
+  "blast_radius": [
+    "metric-ingestor-large",
+    "http-receiver"
+  ],
+  "edge_overlap_threshold": 1.0,
   "loudest_but_innocent": "http-receiver",
-  "accept_origin_aliases": ["olapdb-server", "olapdb server", "olapdb-server-headless"],
-  "notes": "olapdb-server loses backend connectivity on its write path (RPC timeouts / connection reset by peer against 10-0-12-44.olapdb-server-headless.olapdb.svc.cluster.local after Karpenter removed shard capacity; commit 7b3d9e2f tightened the write RPC deadline). metric-ingestor-large then fails write txns (HTTP 500, commitParts timeout), and http-receiver at the edge sees rejected/timed-out writes and rising latency. http-receiver is the LOUDEST (edge latency + 5xx alarm) but is the outermost victim, not the origin. transformer flapped (decoy). The edge alarm tempts a model to blame http-receiver; the origin is the backend."
+  "accept_origin_aliases": [
+    "olapdb-server",
+    "olapdb server",
+    "olapdb-server-headless"
+  ],
+  "notes": "olapdb-server loses backend connectivity on its write path (RPC timeouts / connection reset by peer against 10-0-12-44.olapdb-server-headless.olapdb.svc.cluster.local after Karpenter removed shard capacity; commit 7b3d9e2f tightened the write RPC deadline). metric-ingestor-large then fails write txns (HTTP 500, commitParts timeout), and http-receiver at the edge sees rejected/timed-out writes and rising latency. http-receiver is the LOUDEST (edge latency + 5xx alarm) but is the outermost victim, not the origin. transformer flapped (decoy). The edge alarm tempts a model to blame http-receiver; the origin is the backend.",
+  "_design_note": "Paged on http-receiver because that is the customer-facing ingest edge where latency is measured. The edge is where it HURTS, not necessarily where it STARTED."
 }

@@ -2,10 +2,37 @@
   "window": "2026-06-22T22:30:00Z..2026-06-22T22:52:00Z",
   "baseline_window": "2026-06-22T20:30:00Z..2026-06-22T22:30:00Z",
   "patterns": [
-    {"signature": "backend write RPC to <host>.olapdb-server-headless timed out after <N>ms", "service": "olapdb-server", "count": 288, "delta_vs_baseline": "+288", "first_seen": "2026-06-22T22:41:10Z", "sentiment": "negative"},
-    {"signature": "connection reset by peer (olapdb-server-headless): backend connectivity loss on write path", "service": "olapdb-server", "count": 240, "delta_vs_baseline": "+240", "first_seen": "2026-06-22T22:41:55Z", "sentiment": "negative"},
-    {"signature": "write txn failed: HTTP 500 from olapdb-server (commitParts timeout)", "service": "metric-ingestor-large", "count": 3100, "delta_vs_baseline": "+3100", "first_seen": "2026-06-22T22:43:20Z", "sentiment": "negative"},
-    {"signature": "POST /v1/ingest 500: downstream ingestor write failure", "service": "http-receiver", "count": 14200, "delta_vs_baseline": "+14200", "first_seen": "2026-06-22T22:46:10Z", "sentiment": "negative"}
-  ],
-  "note": "http-receiver has the HIGHEST count (14200) and PAGED (edge latency/5xx). But olapdb-server's backend-connectivity pattern has the EARLIEST first_seen (22:41:10), before the ingestor (22:43:20) and the http-receiver edge (22:46:10). Count != cause; first_seen and the write-path direction reveal olapdb-server."
+    {
+      "signature": "backend write RPC to <host>.olapdb-server-headless timed out after <N>ms",
+      "service": "olapdb-server",
+      "count": 288,
+      "delta_vs_baseline": "+288",
+      "first_seen": "2026-06-22T22:41:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "connection reset by peer (olapdb-server-headless): backend connectivity loss on write path",
+      "service": "olapdb-server",
+      "count": 240,
+      "delta_vs_baseline": "+240",
+      "first_seen": "2026-06-22T22:41:55Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "write txn failed: HTTP 500 from olapdb-server (commitParts timeout)",
+      "service": "metric-ingestor-large",
+      "count": 3100,
+      "delta_vs_baseline": "+3100",
+      "first_seen": "2026-06-22T22:43:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "POST /v1/ingest 500: downstream ingestor write failure",
+      "service": "http-receiver",
+      "count": 14200,
+      "delta_vs_baseline": "+14200",
+      "first_seen": "2026-06-22T22:46:10Z",
+      "sentiment": "negative"
+    }
+  ]
 }

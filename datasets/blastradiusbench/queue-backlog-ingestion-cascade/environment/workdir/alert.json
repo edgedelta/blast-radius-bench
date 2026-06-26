@@ -7,6 +7,5 @@
   "observed_value": "p99 6200ms, inbound 7100 rps",
   "fired_at": "2026-06-21T03:21:00Z",
   "severity": "high",
-  "summary": "http-receiver ingest p99 6.2s and elevated inbound traffic — looks like a load spike at the edge",
-  "note": "Paged on http-receiver: p99 and inbound rps are both elevated, which LOOKS like a traffic surge originating at the edge. Check whether the edge is actually the source, or is backed up behind a downstream consumer."
+  "summary": "http-receiver ingest p99 6.2s and elevated inbound traffic \u2014 looks like a load spike at the edge"
 }

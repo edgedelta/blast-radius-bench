@@ -1,30 +1,146 @@
 {
-  "description": "Sampled OTel spans during the incident. parent_id links spans within a trace. status OK|ERROR. Times are ms-resolution ISO. The deep spans (orders -> postgres) are slow first and carry the original error.",
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
   "traces": [
     {
       "trace_id": "tr-9001",
       "spans": [
-        {"span_id": "s1", "parent_id": null, "service": "api-gateway", "name": "GET /api/checkout", "start": "2026-06-18T14:03:01.000Z", "duration_ms": 7010, "status": "ERROR", "attributes": {"http.status_code": 504}},
-        {"span_id": "s2", "parent_id": "s1", "service": "frontend", "name": "render checkout", "start": "2026-06-18T14:03:01.020Z", "duration_ms": 6960, "status": "ERROR", "attributes": {"http.status_code": 504}},
-        {"span_id": "s3", "parent_id": "s2", "service": "checkout", "name": "POST /checkout/submit", "start": "2026-06-18T14:03:01.060Z", "duration_ms": 6890, "status": "ERROR", "attributes": {"http.status_code": 504, "error.msg": "upstream orders timeout"}},
-        {"span_id": "s4", "parent_id": "s3", "service": "orders", "name": "GET /orders/lookup", "start": "2026-06-18T14:03:01.110Z", "duration_ms": 6800, "status": "ERROR", "attributes": {"error.msg": "timeout acquiring db connection from pool"}},
-        {"span_id": "s5", "parent_id": "s4", "service": "postgres-orders", "name": "BEGIN; SELECT orders", "start": "2026-06-18T14:03:01.150Z", "duration_ms": 6740, "status": "ERROR", "attributes": {"db.system": "postgresql", "error.msg": "pool: connection wait timeout (50/50 in use)"}},
-        {"span_id": "s6", "parent_id": "s3", "service": "payments", "name": "POST /payments/authorize", "start": "2026-06-18T14:03:01.080Z", "duration_ms": 6700, "status": "ERROR", "attributes": {"http.status_code": 504, "error.msg": "checkout call cancelled (sibling deadline)"}}
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "api-gateway",
+          "name": "GET /api/checkout",
+          "start": "2026-06-18T14:03:01.000Z",
+          "duration_ms": 7010,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 504
+          }
+        },
+        {
+          "span_id": "s2",
+          "parent_id": "s1",
+          "service": "frontend",
+          "name": "render checkout",
+          "start": "2026-06-18T14:03:01.020Z",
+          "duration_ms": 6960,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 504
+          }
+        },
+        {
+          "span_id": "s3",
+          "parent_id": "s2",
+          "service": "checkout",
+          "name": "POST /checkout/submit",
+          "start": "2026-06-18T14:03:01.060Z",
+          "duration_ms": 6890,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 504,
+            "error.msg": "upstream orders timeout"
+          }
+        },
+        {
+          "span_id": "s4",
+          "parent_id": "s3",
+          "service": "orders",
+          "name": "GET /orders/lookup",
+          "start": "2026-06-18T14:03:01.110Z",
+          "duration_ms": 6800,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "timeout acquiring db connection from pool"
+          }
+        },
+        {
+          "span_id": "s5",
+          "parent_id": "s4",
+          "service": "postgres-orders",
+          "name": "BEGIN; SELECT orders",
+          "start": "2026-06-18T14:03:01.150Z",
+          "duration_ms": 6740,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "postgresql",
+            "error.msg": "pool: connection wait timeout (50/50 in use)"
+          }
+        },
+        {
+          "span_id": "s6",
+          "parent_id": "s3",
+          "service": "payments",
+          "name": "POST /payments/authorize",
+          "start": "2026-06-18T14:03:01.080Z",
+          "duration_ms": 6700,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 504,
+            "error.msg": "checkout call cancelled (sibling deadline)"
+          }
+        }
       ]
     },
     {
       "trace_id": "tr-9002",
       "spans": [
-        {"span_id": "a1", "parent_id": null, "service": "api-gateway", "name": "GET /api/search", "start": "2026-06-18T14:03:05.000Z", "duration_ms": 64, "status": "OK"},
-        {"span_id": "a2", "parent_id": "a1", "service": "frontend", "name": "render search", "start": "2026-06-18T14:03:05.010Z", "duration_ms": 55, "status": "OK"},
-        {"span_id": "a3", "parent_id": "a2", "service": "search", "name": "GET /search/query", "start": "2026-06-18T14:03:05.020Z", "duration_ms": 40, "status": "OK"}
+        {
+          "span_id": "a1",
+          "parent_id": null,
+          "service": "api-gateway",
+          "name": "GET /api/search",
+          "start": "2026-06-18T14:03:05.000Z",
+          "duration_ms": 64,
+          "status": "OK"
+        },
+        {
+          "span_id": "a2",
+          "parent_id": "a1",
+          "service": "frontend",
+          "name": "render search",
+          "start": "2026-06-18T14:03:05.010Z",
+          "duration_ms": 55,
+          "status": "OK"
+        },
+        {
+          "span_id": "a3",
+          "parent_id": "a2",
+          "service": "search",
+          "name": "GET /search/query",
+          "start": "2026-06-18T14:03:05.020Z",
+          "duration_ms": 40,
+          "status": "OK"
+        }
       ]
     },
     {
       "trace_id": "tr-9003",
       "spans": [
-        {"span_id": "b4", "parent_id": null, "service": "orders", "name": "GET /orders/lookup", "start": "2026-06-18T13:58:40.000Z", "duration_ms": 1850, "status": "ERROR", "attributes": {"error.msg": "slow: waited 1.8s for db connection"}},
-        {"span_id": "b5", "parent_id": "b4", "service": "postgres-orders", "name": "BEGIN; SELECT orders", "start": "2026-06-18T13:58:40.050Z", "duration_ms": 1790, "status": "ERROR", "attributes": {"db.system": "postgresql", "error.msg": "pool near saturation (44/50)"}}
+        {
+          "span_id": "b4",
+          "parent_id": null,
+          "service": "orders",
+          "name": "GET /orders/lookup",
+          "start": "2026-06-18T13:58:40.000Z",
+          "duration_ms": 1850,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "slow: waited 1.8s for db connection"
+          }
+        },
+        {
+          "span_id": "b5",
+          "parent_id": "b4",
+          "service": "postgres-orders",
+          "name": "BEGIN; SELECT orders",
+          "start": "2026-06-18T13:58:40.050Z",
+          "duration_ms": 1790,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "postgresql",
+            "error.msg": "pool near saturation (44/50)"
+          }
+        }
       ]
     }
   ]

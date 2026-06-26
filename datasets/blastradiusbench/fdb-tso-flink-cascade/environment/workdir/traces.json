@@ -1,27 +1,115 @@
 {
-  "description": "Sampled OTel spans during the incident. parent_id links spans within a trace; status OK|ERROR. The deepest span (olapdb-tso commit_ts allocation) is slow first and carries the original FoundationDB timeout error.",
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
   "traces": [
     {
       "trace_id": "tr-9201",
       "spans": [
-        {"span_id": "s1", "parent_id": null, "service": "platform-api", "name": "GET /api/v1/orgs/conf", "start": "2026-06-23T09:20:05.000Z", "duration_ms": 5200, "status": "ERROR", "attributes": {"http.status_code": 500, "error.msg": "stream-taskmanager job output stale"}},
-        {"span_id": "s2", "parent_id": "s1", "service": "stream-taskmanager", "name": "flink read Metric_threshold_monitoring_job", "start": "2026-06-23T09:20:05.040Z", "duration_ms": 5120, "status": "ERROR", "attributes": {"error.msg": "job restarting, checkpoint expired"}},
-        {"span_id": "s3", "parent_id": "s2", "service": "metric-ingestor-1", "name": "commit write txn", "start": "2026-06-23T09:20:05.090Z", "duration_ms": 5040, "status": "ERROR", "attributes": {"error.msg": "TransactionCoordinator commit failed: commit_ts unavailable"}},
-        {"span_id": "s4", "parent_id": "s3", "service": "olapdb-tso", "name": "allocate commit_ts (CAS)", "start": "2026-06-23T09:20:05.140Z", "duration_ms": 5005, "status": "ERROR", "attributes": {"db.system": "foundationdb", "error.msg": "FoundationDB transaction timeout during TSO leader-election (fdb_error=1031)"}}
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "platform-api",
+          "name": "GET /api/v1/orgs/conf",
+          "start": "2026-06-23T09:20:05.000Z",
+          "duration_ms": 5200,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 500,
+            "error.msg": "stream-taskmanager job output stale"
+          }
+        },
+        {
+          "span_id": "s2",
+          "parent_id": "s1",
+          "service": "stream-taskmanager",
+          "name": "flink read Metric_threshold_monitoring_job",
+          "start": "2026-06-23T09:20:05.040Z",
+          "duration_ms": 5120,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "job restarting, checkpoint expired"
+          }
+        },
+        {
+          "span_id": "s3",
+          "parent_id": "s2",
+          "service": "metric-ingestor-1",
+          "name": "commit write txn",
+          "start": "2026-06-23T09:20:05.090Z",
+          "duration_ms": 5040,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "TransactionCoordinator commit failed: commit_ts unavailable"
+          }
+        },
+        {
+          "span_id": "s4",
+          "parent_id": "s3",
+          "service": "olapdb-tso",
+          "name": "allocate commit_ts (CAS)",
+          "start": "2026-06-23T09:20:05.140Z",
+          "duration_ms": 5005,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "foundationdb",
+            "error.msg": "FoundationDB transaction timeout during TSO leader-election (fdb_error=1031)"
+          }
+        }
       ]
     },
     {
       "trace_id": "tr-9202",
       "spans": [
-        {"span_id": "b1", "parent_id": null, "service": "metric-ingestor-1", "name": "CnchLock acquire", "start": "2026-06-23T09:14:55.000Z", "duration_ms": 5001, "status": "ERROR", "attributes": {"error.msg": "CnchLock acquire timed out (commit_ts unavailable)"}},
-        {"span_id": "b2", "parent_id": "b1", "service": "olapdb-tso", "name": "allocate commit_ts (CAS)", "start": "2026-06-23T09:14:55.040Z", "duration_ms": 4950, "status": "ERROR", "attributes": {"db.system": "foundationdb", "error.msg": "CAS operation failed: FoundationDB transaction timed out (fdb_error=1004)"}}
+        {
+          "span_id": "b1",
+          "parent_id": null,
+          "service": "metric-ingestor-1",
+          "name": "CnchLock acquire",
+          "start": "2026-06-23T09:14:55.000Z",
+          "duration_ms": 5001,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "CnchLock acquire timed out (commit_ts unavailable)"
+          }
+        },
+        {
+          "span_id": "b2",
+          "parent_id": "b1",
+          "service": "olapdb-tso",
+          "name": "allocate commit_ts (CAS)",
+          "start": "2026-06-23T09:14:55.040Z",
+          "duration_ms": 4950,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "foundationdb",
+            "error.msg": "CAS operation failed: FoundationDB transaction timed out (fdb_error=1004)"
+          }
+        }
       ]
     },
     {
       "trace_id": "tr-9203",
       "spans": [
-        {"span_id": "k1", "parent_id": null, "service": "kafka-metric-ingestor", "name": "write to olapdb-server", "start": "2026-06-23T09:22:30.000Z", "duration_ms": 70, "status": "OK", "attributes": {"note": "kafka-metric-ingestor path healthy"}},
-        {"span_id": "k2", "parent_id": "k1", "service": "olapdb-server", "name": "INSERT ed_mt", "start": "2026-06-23T09:22:30.020Z", "duration_ms": 40, "status": "OK"}
+        {
+          "span_id": "k1",
+          "parent_id": null,
+          "service": "kafka-metric-ingestor",
+          "name": "write to olapdb-server",
+          "start": "2026-06-23T09:22:30.000Z",
+          "duration_ms": 70,
+          "status": "OK",
+          "attributes": {
+            "note": "kafka-metric-ingestor path healthy"
+          }
+        },
+        {
+          "span_id": "k2",
+          "parent_id": "k1",
+          "service": "olapdb-server",
+          "name": "INSERT ed_mt",
+          "start": "2026-06-23T09:22:30.020Z",
+          "duration_ms": 40,
+          "status": "OK"
+        }
       ]
     }
   ]

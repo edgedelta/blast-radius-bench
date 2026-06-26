@@ -1,9 +1,34 @@
 {
   "window": "2026-06-20T05:20:00Z..2026-06-20T07:40:00Z",
   "deploys": [
-    {"timestamp": "2026-06-20T07:26:30Z", "service": "ai-memory-svc", "commit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d", "version": "ai-memory-v6f8a0c2", "rollout": "100%"},
-    {"timestamp": "2026-06-20T06:35:00Z", "service": "ai-agent-svc", "commit_sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f", "version": "ai-agent-v311", "rollout": "100%"},
-    {"timestamp": "2026-06-20T07:34:30Z", "service": "ai-agent-svc", "commit_sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f", "version": "ai-agent-v312", "rollout": "100%", "note": "deployed near incident onset — decoy (no code diff, restart only)"},
-    {"timestamp": "2026-06-20T05:55:00Z", "service": "platform-api", "commit_sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e", "version": "platform-api-v648", "rollout": "100%"}
+    {
+      "timestamp": "2026-06-20T07:26:30Z",
+      "service": "ai-memory-svc",
+      "commit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
+      "version": "ai-memory-v6f8a0c2",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-20T06:35:00Z",
+      "service": "ai-agent-svc",
+      "commit_sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f",
+      "version": "ai-agent-v311",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-20T07:34:30Z",
+      "service": "ai-agent-svc",
+      "commit_sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f",
+      "version": "ai-agent-v312",
+      "rollout": "100%",
+      "note": "deployed near incident onset"
+    },
+    {
+      "timestamp": "2026-06-20T05:55:00Z",
+      "service": "platform-api",
+      "commit_sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e",
+      "version": "platform-api-v648",
+      "rollout": "100%"
+    }
   ]
 }

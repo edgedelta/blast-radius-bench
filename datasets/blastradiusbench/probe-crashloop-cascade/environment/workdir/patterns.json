@@ -2,11 +2,45 @@
   "window": "2026-06-19T18:50:00Z..2026-06-19T19:12:00Z",
   "baseline_window": "2026-06-19T16:50:00Z..2026-06-19T18:50:00Z",
   "patterns": [
-    {"signature": "kubelet Liveness probe failed: HTTP 404 from :9090/health", "service": "workflow-engine", "count": 24, "delta_vs_baseline": "+24", "first_seen": "2026-06-19T19:02:10Z", "sentiment": "negative"},
-    {"signature": "kubelet Killing container workflow-engine (liveness probe failed 3x), restartCount=<N>", "service": "workflow-engine", "count": 8, "delta_vs_baseline": "+8", "first_seen": "2026-06-19T19:03:20Z", "sentiment": "negative"},
-    {"signature": "workflow-engine call failed: dial tcp workflow-engine:8080 connection refused", "service": "ai-agent-svc", "count": 2600, "delta_vs_baseline": "+2600", "first_seen": "2026-06-19T19:05:00Z", "sentiment": "negative"},
-    {"signature": "Admin API HTTP 5xx: AI Teammate request failed 500", "service": "platform-api", "count": 4400, "delta_vs_baseline": "+4400", "first_seen": "2026-06-19T19:08:00Z", "sentiment": "negative"},
-    {"signature": "workflow-engine server listening on :8080, durable execution ready (app started cleanly)", "service": "workflow-engine", "count": 8, "delta_vs_baseline": "+6", "first_seen": "2026-06-19T18:58:30Z", "sentiment": "neutral"}
-  ],
-  "note": "platform-api has the HIGHEST count (4400) and PAGED. But workflow-engine's probe-failure pattern has the EARLIEST first_seen (19:02:10), before ai-agent's connection-refused (19:05:00) and platform-api's 5xx (19:08:00). Note workflow-engine ALSO logs a clean 'app started' pattern each cycle — the application is healthy; the kubelet kills it on a misconfigured probe. first_seen + the dependency direction reveal workflow-engine."
+    {
+      "signature": "kubelet Liveness probe failed: HTTP 404 from :9090/health",
+      "service": "workflow-engine",
+      "count": 24,
+      "delta_vs_baseline": "+24",
+      "first_seen": "2026-06-19T19:02:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "kubelet Killing container workflow-engine (liveness probe failed 3x), restartCount=<N>",
+      "service": "workflow-engine",
+      "count": 8,
+      "delta_vs_baseline": "+8",
+      "first_seen": "2026-06-19T19:03:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "workflow-engine call failed: dial tcp workflow-engine:8080 connection refused",
+      "service": "ai-agent-svc",
+      "count": 2600,
+      "delta_vs_baseline": "+2600",
+      "first_seen": "2026-06-19T19:05:00Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "Admin API HTTP 5xx: AI Teammate request failed 500",
+      "service": "platform-api",
+      "count": 4400,
+      "delta_vs_baseline": "+4400",
+      "first_seen": "2026-06-19T19:08:00Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "workflow-engine server listening on :8080, durable execution ready (app started cleanly)",
+      "service": "workflow-engine",
+      "count": 8,
+      "delta_vs_baseline": "+6",
+      "first_seen": "2026-06-19T18:58:30Z",
+      "sentiment": "neutral"
+    }
+  ]
 }

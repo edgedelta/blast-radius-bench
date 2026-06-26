@@ -1,18 +1,68 @@
 {
-  "description": "Sampled OTel spans. parent_id links spans; status OK|ERROR. The deepest span (ai-memory PutItem to DynamoDB) is throttled first and carries the ProvisionedThroughputExceeded error.",
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
   "traces": [
     {
       "trace_id": "tr-1201",
       "spans": [
-        {"span_id": "s1", "parent_id": null, "service": "platform-api", "name": "POST /api/v1/ai/teammate/run", "start": "2026-06-20T07:36:10.000Z", "duration_ms": 320, "status": "ERROR", "attributes": {"http.status_code": 500, "error.msg": "AI runtime error"}},
-        {"span_id": "s2", "parent_id": "s1", "service": "ai-agent-svc", "name": "AgenticLoopService/runMainLoop", "start": "2026-06-20T07:36:10.030Z", "duration_ms": 3000, "status": "ERROR", "attributes": {"error.msg": "ai-memory checkpoint persistently throttled (retry budget exhausted)", "retry.count": 5}},
-        {"span_id": "s3", "parent_id": "s2", "service": "ai-memory-svc", "name": "PutItem pipeline-states", "start": "2026-06-20T07:36:10.060Z", "duration_ms": 140, "status": "ERROR", "attributes": {"db.system": "dynamodb", "aws.dynamodb.table": "pipeline-states", "error.msg": "ProvisionedThroughputExceededException: write capacity exceeded"}}
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "platform-api",
+          "name": "POST /api/v1/ai/teammate/run",
+          "start": "2026-06-20T07:36:10.000Z",
+          "duration_ms": 320,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 500,
+            "error.msg": "AI runtime error"
+          }
+        },
+        {
+          "span_id": "s2",
+          "parent_id": "s1",
+          "service": "ai-agent-svc",
+          "name": "AgenticLoopService/runMainLoop",
+          "start": "2026-06-20T07:36:10.030Z",
+          "duration_ms": 3000,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "ai-memory checkpoint persistently throttled (retry budget exhausted)",
+            "retry.count": 5
+          }
+        },
+        {
+          "span_id": "s3",
+          "parent_id": "s2",
+          "service": "ai-memory-svc",
+          "name": "PutItem pipeline-states",
+          "start": "2026-06-20T07:36:10.060Z",
+          "duration_ms": 140,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "dynamodb",
+            "aws.dynamodb.table": "pipeline-states",
+            "error.msg": "ProvisionedThroughputExceededException: write capacity exceeded"
+          }
+        }
       ]
     },
     {
       "trace_id": "tr-1202",
       "spans": [
-        {"span_id": "m1", "parent_id": null, "service": "ai-memory-svc", "name": "PutItem pipeline-states", "start": "2026-06-20T07:31:55.000Z", "duration_ms": 140, "status": "ERROR", "attributes": {"db.system": "dynamodb", "aws.dynamodb.table": "pipeline-states", "error.msg": "ProvisionedThroughputExceededException (first throttle)"}}
+        {
+          "span_id": "m1",
+          "parent_id": null,
+          "service": "ai-memory-svc",
+          "name": "PutItem pipeline-states",
+          "start": "2026-06-20T07:31:55.000Z",
+          "duration_ms": 140,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "dynamodb",
+            "aws.dynamodb.table": "pipeline-states",
+            "error.msg": "ProvisionedThroughputExceededException (first throttle)"
+          }
+        }
       ]
     }
   ]

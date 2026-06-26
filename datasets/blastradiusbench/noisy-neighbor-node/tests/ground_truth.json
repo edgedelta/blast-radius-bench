@@ -2,15 +2,49 @@
   "scenario": "noisy-neighbor-node",
   "origin_service": "node-7",
   "root_cause_culprit_sha": "7e0a4d2",
-  "root_cause_keywords": ["node", "memory pressure", "noisy neighbor", "co-located", "colocated", "co-location", "eviction", "oomkill", "oom", "batch-importer", "shared node", "resource", "limit"],
-  "propagation_path": [
-    {"from": "node-7", "to": "auth"},
-    {"from": "node-7", "to": "cart"},
-    {"from": "node-7", "to": "image-resize"}
+  "root_cause_keywords": [
+    "node",
+    "memory pressure",
+    "noisy neighbor",
+    "co-located",
+    "colocated",
+    "co-location",
+    "eviction",
+    "oomkill",
+    "oom",
+    "batch-importer",
+    "shared node",
+    "resource",
+    "limit"
   ],
-  "blast_radius": ["auth", "cart", "image-resize"],
-  "edge_overlap_threshold": 0.6,
+  "propagation_path": [
+    {
+      "from": "node-7",
+      "to": "auth"
+    },
+    {
+      "from": "node-7",
+      "to": "cart"
+    },
+    {
+      "from": "node-7",
+      "to": "image-resize"
+    }
+  ],
+  "blast_radius": [
+    "auth",
+    "cart",
+    "image-resize"
+  ],
+  "edge_overlap_threshold": 1.0,
   "loudest_but_innocent": "auth",
-  "accept_origin_aliases": ["node-7", "node7", "node-7 (infra)", "batch-importer", "batch-importer on node-7"],
-  "notes": "batch-importer (a cron job, commit 7e0a4d2 removed the streaming reader and loads the full catalog into memory) saturates node-7's memory. The kubelet sets MemoryPressure on node-7 and OOMKills/evicts CO-LOCATED pods of unrelated services (auth, cart, image-resize). These three services have NO service-call edge connecting them in service_map.json — the only shared link is node-7. A model that only looks at the call graph will see three 'independent' incidents and fail to find a common origin. The correct origin is the node/infra fault (node-7), and propagation is via co-location, not RPC. auth is loudest (most login errors) but is just one co-located victim. batch-importer is accepted as an origin alias since it is the noisy neighbor pod whose code change is the true culprit."
+  "accept_origin_aliases": [
+    "node-7",
+    "node7",
+    "node-7 (infra)",
+    "batch-importer",
+    "batch-importer on node-7"
+  ],
+  "notes": "batch-importer (a cron job, commit 7e0a4d2 removed the streaming reader and loads the full catalog into memory) saturates node-7's memory. The kubelet sets MemoryPressure on node-7 and OOMKills/evicts CO-LOCATED pods of unrelated services (auth, cart, image-resize). These three services have NO service-call edge connecting them in service_map.json \u2014 the only shared link is node-7. A model that only looks at the call graph will see three 'independent' incidents and fail to find a common origin. The correct origin is the node/infra fault (node-7), and propagation is via co-location, not RPC. auth is loudest (most login errors) but is just one co-located victim. batch-importer is accepted as an origin alias since it is the noisy neighbor pod whose code change is the true culprit.",
+  "_design_note": "Three unrelated services degraded within the same 2-minute window. They do not call each other. Why would independent services fail simultaneously?"
 }

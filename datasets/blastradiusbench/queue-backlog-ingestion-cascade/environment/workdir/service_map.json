@@ -1,11 +1,26 @@
 {
-  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls/produces-to B (request/data flow). http-receiver receives ingest and produces to kafka-metric-ingestor, which enqueues onto ed-olapdb-mt-1-metric-iq, consumed by metric-ingestor-1.",
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on.",
   "generated_at": "2026-06-21T03:35:00Z",
-  "services": ["http-receiver", "kafka-metric-ingestor", "metric-ingestor-1"],
-  "queues": ["ed-olapdb-mt-1-metric-iq"],
-  "edges": [
-    {"from": "http-receiver", "to": "kafka-metric-ingestor", "call_rate_rps": 500, "note": "forwards ingested metrics"},
-    {"from": "kafka-metric-ingestor", "to": "metric-ingestor-1", "via_queue": "ed-olapdb-mt-1-metric-iq", "note": "produces to the queue; metric-ingestor-1 is the CONSUMER"}
+  "services": [
+    "http-receiver",
+    "kafka-metric-ingestor",
+    "metric-ingestor-1"
   ],
-  "note": "Data flows A->B. CAUSALLY, when the downstream consumer metric-ingestor-1 is slow, the queue backlogs and backpressure flows BACKWARD: consumer -> producer (kafka-metric-ingestor) -> edge (http-receiver). The edge's load spike is the EFFECT, not the cause."
+  "queues": [
+    "ed-olapdb-mt-1-metric-iq"
+  ],
+  "edges": [
+    {
+      "from": "http-receiver",
+      "to": "kafka-metric-ingestor",
+      "call_rate_rps": 500,
+      "note": "forwards ingested metrics"
+    },
+    {
+      "from": "kafka-metric-ingestor",
+      "to": "metric-ingestor-1",
+      "via_queue": "ed-olapdb-mt-1-metric-iq",
+      "note": "produces to the queue; metric-ingestor-1 is the CONSUMER"
+    }
+  ]
 }

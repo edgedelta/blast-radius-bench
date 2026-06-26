@@ -1,12 +1,53 @@
 {
   "window": "2026-06-23T09:00:00Z..2026-06-23T09:25:00Z",
   "events": [
-    {"timestamp": "2026-06-23T09:05:30Z", "type": "Deployment", "object": "statefulset/olapdb-tso", "namespace": "olapdb", "reason": "ScalingReplicaSet", "message": "Rolled olapdb-tso to v3d8221b (StatefulSet olapdb-tso restarted pod olapdb-tso-0)"},
-    {"timestamp": "2026-06-23T09:09:20Z", "type": "Deployment", "object": "deploy/kafka-metric-ingestor", "namespace": "ingestion", "reason": "ScalingReplicaSet", "message": "Scaled up kafka-metric-ingestor-912 (innocent deploy near onset)"},
-    {"timestamp": "2026-06-23T09:13:20Z", "type": "Warning", "object": "statefulset/olapdb-tso", "namespace": "olapdb", "reason": "Unhealthy", "message": "Readiness probe failed: TSO not serving timestamps (FoundationDB transaction timeout)"},
-    {"timestamp": "2026-06-23T09:16:00Z", "type": "Warning", "object": "pod/metric-ingestor-1-0", "namespace": "ingestion", "reason": "ProbeWarning", "message": "write txn commit failures rising; ed-olapdb-mt-1-metric-iq consumption stalled"},
-    {"timestamp": "2026-06-23T09:17:40Z", "type": "Warning", "object": "flinkjob/Metric_threshold_monitoring_job", "namespace": "streaming", "reason": "JobRestarting", "message": "stream-taskmanager taskmanager job restarting: checkpoint expired"},
-    {"timestamp": "2026-06-23T09:19:00Z", "type": "DisruptionBlocked", "object": "pdb/stream-taskmanager-pdb", "namespace": "streaming", "reason": "DisruptionBlocked", "message": "Pdb prevents pod evictions PodDisruptionBudget=streaming/stream-taskmanager-pdb"}
-  ],
-  "note": "The olapdb-tso StatefulSet rollout (v3d8221b) at 09:05 precedes everything. The kafka-metric-ingestor deploy at 09:09 is an innocent decoy. The Flink JobRestarting/DisruptionBlocked events at 09:17-09:19 are downstream of the olapdb/FDB stall. No node-level pressure here."
+    {
+      "timestamp": "2026-06-23T09:05:30Z",
+      "type": "Deployment",
+      "object": "statefulset/olapdb-tso",
+      "namespace": "olapdb",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled olapdb-tso to v3d8221b (StatefulSet olapdb-tso restarted pod olapdb-tso-0)"
+    },
+    {
+      "timestamp": "2026-06-23T09:09:20Z",
+      "type": "Deployment",
+      "object": "deploy/kafka-metric-ingestor",
+      "namespace": "ingestion",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up kafka-metric-ingestor-912 (innocent deploy near onset)"
+    },
+    {
+      "timestamp": "2026-06-23T09:13:20Z",
+      "type": "Warning",
+      "object": "statefulset/olapdb-tso",
+      "namespace": "olapdb",
+      "reason": "Unhealthy",
+      "message": "Readiness probe failed: TSO not serving timestamps (FoundationDB transaction timeout)"
+    },
+    {
+      "timestamp": "2026-06-23T09:16:00Z",
+      "type": "Warning",
+      "object": "pod/metric-ingestor-1-0",
+      "namespace": "ingestion",
+      "reason": "ProbeWarning",
+      "message": "write txn commit failures rising; ed-olapdb-mt-1-metric-iq consumption stalled"
+    },
+    {
+      "timestamp": "2026-06-23T09:17:40Z",
+      "type": "Warning",
+      "object": "flinkjob/Metric_threshold_monitoring_job",
+      "namespace": "streaming",
+      "reason": "JobRestarting",
+      "message": "stream-taskmanager taskmanager job restarting: checkpoint expired"
+    },
+    {
+      "timestamp": "2026-06-23T09:19:00Z",
+      "type": "DisruptionBlocked",
+      "object": "pdb/stream-taskmanager-pdb",
+      "namespace": "streaming",
+      "reason": "DisruptionBlocked",
+      "message": "Pdb prevents pod evictions PodDisruptionBudget=streaming/stream-taskmanager-pdb"
+    }
+  ]
 }

@@ -7,6 +7,5 @@
   "observed_value": "p99 9800ms, 5xx 37%",
   "fired_at": "2026-06-22T22:48:00Z",
   "severity": "high",
-  "summary": "http-receiver p99 latency 9.8s and 37% 5xx on ingest write path — customer ingest degraded",
-  "note": "Paged on http-receiver because that is the customer-facing ingest edge where latency is measured. The edge is where it HURTS, not necessarily where it STARTED."
+  "summary": "http-receiver p99 latency 9.8s and 37% 5xx on ingest write path \u2014 customer ingest degraded"
 }

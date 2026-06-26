@@ -7,6 +7,5 @@
   "observed_value": "39%",
   "fired_at": "2026-06-19T19:09:30Z",
   "severity": "high",
-  "summary": "Admin API HTTP 5xx 39% — AI Teammate requests failing (incident #9610)",
-  "note": "Paged on platform-api because the Admin API HTTP 5xx monitor is where customer-facing AI Teammate errors are measured. This is the front door; the failure may originate deeper in the oncall-ai dependency chain."
+  "summary": "Admin API HTTP 5xx 39% \u2014 AI Teammate requests failing (incident #9610)"
 }

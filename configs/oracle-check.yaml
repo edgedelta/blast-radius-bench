@@ -1,0 +1,21 @@
+jobs_dir: jobs
+n_attempts: 1
+n_concurrent_trials: 4
+quiet: false
+environment:
+  type: docker
+agents:
+  - name: oracle
+datasets:
+  - path: datasets/blastradiusbench
+    task_names:
+      - backend-connectivity-cascade
+      - db-pool-cascade
+      - disk-pressure-noisy-neighbor
+      - dynamodb-capacity-degradation
+      - fdb-tso-flink-cascade
+      - memory-pressure-eviction-cascade
+      - noisy-neighbor-node
+      - probe-crashloop-cascade
+      - queue-backlog-ingestion-cascade
+      - retry-storm-amplification

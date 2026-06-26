@@ -1,12 +1,53 @@
 {
   "window": "2026-06-19T18:50:00Z..2026-06-19T19:12:00Z",
   "events": [
-    {"timestamp": "2026-06-19T18:58:30Z", "type": "Deployment", "object": "deploy/workflow-engine", "namespace": "oncall-ai", "reason": "ScalingReplicaSet", "message": "Rolled workflow-engine to v8a0c2e4 (probe config change)"},
-    {"timestamp": "2026-06-19T19:02:10Z", "type": "Warning", "object": "pod/workflow-engine-57486c9994-b2k5k", "namespace": "oncall-ai", "reason": "Unhealthy", "message": "Liveness probe failed: HTTP probe failed with statuscode: 404 (GET :9090/health)"},
-    {"timestamp": "2026-06-19T19:03:20Z", "type": "Warning", "object": "pod/workflow-engine-57486c9994-b2k5k", "namespace": "oncall-ai", "reason": "Killing", "message": "Container workflow-engine failed liveness probe, will be restarted"},
-    {"timestamp": "2026-06-19T19:04:10Z", "type": "Warning", "object": "pod/workflow-engine-57486c9994-b2k5k", "namespace": "oncall-ai", "reason": "BackOff", "message": "Back-off restarting failed container workflow-engine (CrashLoopBackOff)"},
-    {"timestamp": "2026-06-19T19:06:30Z", "type": "Deployment", "object": "deploy/platform-api", "namespace": "oncall-ai", "reason": "ScalingReplicaSet", "message": "Scaled up platform-api-646 (innocent deploy near onset)"},
-    {"timestamp": "2026-06-19T19:07:40Z", "type": "Warning", "object": "deploy/ai-agent-svc", "namespace": "oncall-ai", "reason": "BackoffLimitReached", "message": "ai-agent-svc downstream workflow-engine connection refused"}
-  ],
-  "note": "The workflow-engine rollout (v8a0c2e4) at 18:58 precedes everything; liveness-probe failures + Killing + CrashLoopBackOff are all on the workflow-engine pod. The platform-api deploy at 19:06 is an innocent decoy. No node-level pressure."
+    {
+      "timestamp": "2026-06-19T18:58:30Z",
+      "type": "Deployment",
+      "object": "deploy/workflow-engine",
+      "namespace": "oncall-ai",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled workflow-engine to v8a0c2e4 (probe config change)"
+    },
+    {
+      "timestamp": "2026-06-19T19:02:10Z",
+      "type": "Warning",
+      "object": "pod/workflow-engine-57486c9994-b2k5k",
+      "namespace": "oncall-ai",
+      "reason": "Unhealthy",
+      "message": "Liveness probe failed: HTTP probe failed with statuscode: 404 (GET :9090/health)"
+    },
+    {
+      "timestamp": "2026-06-19T19:03:20Z",
+      "type": "Warning",
+      "object": "pod/workflow-engine-57486c9994-b2k5k",
+      "namespace": "oncall-ai",
+      "reason": "Killing",
+      "message": "Container workflow-engine failed liveness probe, will be restarted"
+    },
+    {
+      "timestamp": "2026-06-19T19:04:10Z",
+      "type": "Warning",
+      "object": "pod/workflow-engine-57486c9994-b2k5k",
+      "namespace": "oncall-ai",
+      "reason": "BackOff",
+      "message": "Back-off restarting failed container workflow-engine (CrashLoopBackOff)"
+    },
+    {
+      "timestamp": "2026-06-19T19:06:30Z",
+      "type": "Deployment",
+      "object": "deploy/platform-api",
+      "namespace": "oncall-ai",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up platform-api-646 (innocent deploy near onset)"
+    },
+    {
+      "timestamp": "2026-06-19T19:07:40Z",
+      "type": "Warning",
+      "object": "deploy/ai-agent-svc",
+      "namespace": "oncall-ai",
+      "reason": "BackoffLimitReached",
+      "message": "ai-agent-svc downstream workflow-engine connection refused"
+    }
+  ]
 }
