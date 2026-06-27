@@ -1,0 +1,54 @@
+{
+  "window": "2026-06-27T14:25:00Z..2026-06-27T14:45:00Z",
+  "baseline_window": "2026-06-27T12:25:00Z..2026-06-27T14:25:00Z",
+  "patterns": [
+    {
+      "signature": "GetPrice rules cache miss: reload from pricing-rules-store <N>ms",
+      "service": "pricing-svc",
+      "count": 430,
+      "delta_vs_baseline": "+428",
+      "first_seen": "2026-06-27T14:33:10Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "GetPrice slow: p99 <N>ms, rules cache reload synchronous",
+      "service": "pricing-svc",
+      "count": 360,
+      "delta_vs_baseline": "+360",
+      "first_seen": "2026-06-27T14:34:00Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "GetQuote DeadlineExceeded calling pricing-svc.GetPrice within <N>ms",
+      "service": "quote-svc",
+      "count": 2600,
+      "delta_vs_baseline": "+2600",
+      "first_seen": "2026-06-27T14:35:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "promo rule validation rejected key <key>: HTTP 422 invalid discount window",
+      "service": "quote-svc",
+      "count": 38,
+      "delta_vs_baseline": "+38",
+      "first_seen": "2026-06-27T14:36:05Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "build order: DeadlineExceeded calling quote-svc.GetQuote",
+      "service": "orders-api",
+      "count": 2300,
+      "delta_vs_baseline": "+2300",
+      "first_seen": "2026-06-27T14:37:30Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "GET /v1/checkout 503: orders-api unavailable",
+      "service": "mobile-bff",
+      "count": 11800,
+      "delta_vs_baseline": "+11800",
+      "first_seen": "2026-06-27T14:39:10Z",
+      "sentiment": "negative"
+    }
+  ]
+}

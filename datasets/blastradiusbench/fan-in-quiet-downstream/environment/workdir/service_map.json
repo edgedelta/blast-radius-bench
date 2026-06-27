@@ -1,0 +1,69 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on.",
+  "generated_at": "2026-06-24T15:00:00Z",
+  "services": [
+    "api-gateway",
+    "checkout",
+    "search",
+    "profile",
+    "inventory-svc",
+    "recommendations-svc",
+    "feature-flags-svc"
+  ],
+  "edges": [
+    {
+      "from": "api-gateway",
+      "to": "checkout",
+      "call_rate_rps": 520,
+      "node": "ip-10-1-4-21"
+    },
+    {
+      "from": "api-gateway",
+      "to": "search",
+      "call_rate_rps": 310,
+      "node": "ip-10-1-4-22"
+    },
+    {
+      "from": "api-gateway",
+      "to": "profile",
+      "call_rate_rps": 140,
+      "node": "ip-10-1-4-23"
+    },
+    {
+      "from": "api-gateway",
+      "to": "recommendations-svc",
+      "call_rate_rps": 90,
+      "node": "ip-10-1-4-24"
+    },
+    {
+      "from": "checkout",
+      "to": "feature-flags-svc",
+      "call_rate_rps": 520,
+      "note": "synchronous GetFlags/Evaluate at request start (checkout.experiments gate)"
+    },
+    {
+      "from": "checkout",
+      "to": "inventory-svc",
+      "call_rate_rps": 510,
+      "note": "reserve stock"
+    },
+    {
+      "from": "search",
+      "to": "feature-flags-svc",
+      "call_rate_rps": 310,
+      "note": "synchronous Evaluate at request start (ranking variant gate)"
+    },
+    {
+      "from": "profile",
+      "to": "feature-flags-svc",
+      "call_rate_rps": 140,
+      "note": "synchronous GetFlags at request start (profile UI gate)"
+    },
+    {
+      "from": "recommendations-svc",
+      "to": "inventory-svc",
+      "call_rate_rps": 80,
+      "note": "fetch candidate item availability"
+    }
+  ]
+}

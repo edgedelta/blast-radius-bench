@@ -1,0 +1,119 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-7301",
+      "spans": [
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "checkout",
+          "name": "POST /api/checkout",
+          "start": "2026-03-14T14:45:30.000Z",
+          "duration_ms": 6800,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 500,
+            "error.msg": "payment step unavailable (503 from payments-svc)"
+          }
+        },
+        {
+          "span_id": "s2",
+          "parent_id": "s1",
+          "service": "payments-svc",
+          "name": "authorize payment",
+          "start": "2026-03-14T14:45:30.040Z",
+          "duration_ms": 4050,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "error.msg": "timeout acquiring connection from payments-db pool (waited 4000ms)"
+          }
+        },
+        {
+          "span_id": "s3",
+          "parent_id": "s2",
+          "service": "payments-db",
+          "name": "acquire connection + fraud_check SELECT",
+          "start": "2026-03-14T14:45:30.060Z",
+          "duration_ms": 4000,
+          "status": "OK",
+          "attributes": {
+            "db.system": "postgresql",
+            "pool.active_connections": 100,
+            "pool.max_connections": 100,
+            "pool.acquire_wait_ms": 4000
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7302",
+      "spans": [
+        {
+          "span_id": "p1",
+          "parent_id": null,
+          "service": "payments-db",
+          "name": "acquire connection + fraud_check SELECT",
+          "start": "2026-03-14T14:41:30.000Z",
+          "duration_ms": 4200,
+          "status": "OK",
+          "attributes": {
+            "db.system": "postgresql",
+            "pool.active_connections": 100,
+            "pool.max_connections": 100,
+            "pool.acquire_wait_ms": 4200
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7305",
+      "spans": [
+        {
+          "span_id": "m1",
+          "parent_id": null,
+          "service": "payments-svc",
+          "name": "authorize payment",
+          "start": "2026-03-14T14:41:50.000Z",
+          "duration_ms": 4010,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "error.msg": "timeout acquiring connection from payments-db pool (waited 4000ms)"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7310",
+      "spans": [
+        {
+          "span_id": "a1",
+          "parent_id": null,
+          "service": "analytics-api",
+          "name": "submit batch job",
+          "start": "2026-03-14T14:34:30.000Z",
+          "duration_ms": 30,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 502,
+            "error.msg": "connection refused from analytics-worker"
+          }
+        },
+        {
+          "span_id": "a2",
+          "parent_id": "a1",
+          "service": "analytics-worker",
+          "name": "rollupAggregate",
+          "start": "2026-03-14T14:34:30.010Z",
+          "duration_ms": 5,
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "panic: nil map write in rollupAggregate()"
+          }
+        }
+      ]
+    }
+  ]
+}

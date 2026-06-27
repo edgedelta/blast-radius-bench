@@ -1,0 +1,39 @@
+{
+  "repo": "acme/shop-platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-24T12:15:00Z..2026-06-24T14:38:00Z",
+  "commits": [
+    {
+      "sha": "c4f1a9b27e3d80aa15b6c113f60a4b2d9e2f7c81",
+      "author": "platform-team",
+      "timestamp": "2026-06-24T14:10:00Z",
+      "service": "feature-flags-svc",
+      "message": "#flags Reload ruleset in-process under a global eval mutex; grow ruleset 28k->41k rules",
+      "files_changed": ["flags/server/ruleset_reload.go", "flags/server/evaluate.go"]
+    },
+    {
+      "sha": "9e2f7c81c4f1a9b27e3d80aa15b6c113f60a4b2d",
+      "author": "reco-team",
+      "timestamp": "2026-06-24T14:05:00Z",
+      "service": "recommendations-svc",
+      "message": "#reco Add holiday_v2 ranking weights profile",
+      "files_changed": ["reco/ranking/weights.go"]
+    },
+    {
+      "sha": "60a4b2d9e2f7c81c4f1a9b27e3d80aa15b6c113f",
+      "author": "checkout-team",
+      "timestamp": "2026-06-24T12:55:00Z",
+      "service": "checkout",
+      "message": "#checkout Add address autocomplete to purchase form",
+      "files_changed": ["checkout/web/address.go"]
+    },
+    {
+      "sha": "15b6c113f60a4b2d9e2f7c81c4f1a9b27e3d80aa",
+      "author": "search-team",
+      "timestamp": "2026-06-24T12:30:00Z",
+      "service": "search",
+      "message": "#search Bump query cache TTL 30s->60s",
+      "files_changed": ["search/cache/ttl.go"]
+    }
+  ]
+}

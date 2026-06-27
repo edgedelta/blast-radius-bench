@@ -1,0 +1,46 @@
+{
+  "window": "2026-06-22T08:50:00Z..2026-06-22T09:12:00Z",
+  "baseline_window": "2026-06-22T06:50:00Z..2026-06-22T08:50:00Z",
+  "patterns": [
+    {
+      "signature": "coredns-cluster cache full at <N> entries, evicting <N>/s, hit ratio <N>%",
+      "service": "coredns-cluster",
+      "count": 1,
+      "delta_vs_baseline": "+1",
+      "first_seen": "2026-06-22T09:01:50Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "web-checkout payment call failed: getaddrinfo ENOTFOUND pay.gateway.example.com (SERVFAIL from coredns-cluster)",
+      "service": "web-checkout",
+      "count": 7600,
+      "delta_vs_baseline": "+7600",
+      "first_seen": "2026-06-22T09:02:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "email-worker connect failed: lookup smtp-relay.mail.example.net: resolution timeout via coredns-cluster",
+      "service": "email-worker",
+      "count": 2900,
+      "delta_vs_baseline": "+2900",
+      "first_seen": "2026-06-22T09:02:25Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "sync-agent upload failed: getaddrinfo ENOTFOUND objects.store.example.com (coredns-cluster SERVFAIL)",
+      "service": "sync-agent",
+      "count": 2100,
+      "delta_vs_baseline": "+2100",
+      "first_seen": "2026-06-22T09:02:40Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "pdf-renderer render aborted: font-cache mmap failed, glyph atlas out of space",
+      "service": "pdf-renderer",
+      "count": 44,
+      "delta_vs_baseline": "+3",
+      "first_seen": "2026-06-22T07:10:00Z",
+      "sentiment": "negative"
+    }
+  ]
+}

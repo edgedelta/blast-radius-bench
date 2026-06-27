@@ -1,0 +1,104 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `datastores` field lists backing data stores each service connects to directly. The `egress_via` field names the network egress path a service uses for OUTBOUND (internet-bound) calls, and `external_deps` lists the third-party endpoints it dials over that egress.",
+  "generated_at": "2026-06-23T14:20:00Z",
+  "datastores": [
+    {
+      "name": "pg:catalog-db",
+      "kind": "postgres",
+      "role": "primary"
+    }
+  ],
+  "egress_paths": [
+    {
+      "name": "net:nat-gw-az1",
+      "kind": "nat-gateway",
+      "zone": "az1",
+      "note": "single shared NAT gateway for the az1 subnet; all internet-bound traffic from az1 egresses here; finite SNAT source-port pool per destination, fixed egress bandwidth"
+    }
+  ],
+  "services": [
+    {
+      "name": "api-gateway",
+      "namespace": "edge",
+      "datastores": [],
+      "egress_via": null,
+      "external_deps": []
+    },
+    {
+      "name": "payment-gateway-client",
+      "namespace": "commerce",
+      "datastores": [],
+      "egress_via": "net:nat-gw-az1",
+      "external_deps": ["api.stripe.com"]
+    },
+    {
+      "name": "maps-svc",
+      "namespace": "geo",
+      "datastores": [],
+      "egress_via": "net:nat-gw-az1",
+      "external_deps": ["geocoder.maps-vendor.com"]
+    },
+    {
+      "name": "push-notifier",
+      "namespace": "platform",
+      "datastores": [],
+      "egress_via": "net:nat-gw-az1",
+      "external_deps": ["api.push.apple.com"]
+    },
+    {
+      "name": "data-export",
+      "namespace": "analytics",
+      "datastores": [],
+      "egress_via": "net:nat-gw-az1",
+      "external_deps": ["s3.objectstore-vendor.com"]
+    },
+    {
+      "name": "catalog-svc",
+      "namespace": "commerce",
+      "datastores": ["pg:catalog-db"],
+      "egress_via": null,
+      "external_deps": []
+    },
+    {
+      "name": "internal-api",
+      "namespace": "platform",
+      "datastores": [],
+      "egress_via": null,
+      "external_deps": []
+    },
+    {
+      "name": "image-resizer",
+      "namespace": "media",
+      "datastores": [],
+      "egress_via": null,
+      "external_deps": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "api-gateway",
+      "to": "payment-gateway-client",
+      "call_rate_rps": 70
+    },
+    {
+      "from": "api-gateway",
+      "to": "catalog-svc",
+      "call_rate_rps": 80
+    },
+    {
+      "from": "api-gateway",
+      "to": "image-resizer",
+      "call_rate_rps": 40
+    },
+    {
+      "from": "api-gateway",
+      "to": "maps-svc",
+      "call_rate_rps": 25
+    },
+    {
+      "from": "internal-api",
+      "to": "push-notifier",
+      "call_rate_rps": 30
+    }
+  ]
+}

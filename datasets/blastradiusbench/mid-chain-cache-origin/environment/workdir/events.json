@@ -1,0 +1,37 @@
+{
+  "window": "2026-06-22T14:10:00Z..2026-06-22T14:32:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-22T14:20:10Z",
+      "type": "Deployment",
+      "object": "deploy/price-cache",
+      "namespace": "pricing",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled price-cache to v9f1c5a7"
+    },
+    {
+      "timestamp": "2026-06-22T14:23:30Z",
+      "type": "Normal",
+      "object": "statefulset/pricing-db",
+      "namespace": "pricing",
+      "reason": "HighConnectionUsage",
+      "message": "pricing-db active_connections 210/600, query_qps elevated from fill-on-miss reads"
+    },
+    {
+      "timestamp": "2026-06-22T14:25:00Z",
+      "type": "Deployment",
+      "object": "deploy/inventory-svc",
+      "namespace": "inventory",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up inventory-svc-v4d2 (supplier-feed connector rollout)"
+    },
+    {
+      "timestamp": "2026-06-22T14:26:40Z",
+      "type": "Warning",
+      "object": "deploy/catalog-svc",
+      "namespace": "catalog",
+      "reason": "BackoffLimitReached",
+      "message": "getProductPricing failing: deadline exceeded waiting on price-cache read fill"
+    }
+  ]
+}

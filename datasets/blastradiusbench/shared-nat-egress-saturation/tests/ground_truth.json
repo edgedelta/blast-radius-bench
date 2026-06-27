@@ -1,0 +1,53 @@
+{
+  "scenario": "shared-nat-egress-saturation",
+  "origin_service": "net:nat-gw-az1",
+  "root_cause_culprit_sha": "1f3e5d7b9a1f3e5d7b9a1f3e5d7b9a1f3e5d7b9a",
+  "root_cause_keywords": [
+    "nat",
+    "nat-gw-az1",
+    "nat gateway",
+    "shared nat",
+    "egress",
+    "snat",
+    "snat port",
+    "port allocation",
+    "errorportallocation",
+    "port exhaustion",
+    "source port",
+    "bandwidth",
+    "egress bandwidth",
+    "data-export",
+    "outbound sync",
+    "outbound",
+    "timeout"
+  ],
+  "propagation_path": [
+    {
+      "from": "net:nat-gw-az1",
+      "to": "payment-gateway-client"
+    },
+    {
+      "from": "net:nat-gw-az1",
+      "to": "maps-svc"
+    },
+    {
+      "from": "net:nat-gw-az1",
+      "to": "push-notifier"
+    }
+  ],
+  "blast_radius": [
+    "payment-gateway-client",
+    "maps-svc",
+    "push-notifier"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "payment-gateway-client",
+  "accept_origin_aliases": [
+    "net:nat-gw-az1",
+    "nat-gw-az1",
+    "nat gateway az1",
+    "shared nat gateway"
+  ],
+  "notes": "SHARED-NAT / EGRESS-SATURATION TRAP. All outbound (internet-bound) traffic from the az1 subnet leaves through a single shared NAT gateway net:nat-gw-az1, which has a finite pool of SNAT source ports per destination and a fixed egress bandwidth. After a deploy, the data-export batch job began a large continuous outbound sync to an object store, holding thousands of long-lived outbound connections and saturating both the SNAT port pool (ErrorPortAllocation) and egress bandwidth on nat-gw-az1. Three UNRELATED services that each make OUTBOUND third-party calls through the same NAT -- payment-gateway-client (calls Stripe api.stripe.com), maps-svc (calls a geocoder), push-notifier (calls APNs) -- all start timing out on new outbound connections at the same moment because no SNAT ports are free. They share NO service-call edge in service_map.json: they sit in different call graphs and only co-depend on the NAT egress path (each lists egress via net:nat-gw-az1 and a distinct external dependency). payment-gateway-client is LOUDEST/paged (checkout failures). Control services catalog-svc (internal-only, own Postgres, no external egress) and internal-api (no egress) do NOT use the NAT and stay healthy, proving the fault is the shared NAT egress, not a global outage. Origin is the NAT gateway egress saturation; data-export is the heavy tenant whose outbound flood triggered it.",
+  "_design_note": "Paged on payment-gateway-client because checkout failures are the most revenue-visible symptom. payment-gateway-client is one of three services whose OUTBOUND calls timed out simultaneously; check WHY (the shared NAT gateway SNAT port allocation errors / egress bandwidth at cap), not just payment-gateway-client's own logs. image-resizer errored and just deployed but is not on the NAT egress path -- its fault is local."
+}

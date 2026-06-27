@@ -1,0 +1,38 @@
+{
+  "scenario": "dual-independent-incidents",
+  "origin_service": "payments-db",
+  "root_cause_culprit_sha": "c41d9f02ab7e5610d3f8b2a91c4e0d76f2a18b33",
+  "root_cause_keywords": [
+    "connection pool",
+    "pool exhaustion",
+    "payments-db",
+    "connection slots",
+    "max_connections",
+    "acquire timeout",
+    "saturation"
+  ],
+  "propagation_path": [
+    {
+      "from": "payments-db",
+      "to": "payments-svc"
+    },
+    {
+      "from": "payments-svc",
+      "to": "checkout"
+    }
+  ],
+  "blast_radius": [
+    "payments-svc",
+    "checkout"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "analytics-worker",
+  "accept_origin_aliases": [
+    "payments-db",
+    "payments db",
+    "payments-db-primary",
+    "pg:payments-db"
+  ],
+  "notes": "Two independent incidents fire in the same window. REAL/paged: payments-db connection pool saturates (active connections approach max_connections after commit c41d9f02 added a synchronous fraud-check query that holds a connection per request); payments-svc then fails acquiring connections (FATAL: remaining connection slots / acquire timeout, returns 503) and checkout at the edge returns customer-facing 5xx (the page). UNRELATED: analytics-worker crashloops after deploy v412 (commit 9b2e..) and is the LOUDEST by error count, and analytics-api (its only caller) logs errors too. But analytics-worker/analytics-api are an internal batch path with NO edge to payments-svc/checkout and no customer impact. The trap: analytics-worker errored most AND just deployed, so it is the tempting origin; it is a separate self-contained incident, not the cause of the checkout cascade. Controls: search-svc and notifications-svc stay healthy.",
+  "_design_note": "Paged on checkout (customer 5xx) which is the edge victim of the payments cascade. analytics-worker is the loudest+just-deployed surface match but belongs to a parallel incident; it must NOT be conflated into the payments chain or named as origin."
+}

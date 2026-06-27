@@ -1,0 +1,21 @@
+{
+  "window": "2026-06-23T11:50:00Z..2026-06-23T14:12:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-06-23T13:58:00Z",
+      "flag": "maps.geocoder_v2",
+      "service": "maps-svc",
+      "from": false,
+      "to": true,
+      "actor": "geo-team"
+    },
+    {
+      "timestamp": "2026-06-23T13:40:00Z",
+      "flag": "payment.charge_retry_v2",
+      "service": "payment-gateway-client",
+      "from": false,
+      "to": true,
+      "actor": "commerce-team"
+    }
+  ]
+}

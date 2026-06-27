@@ -1,0 +1,21 @@
+{
+  "window": "2026-06-22T11:00:00Z..2026-06-22T13:25:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-06-22T12:40:00Z",
+      "flag": "cdn.brotli_v2",
+      "service": "cdn-edge",
+      "from": false,
+      "to": true,
+      "actor": "edge-team"
+    },
+    {
+      "timestamp": "2026-06-22T11:15:00Z",
+      "flag": "edge.shield_tier",
+      "service": "cdn-edge",
+      "from": false,
+      "to": true,
+      "actor": "edge-team"
+    }
+  ]
+}

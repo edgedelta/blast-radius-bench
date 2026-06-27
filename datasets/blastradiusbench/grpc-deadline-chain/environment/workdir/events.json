@@ -1,0 +1,45 @@
+{
+  "window": "2026-06-27T14:25:00Z..2026-06-27T14:45:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-27T14:31:00Z",
+      "type": "Deployment",
+      "object": "deploy/pricing-svc",
+      "namespace": "pricing",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled pricing-svc to v_c41a77e"
+    },
+    {
+      "timestamp": "2026-06-27T14:32:10Z",
+      "type": "Deployment",
+      "object": "deploy/quote-svc",
+      "namespace": "quoting",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled quote-svc to v488 (promo-rules config update)"
+    },
+    {
+      "timestamp": "2026-06-27T14:34:20Z",
+      "type": "Warning",
+      "object": "deploy/pricing-svc",
+      "namespace": "pricing",
+      "reason": "ProbeWarning",
+      "message": "GetPrice p99 1850ms; pricing-rules-store cache reload on miss exceeding budget"
+    },
+    {
+      "timestamp": "2026-06-27T14:36:40Z",
+      "type": "Warning",
+      "object": "deploy/quote-svc",
+      "namespace": "quoting",
+      "reason": "BackoffLimitReached",
+      "message": "GetQuote failing: DeadlineExceeded calling pricing-svc.GetPrice (2000ms)"
+    },
+    {
+      "timestamp": "2026-06-27T14:38:30Z",
+      "type": "Warning",
+      "object": "deploy/orders-api",
+      "namespace": "orders",
+      "reason": "BackoffLimitReached",
+      "message": "order build failing: DeadlineExceeded calling quote-svc.GetQuote"
+    }
+  ]
+}

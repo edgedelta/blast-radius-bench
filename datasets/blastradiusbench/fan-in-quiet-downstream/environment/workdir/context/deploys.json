@@ -1,0 +1,33 @@
+{
+  "window": "2026-06-24T12:15:00Z..2026-06-24T14:38:00Z",
+  "deploys": [
+    {
+      "timestamp": "2026-06-24T14:20:30Z",
+      "service": "feature-flags-svc",
+      "commit_sha": "c4f1a9b27e3d80aa15b6c113f60a4b2d9e2f7c81",
+      "version": "feature-flags-svc-v2c4f1a9b",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-24T14:31:40Z",
+      "service": "recommendations-svc",
+      "commit_sha": "9e2f7c81c4f1a9b27e3d80aa15b6c113f60a4b2d",
+      "version": "recommendations-svc-v91",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-24T13:05:00Z",
+      "service": "checkout",
+      "commit_sha": "60a4b2d9e2f7c81c4f1a9b27e3d80aa15b6c113f",
+      "version": "checkout-v744",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-24T12:40:00Z",
+      "service": "search",
+      "commit_sha": "15b6c113f60a4b2d9e2f7c81c4f1a9b27e3d80aa",
+      "version": "search-v512",
+      "rollout": "100%"
+    }
+  ]
+}

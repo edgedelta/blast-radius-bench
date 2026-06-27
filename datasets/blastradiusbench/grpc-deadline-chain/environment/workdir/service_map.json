@@ -1,0 +1,42 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on.",
+  "generated_at": "2026-06-27T15:00:00Z",
+  "services": [
+    "mobile-bff",
+    "orders-api",
+    "quote-svc",
+    "pricing-svc",
+    "search-svc"
+  ],
+  "edges": [
+    {
+      "from": "mobile-bff",
+      "to": "orders-api",
+      "call_rate_rps": 320,
+      "protocol": "grpc",
+      "note": "checkout/quote requests"
+    },
+    {
+      "from": "orders-api",
+      "to": "quote-svc",
+      "call_rate_rps": 300,
+      "protocol": "grpc",
+      "note": "GetQuote per order line"
+    },
+    {
+      "from": "quote-svc",
+      "to": "pricing-svc",
+      "call_rate_rps": 280,
+      "protocol": "grpc",
+      "deadline_ms": 2000,
+      "note": "GetPrice; 2s deadline"
+    },
+    {
+      "from": "search-svc",
+      "to": "quote-svc",
+      "call_rate_rps": 90,
+      "protocol": "grpc",
+      "note": "bulk quote lookups for search ranking"
+    }
+  ]
+}

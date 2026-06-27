@@ -1,0 +1,20 @@
+version = "1.0"
+
+[metadata]
+author_name = "Edge Delta"
+author_email = "oss@edgedelta.com"
+difficulty = "hard"
+category = "observability"
+tags = ["sre", "root-cause", "cascading-failure", "blast-radius", "causality", "shared-resource", "nat-gateway", "egress", "snat-port-exhaustion", "noisy-tenant", "infra-origin"]
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 3600.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 4096
+storage_mb = 8192

@@ -1,0 +1,39 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-23T11:50:00Z..2026-06-23T14:12:00Z",
+  "commits": [
+    {
+      "sha": "1f3e5d7b9a1f3e5d7b9a1f3e5d7b9a1f3e5d7b9a",
+      "author": "analytics-team",
+      "timestamp": "2026-06-23T13:50:00Z",
+      "service": "data-export",
+      "message": "#analytics data-export raise sync parallelism to 512 and switch to full continuous outbound sync to s3.objectstore-vendor.com",
+      "files_changed": ["services/data-export/sync/runner.go", "charts/analytics/data-export/values.yaml"]
+    },
+    {
+      "sha": "9a1f3e5d7b9a1f3e5d7b9a1f3e5d7b9a1f3e5d7b",
+      "author": "media-team",
+      "timestamp": "2026-06-23T14:00:00Z",
+      "service": "image-resizer",
+      "message": "#media image-resizer add HEIC thumbnail path",
+      "files_changed": ["services/image-resizer/decode/heic.go"]
+    },
+    {
+      "sha": "5d7b9a1f3e5d7b9a1f3e5d7b9a1f3e5d7b9a1f3e",
+      "author": "geo-team",
+      "timestamp": "2026-06-23T13:15:00Z",
+      "service": "maps-svc",
+      "message": "#geo maps-svc bump geocoder client http2 timeout",
+      "files_changed": ["services/maps/geocoder/client.go"]
+    },
+    {
+      "sha": "7b9a1f3e5d7b9a1f3e5d7b9a1f3e5d7b9a1f3e5d",
+      "author": "commerce-team",
+      "timestamp": "2026-06-23T12:25:00Z",
+      "service": "payment-gateway-client",
+      "message": "#commerce payment-gateway-client add idempotency key to charge requests",
+      "files_changed": ["services/payment/charge/handler.go"]
+    }
+  ]
+}

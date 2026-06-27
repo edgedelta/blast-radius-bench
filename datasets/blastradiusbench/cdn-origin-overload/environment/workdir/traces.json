@@ -1,0 +1,106 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-7301",
+      "spans": [
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "cdn-edge",
+          "name": "GET /p/product",
+          "start": "2026-06-22T13:19:20.000Z",
+          "duration_ms": 10400,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 504,
+            "error.msg": "origin fetch deadline exceeded to origin-web"
+          }
+        },
+        {
+          "span_id": "s2",
+          "parent_id": "s1",
+          "service": "origin-web",
+          "name": "render page",
+          "start": "2026-06-22T13:19:20.040Z",
+          "duration_ms": 8100,
+          "status": "OK",
+          "attributes": {
+            "route": "/p/product",
+            "cpu_util_pct": 99,
+            "render_ms": 8100,
+            "request_queue_depth": 1980
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7302",
+      "spans": [
+        {
+          "span_id": "o1",
+          "parent_id": null,
+          "service": "origin-web",
+          "name": "render page",
+          "start": "2026-06-22T13:13:30.000Z",
+          "duration_ms": 3200,
+          "status": "OK",
+          "attributes": {
+            "route": "/p/home",
+            "cpu_util_pct": 99,
+            "render_ms": 3200,
+            "request_queue_depth": 540
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7305",
+      "spans": [
+        {
+          "span_id": "c1",
+          "parent_id": null,
+          "service": "cdn-edge",
+          "name": "GET /p/home",
+          "start": "2026-06-22T13:18:10.000Z",
+          "duration_ms": 8050,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 502,
+            "error.msg": "origin fetch deadline exceeded to origin-web (no response within 8000ms)"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7303",
+      "spans": [
+        {
+          "span_id": "i1",
+          "parent_id": null,
+          "service": "image-resizer",
+          "name": "resize image",
+          "start": "2026-06-22T13:15:40.000Z",
+          "duration_ms": 11,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 415,
+            "error.msg": "unsupported media type src=upload/heic-9921.heic"
+          }
+        },
+        {
+          "span_id": "i2",
+          "parent_id": null,
+          "service": "image-resizer",
+          "name": "resize image",
+          "start": "2026-06-22T13:22:40.000Z",
+          "duration_ms": 34,
+          "status": "OK",
+          "attributes": {
+            "http.status_code": 200
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{"timestamp":"2026-06-22T13:05:05Z","service":"cdn-edge","severity_text":"INFO","msg":"edge GET /p/home reqID=e100 cache=HIT region=us-west pop=sjc","trace_id":"tr-7001","latency_ms":12}
+{"timestamp":"2026-06-22T13:06:20Z","service":"origin-web","severity_text":"INFO","msg":"render route=/p/product slug=widget-42 render_ms=190 worker=w3","trace_id":"tr-7002","latency_ms":190}
+{"timestamp":"2026-06-22T13:08:40Z","service":"static-assets","severity_text":"INFO","msg":"served /assets/app.4f2.js from cache 200 bytes=88210","trace_id":"tr-7003","latency_ms":8}
+{"timestamp":"2026-06-22T13:10:00Z","service":"cdn-edge","severity_text":"INFO","msg":"traffic policy applied: region us-east failover routing dynamic routes to origin-web pool","trace_id":"tr-7010"}
+{"timestamp":"2026-06-22T13:12:10Z","service":"origin-web","severity_text":"WARN","msg":"render worker pool busy: cpu_util 96%, render_ms p99 1480, active_workers 16/16","trace_id":"tr-7011","latency_ms":1480}
+{"timestamp":"2026-06-22T13:13:30Z","service":"origin-web","severity_text":"WARN","msg":"render queue backing up: cpu_util 99%, render_ms p99 3200, request_queue_depth 540","trace_id":"tr-7012","latency_ms":3200}
+{"timestamp":"2026-06-22T13:14:20Z","service":"image-resizer","severity_text":"INFO","msg":"deploy image-resizer v54 live (avif encoder)","trace_id":null}
+{"timestamp":"2026-06-22T13:15:10Z","service":"origin-web","severity_text":"WARN","msg":"render slow: cpu_util 99%, render_ms p99 5600, request_queue_depth 1120 worker_starvation=true","trace_id":"tr-7013","latency_ms":5600}
+{"timestamp":"2026-06-22T13:15:40Z","service":"image-resizer","severity_text":"ERROR","msg":"resize rejected: HTTP 415 unsupported media type src=upload/heic-9921.heic","trace_id":"tr-7014","latency_ms":11}
+{"timestamp":"2026-06-22T13:17:00Z","service":"origin-web","severity_text":"WARN","msg":"render slow: cpu_util 99%, render_ms p99 8100, request_queue_depth 1980","trace_id":"tr-7015","latency_ms":8100}
+{"timestamp":"2026-06-22T13:18:10Z","service":"cdn-edge","severity_text":"ERROR","msg":"edge GET /p/product 502: origin fetch deadline exceeded to origin-web (no response within 8000ms) reqID=e820","trace_id":"tr-7020","latency_ms":8050}
+{"timestamp":"2026-06-22T13:18:50Z","service":"image-resizer","severity_text":"ERROR","msg":"resize rejected: HTTP 415 unsupported media type src=upload/raw-1180.cr2","trace_id":"tr-7021","latency_ms":9}
+{"timestamp":"2026-06-22T13:19:20Z","service":"cdn-edge","severity_text":"ERROR","msg":"edge GET /p/home 504: origin-web upstream timeout, p99 climbing reqID=e905","trace_id":"tr-7022","latency_ms":10400}
+{"timestamp":"2026-06-22T13:20:00Z","service":"cdn-edge","severity_text":"ERROR","msg":"edge GET /p/product 502 (5xx rate 41%, p99 11.2s) origin-web unhealthy","trace_id":"tr-7023","latency_ms":11200}
+{"timestamp":"2026-06-22T13:20:30Z","service":"static-assets","severity_text":"INFO","msg":"served /assets/app.4f2.js from cache 200 bytes=88210","trace_id":"tr-7024","latency_ms":9}
+{"timestamp":"2026-06-22T13:21:10Z","service":"origin-web","severity_text":"WARN","msg":"render slow: cpu_util 99%, render_ms p99 8400, request_queue_depth 2210 (region us-east still routed here)","trace_id":"tr-7025","latency_ms":8400}
+{"timestamp":"2026-06-22T13:22:00Z","service":"cdn-edge","severity_text":"ERROR","msg":"edge GET /p/cart 504: origin-web upstream timeout (errors/5m=20400)","trace_id":"tr-7026","latency_ms":10900}
+{"timestamp":"2026-06-22T13:22:40Z","service":"image-resizer","severity_text":"INFO","msg":"resize ok src=upload/photo-77.jpg out=avif 200 render_ms=34","trace_id":"tr-7027","latency_ms":34}

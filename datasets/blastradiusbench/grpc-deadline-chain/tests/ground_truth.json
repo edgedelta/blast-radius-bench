@@ -1,0 +1,44 @@
+{
+  "scenario": "grpc-deadline-chain",
+  "origin_service": "pricing-svc",
+  "root_cause_culprit_sha": "c41a77e0d2b94f6831aa0c5e7d12f9b3a6e84d10",
+  "root_cause_keywords": [
+    "pricing-svc",
+    "deadline exceeded",
+    "grpc deadline",
+    "slow dependency",
+    "pricing-rules-store",
+    "rules cache reload",
+    "p99 latency",
+    "rpc timeout"
+  ],
+  "propagation_path": [
+    {
+      "from": "pricing-svc",
+      "to": "quote-svc"
+    },
+    {
+      "from": "quote-svc",
+      "to": "orders-api"
+    },
+    {
+      "from": "orders-api",
+      "to": "mobile-bff"
+    }
+  ],
+  "blast_radius": [
+    "quote-svc",
+    "orders-api",
+    "mobile-bff"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "mobile-bff",
+  "accept_origin_aliases": [
+    "pricing-svc",
+    "pricing svc",
+    "pricing-service",
+    "pricing-svc-grpc"
+  ],
+  "notes": "pricing-svc (the deepest hop of the gRPC chain mobile-bff -> orders-api -> quote-svc -> pricing-svc) develops a slow dependency: commit c41a77e0 made GetPrice synchronously reload the pricing-rules-store cache on a miss, so GetPrice p99 climbs from ~45ms to >2s. quote-svc calls pricing-svc with a 2s deadline and starts returning DeadlineExceeded; orders-api then deadlines calling quote-svc; mobile-bff at the edge sees 5xx and is paged. pricing-svc itself logs only slow-query/cache-reload latency at WARN with status OK spans, so it is NOT the loudest or an ERROR. quote-svc is a STRONG decoy: it deployed v488 right at onset AND emits its own real ERROR logs (HTTP 422 config-validation rejecting a malformed promo rule) that are flat/benign and NOT on the deadline chain. The tempting wrong answer is quote-svc (errored + just shipped, mid-chain); the true origin is pricing-svc whose latency onset is earliest and whose name appears as the deadline target of quote-svc's timeouts. search-svc is a healthy control that calls quote-svc but stays green.",
+  "_design_note": "MEDIUM: breaks the 'blame the loudest' heuristic AND the 'blame the service that errored + just deployed' heuristic. The deadline chain quote->pricing, orders->quote, mobile->orders points down to pricing-svc; quote-svc's 422 config errors are a separate benign fault."
+}

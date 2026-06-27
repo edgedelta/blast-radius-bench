@@ -1,0 +1,46 @@
+{
+  "window": "2026-06-23T13:50:00Z..2026-06-23T14:12:00Z",
+  "baseline_window": "2026-06-23T11:50:00Z..2026-06-23T13:50:00Z",
+  "patterns": [
+    {
+      "signature": "data-export opened <N> concurrent outbound connections to s3.objectstore-vendor.com through nat-gw-az1",
+      "service": "data-export",
+      "count": 1,
+      "delta_vs_baseline": "+1",
+      "first_seen": "2026-06-23T14:01:00Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "payment-gateway-client POST https://api.stripe.com/v1/charges failed: dial tcp connect timeout via nat-gw-az1",
+      "service": "payment-gateway-client",
+      "count": 9200,
+      "delta_vs_baseline": "+9200",
+      "first_seen": "2026-06-23T14:02:50Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "maps-svc GET https://geocoder.maps-vendor.com/v1/geocode failed: dial tcp timeout via nat-gw-az1",
+      "service": "maps-svc",
+      "count": 4100,
+      "delta_vs_baseline": "+4100",
+      "first_seen": "2026-06-23T14:03:05Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "push-notifier connect api.push.apple.com:443 failed: i/o timeout via nat-gw-az1",
+      "service": "push-notifier",
+      "count": 2700,
+      "delta_vs_baseline": "+2700",
+      "first_seen": "2026-06-23T14:03:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "image-resizer thumbnail decode panic: unsupported color profile in upload img_<id>.heic",
+      "service": "image-resizer",
+      "count": 44,
+      "delta_vs_baseline": "+2",
+      "first_seen": "2026-06-23T11:58:00Z",
+      "sentiment": "negative"
+    }
+  ]
+}

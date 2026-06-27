@@ -1,0 +1,153 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-7101",
+      "spans": [
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "mobile-bff",
+          "name": "GET /v1/checkout",
+          "start": "2026-06-27T14:39:30.000Z",
+          "duration_ms": 12000,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "error.msg": "orders-api unavailable (DeadlineExceeded)"
+          }
+        },
+        {
+          "span_id": "s2",
+          "parent_id": "s1",
+          "service": "orders-api",
+          "name": "BuildOrder",
+          "start": "2026-06-27T14:39:30.040Z",
+          "duration_ms": 4050,
+          "status": "ERROR",
+          "attributes": {
+            "rpc.grpc.status_code": 4,
+            "error.msg": "DeadlineExceeded calling quote-svc.GetQuote"
+          }
+        },
+        {
+          "span_id": "s3",
+          "parent_id": "s2",
+          "service": "quote-svc",
+          "name": "GetQuote",
+          "start": "2026-06-27T14:39:30.080Z",
+          "duration_ms": 2010,
+          "status": "ERROR",
+          "attributes": {
+            "rpc.grpc.status_code": 4,
+            "error.msg": "DeadlineExceeded calling pricing-svc.GetPrice (deadline 2000ms)"
+          }
+        },
+        {
+          "span_id": "s4",
+          "parent_id": "s3",
+          "service": "pricing-svc",
+          "name": "GetPrice",
+          "start": "2026-06-27T14:39:30.110Z",
+          "duration_ms": 2380,
+          "status": "OK",
+          "attributes": {
+            "pricing.rules_cache": "miss",
+            "pricing.rules_store_reload_ms": 2310,
+            "net.peer.name": "pricing-rules-store.pricing.svc.cluster.local"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7102",
+      "spans": [
+        {
+          "span_id": "p1",
+          "parent_id": null,
+          "service": "pricing-svc",
+          "name": "GetPrice",
+          "start": "2026-06-27T14:33:40.000Z",
+          "duration_ms": 1840,
+          "status": "OK",
+          "attributes": {
+            "pricing.rules_cache": "miss",
+            "pricing.rules_store_reload_ms": 1790,
+            "net.peer.name": "pricing-rules-store.pricing.svc.cluster.local"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7103",
+      "spans": [
+        {
+          "span_id": "q1",
+          "parent_id": null,
+          "service": "quote-svc",
+          "name": "GetQuote",
+          "start": "2026-06-27T14:35:20.000Z",
+          "duration_ms": 2005,
+          "status": "ERROR",
+          "attributes": {
+            "rpc.grpc.status_code": 4,
+            "error.msg": "DeadlineExceeded calling pricing-svc.GetPrice (no response within 2000ms)"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7104",
+      "spans": [
+        {
+          "span_id": "o1",
+          "parent_id": null,
+          "service": "orders-api",
+          "name": "BuildOrder",
+          "start": "2026-06-27T14:37:35.000Z",
+          "duration_ms": 4020,
+          "status": "ERROR",
+          "attributes": {
+            "rpc.grpc.status_code": 4,
+            "error.msg": "DeadlineExceeded calling quote-svc.GetQuote"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7105",
+      "spans": [
+        {
+          "span_id": "c1",
+          "parent_id": null,
+          "service": "quote-svc",
+          "name": "LoadPromoRules",
+          "start": "2026-06-27T14:36:05.000Z",
+          "duration_ms": 12,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 422,
+            "error.msg": "promo rule validation rejected key promo.summer25: invalid discount window"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7106",
+      "spans": [
+        {
+          "span_id": "h1",
+          "parent_id": null,
+          "service": "search-svc",
+          "name": "RankResults",
+          "start": "2026-06-27T14:38:00.000Z",
+          "duration_ms": 140,
+          "status": "OK",
+          "attributes": {
+            "quote.batch_size": 24
+          }
+        }
+      ]
+    }
+  ]
+}

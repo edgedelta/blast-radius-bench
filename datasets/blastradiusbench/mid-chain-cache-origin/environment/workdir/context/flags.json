@@ -1,0 +1,21 @@
+{
+  "window": "2026-06-22T12:10:00Z..2026-06-22T14:32:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-06-22T13:00:00Z",
+      "flag": "api_edge.new_pricing_ui",
+      "service": "api-edge",
+      "from": false,
+      "to": true,
+      "actor": "edge-team"
+    },
+    {
+      "timestamp": "2026-06-22T13:32:00Z",
+      "flag": "catalog.batch_reads",
+      "service": "catalog-svc",
+      "from": false,
+      "to": true,
+      "actor": "catalog-team"
+    }
+  ]
+}

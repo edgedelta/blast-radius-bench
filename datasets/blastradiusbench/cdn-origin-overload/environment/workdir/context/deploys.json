@@ -1,0 +1,33 @@
+{
+  "window": "2026-06-22T11:00:00Z..2026-06-22T13:25:00Z",
+  "deploys": [
+    {
+      "timestamp": "2026-06-22T13:14:20Z",
+      "service": "image-resizer",
+      "commit_sha": "9a1b7c3d5e2f8094a6b1c4d7e0f3a2b5c8d1e4f7",
+      "version": "image-resizer-v54",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-22T11:30:00Z",
+      "service": "origin-web",
+      "commit_sha": "c4f0a9b2e1d7438a91b3c6d2e5f8a0c1b4d7e2f9",
+      "version": "origin-web-v881",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-22T10:50:00Z",
+      "service": "cdn-edge",
+      "commit_sha": "f7e2d4b1c8a05f3e9d6c2b7a4f1e8d3c0b5a9e62",
+      "version": "cdn-edge-v203",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-22T09:40:00Z",
+      "service": "static-assets",
+      "commit_sha": "2b5c8d1e4f79a1b7c3d5e2f8094a6b1c4d7e0f3a",
+      "version": "static-assets-v66",
+      "rollout": "100%"
+    }
+  ]
+}

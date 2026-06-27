@@ -1,0 +1,33 @@
+{
+  "window": "2026-06-27T12:25:00Z..2026-06-27T14:45:00Z",
+  "deploys": [
+    {
+      "timestamp": "2026-06-27T14:31:00Z",
+      "service": "pricing-svc",
+      "commit_sha": "c41a77e0d2b94f6831aa0c5e7d12f9b3a6e84d10",
+      "version": "pricing-svc-v_c41a77e",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-27T14:32:10Z",
+      "service": "quote-svc",
+      "commit_sha": "9f2b0a18c7d34e51aa6e0b9d4c81f73e2a55d602",
+      "version": "quote-svc-v488",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-27T13:10:00Z",
+      "service": "orders-api",
+      "commit_sha": "5d81e0c2a4f9471b8c33e2107fa6b9d0e41c7a88",
+      "version": "orders-api-v204",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-27T12:40:00Z",
+      "service": "mobile-bff",
+      "commit_sha": "2a6e84d10c41a77e0d2b94f6831aa0c5e7d12f9b",
+      "version": "mobile-bff-v911",
+      "rollout": "100%"
+    }
+  ]
+}

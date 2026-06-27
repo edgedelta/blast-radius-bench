@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-9744",
+  "monitor": "Payment Checkout Failure Rate",
+  "service": "payment-gateway-client",
+  "metric": "checkout_failure_rate",
+  "threshold": "> 5%",
+  "observed_value": "51%",
+  "fired_at": "2026-06-23T14:04:30Z",
+  "severity": "high",
+  "summary": "payment-gateway-client checkout failures 51% — card charges failing (incident #9744)"
+}

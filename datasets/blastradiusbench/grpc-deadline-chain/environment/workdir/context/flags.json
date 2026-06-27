@@ -1,0 +1,21 @@
+{
+  "window": "2026-06-27T12:25:00Z..2026-06-27T14:45:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-06-27T14:28:00Z",
+      "flag": "mobile_bff.new_checkout",
+      "service": "mobile-bff",
+      "from": false,
+      "to": true,
+      "actor": "mobile-team"
+    },
+    {
+      "timestamp": "2026-06-27T13:55:00Z",
+      "flag": "orders.async_capture",
+      "service": "orders-api",
+      "from": false,
+      "to": true,
+      "actor": "orders-team"
+    }
+  ]
+}

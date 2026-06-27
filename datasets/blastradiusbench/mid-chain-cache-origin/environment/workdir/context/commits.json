@@ -1,0 +1,39 @@
+{
+  "repo": "acme/storefront",
+  "branch": "refs/heads/main",
+  "window": "2026-06-22T12:10:00Z..2026-06-22T14:32:00Z",
+  "commits": [
+    {
+      "sha": "9f1c5a7b2e8d40aa31b7d224e6c91f0a3b5e7c8d",
+      "author": "pricing-team",
+      "timestamp": "2026-06-22T14:08:00Z",
+      "service": "price-cache",
+      "message": "#pricing Rework price cache key to include tenant+currency segment",
+      "files_changed": ["pricing/cache/key_builder.go", "pricing/cache/readthrough.go"]
+    },
+    {
+      "sha": "3b5e7c8d9f1c5a7b2e8d40aa31b7d224e6c91f0a",
+      "author": "catalog-team",
+      "timestamp": "2026-06-22T13:30:00Z",
+      "service": "catalog-svc",
+      "message": "#catalog Batch product price reads 1->8 per request",
+      "files_changed": ["catalog/pricing_client.go"]
+    },
+    {
+      "sha": "e6c91f0a3b5e7c8d9f1c5a7b2e8d40aa31b7d224",
+      "author": "edge-team",
+      "timestamp": "2026-06-22T12:50:00Z",
+      "service": "api-edge",
+      "message": "#storefront Ship new pricing UI module behind flag",
+      "files_changed": ["edge/storefront/pricing_ui.tsx"]
+    },
+    {
+      "sha": "31b7d224e6c91f0a3b5e7c8d9f1c5a7b2e8d40aa",
+      "author": "inventory-team",
+      "timestamp": "2026-06-22T14:18:00Z",
+      "service": "inventory-svc",
+      "message": "#inventory Swap supplier-feed connector to mTLS partner endpoint",
+      "files_changed": ["inventory/supplier/connector.go"]
+    }
+  ]
+}

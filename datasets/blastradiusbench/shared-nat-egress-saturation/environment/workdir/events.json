@@ -1,0 +1,53 @@
+{
+  "window": "2026-06-23T13:50:00Z..2026-06-23T14:12:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-23T13:58:00Z",
+      "type": "Normal",
+      "object": "deploy/data-export",
+      "namespace": "analytics",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up replica set data-export-6b8c4f to 4 for scheduled full export run"
+    },
+    {
+      "timestamp": "2026-06-23T14:00:10Z",
+      "type": "Normal",
+      "object": "job/data-export-fullsync",
+      "namespace": "analytics",
+      "reason": "Started",
+      "message": "data-export full outbound sync to s3.objectstore-vendor.com started, egress via nat-gw-az1, parallelism 512"
+    },
+    {
+      "timestamp": "2026-06-23T14:01:35Z",
+      "type": "Warning",
+      "object": "natgateway/nat-gw-az1",
+      "namespace": "network",
+      "reason": "ErrorPortAllocation",
+      "message": "nat-gw-az1 SNAT port allocation errors rising: ErrorPortAllocation count 140/s; allocated source ports 86% of pool"
+    },
+    {
+      "timestamp": "2026-06-23T14:02:35Z",
+      "type": "Warning",
+      "object": "natgateway/nat-gw-az1",
+      "namespace": "network",
+      "reason": "ErrorPortAllocation",
+      "message": "nat-gw-az1 SNAT source-port pool exhausted (100%); ErrorPortAllocation 5200/s; egress bandwidth 1000 Mbps at gateway cap"
+    },
+    {
+      "timestamp": "2026-06-23T14:02:00Z",
+      "type": "Warning",
+      "object": "pod/image-resizer-7f4d9c-kq2pl",
+      "namespace": "media",
+      "reason": "BackOff",
+      "message": "Back-off restarting failed container image-resizer after thumbnail decode panic"
+    },
+    {
+      "timestamp": "2026-06-23T14:08:30Z",
+      "type": "Warning",
+      "object": "natgateway/nat-gw-az1",
+      "namespace": "network",
+      "reason": "ErrorPortAllocation",
+      "message": "nat-gw-az1 ErrorPortAllocation sustained 10100/s; new outbound connections from az1 subnet failing to allocate source port"
+    }
+  ]
+}

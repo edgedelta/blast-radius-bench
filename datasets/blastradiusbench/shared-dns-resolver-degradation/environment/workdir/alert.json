@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-7742",
+  "monitor": "Checkout Failure Rate",
+  "service": "web-checkout",
+  "metric": "checkout_failure_rate",
+  "threshold": "> 5%",
+  "observed_value": "41%",
+  "fired_at": "2026-06-22T09:03:30Z",
+  "severity": "high",
+  "summary": "web-checkout checkout failures 41% — customers cannot complete payment (incident #7742)"
+}

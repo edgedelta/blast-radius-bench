@@ -1,0 +1,39 @@
+{
+  "repo": "acme/commerce",
+  "branch": "refs/heads/main",
+  "window": "2026-06-27T12:25:00Z..2026-06-27T14:45:00Z",
+  "commits": [
+    {
+      "sha": "c41a77e0d2b94f6831aa0c5e7d12f9b3a6e84d10",
+      "author": "pricing-team",
+      "timestamp": "2026-06-27T14:24:00Z",
+      "service": "pricing-svc",
+      "message": "#pricing GetPrice: load pricing rules synchronously from pricing-rules-store on cache miss",
+      "files_changed": ["pricing/server/get_price.go", "pricing/rules/cache.go"]
+    },
+    {
+      "sha": "9f2b0a18c7d34e51aa6e0b9d4c81f73e2a55d602",
+      "author": "quoting-team",
+      "timestamp": "2026-06-27T14:18:00Z",
+      "service": "quote-svc",
+      "message": "#quoting Update promo discount rules config for summer campaign",
+      "files_changed": ["quoting/config/promo_rules.yaml"]
+    },
+    {
+      "sha": "5d81e0c2a4f9471b8c33e2107fa6b9d0e41c7a88",
+      "author": "orders-team",
+      "timestamp": "2026-06-27T13:05:00Z",
+      "service": "orders-api",
+      "message": "#orders Add idempotency key to BuildOrder",
+      "files_changed": ["orders/api/build_order.go"]
+    },
+    {
+      "sha": "2a6e84d10c41a77e0d2b94f6831aa0c5e7d12f9b",
+      "author": "mobile-team",
+      "timestamp": "2026-06-27T12:35:00Z",
+      "service": "mobile-bff",
+      "message": "#mobile mobile-bff: cache static catalog responses 30s",
+      "files_changed": ["mobile/bff/catalog_cache.go"]
+    }
+  ]
+}

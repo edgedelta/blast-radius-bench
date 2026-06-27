@@ -1,0 +1,43 @@
+{
+  "scenario": "fan-in-quiet-downstream",
+  "origin_service": "feature-flags-svc",
+  "root_cause_culprit_sha": "c4f1a9b27e3d80aa15b6c113f60a4b2d9e2f7c81",
+  "root_cause_keywords": [
+    "feature-flags-svc",
+    "gc pause",
+    "lock contention",
+    "flag evaluation",
+    "slow",
+    "latency",
+    "stop-the-world"
+  ],
+  "propagation_path": [
+    {
+      "from": "feature-flags-svc",
+      "to": "checkout"
+    },
+    {
+      "from": "feature-flags-svc",
+      "to": "search"
+    },
+    {
+      "from": "feature-flags-svc",
+      "to": "profile"
+    }
+  ],
+  "blast_radius": [
+    "checkout",
+    "search",
+    "profile"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "checkout",
+  "accept_origin_aliases": [
+    "feature-flags-svc",
+    "feature flags svc",
+    "feature-flags-service",
+    "feature-flags"
+  ],
+  "notes": "feature-flags-svc shipped c4f1a9b (per-flag mutex around an in-memory rule reload + a larger ruleset). Under load the reload path holds a global lock and triggers long stop-the-world GC pauses, so flag-evaluation RPC latency climbs from ~8ms to >1.4s while the service still returns status OK (it never errors). checkout, search, and profile each block on a synchronous GetFlags / Evaluate call at request start; when that call slows past their client deadlines they emit timeouts and 5xx. The three callers have NO call edges among themselves (independent request paths) and they share exactly one slow downstream: feature-flags-svc. checkout is the LOUDEST and pages because it is the customer-facing purchase path with the highest RPS, but it is a victim, not the cause. inventory-svc is healthy and does NOT call feature-flags-svc (control). recommendations-svc errored on a config/422 of its own and just deployed (decoy) but is off the flag-eval path.",
+  "_design_note": "FAN-IN. The trap: feature-flags-svc is a small quiet dependency that never errors (status OK, only latency up) and is not loud, so it is easy to overlook. The tell is that three independent callers degraded together within the same tight window and share exactly one downstream that slowed FIRST. Paged on checkout because that is where customer impact is measured, not where it started."
+}

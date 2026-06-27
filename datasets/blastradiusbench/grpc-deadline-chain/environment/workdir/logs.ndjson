@@ -1,0 +1,19 @@
+{"timestamp":"2026-06-27T14:30:05Z","service":"mobile-bff","severity_text":"INFO","msg":"http GET /v1/checkout reqID=r400 X-Client=ios-7.2 org=org-88","trace_id":"tr-7001","latency_ms":258}
+{"timestamp":"2026-06-27T14:30:40Z","service":"quote-svc","severity_text":"INFO","msg":"GetQuote served quote_id=q9920 lines=3 priced=ok","trace_id":"tr-7002","latency_ms":162}
+{"timestamp":"2026-06-27T14:31:00Z","service":"pricing-svc","severity_text":"INFO","msg":"deploy pricing-svc v_c41a77e live","trace_id":null}
+{"timestamp":"2026-06-27T14:31:30Z","service":"pricing-svc","severity_text":"INFO","msg":"GetPrice sku=SKU-114 price=12.99 rules_cache=hit","trace_id":"tr-7003","latency_ms":44}
+{"timestamp":"2026-06-27T14:32:10Z","service":"quote-svc","severity_text":"INFO","msg":"deploy quote-svc v488 live (promo-rules config update)","trace_id":null}
+{"timestamp":"2026-06-27T14:33:10Z","service":"pricing-svc","severity_text":"WARN","msg":"GetPrice rules cache miss for ruleset=promo: reload from pricing-rules-store 1790ms","trace_id":"tr-7010","latency_ms":1840}
+{"timestamp":"2026-06-27T14:34:00Z","service":"pricing-svc","severity_text":"WARN","msg":"GetPrice slow: p99 1850ms, synchronous rules cache reload from pricing-rules-store on miss","trace_id":"tr-7011","latency_ms":1850}
+{"timestamp":"2026-06-27T14:34:50Z","service":"pricing-svc","severity_text":"WARN","msg":"GetPrice p99 2160ms; pricing-rules-store reload not cached between calls","trace_id":"tr-7012","latency_ms":2160}
+{"timestamp":"2026-06-27T14:35:20Z","service":"quote-svc","severity_text":"ERROR","msg":"GetQuote failed: DeadlineExceeded calling pricing-svc.GetPrice (no response within 2000ms), grpc status 4","trace_id":"tr-7020","latency_ms":2005}
+{"timestamp":"2026-06-27T14:36:05Z","service":"quote-svc","severity_text":"ERROR","msg":"promo rule validation rejected key promo.summer25: HTTP 422 invalid discount window (config v488)","trace_id":"tr-7021","latency_ms":12}
+{"timestamp":"2026-06-27T14:36:30Z","service":"quote-svc","severity_text":"ERROR","msg":"GetQuote DeadlineExceeded calling pricing-svc.GetPrice; returning grpc 4 to caller","trace_id":"tr-7022","latency_ms":2008}
+{"timestamp":"2026-06-27T14:36:55Z","service":"quote-svc","severity_text":"ERROR","msg":"promo rule validation rejected key promo.flash10: HTTP 422 invalid discount window (config v488)","trace_id":"tr-7023","latency_ms":11}
+{"timestamp":"2026-06-27T14:37:30Z","service":"orders-api","severity_text":"ERROR","msg":"BuildOrder failed: DeadlineExceeded calling quote-svc.GetQuote, 503 to caller","trace_id":"tr-7030","latency_ms":4020}
+{"timestamp":"2026-06-27T14:38:10Z","service":"orders-api","severity_text":"ERROR","msg":"order build aborted: DeadlineExceeded calling quote-svc.GetQuote (grpc 4)","trace_id":"tr-7031","latency_ms":4040}
+{"timestamp":"2026-06-27T14:38:40Z","service":"search-svc","severity_text":"INFO","msg":"RankResults served 24 quotes, batch ok","trace_id":"tr-7032","latency_ms":140}
+{"timestamp":"2026-06-27T14:39:10Z","service":"mobile-bff","severity_text":"ERROR","msg":"GET /v1/checkout 503: orders-api unavailable reqID=r905 org=org-88","trace_id":"tr-7040","latency_ms":12000}
+{"timestamp":"2026-06-27T14:39:50Z","service":"pricing-svc","severity_text":"WARN","msg":"GetPrice p99 2340ms; pricing-rules-store reload dominating call time","trace_id":"tr-7041","latency_ms":2340}
+{"timestamp":"2026-06-27T14:40:00Z","service":"mobile-bff","severity_text":"ERROR","msg":"GET /v1/checkout 503 (5xx rate 41%, p99 12s)","trace_id":"tr-7042","latency_ms":12000}
+{"timestamp":"2026-06-27T14:41:10Z","service":"mobile-bff","severity_text":"ERROR","msg":"GET /v1/quote 503: orders-api unavailable (errors/5m=11800)","trace_id":"tr-7043","latency_ms":11900}

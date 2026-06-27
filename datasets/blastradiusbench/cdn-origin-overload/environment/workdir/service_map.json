@@ -1,0 +1,30 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on.",
+  "generated_at": "2026-06-22T13:30:00Z",
+  "services": [
+    "cdn-edge",
+    "origin-web",
+    "static-assets",
+    "image-resizer"
+  ],
+  "edges": [
+    {
+      "from": "cdn-edge",
+      "to": "origin-web",
+      "call_rate_rps": 900,
+      "note": "origin fetch for uncached dynamic page routes"
+    },
+    {
+      "from": "cdn-edge",
+      "to": "static-assets",
+      "call_rate_rps": 1500,
+      "note": "cache-hit static asset fetch (off-origin)"
+    },
+    {
+      "from": "origin-web",
+      "to": "image-resizer",
+      "call_rate_rps": 40,
+      "note": "on-demand thumbnail resize"
+    }
+  ]
+}

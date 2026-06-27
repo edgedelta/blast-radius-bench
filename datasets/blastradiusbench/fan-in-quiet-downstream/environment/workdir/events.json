@@ -1,0 +1,37 @@
+{
+  "window": "2026-06-24T14:15:00Z..2026-06-24T14:38:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-24T14:20:30Z",
+      "type": "Deployment",
+      "object": "deploy/feature-flags-svc",
+      "namespace": "platform",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled feature-flags-svc to v2c4f1a9b"
+    },
+    {
+      "timestamp": "2026-06-24T14:28:30Z",
+      "type": "Warning",
+      "object": "deploy/feature-flags-svc",
+      "namespace": "platform",
+      "reason": "ProbeWarning",
+      "message": "readiness probe latency rising on feature-flags-svc: gc pause 1450ms, Evaluate p99 980ms"
+    },
+    {
+      "timestamp": "2026-06-24T14:31:40Z",
+      "type": "Deployment",
+      "object": "deploy/recommendations-svc",
+      "namespace": "default",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled recommendations-svc to v91 (holiday ranking weights)"
+    },
+    {
+      "timestamp": "2026-06-24T14:33:50Z",
+      "type": "Warning",
+      "object": "deploy/checkout",
+      "namespace": "default",
+      "reason": "BackoffLimitReached",
+      "message": "requests aborting: deadline exceeded calling feature-flags-svc GetFlags"
+    }
+  ]
+}

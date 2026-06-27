@@ -1,0 +1,124 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-7201",
+      "spans": [
+        {
+          "span_id": "w1",
+          "parent_id": null,
+          "service": "web-checkout",
+          "name": "POST /checkout",
+          "start": "2026-06-22T09:05:00.000Z",
+          "duration_ms": 5002,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "net.peer.name": "pay.gateway.example.com",
+            "dns.resolver": "coredns-cluster",
+            "dns.rcode": "SERVFAIL",
+            "error.msg": "getaddrinfo ENOTFOUND pay.gateway.example.com"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7204",
+      "spans": [
+        {
+          "span_id": "e1",
+          "parent_id": null,
+          "service": "email-worker",
+          "name": "deliver /batch",
+          "start": "2026-06-22T09:05:20.000Z",
+          "duration_ms": 5000,
+          "status": "ERROR",
+          "attributes": {
+            "net.peer.name": "smtp-relay.mail.example.net",
+            "dns.resolver": "coredns-cluster",
+            "dns.rcode": "SERVFAIL",
+            "error.msg": "lookup smtp-relay.mail.example.net: resolution timeout"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7207",
+      "spans": [
+        {
+          "span_id": "y1",
+          "parent_id": null,
+          "service": "sync-agent",
+          "name": "upload /snapshot",
+          "start": "2026-06-22T09:05:30.000Z",
+          "duration_ms": 5000,
+          "status": "ERROR",
+          "attributes": {
+            "net.peer.name": "objects.store.example.com",
+            "dns.resolver": "coredns-cluster",
+            "dns.rcode": "SERVFAIL",
+            "error.msg": "getaddrinfo ENOTFOUND objects.store.example.com"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7210",
+      "spans": [
+        {
+          "span_id": "p1",
+          "parent_id": null,
+          "service": "pdf-renderer",
+          "name": "render /doc",
+          "start": "2026-06-22T09:05:10.000Z",
+          "duration_ms": 392,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 500,
+            "error.msg": "font-cache mmap failed, glyph atlas out of space",
+            "note": "no external host resolution on this path"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7212",
+      "spans": [
+        {
+          "span_id": "i1",
+          "parent_id": null,
+          "service": "image-proxy",
+          "name": "GET /thumb",
+          "start": "2026-06-22T09:05:15.000Z",
+          "duration_ms": 23,
+          "status": "OK",
+          "attributes": {
+            "http.status_code": 200,
+            "net.peer.name": "cdn.images.example.com",
+            "note": "served via cached upstream connection, no per-request DNS lookup"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7150",
+      "spans": [
+        {
+          "span_id": "b1",
+          "parent_id": null,
+          "service": "web-checkout",
+          "name": "POST /checkout",
+          "start": "2026-06-22T08:56:30.000Z",
+          "duration_ms": 138,
+          "status": "OK",
+          "attributes": {
+            "http.status_code": 200,
+            "net.peer.name": "pay.gateway.example.com",
+            "dns.resolver": "coredns-cluster",
+            "dns.rcode": "NOERROR"
+          }
+        }
+      ]
+    }
+  ]
+}

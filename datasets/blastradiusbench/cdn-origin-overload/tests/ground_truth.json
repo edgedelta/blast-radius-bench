@@ -1,0 +1,33 @@
+{
+  "scenario": "cdn-origin-overload",
+  "origin_service": "origin-web",
+  "root_cause_culprit_sha": "c4f0a9b2e1d7438a91b3c6d2e5f8a0c1b4d7e2f9",
+  "root_cause_keywords": [
+    "origin-web",
+    "cpu saturation",
+    "cpu",
+    "slow render",
+    "overload",
+    "traffic shift",
+    "render latency",
+    "origin 5xx"
+  ],
+  "propagation_path": [
+    {
+      "from": "origin-web",
+      "to": "cdn-edge"
+    }
+  ],
+  "blast_radius": [
+    "cdn-edge"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "cdn-edge",
+  "accept_origin_aliases": [
+    "origin-web",
+    "origin web",
+    "origin-web-render"
+  ],
+  "notes": "A traffic shift moved a region's requests onto origin-web at 13:10. origin-web CPU saturated (cpu_util_pct pegged near 99%, render_latency_ms_p99 climbing from 13:12) so renders went slow. cdn-edge fetches uncached pages from origin-web; with origin-web slow, cdn-edge origin-fetch deadlines expired and it served 502/504 to customers, paging at 13:20. cdn-edge is the LOUDEST (customer-facing 5xx alarm) but is the outer victim; origin-web saturated first. image-resizer deployed at 13:14 and emits a flat trickle of benign 415 errors (decoy). static-assets serves from cache off-origin and stays healthy (control).",
+  "_design_note": "Paged on cdn-edge because that is where customer 5xx is measured. Origin-web is the deepest/slowest failing component; its CPU and render latency degrade strictly before any cdn-edge 5xx."
+}

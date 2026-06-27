@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-4488",
+  "monitor": "checkout Latency & 5xx",
+  "service": "checkout",
+  "metric": "p99_latency_ms / http_5xx_rate",
+  "threshold": "p99 > 1500ms",
+  "observed_value": "p99 6300ms, 5xx 22%",
+  "fired_at": "2026-06-24T14:35:00Z",
+  "severity": "high",
+  "summary": "checkout p99 latency 6.3s and 22% 5xx on the purchase path — customers unable to complete orders"
+}

@@ -1,0 +1,56 @@
+{
+  "scenario": "shared-dns-resolver-degradation",
+  "origin_service": "dns:coredns-cluster",
+  "root_cause_culprit_sha": "1f3d5b7901f3d5b7901f3d5b7901f3d5b7901f3d",
+  "root_cause_keywords": [
+    "dns",
+    "coredns",
+    "coredns-cluster",
+    "cluster dns",
+    "resolver",
+    "name resolution",
+    "getaddrinfo",
+    "enotfound",
+    "servfail",
+    "cache",
+    "cache full",
+    "cache eviction",
+    "cache evictions",
+    "max_concurrent",
+    "forward",
+    "upstream",
+    "upstream resolver",
+    "forward latency",
+    "corefile",
+    "config reload"
+  ],
+  "propagation_path": [
+    {
+      "from": "dns:coredns-cluster",
+      "to": "web-checkout"
+    },
+    {
+      "from": "dns:coredns-cluster",
+      "to": "email-worker"
+    },
+    {
+      "from": "dns:coredns-cluster",
+      "to": "sync-agent"
+    }
+  ],
+  "blast_radius": [
+    "web-checkout",
+    "email-worker",
+    "sync-agent"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "web-checkout",
+  "accept_origin_aliases": [
+    "dns:coredns-cluster",
+    "coredns-cluster",
+    "coredns",
+    "cluster dns resolver"
+  ],
+  "notes": "SHARED-DNS / SHARED-RESOLVER TRAP. A Corefile change (commit 1f3d5b79, deployed 09:00) shrank the CoreDNS in-memory cache to 1000 entries and pointed the forward plugin at a slow internet upstream with max_concurrent 100; on reload the resolver's cache fills and evicts constantly while forwarded lookups queue behind the saturated upstream, so SERVFAIL rate, cache evictions, and forward p99 latency on coredns-cluster all climb FIRST. Three UNRELATED services that each resolve external hostnames per-request through the cluster DNS -- web-checkout (resolves the payment gateway host), email-worker (resolves the SMTP relay host), sync-agent (resolves the object-store/S3 endpoint host) -- all start returning getaddrinfo ENOTFOUND / resolution timeouts at the same moment. They share NO service-call edge in service_map.json: they sit in different call graphs and only co-depend on dns:coredns-cluster. web-checkout is LOUDEST/paged (checkout failures). Control services metrics-relay (static hostAliases IP, no DNS) and image-proxy (NodeLocal DNS cache + long-lived cached connection) do NOT depend on cluster DNS at request time and stay healthy, proving the fault is the shared resolver, not a global network outage. Origin is the CoreDNS resolver saturation after the Corefile change.",
+  "_design_note": "Paged on web-checkout because checkout failures are the most revenue-visible symptom. web-checkout is one of three services whose outbound DNS lookups fail simultaneously; check WHY (the shared cluster DNS resolver SERVFAIL/eviction/forward-latency spike), not just web-checkout's own logs. pdf-renderer errored AND just deployed but is an off-resolver decoy."
+}

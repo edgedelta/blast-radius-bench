@@ -1,0 +1,103 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-7201",
+      "spans": [
+        {
+          "span_id": "p1",
+          "parent_id": null,
+          "service": "payment-gateway-client",
+          "name": "POST /charge",
+          "start": "2026-06-23T14:09:00.000Z",
+          "duration_ms": 5010,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "net.peer.name": "api.stripe.com",
+            "net.egress": "nat-gw-az1",
+            "error.msg": "dial tcp api.stripe.com:443 connect timeout via nat-gw-az1 (no source port available)"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7204",
+      "spans": [
+        {
+          "span_id": "m1",
+          "parent_id": null,
+          "service": "maps-svc",
+          "name": "GET /geocode",
+          "start": "2026-06-23T14:09:20.000Z",
+          "duration_ms": 5008,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 504,
+            "net.peer.name": "geocoder.maps-vendor.com",
+            "net.egress": "nat-gw-az1",
+            "error.msg": "dial tcp geocoder.maps-vendor.com:443 timeout via nat-gw-az1"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7207",
+      "spans": [
+        {
+          "span_id": "n1",
+          "parent_id": null,
+          "service": "push-notifier",
+          "name": "deliver /apns",
+          "start": "2026-06-23T14:09:30.000Z",
+          "duration_ms": 5005,
+          "status": "ERROR",
+          "attributes": {
+            "net.peer.name": "api.push.apple.com",
+            "net.egress": "nat-gw-az1",
+            "error.msg": "i/o timeout establishing outbound connection to api.push.apple.com via nat-gw-az1"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7210",
+      "spans": [
+        {
+          "span_id": "c1",
+          "parent_id": null,
+          "service": "catalog-svc",
+          "name": "GET /catalog/products",
+          "start": "2026-06-23T14:09:10.000Z",
+          "duration_ms": 19,
+          "status": "OK",
+          "attributes": {
+            "http.status_code": 200,
+            "db.system": "postgres",
+            "db.name": "catalog-db",
+            "note": "internal-only, no external egress, does not use nat-gw-az1"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7150",
+      "spans": [
+        {
+          "span_id": "b1",
+          "parent_id": null,
+          "service": "payment-gateway-client",
+          "name": "POST /charge",
+          "start": "2026-06-23T13:54:30.000Z",
+          "duration_ms": 215,
+          "status": "OK",
+          "attributes": {
+            "http.status_code": 200,
+            "net.peer.name": "api.stripe.com",
+            "net.egress": "nat-gw-az1"
+          }
+        }
+      ]
+    }
+  ]
+}

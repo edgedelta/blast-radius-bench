@@ -1,0 +1,45 @@
+{
+  "window": "2026-03-14T14:30:00Z..2026-03-14T14:52:00Z",
+  "events": [
+    {
+      "timestamp": "2026-03-14T14:33:10Z",
+      "type": "Deployment",
+      "object": "deploy/analytics-worker",
+      "namespace": "analytics",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled analytics-worker to v412"
+    },
+    {
+      "timestamp": "2026-03-14T14:34:20Z",
+      "type": "Warning",
+      "object": "pod/analytics-worker-7f9c",
+      "namespace": "analytics",
+      "reason": "BackOff",
+      "message": "Back-off restarting failed container analytics-worker (CrashLoopBackOff)"
+    },
+    {
+      "timestamp": "2026-03-14T14:36:10Z",
+      "type": "Deployment",
+      "object": "deploy/payments-svc",
+      "namespace": "payments",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled payments-svc to v883 (commit c41d9f02)"
+    },
+    {
+      "timestamp": "2026-03-14T14:41:20Z",
+      "type": "Warning",
+      "object": "db/payments-db-primary",
+      "namespace": "payments",
+      "reason": "MaxConnectionsReached",
+      "message": "payments-db active connections 100/100; new sessions rejected with 'remaining connection slots are reserved'"
+    },
+    {
+      "timestamp": "2026-03-14T14:46:50Z",
+      "type": "Warning",
+      "object": "deploy/payments-svc",
+      "namespace": "payments",
+      "reason": "BackoffLimitReached",
+      "message": "authorize/capture failing: timeout acquiring connection from payments-db pool"
+    }
+  ]
+}

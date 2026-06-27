@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-4827",
+  "monitor": "checkout 5xx & Latency",
+  "service": "checkout",
+  "metric": "http_5xx_rate / p99_latency_ms",
+  "threshold": "5xx > 5%",
+  "observed_value": "5xx 28%, p99 7400ms",
+  "fired_at": "2026-03-14T14:46:00Z",
+  "severity": "high",
+  "summary": "checkout returning 28% 5xx on POST /api/checkout, p99 7.4s — customers cannot complete purchases"
+}

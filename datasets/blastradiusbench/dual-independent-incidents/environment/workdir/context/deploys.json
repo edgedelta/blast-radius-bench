@@ -1,0 +1,33 @@
+{
+  "window": "2026-03-14T12:30:00Z..2026-03-14T14:52:00Z",
+  "deploys": [
+    {
+      "timestamp": "2026-03-14T14:33:10Z",
+      "service": "analytics-worker",
+      "commit_sha": "9b2e7a1c004f3d8e2b6a5c10f7d4e93b2a8c61ff",
+      "version": "analytics-worker-v412",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-03-14T14:36:10Z",
+      "service": "payments-svc",
+      "commit_sha": "c41d9f02ab7e5610d3f8b2a91c4e0d76f2a18b33",
+      "version": "payments-svc-v883",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-03-14T13:15:00Z",
+      "service": "search-svc",
+      "commit_sha": "3f8b2a91c4e0d76f2a18b33c41d9f02ab7e5610d",
+      "version": "search-svc-v141",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-03-14T12:55:00Z",
+      "service": "notifications-svc",
+      "commit_sha": "76f2a18b33c41d9f02ab7e5610d3f8b2a91c4e0d",
+      "version": "notifications-svc-v77",
+      "rollout": "100%"
+    }
+  ]
+}

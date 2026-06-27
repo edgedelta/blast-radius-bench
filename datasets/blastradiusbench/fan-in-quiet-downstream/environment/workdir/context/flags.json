@@ -1,0 +1,21 @@
+{
+  "window": "2026-06-24T12:15:00Z..2026-06-24T14:38:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-06-24T14:22:00Z",
+      "flag": "checkout.express_pay",
+      "service": "checkout",
+      "from": false,
+      "to": true,
+      "actor": "checkout-team"
+    },
+    {
+      "timestamp": "2026-06-24T13:50:00Z",
+      "flag": "search.ranking_variant_c",
+      "service": "search",
+      "from": false,
+      "to": true,
+      "actor": "search-team"
+    }
+  ]
+}

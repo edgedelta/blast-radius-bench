@@ -1,0 +1,82 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `resolver` field names the DNS resolver each service uses to resolve hostnames at request time; `external_hosts` lists the external hostnames it must resolve per request. `static_addressing` true means the service reaches its dependencies by static IP / hostAliases and does not perform per-request DNS lookups.",
+  "generated_at": "2026-06-22T08:40:00Z",
+  "resolvers": [
+    {
+      "name": "dns:coredns-cluster",
+      "kind": "coredns",
+      "role": "cluster-dns",
+      "note": "cluster DNS Service (kube-dns); 3 CoreDNS pods behind one ClusterIP; in-cluster + external name resolution"
+    }
+  ],
+  "services": [
+    {
+      "name": "ingress-gw",
+      "namespace": "edge",
+      "resolver": "dns:coredns-cluster",
+      "external_hosts": [],
+      "static_addressing": false
+    },
+    {
+      "name": "web-checkout",
+      "namespace": "commerce",
+      "resolver": "dns:coredns-cluster",
+      "external_hosts": ["pay.gateway.example.com"],
+      "static_addressing": false
+    },
+    {
+      "name": "email-worker",
+      "namespace": "messaging",
+      "resolver": "dns:coredns-cluster",
+      "external_hosts": ["smtp-relay.mail.example.net"],
+      "static_addressing": false
+    },
+    {
+      "name": "sync-agent",
+      "namespace": "data",
+      "resolver": "dns:coredns-cluster",
+      "external_hosts": ["objects.store.example.com"],
+      "static_addressing": false
+    },
+    {
+      "name": "metrics-relay",
+      "namespace": "platform",
+      "resolver": null,
+      "external_hosts": ["collector.metrics.svc"],
+      "static_addressing": true,
+      "note": "reaches collector via hostAliases static IP; no per-request DNS"
+    },
+    {
+      "name": "image-proxy",
+      "namespace": "media",
+      "resolver": "dns:nodelocal-cache",
+      "external_hosts": ["cdn.images.example.com"],
+      "static_addressing": false,
+      "note": "NodeLocal DNS cache; single long-lived cached upstream connection, resolved once at startup"
+    },
+    {
+      "name": "pdf-renderer",
+      "namespace": "media",
+      "resolver": "dns:coredns-cluster",
+      "external_hosts": [],
+      "static_addressing": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "ingress-gw",
+      "to": "web-checkout",
+      "call_rate_rps": 80
+    },
+    {
+      "from": "ingress-gw",
+      "to": "pdf-renderer",
+      "call_rate_rps": 12
+    },
+    {
+      "from": "ingress-gw",
+      "to": "image-proxy",
+      "call_rate_rps": 40
+    }
+  ]
+}

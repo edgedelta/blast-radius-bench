@@ -1,0 +1,39 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-22T06:50:00Z..2026-06-22T09:12:00Z",
+  "commits": [
+    {
+      "sha": "1f3d5b7901f3d5b7901f3d5b7901f3d5b7901f3d",
+      "author": "network-team",
+      "timestamp": "2026-06-22T08:46:00Z",
+      "service": "coredns",
+      "message": "#netops tune coredns Corefile: cache 100000->1000 to cut memory, forward . to 8.8.8.8 with max_concurrent 100",
+      "files_changed": ["clusters/prod/kube-system/coredns-configmap.yaml"]
+    },
+    {
+      "sha": "9b2e6a4c0d9b2e6a4c0d9b2e6a4c0d9b2e6a4c0d",
+      "author": "media-team",
+      "timestamp": "2026-06-22T08:55:00Z",
+      "service": "pdf-renderer",
+      "message": "#media pdf-renderer bump glyph atlas cache to v3.2 layout",
+      "files_changed": ["services/pdf/fontcache/atlas.go"]
+    },
+    {
+      "sha": "5a7c9e1b305a7c9e1b305a7c9e1b305a7c9e1b30",
+      "author": "commerce-team",
+      "timestamp": "2026-06-22T08:12:00Z",
+      "service": "web-checkout",
+      "message": "#commerce web-checkout add retry budget to payment client",
+      "files_changed": ["services/checkout/payment/client.go"]
+    },
+    {
+      "sha": "2d4f6a8c102d4f6a8c102d4f6a8c102d4f6a8c10",
+      "author": "data-team",
+      "timestamp": "2026-06-22T07:35:00Z",
+      "service": "sync-agent",
+      "message": "#data sync-agent increase upload concurrency to 8",
+      "files_changed": ["services/sync/uploader/pool.go"]
+    }
+  ]
+}

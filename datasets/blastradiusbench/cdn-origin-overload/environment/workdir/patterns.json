@@ -1,0 +1,46 @@
+{
+  "window": "2026-06-22T13:00:00Z..2026-06-22T13:25:00Z",
+  "baseline_window": "2026-06-22T11:00:00Z..2026-06-22T13:00:00Z",
+  "patterns": [
+    {
+      "signature": "render worker pool busy: cpu_util <N>%, render_ms p99 <N>, active_workers 16/16",
+      "service": "origin-web",
+      "count": 410,
+      "delta_vs_baseline": "+410",
+      "first_seen": "2026-06-22T13:12:10Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "render queue backing up: cpu_util <N>%, render_ms p99 <N>, request_queue_depth <N>",
+      "service": "origin-web",
+      "count": 280,
+      "delta_vs_baseline": "+280",
+      "first_seen": "2026-06-22T13:13:30Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "resize rejected: HTTP 415 unsupported media type src=<path>",
+      "service": "image-resizer",
+      "count": 22,
+      "delta_vs_baseline": "+4",
+      "first_seen": "2026-06-22T13:15:40Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "edge GET <route> 502: origin fetch deadline exceeded to origin-web",
+      "service": "cdn-edge",
+      "count": 9800,
+      "delta_vs_baseline": "+9800",
+      "first_seen": "2026-06-22T13:18:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "edge GET <route> 504: origin-web upstream timeout",
+      "service": "cdn-edge",
+      "count": 10600,
+      "delta_vs_baseline": "+10600",
+      "first_seen": "2026-06-22T13:19:20Z",
+      "sentiment": "negative"
+    }
+  ]
+}

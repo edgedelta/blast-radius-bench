@@ -1,0 +1,44 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on.",
+  "generated_at": "2026-06-22T14:40:00Z",
+  "services": [
+    "api-edge",
+    "catalog-svc",
+    "price-cache",
+    "pricing-db",
+    "search-svc",
+    "inventory-svc"
+  ],
+  "edges": [
+    {
+      "from": "api-edge",
+      "to": "catalog-svc",
+      "call_rate_rps": 900,
+      "note": "storefront product detail + listing reads"
+    },
+    {
+      "from": "api-edge",
+      "to": "inventory-svc",
+      "call_rate_rps": 120,
+      "note": "stock availability badge"
+    },
+    {
+      "from": "catalog-svc",
+      "to": "price-cache",
+      "call_rate_rps": 850,
+      "note": "read-through price lookups per product"
+    },
+    {
+      "from": "price-cache",
+      "to": "pricing-db",
+      "call_rate_rps": 60,
+      "note": "fill-on-miss query to the pricing store"
+    },
+    {
+      "from": "search-svc",
+      "to": "pricing-db",
+      "call_rate_rps": 40,
+      "note": "batch price hydration for search index, bypasses price-cache"
+    }
+  ]
+}

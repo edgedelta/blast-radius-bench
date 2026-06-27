@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-8042",
+  "monitor": "mobile-bff Availability & 5xx",
+  "service": "mobile-bff",
+  "metric": "p99_latency_ms / http_5xx_rate",
+  "threshold": "5xx > 5%",
+  "observed_value": "p99 12000ms, 5xx 41%",
+  "fired_at": "2026-06-27T14:40:00Z",
+  "severity": "high",
+  "summary": "mobile-bff returning 503 on checkout/quote endpoints — p99 12s and 41% 5xx; mobile clients failing to load prices"
+}

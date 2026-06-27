@@ -1,0 +1,39 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-03-14T12:30:00Z..2026-03-14T14:52:00Z",
+  "commits": [
+    {
+      "sha": "c41d9f02ab7e5610d3f8b2a91c4e0d76f2a18b33",
+      "author": "payments-team",
+      "timestamp": "2026-03-14T14:20:00Z",
+      "service": "payments-svc",
+      "message": "#payments Add synchronous fraud-check SELECT before authorize (holds db connection for full request)",
+      "files_changed": ["payments/svc/authorize.go", "payments/svc/fraud_check.go"]
+    },
+    {
+      "sha": "9b2e7a1c004f3d8e2b6a5c10f7d4e93b2a8c61ff",
+      "author": "analytics-team",
+      "timestamp": "2026-03-14T14:05:00Z",
+      "service": "analytics-worker",
+      "message": "#analytics Refactor rollup engine to streaming aggregate",
+      "files_changed": ["analytics/worker/rollup.go"]
+    },
+    {
+      "sha": "3f8b2a91c4e0d76f2a18b33c41d9f02ab7e5610d",
+      "author": "search-team",
+      "timestamp": "2026-03-14T13:10:00Z",
+      "service": "search-svc",
+      "message": "#search Bump index cache TTL to 5m",
+      "files_changed": ["search/cache/ttl.go"]
+    },
+    {
+      "sha": "76f2a18b33c41d9f02ab7e5610d3f8b2a91c4e0d",
+      "author": "notifications-team",
+      "timestamp": "2026-03-14T12:50:00Z",
+      "service": "notifications-svc",
+      "message": "#notifications Add retry jitter to queue consumer",
+      "files_changed": ["notifications/consumer/retry.go"]
+    }
+  ]
+}

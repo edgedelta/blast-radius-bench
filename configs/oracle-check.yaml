@@ -19,3 +19,10 @@ datasets:
       - shared-redis-eviction
       - shared-kafka-saturation
       - retry-storm-amplification
+      - cdn-origin-overload
+      - grpc-deadline-chain
+      - mid-chain-cache-origin
+      - fan-in-quiet-downstream
+      - dual-independent-incidents
+      - shared-dns-resolver-degradation
+      - shared-nat-egress-saturation

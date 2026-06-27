@@ -1,0 +1,39 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-22T09:00:00Z..2026-06-22T13:25:00Z",
+  "commits": [
+    {
+      "sha": "c4f0a9b2e1d7438a91b3c6d2e5f8a0c1b4d7e2f9",
+      "author": "web-team",
+      "timestamp": "2026-06-22T11:20:00Z",
+      "service": "origin-web",
+      "message": "#web Server-render product pages on every request (drop edge HTML cache for /p/*)",
+      "files_changed": ["web/origin/render_handler.go", "web/origin/cache_policy.go"]
+    },
+    {
+      "sha": "9a1b7c3d5e2f8094a6b1c4d7e0f3a2b5c8d1e4f7",
+      "author": "media-team",
+      "timestamp": "2026-06-22T13:05:00Z",
+      "service": "image-resizer",
+      "message": "#media Add AVIF encoder path to resizer",
+      "files_changed": ["media/resizer/avif.go"]
+    },
+    {
+      "sha": "f7e2d4b1c8a05f3e9d6c2b7a4f1e8d3c0b5a9e62",
+      "author": "edge-team",
+      "timestamp": "2026-06-22T10:45:00Z",
+      "service": "cdn-edge",
+      "message": "#edge Enable brotli response compression on edge",
+      "files_changed": ["edge/cdn/brotli.go"]
+    },
+    {
+      "sha": "2b5c8d1e4f79a1b7c3d5e2f8094a6b1c4d7e0f3a",
+      "author": "edge-team",
+      "timestamp": "2026-06-22T09:35:00Z",
+      "service": "static-assets",
+      "message": "#edge Bump static-assets cache TTL to 24h",
+      "files_changed": ["edge/static/ttl.go"]
+    }
+  ]
+}

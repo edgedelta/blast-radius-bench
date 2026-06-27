@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-4408",
+  "monitor": "cdn-edge 5xx & Edge Latency",
+  "service": "cdn-edge",
+  "metric": "edge_5xx_rate / p99_latency_ms",
+  "threshold": "5xx > 5%",
+  "observed_value": "5xx 41%, p99 11200ms",
+  "fired_at": "2026-06-22T13:20:00Z",
+  "severity": "high",
+  "summary": "cdn-edge serving 41% 5xx and 11.2s p99 on dynamic page routes — customers seeing error pages"
+}

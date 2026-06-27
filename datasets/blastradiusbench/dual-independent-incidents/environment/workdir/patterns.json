@@ -1,0 +1,46 @@
+{
+  "window": "2026-03-14T14:30:00Z..2026-03-14T14:52:00Z",
+  "baseline_window": "2026-03-14T12:30:00Z..2026-03-14T14:30:00Z",
+  "patterns": [
+    {
+      "signature": "panic: nil map write in rollupAggregate(); goroutine crashed, restarting batch worker",
+      "service": "analytics-worker",
+      "count": 18600,
+      "delta_vs_baseline": "+18600",
+      "first_seen": "2026-03-14T14:34:02Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "submit batch job failed: 502 from analytics-worker (connection refused)",
+      "service": "analytics-api",
+      "count": 2400,
+      "delta_vs_baseline": "+2400",
+      "first_seen": "2026-03-14T14:34:30Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "connection pool usage <N>/100, acquire wait p99 <N>ms; fraud_check SELECT pinning slots",
+      "service": "payments-db",
+      "count": 420,
+      "delta_vs_baseline": "+420",
+      "first_seen": "2026-03-14T14:38:30Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "authorize/capture failed: timeout acquiring connection from payments-db pool, 503 returned",
+      "service": "payments-svc",
+      "count": 3100,
+      "delta_vs_baseline": "+3100",
+      "first_seen": "2026-03-14T14:41:50Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "POST /api/checkout 5xx: payment step unavailable (503 from payments-svc)",
+      "service": "checkout",
+      "count": 5200,
+      "delta_vs_baseline": "+5200",
+      "first_seen": "2026-03-14T14:44:10Z",
+      "sentiment": "negative"
+    }
+  ]
+}

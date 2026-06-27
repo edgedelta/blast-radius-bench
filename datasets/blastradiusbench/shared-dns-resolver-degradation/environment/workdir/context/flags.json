@@ -1,0 +1,21 @@
+{
+  "window": "2026-06-22T06:50:00Z..2026-06-22T09:12:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-06-22T08:58:00Z",
+      "flag": "checkout.express_lane",
+      "service": "web-checkout",
+      "from": false,
+      "to": true,
+      "actor": "commerce-team"
+    },
+    {
+      "timestamp": "2026-06-22T07:50:00Z",
+      "flag": "sync.parallel_uploads",
+      "service": "sync-agent",
+      "from": false,
+      "to": true,
+      "actor": "data-team"
+    }
+  ]
+}

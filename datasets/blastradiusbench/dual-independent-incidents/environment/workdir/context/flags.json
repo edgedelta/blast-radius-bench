@@ -1,0 +1,21 @@
+{
+  "window": "2026-03-14T12:30:00Z..2026-03-14T14:52:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-03-14T14:18:00Z",
+      "flag": "analytics.streaming_rollup",
+      "service": "analytics-worker",
+      "from": false,
+      "to": true,
+      "actor": "analytics-team"
+    },
+    {
+      "timestamp": "2026-03-14T13:40:00Z",
+      "flag": "search.cache_ttl_5m",
+      "service": "search-svc",
+      "from": false,
+      "to": true,
+      "actor": "search-team"
+    }
+  ]
+}

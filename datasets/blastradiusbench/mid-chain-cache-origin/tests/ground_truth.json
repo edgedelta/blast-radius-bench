@@ -1,0 +1,44 @@
+{
+  "scenario": "mid-chain-cache-origin",
+  "origin_service": "price-cache",
+  "root_cause_culprit_sha": "9f1c5a7b2e8d40aa31b7d224e6c91f0a3b5e7c8d",
+  "root_cause_keywords": [
+    "price-cache",
+    "cache hit rate",
+    "hit ratio collapse",
+    "key format",
+    "cache key",
+    "read-through",
+    "cache miss",
+    "stampede",
+    "pricing-db lookup"
+  ],
+  "propagation_path": [
+    {
+      "from": "price-cache",
+      "to": "catalog-svc"
+    },
+    {
+      "from": "catalog-svc",
+      "to": "api-edge"
+    },
+    {
+      "from": "price-cache",
+      "to": "pricing-db"
+    }
+  ],
+  "blast_radius": [
+    "catalog-svc",
+    "api-edge",
+    "pricing-db"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "api-edge",
+  "accept_origin_aliases": [
+    "price-cache",
+    "price cache",
+    "price-cache-readthrough"
+  ],
+  "notes": "price-cache is a read-through cache between catalog-svc and pricing-db. Deploy v9f1c5a7 changed the cache key format (added a tenant/currency segment), so existing warm entries no longer matched and the hit ratio collapsed from ~94% to ~6%. Every catalog read now misses and falls through to a slow pricing-db lookup, so price-cache fill latency exploded and it stampedes pricing-db. catalog-svc (its direct caller) backs up waiting on price-cache fills, and api-edge at the customer edge times out and pages (loudest). pricing-db looks busy -- query QPS and active connections spike from the miss stampede -- but it stays status OK with only elevated load, it is NOT the origin (it is a victim of the stampede). The two traps: api-edge is loudest+edge, and pricing-db is the deepest component and looks saturated; the true origin is the MID-CHAIN cache whose hit ratio dropped FIRST. inventory-svc errored and just deployed (decoy, off the price read path). search-svc is a healthy control that also reads pricing-db but not via price-cache.",
+  "_design_note": "Paged on api-edge because that is the customer-facing storefront edge where latency is measured. Breaks both deepest=origin (pricing-db) and edge=origin (api-edge): the origin is the cache in the middle."
+}

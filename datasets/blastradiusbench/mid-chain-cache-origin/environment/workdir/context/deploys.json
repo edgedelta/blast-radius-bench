@@ -1,0 +1,33 @@
+{
+  "window": "2026-06-22T12:10:00Z..2026-06-22T14:32:00Z",
+  "deploys": [
+    {
+      "timestamp": "2026-06-22T14:20:10Z",
+      "service": "price-cache",
+      "commit_sha": "9f1c5a7b2e8d40aa31b7d224e6c91f0a3b5e7c8d",
+      "version": "price-cache-v9f1c5a7",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-22T14:25:00Z",
+      "service": "inventory-svc",
+      "commit_sha": "31b7d224e6c91f0a3b5e7c8d9f1c5a7b2e8d40aa",
+      "version": "inventory-svc-v4d2",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-22T13:35:00Z",
+      "service": "catalog-svc",
+      "commit_sha": "3b5e7c8d9f1c5a7b2e8d40aa31b7d224e6c91f0a",
+      "version": "catalog-svc-v211",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-22T12:55:00Z",
+      "service": "api-edge",
+      "commit_sha": "e6c91f0a3b5e7c8d9f1c5a7b2e8d40aa31b7d224",
+      "version": "api-edge-v640",
+      "rollout": "100%"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "window": "2026-06-24T14:15:00Z..2026-06-24T14:38:00Z",
+  "baseline_window": "2026-06-24T12:15:00Z..2026-06-24T14:15:00Z",
+  "patterns": [
+    {
+      "signature": "gc pause <N>ms (stop-the-world); Evaluate p99 <N>ms during ruleset reload",
+      "service": "feature-flags-svc",
+      "count": 320,
+      "delta_vs_baseline": "+320",
+      "first_seen": "2026-06-24T14:24:20Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "evaluation lock held <N>ms during reload; Evaluate callers queued",
+      "service": "feature-flags-svc",
+      "count": 210,
+      "delta_vs_baseline": "+210",
+      "first_seen": "2026-06-24T14:26:40Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "POST /v1/checkout <code>: deadline exceeded calling feature-flags-svc GetFlags",
+      "service": "checkout",
+      "count": 8800,
+      "delta_vs_baseline": "+8800",
+      "first_seen": "2026-06-24T14:31:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "GET /v1/search <code>: timeout calling feature-flags-svc Evaluate",
+      "service": "search",
+      "count": 3100,
+      "delta_vs_baseline": "+3100",
+      "first_seen": "2026-06-24T14:31:50Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "GET /v1/profile <code>: deadline exceeded calling feature-flags-svc GetFlags",
+      "service": "profile",
+      "count": 940,
+      "delta_vs_baseline": "+940",
+      "first_seen": "2026-06-24T14:32:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "candidate ranking config rejected: HTTP 422 invalid weights profile <key>",
+      "service": "recommendations-svc",
+      "count": 58,
+      "delta_vs_baseline": "+58",
+      "first_seen": "2026-06-24T14:31:35Z",
+      "sentiment": "negative"
+    }
+  ]
+}

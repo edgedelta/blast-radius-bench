@@ -1,0 +1,53 @@
+{
+  "window": "2026-06-22T08:50:00Z..2026-06-22T09:12:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-22T08:58:00Z",
+      "type": "Normal",
+      "object": "configmap/coredns",
+      "namespace": "kube-system",
+      "reason": "Updated",
+      "message": "ConfigMap coredns updated (Corefile); revision 47 -> 48"
+    },
+    {
+      "timestamp": "2026-06-22T09:00:00Z",
+      "type": "Normal",
+      "object": "deploy/pdf-renderer",
+      "namespace": "media",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up replica set pdf-renderer-6c8b94 to 2"
+    },
+    {
+      "timestamp": "2026-06-22T09:00:10Z",
+      "type": "Normal",
+      "object": "deploy/coredns",
+      "namespace": "kube-system",
+      "reason": "Reload",
+      "message": "coredns plugin/reload: Running configuration MD5 changed, reloading Corefile (cache 100000->1000; forward . 8.8.8.8 max_concurrent 100)"
+    },
+    {
+      "timestamp": "2026-06-22T09:01:40Z",
+      "type": "Warning",
+      "object": "deploy/coredns",
+      "namespace": "kube-system",
+      "reason": "ForwardHealthcheck",
+      "message": "coredns-cluster forward plugin: upstream 8.8.8.8 rtt 5180ms, max_concurrent 100 reached, dropping queries; cache full, evicting (cache_size=1000)"
+    },
+    {
+      "timestamp": "2026-06-22T09:02:05Z",
+      "type": "Warning",
+      "object": "deploy/coredns",
+      "namespace": "kube-system",
+      "reason": "ResponseRcode",
+      "message": "coredns-cluster SERVFAIL rate 31% over last 30s (4.1k/13.2k queries); plugin/forward i/o timeout to upstream"
+    },
+    {
+      "timestamp": "2026-06-22T09:06:30Z",
+      "type": "Normal",
+      "object": "deploy/web-checkout",
+      "namespace": "commerce",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up replica set web-checkout-58df2a to 6"
+    }
+  ]
+}

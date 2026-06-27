@@ -1,0 +1,158 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-7101",
+      "spans": [
+        {
+          "span_id": "ck1",
+          "parent_id": null,
+          "service": "checkout",
+          "name": "POST /v1/checkout",
+          "start": "2026-06-24T14:35:05.000Z",
+          "duration_ms": 6300,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 504,
+            "error.msg": "deadline exceeded calling feature-flags-svc GetFlags (>1500ms)"
+          }
+        },
+        {
+          "span_id": "ck2",
+          "parent_id": "ck1",
+          "service": "feature-flags-svc",
+          "name": "GetFlags",
+          "start": "2026-06-24T14:35:05.040Z",
+          "duration_ms": 1510,
+          "status": "OK",
+          "attributes": {
+            "flags.batch": 96,
+            "gc.pause_ms": 2180,
+            "eval.lock_wait_ms": 1190
+          }
+        },
+        {
+          "span_id": "ck3",
+          "parent_id": "ck1",
+          "service": "inventory-svc",
+          "name": "reserve stock",
+          "start": "2026-06-24T14:35:05.050Z",
+          "duration_ms": 96,
+          "status": "OK",
+          "attributes": {}
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7102",
+      "spans": [
+        {
+          "span_id": "se1",
+          "parent_id": null,
+          "service": "search",
+          "name": "GET /v1/search",
+          "start": "2026-06-24T14:34:20.000Z",
+          "duration_ms": 3400,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "error.msg": "timeout calling feature-flags-svc Evaluate (no response within 1200ms)"
+          }
+        },
+        {
+          "span_id": "se2",
+          "parent_id": "se1",
+          "service": "feature-flags-svc",
+          "name": "Evaluate",
+          "start": "2026-06-24T14:34:20.030Z",
+          "duration_ms": 1340,
+          "status": "OK",
+          "attributes": {
+            "flags.batch": 24,
+            "gc.pause_ms": 1880,
+            "eval.lock_wait_ms": 980
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7103",
+      "spans": [
+        {
+          "span_id": "pr1",
+          "parent_id": null,
+          "service": "profile",
+          "name": "GET /v1/profile",
+          "start": "2026-06-24T14:35:30.000Z",
+          "duration_ms": 2700,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "error.msg": "deadline exceeded calling feature-flags-svc GetFlags"
+          }
+        },
+        {
+          "span_id": "pr2",
+          "parent_id": "pr1",
+          "service": "feature-flags-svc",
+          "name": "GetFlags",
+          "start": "2026-06-24T14:35:30.030Z",
+          "duration_ms": 1490,
+          "status": "OK",
+          "attributes": {
+            "flags.batch": 12,
+            "gc.pause_ms": 2180,
+            "eval.lock_wait_ms": 1150
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7104",
+      "spans": [
+        {
+          "span_id": "ff0",
+          "parent_id": null,
+          "service": "feature-flags-svc",
+          "name": "Evaluate",
+          "start": "2026-06-24T14:28:15.000Z",
+          "duration_ms": 980,
+          "status": "OK",
+          "attributes": {
+            "flags.batch": 64,
+            "gc.pause_ms": 1450,
+            "eval.lock_wait_ms": 820
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-7105",
+      "spans": [
+        {
+          "span_id": "rc1",
+          "parent_id": null,
+          "service": "recommendations-svc",
+          "name": "rank candidates",
+          "start": "2026-06-24T14:32:45.000Z",
+          "duration_ms": 38,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 422,
+            "error.msg": "invalid weights profile 'holiday_v2'"
+          }
+        },
+        {
+          "span_id": "rc2",
+          "parent_id": "rc1",
+          "service": "inventory-svc",
+          "name": "fetch availability",
+          "start": "2026-06-24T14:32:45.010Z",
+          "duration_ms": 91,
+          "status": "OK",
+          "attributes": {}
+        }
+      ]
+    }
+  ]
+}

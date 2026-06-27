@@ -1,0 +1,49 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on; `datastores` lists backing data stores a service connects to.",
+  "generated_at": "2026-03-14T15:00:00Z",
+  "services": [
+    "checkout",
+    "payments-svc",
+    "payments-db",
+    "analytics-api",
+    "analytics-worker",
+    "search-svc",
+    "notifications-svc"
+  ],
+  "edges": [
+    {
+      "from": "checkout",
+      "to": "payments-svc",
+      "call_rate_rps": 220,
+      "note": "authorizes and captures payment during checkout"
+    },
+    {
+      "from": "payments-svc",
+      "to": "payments-db",
+      "call_rate_rps": 240,
+      "note": "reads/writes payment records and fraud rules"
+    },
+    {
+      "from": "analytics-api",
+      "to": "analytics-worker",
+      "call_rate_rps": 35,
+      "note": "submits batch rollup jobs to the worker"
+    },
+    {
+      "from": "search-svc",
+      "to": "search-index",
+      "call_rate_rps": 90
+    },
+    {
+      "from": "notifications-svc",
+      "to": "notifications-queue",
+      "call_rate_rps": 40
+    }
+  ],
+  "datastores": {
+    "payments-svc": ["payments-db"],
+    "analytics-worker": ["analytics-db"],
+    "search-svc": ["search-index"],
+    "notifications-svc": ["notifications-queue"]
+  }
+}

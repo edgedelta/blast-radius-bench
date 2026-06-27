@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-4820",
+  "monitor": "api-edge Latency & 5xx",
+  "service": "api-edge",
+  "metric": "p99_latency_ms / http_5xx_rate",
+  "threshold": "p99 > 2000ms",
+  "observed_value": "p99 8700ms, 5xx 41%",
+  "fired_at": "2026-06-22T14:28:00Z",
+  "severity": "high",
+  "summary": "api-edge p99 latency 8.7s and 41% 5xx on storefront product reads — customer browse degraded"
+}
