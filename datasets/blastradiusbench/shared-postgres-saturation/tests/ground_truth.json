@@ -1,0 +1,47 @@
+{
+  "scenario": "shared-postgres-saturation",
+  "origin_service": "pg:orders-db-shared",
+  "root_cause_culprit_sha": "9c2e71a",
+  "root_cause_keywords": [
+    "orders-db-shared",
+    "max_connections",
+    "connection slots",
+    "too many connections",
+    "connection exhaustion",
+    "active_connections",
+    "shared postgres",
+    "shared database",
+    "reporting",
+    "full table scan",
+    "saturation"
+  ],
+  "propagation_path": [
+    {
+      "from": "pg:orders-db-shared",
+      "to": "orders"
+    },
+    {
+      "from": "pg:orders-db-shared",
+      "to": "billing"
+    },
+    {
+      "from": "pg:orders-db-shared",
+      "to": "fulfillment"
+    }
+  ],
+  "blast_radius": [
+    "orders",
+    "billing",
+    "fulfillment"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "orders",
+  "accept_origin_aliases": [
+    "pg:orders-db-shared",
+    "orders-db-shared",
+    "pg-orders-shared",
+    "postgres orders-db-shared"
+  ],
+  "notes": "SHARED-POSTGRES SATURATION TRAP. The reporting job (deployed 13:43, commit 9c2e71a) began running an un-indexed full-table scan against the shared Postgres instance orders-db-shared, each scan holding a connection for minutes. By 13:58 active_connections reached max_connections (200/200) and Postgres began returning 'FATAL: remaining connection slots are reserved / too many connections'. The three CO-TENANT services orders, billing and fulfillment all connect to orders-db-shared but have NO service-call edge among one another (different namespaces/call graphs). They fail within the same ~4-minute window because none of them can acquire a connection from the saturated shared instance. The only coupling is the shared DB, visible in service_map.json (each of the three lists orders-db-shared in its datastores) and in the resource saturation event/metric. Controls search (own Elasticsearch) and api-gateway (no DB) stay healthy. frontend deployed near onset (commit 7af31c2) and emits its own benign feature-flag 4xx (flat trend, not on the DB) as a decoy. Paged on orders because it is the most customer-visible victim.",
+  "_design_note": "Paged on orders because the customer-facing checkout error surfaces there. orders is one of three co-tenant pods that lost their DB connections at the same time; check WHY connections could not be acquired (the shared instance hit max_connections), not just orders' own logs."
+}

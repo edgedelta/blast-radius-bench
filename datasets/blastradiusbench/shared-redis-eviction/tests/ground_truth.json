@@ -1,0 +1,54 @@
+{
+  "scenario": "shared-redis-eviction",
+  "origin_service": "redis:session-cache-01",
+  "root_cause_culprit_sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f",
+  "root_cause_keywords": [
+    "redis",
+    "session-cache-01",
+    "shared redis",
+    "keys *",
+    "keys",
+    "bulk del",
+    "del",
+    "cache-audit",
+    "cron",
+    "blocked_clients",
+    "blocked clients",
+    "evicted_keys",
+    "eviction",
+    "evictions",
+    "maxmemory",
+    "single-threaded",
+    "event loop",
+    "timeout"
+  ],
+  "propagation_path": [
+    {
+      "from": "redis:session-cache-01",
+      "to": "auth"
+    },
+    {
+      "from": "redis:session-cache-01",
+      "to": "cart"
+    },
+    {
+      "from": "redis:session-cache-01",
+      "to": "rate-limiter"
+    }
+  ],
+  "blast_radius": [
+    "auth",
+    "cart",
+    "rate-limiter"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "auth",
+  "accept_origin_aliases": [
+    "redis:session-cache-01",
+    "session-cache-01",
+    "redis session-cache-01",
+    "shared redis session-cache-01"
+  ],
+  "notes": "SHARED-REDIS / NOISY-TENANT TRAP. The nightly cache-audit cron (scheduled near onset) runs 'KEYS *' followed by a bulk DEL against the shared Redis primary session-cache-01. KEYS * scans the entire keyspace and blocks the single-threaded Redis event loop; the bulk DEL then drives an eviction storm (maxmemory) and a blocked_clients spike. Three UNRELATED services that all use session-cache-01 -- auth (session tokens), cart (cart state), rate-limiter (counters) -- have their reads/writes time out at the same moment. They share NO service-call edge in service_map.json: they sit in different call graphs and only co-depend on the Redis primary. auth is LOUDEST/paged (login failures). Control services catalog (own Postgres datastore) and api-gateway do NOT touch session-cache-01 and stay healthy, proving the fault is the shared Redis, not a global outage. Origin is the Redis primary saturation; cache-audit is the heavy tenant whose access pattern triggered it.",
+  "_design_note": "Paged on auth because login failures are the most user-visible symptom. auth is one of three services whose Redis calls timed out simultaneously; check WHY (the shared Redis primary blocked_clients/eviction spike), not just auth's own logs."
+}

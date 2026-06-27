@@ -1,0 +1,53 @@
+{
+  "window": "2026-06-19T18:50:00Z..2026-06-19T19:12:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-19T18:55:00Z",
+      "type": "Normal",
+      "object": "cronjob/cache-audit",
+      "namespace": "platform",
+      "reason": "SuccessfulCreate",
+      "message": "Created CronJob cache-audit, schedule '2 19 * * *' targeting redis session-cache-01"
+    },
+    {
+      "timestamp": "2026-06-19T19:01:05Z",
+      "type": "Normal",
+      "object": "deploy/notification-svc",
+      "namespace": "platform",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up replica set notification-svc-7d9f6c to 2"
+    },
+    {
+      "timestamp": "2026-06-19T19:02:00Z",
+      "type": "Normal",
+      "object": "job/cache-audit-28891802",
+      "namespace": "platform",
+      "reason": "SuccessfulCreate",
+      "message": "Created pod cache-audit-28891802-9wzkp for scheduled cache-audit run on session-cache-01"
+    },
+    {
+      "timestamp": "2026-06-19T19:02:40Z",
+      "type": "Warning",
+      "object": "redis/session-cache-01",
+      "namespace": "data",
+      "reason": "SlowLog",
+      "message": "session-cache-01 SLOWLOG: command 'KEYS *' took 18342118 usec (client cache-audit-28891802-9wzkp); blocked_clients=182"
+    },
+    {
+      "timestamp": "2026-06-19T19:03:05Z",
+      "type": "Warning",
+      "object": "redis/session-cache-01",
+      "namespace": "data",
+      "reason": "MaxmemoryEviction",
+      "message": "session-cache-01 reached maxmemory (used_memory 100%); evicting keys, evicted_keys +4128771, allkeys-lru"
+    },
+    {
+      "timestamp": "2026-06-19T19:06:30Z",
+      "type": "Normal",
+      "object": "deploy/notification-svc",
+      "namespace": "platform",
+      "reason": "ScalingReplicaSet",
+      "message": "Scaled up replica set notification-svc-7d9f6c to 3"
+    }
+  ]
+}

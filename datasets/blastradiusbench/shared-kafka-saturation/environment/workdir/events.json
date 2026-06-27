@@ -1,0 +1,37 @@
+{
+  "window": "2026-06-24T14:40:00Z..2026-06-24T14:57:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-24T14:38:00Z",
+      "type": "ConfigChange",
+      "object": "kafka/ingest-shared",
+      "namespace": "ingest",
+      "reason": "AlterConfig",
+      "message": "Applied topic retention.ms=3600000 (was 604800000) on cluster ingest-shared (broker-2 leader for high-volume partitions)"
+    },
+    {
+      "timestamp": "2026-06-24T14:49:30Z",
+      "type": "BrokerHealth",
+      "object": "kafka/ingest-shared/broker-2",
+      "namespace": "ingest",
+      "reason": "LogDirHigh",
+      "message": "ingest-shared broker-2 log dir /kafka/logs 95% used; UnderReplicatedPartitions=64, ISR shrink across topics metrics.raw/logs.raw/traces.raw"
+    },
+    {
+      "timestamp": "2026-06-24T14:50:00Z",
+      "type": "Deployment",
+      "object": "deploy/auth-service",
+      "namespace": "edge",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled auth-service to v212 (jwks key rotation kid=rotated-2026-06)"
+    },
+    {
+      "timestamp": "2026-06-24T14:52:00Z",
+      "type": "event_threshold",
+      "object": "kafka/ingest-shared",
+      "namespace": "ingest",
+      "reason": "UnderReplicatedPartitions",
+      "message": "UnderReplicatedPartitions 71 on cluster ingest-shared, produce_latency_p99 6100ms"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "alert_id": "PD-49213",
+  "service": "orders",
+  "metric": "http_5xx_rate",
+  "threshold": "> 5%",
+  "observed_value": "47%",
+  "fired_at": "2026-06-18T14:04:30Z",
+  "severity": "critical",
+  "summary": "orders 5xx rate 47% (6100 errors/5m) — checkout order-create failing"
+}

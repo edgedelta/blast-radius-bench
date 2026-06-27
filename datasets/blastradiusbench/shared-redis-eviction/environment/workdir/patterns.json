@@ -1,0 +1,46 @@
+{
+  "window": "2026-06-19T18:50:00Z..2026-06-19T19:12:00Z",
+  "baseline_window": "2026-06-19T16:50:00Z..2026-06-19T18:50:00Z",
+  "patterns": [
+    {
+      "signature": "cache-audit issuing bulk DEL of <N> expired keys on session-cache-01",
+      "service": "cache-audit",
+      "count": 1,
+      "delta_vs_baseline": "+1",
+      "first_seen": "2026-06-19T19:03:00Z",
+      "sentiment": "neutral"
+    },
+    {
+      "signature": "auth GET session token failed: redis session-cache-01 timeout after <N>ms",
+      "service": "auth",
+      "count": 8800,
+      "delta_vs_baseline": "+8800",
+      "first_seen": "2026-06-19T19:03:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "cart HGETALL cart:<id> failed: redis session-cache-01 read timeout",
+      "service": "cart",
+      "count": 3100,
+      "delta_vs_baseline": "+3100",
+      "first_seen": "2026-06-19T19:03:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "rate-limiter INCR rl:<key> failed: redis session-cache-01 timeout; key evicted under maxmemory",
+      "service": "rate-limiter",
+      "count": 2400,
+      "delta_vs_baseline": "+2400",
+      "first_seen": "2026-06-19T19:03:30Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "webhook delivery failed: smtp relay cert verify: x509 certificate has expired",
+      "service": "notification-svc",
+      "count": 31,
+      "delta_vs_baseline": "+1",
+      "first_seen": "2026-06-19T17:12:00Z",
+      "sentiment": "negative"
+    }
+  ]
+}

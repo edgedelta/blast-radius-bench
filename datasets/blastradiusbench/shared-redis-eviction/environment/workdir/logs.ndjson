@@ -1,0 +1,22 @@
+{"timestamp":"2026-06-19T18:50:05Z","service":"auth","severity_text":"INFO","msg":"auth issued session token, GET session-cache-01 ok","trace_id":"tr-3001","latency_ms":2}
+{"timestamp":"2026-06-19T18:52:10Z","service":"cart","severity_text":"INFO","msg":"cart HGETALL cart:org-7 from session-cache-01 ok","trace_id":"tr-3002","latency_ms":3}
+{"timestamp":"2026-06-19T18:54:40Z","service":"catalog","severity_text":"DEBUG","msg":"catalog list products from pg:catalog-db ok rows=120","trace_id":"tr-3003","latency_ms":18}
+{"timestamp":"2026-06-19T18:58:30Z","service":"rate-limiter","severity_text":"INFO","msg":"rate-limiter INCR rl:ip:203.0.113.7 on session-cache-01 ok","trace_id":null,"latency_ms":1}
+{"timestamp":"2026-06-19T19:01:05Z","service":"notification-svc","severity_text":"INFO","msg":"notification-svc v2.4.0 started, worker pool=8","trace_id":null}
+{"timestamp":"2026-06-19T19:02:05Z","service":"cache-audit","severity_text":"INFO","msg":"cache-audit nightly job started against session-cache-01, scanning keyspace via KEYS *","trace_id":"tr-3010"}
+{"timestamp":"2026-06-19T19:02:40Z","service":"cache-audit","severity_text":"INFO","msg":"cache-audit KEYS * returned 4128771 keys on session-cache-01, building delete batch","trace_id":"tr-3011"}
+{"timestamp":"2026-06-19T19:03:00Z","service":"cache-audit","severity_text":"INFO","msg":"cache-audit issuing bulk DEL of 4128771 expired keys on session-cache-01","trace_id":"tr-3012"}
+{"timestamp":"2026-06-19T19:03:10Z","service":"auth","severity_text":"ERROR","msg":"auth GET session token failed: redis session-cache-01 timeout after 5000ms (LOADING/blocked)","trace_id":"tr-3020","latency_ms":5000}
+{"timestamp":"2026-06-19T19:03:20Z","service":"cart","severity_text":"ERROR","msg":"cart HGETALL cart:org-7 failed: redis session-cache-01 read timeout, command queued behind blocked event loop","trace_id":"tr-3021","latency_ms":5000}
+{"timestamp":"2026-06-19T19:03:30Z","service":"notification-svc","severity_text":"ERROR","msg":"webhook delivery failed: smtp relay cert verify: x509 certificate has expired","trace_id":"tr-3015"}
+{"timestamp":"2026-06-19T19:03:30Z","service":"rate-limiter","severity_text":"ERROR","msg":"rate-limiter INCR rl:ip:203.0.113.7 failed: redis session-cache-01 timeout; key evicted under maxmemory","trace_id":"tr-3022","latency_ms":5000}
+{"timestamp":"2026-06-19T19:04:30Z","service":"auth","severity_text":"ERROR","msg":"auth login failure rate 47%: session-cache-01 GET/SETEX timing out, evicted_keys surging","trace_id":"tr-3030","latency_ms":5000}
+{"timestamp":"2026-06-19T19:05:00Z","service":"catalog","severity_text":"INFO","msg":"catalog list products from pg:catalog-db ok rows=121","trace_id":"tr-3024","latency_ms":19}
+{"timestamp":"2026-06-19T19:05:50Z","service":"cart","severity_text":"ERROR","msg":"cart checkout aborted: cart state lost, session-cache-01 evicted cart:org-7 (eviction storm)","trace_id":"tr-3025","latency_ms":5000}
+{"timestamp":"2026-06-19T19:06:30Z","service":"api-gateway","severity_text":"INFO","msg":"api-gateway health ok, routing /catalog 200","trace_id":null}
+{"timestamp":"2026-06-19T19:06:45Z","service":"notification-svc","severity_text":"ERROR","msg":"webhook delivery failed: smtp relay cert verify: x509 certificate has expired","trace_id":"tr-3028"}
+{"timestamp":"2026-06-19T19:07:30Z","service":"rate-limiter","severity_text":"ERROR","msg":"rate-limiter failing open: redis session-cache-01 INCR timeout, blocked_clients high","trace_id":"tr-3035","latency_ms":5000}
+{"timestamp":"2026-06-19T19:08:00Z","service":"auth","severity_text":"ERROR","msg":"auth session validation 500: redis session-cache-01 timeout (blocked_clients=255)","trace_id":"tr-3040","latency_ms":5000}
+{"timestamp":"2026-06-19T19:09:30Z","service":"cart","severity_text":"ERROR","msg":"cart HSET cart:org-12 failed: redis session-cache-01 timeout, cmd queued behind KEYS/DEL","trace_id":"tr-3041","latency_ms":5000}
+{"timestamp":"2026-06-19T19:10:40Z","service":"notification-svc","severity_text":"ERROR","msg":"webhook delivery failed: smtp relay cert verify: x509 certificate has expired","trace_id":"tr-3052"}
+{"timestamp":"2026-06-19T19:11:50Z","service":"auth","severity_text":"ERROR","msg":"auth login failures errors/5m=8800, redis session-cache-01 still timing out","trace_id":"tr-3051","latency_ms":5000}

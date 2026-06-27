@@ -1,0 +1,38 @@
+{
+  "window": "2026-06-20T07:20:00Z..2026-06-20T07:42:00Z",
+  "baseline_window": "2026-06-20T05:20:00Z..2026-06-20T07:20:00Z",
+  "patterns": [
+    {
+      "signature": "ProvisionedThroughputExceededException on table pipeline-states (write)",
+      "service": "ai-memory-svc",
+      "count": 3100,
+      "delta_vs_baseline": "+3100",
+      "first_seen": "2026-06-20T07:31:15Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "BatchWriteItem ProvisionedThroughputExceededException on table pipeline-states",
+      "service": "ai-scheduler",
+      "count": 1700,
+      "delta_vs_baseline": "+1700",
+      "first_seen": "2026-06-20T07:33:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "UpdateItem throttled: ProvisionedThroughputExceededException table pipeline-states",
+      "service": "notification-worker",
+      "count": 1100,
+      "delta_vs_baseline": "+1100",
+      "first_seen": "2026-06-20T07:33:50Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "render template <name> returned 422: unknown placeholder {{org.tier}}",
+      "service": "notification-svc",
+      "count": 54,
+      "delta_vs_baseline": "+3",
+      "first_seen": "2026-06-20T07:27:50Z",
+      "sentiment": "neutral"
+    }
+  ]
+}

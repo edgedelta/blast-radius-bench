@@ -1,0 +1,99 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-5201",
+      "spans": [
+        {
+          "span_id": "m1",
+          "parent_id": null,
+          "service": "metric-ingestor",
+          "name": "produce metrics.raw",
+          "start": "2026-06-24T14:52:05.000Z",
+          "duration_ms": 6100,
+          "status": "ERROR",
+          "attributes": {
+            "kafka.cluster": "ingest-shared",
+            "kafka.topic": "metrics.raw",
+            "error.msg": "NotEnoughReplicasException: isr=1 < min.insync.replicas=2 on cluster ingest-shared"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5202",
+      "spans": [
+        {
+          "span_id": "l1",
+          "parent_id": null,
+          "service": "log-ingestor",
+          "name": "produce logs.raw",
+          "start": "2026-06-24T14:52:40.000Z",
+          "duration_ms": 6000,
+          "status": "ERROR",
+          "attributes": {
+            "kafka.cluster": "ingest-shared",
+            "kafka.topic": "logs.raw",
+            "error.msg": "NotEnoughReplicasAfterAppend on cluster ingest-shared"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5203",
+      "spans": [
+        {
+          "span_id": "t1",
+          "parent_id": null,
+          "service": "trace-ingestor",
+          "name": "produce traces.raw",
+          "start": "2026-06-24T14:53:10.000Z",
+          "duration_ms": 5900,
+          "status": "ERROR",
+          "attributes": {
+            "kafka.cluster": "ingest-shared",
+            "kafka.topic": "traces.raw",
+            "error.msg": "write rejected: not enough in-sync replicas on cluster ingest-shared"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5210",
+      "spans": [
+        {
+          "span_id": "b1",
+          "parent_id": null,
+          "service": "billing",
+          "name": "consume billing.invoices",
+          "start": "2026-06-24T14:53:45.000Z",
+          "duration_ms": 11,
+          "status": "OK",
+          "attributes": {
+            "kafka.cluster": "billing-events",
+            "kafka.topic": "billing.invoices",
+            "note": "different cluster, healthy"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5211",
+      "spans": [
+        {
+          "span_id": "a1",
+          "parent_id": null,
+          "service": "auth-service",
+          "name": "GET /v1/token/introspect",
+          "start": "2026-06-24T14:51:30.000Z",
+          "duration_ms": 34,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 401,
+            "error.msg": "token signature verification failed: unknown kid rotated-2026-06"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-9610",
+  "monitor": "Auth Login Failure Rate",
+  "service": "auth",
+  "metric": "login_failure_rate",
+  "threshold": "> 5%",
+  "observed_value": "47%",
+  "fired_at": "2026-06-19T19:04:30Z",
+  "severity": "high",
+  "summary": "auth login failures 47% — users cannot sign in (incident #9610)"
+}

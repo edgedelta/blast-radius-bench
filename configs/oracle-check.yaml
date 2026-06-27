@@ -10,12 +10,12 @@ datasets:
   - path: datasets/blastradiusbench
     task_names:
       - backend-connectivity-cascade
-      - db-pool-cascade
+      - shared-postgres-saturation
       - disk-pressure-noisy-neighbor
-      - dynamodb-capacity-degradation
+      - shared-dynamodb-throttle
       - fdb-tso-flink-cascade
       - memory-pressure-eviction-cascade
       - noisy-neighbor-node
-      - probe-crashloop-cascade
-      - queue-backlog-ingestion-cascade
+      - shared-redis-eviction
+      - shared-kafka-saturation
       - retry-storm-amplification

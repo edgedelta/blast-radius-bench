@@ -1,0 +1,26 @@
+{"timestamp":"2026-06-18T13:50:02Z","service":"orders","severity_text":"INFO","msg":"order lookup ok id=88213","trace_id":"tr-8800","latency_ms":39}
+{"timestamp":"2026-06-18T13:50:14Z","service":"billing","severity_text":"INFO","msg":"invoice posted ok acct=org-44","trace_id":"tr-8801","latency_ms":52}
+{"timestamp":"2026-06-18T13:50:30Z","service":"search","severity_text":"INFO","msg":"query served hits=12 took_ms=18 (search-es)","trace_id":"tr-8802","latency_ms":18}
+{"timestamp":"2026-06-18T13:50:41Z","service":"fulfillment","severity_text":"INFO","msg":"shipment label created ok order=88210","trace_id":"tr-8803","latency_ms":61}
+{"timestamp":"2026-06-18T13:51:00Z","service":"frontend","severity_text":"INFO","msg":"GET /checkout 200 user=u-2291","trace_id":"tr-8804","latency_ms":88}
+{"timestamp":"2026-06-18T13:51:20Z","service":"reporting","severity_text":"INFO","msg":"reporting job nightly_revenue_rollup started (cron 9c2e71a)","trace_id":"tr-8810"}
+{"timestamp":"2026-06-18T13:52:10Z","service":"reporting","severity_text":"INFO","msg":"executing SELECT * FROM orders o JOIN line_items li ON li.order_id=o.id (no index on li.order_id) against orders-db-shared","trace_id":"tr-8811"}
+{"timestamp":"2026-06-18T13:53:05Z","service":"frontend","severity_text":"WARN","msg":"feature flag checkout.express_banner=on; rendering banner variant B","trace_id":"tr-8812","latency_ms":90}
+{"timestamp":"2026-06-18T13:54:40Z","service":"reporting","severity_text":"INFO","msg":"seq scan in progress on orders-db-shared, rows_scanned=4.1M, holding connection pid=20114","trace_id":"tr-8813"}
+{"timestamp":"2026-06-18T13:55:02Z","service":"search","severity_text":"INFO","msg":"query served hits=7 took_ms=21 (search-es)","trace_id":"tr-8814","latency_ms":21}
+{"timestamp":"2026-06-18T13:56:30Z","service":"reporting","severity_text":"INFO","msg":"spawned 12 parallel rollup workers against orders-db-shared, each opening its own session","trace_id":"tr-8815"}
+{"timestamp":"2026-06-18T13:57:11Z","service":"frontend","severity_text":"WARN","msg":"GET /promo 404 unknown_variant=express_banner_v3 (flag rollout)","trace_id":"tr-8816","latency_ms":12}
+{"timestamp":"2026-06-18T13:58:20Z","service":"orders","severity_text":"WARN","msg":"db connect to orders-db-shared slow: waited 1.8s for session","trace_id":"tr-8820","latency_ms":1840}
+{"timestamp":"2026-06-18T13:59:40Z","service":"billing","severity_text":"WARN","msg":"orders-db-shared session acquire retry 2/3","trace_id":"tr-8821","latency_ms":2100}
+{"timestamp":"2026-06-18T14:00:05Z","service":"orders","severity_text":"ERROR","msg":"pq: FATAL: remaining connection slots are reserved for non-replication superuser connections (orders-db-shared); too many connections","trace_id":"tr-8830"}
+{"timestamp":"2026-06-18T14:00:33Z","service":"billing","severity_text":"ERROR","msg":"FATAL: sorry, too many clients already — orders-db-shared (active=200/200)","trace_id":"tr-8831"}
+{"timestamp":"2026-06-18T14:00:58Z","service":"fulfillment","severity_text":"ERROR","msg":"could not open connection to orders-db-shared: FATAL: too many connections for role \"app\"","trace_id":"tr-8832"}
+{"timestamp":"2026-06-18T14:01:20Z","service":"frontend","severity_text":"WARN","msg":"GET /promo 404 unknown_variant=express_banner_v3 (flag rollout)","trace_id":"tr-8833","latency_ms":11}
+{"timestamp":"2026-06-18T14:02:10Z","service":"orders","severity_text":"ERROR","msg":"checkout order create failed: pq: FATAL: too many connections to orders-db-shared","trace_id":"tr-8840"}
+{"timestamp":"2026-06-18T14:02:44Z","service":"fulfillment","severity_text":"ERROR","msg":"shipment write dropped: no connection slots available on orders-db-shared","trace_id":"tr-8841"}
+{"timestamp":"2026-06-18T14:03:02Z","service":"billing","severity_text":"ERROR","msg":"invoice persist failed: FATAL: too many connections, orders-db-shared","trace_id":"tr-8842"}
+{"timestamp":"2026-06-18T14:03:30Z","service":"search","severity_text":"INFO","msg":"query served hits=15 took_ms=19 (search-es)","trace_id":"tr-8843","latency_ms":19}
+{"timestamp":"2026-06-18T14:03:55Z","service":"api-gateway","severity_text":"INFO","msg":"GET /healthz 200; upstreams nominal","trace_id":"tr-8844","latency_ms":7}
+{"timestamp":"2026-06-18T14:04:40Z","service":"orders","severity_text":"ERROR","msg":"pq: FATAL: too many connections to orders-db-shared; checkout 5xx","trace_id":"tr-8850"}
+{"timestamp":"2026-06-18T14:05:10Z","service":"reporting","severity_text":"INFO","msg":"nightly_revenue_rollup still running, 9 sessions open on orders-db-shared","trace_id":"tr-8851"}
+{"timestamp":"2026-06-18T14:06:00Z","service":"frontend","severity_text":"INFO","msg":"GET /home 200 user=u-5512","trace_id":"tr-8852","latency_ms":79}

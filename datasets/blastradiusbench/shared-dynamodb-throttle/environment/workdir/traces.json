@@ -1,0 +1,119 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-5101",
+      "spans": [
+        {
+          "span_id": "m1",
+          "parent_id": null,
+          "service": "ai-memory-svc",
+          "name": "PutItem pipeline-states",
+          "start": "2026-06-20T07:34:10.000Z",
+          "duration_ms": 60,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "dynamodb",
+            "aws.dynamodb.table": "pipeline-states",
+            "error.msg": "ProvisionedThroughputExceededException",
+            "aws.dynamodb.consumed_wcu": 2710,
+            "aws.dynamodb.provisioned_wcu": 2000
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5102",
+      "spans": [
+        {
+          "span_id": "sc1",
+          "parent_id": null,
+          "service": "ai-scheduler",
+          "name": "BatchWriteItem pipeline-states",
+          "start": "2026-06-20T07:33:20.000Z",
+          "duration_ms": 75,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "dynamodb",
+            "aws.dynamodb.table": "pipeline-states",
+            "error.msg": "ProvisionedThroughputExceededException",
+            "aws.dynamodb.write_rps": 480,
+            "aws.dynamodb.provisioned_wcu": 2000
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5103",
+      "spans": [
+        {
+          "span_id": "nw1",
+          "parent_id": null,
+          "service": "notification-worker",
+          "name": "UpdateItem pipeline-states",
+          "start": "2026-06-20T07:33:50.000Z",
+          "duration_ms": 55,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "dynamodb",
+            "aws.dynamodb.table": "pipeline-states",
+            "error.msg": "ProvisionedThroughputExceededException",
+            "aws.dynamodb.provisioned_wcu": 2000
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5104",
+      "spans": [
+        {
+          "span_id": "n1",
+          "parent_id": null,
+          "service": "notification-svc",
+          "name": "POST /internal/notify/render",
+          "start": "2026-06-20T07:37:40.000Z",
+          "duration_ms": 88,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 422,
+            "error.msg": "unknown placeholder {{org.tier}} in template welcome_v3"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5105",
+      "spans": [
+        {
+          "span_id": "a1",
+          "parent_id": null,
+          "service": "ai-inference-runner",
+          "name": "POST /infer/batch",
+          "start": "2026-06-20T07:38:05.000Z",
+          "duration_ms": 140,
+          "status": "OK",
+          "attributes": {
+            "note": "no dynamodb dependency"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-5106",
+      "spans": [
+        {
+          "span_id": "p1",
+          "parent_id": null,
+          "service": "platform-api",
+          "name": "GET /api/v1/orgs/conf",
+          "start": "2026-06-20T07:39:00.000Z",
+          "duration_ms": 110,
+          "status": "OK",
+          "attributes": {
+            "http.status_code": 200
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "window": "2026-06-24T14:40:00Z..2026-06-24T14:57:00Z",
+  "baseline_window": "2026-06-24T12:40:00Z..2026-06-24T14:40:00Z",
+  "patterns": [
+    {
+      "signature": "broker ingest-shared-broker-2 log dir <N>% used; partitions dropping out of ISR",
+      "service": "edge-collector",
+      "count": 22,
+      "delta_vs_baseline": "+22",
+      "first_seen": "2026-06-24T14:46:30Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "cluster ingest-shared under-replicated partitions=<N>, ISR shrinking on broker-2",
+      "service": "edge-collector",
+      "count": 16,
+      "delta_vs_baseline": "+16",
+      "first_seen": "2026-06-24T14:48:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "produce to metrics.raw on cluster ingest-shared failed: NotEnoughReplicasException",
+      "service": "metric-ingestor",
+      "count": 9200,
+      "delta_vs_baseline": "+9200",
+      "first_seen": "2026-06-24T14:50:05Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "offset commit / produce stalled on cluster ingest-shared: NotEnoughReplicas",
+      "service": "log-ingestor",
+      "count": 4100,
+      "delta_vs_baseline": "+4100",
+      "first_seen": "2026-06-24T14:50:40Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "traces.raw write rejected by ingest-shared: not enough in-sync replicas",
+      "service": "trace-ingestor",
+      "count": 3600,
+      "delta_vs_baseline": "+3600",
+      "first_seen": "2026-06-24T14:51:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "token signature verification failed kid=rotated-2026-06",
+      "service": "auth-service",
+      "count": 21,
+      "delta_vs_baseline": "+21",
+      "first_seen": "2026-06-24T14:51:30Z",
+      "sentiment": "negative"
+    }
+  ]
+}

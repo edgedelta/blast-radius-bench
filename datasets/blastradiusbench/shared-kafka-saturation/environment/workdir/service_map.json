@@ -1,0 +1,73 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `kafka_cluster` field names the Kafka cluster a service produces to / consumes from (if any); `topic` is the cluster topic it owns. Services with no kafka_cluster do not use Kafka.",
+  "generated_at": "2026-06-24T15:00:00Z",
+  "services": [
+    {
+      "name": "metric-ingestor",
+      "namespace": "ingest",
+      "role": "consumer",
+      "kafka_cluster": "ingest-shared",
+      "topic": "metrics.raw"
+    },
+    {
+      "name": "log-ingestor",
+      "namespace": "ingest",
+      "role": "consumer",
+      "kafka_cluster": "ingest-shared",
+      "topic": "logs.raw"
+    },
+    {
+      "name": "trace-ingestor",
+      "namespace": "ingest",
+      "role": "consumer",
+      "kafka_cluster": "ingest-shared",
+      "topic": "traces.raw"
+    },
+    {
+      "name": "edge-collector",
+      "namespace": "ingest",
+      "role": "producer",
+      "kafka_cluster": "ingest-shared",
+      "topic": "metrics.raw,logs.raw,traces.raw"
+    },
+    {
+      "name": "billing",
+      "namespace": "billing",
+      "role": "consumer",
+      "kafka_cluster": "billing-events",
+      "topic": "billing.invoices",
+      "datastores": ["rds:billing-pg"]
+    },
+    {
+      "name": "api-gateway",
+      "namespace": "edge",
+      "role": "http"
+    },
+    {
+      "name": "auth-service",
+      "namespace": "edge",
+      "role": "http",
+      "datastores": ["rds:auth-pg"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "edge-collector",
+      "to": "metric-ingestor",
+      "call_rate_rps": 0,
+      "note": "edge-collector produces to topic metrics.raw on cluster ingest-shared; metric-ingestor consumes it (no direct RPC)"
+    },
+    {
+      "from": "api-gateway",
+      "to": "billing",
+      "call_rate_rps": 40,
+      "note": "api-gateway calls billing for invoice lookups; billing consumes cluster billing-events, not ingest-shared"
+    },
+    {
+      "from": "api-gateway",
+      "to": "auth-service",
+      "call_rate_rps": 90,
+      "note": "api-gateway calls auth-service for token validation; auth-service uses no Kafka cluster"
+    }
+  ]
+}

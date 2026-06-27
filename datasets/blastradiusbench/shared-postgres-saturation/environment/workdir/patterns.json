@@ -1,0 +1,54 @@
+{
+  "window": "2026-06-18T13:50:00Z..2026-06-18T14:10:00Z",
+  "baseline_window": "2026-06-18T11:50:00Z..2026-06-18T13:50:00Z",
+  "patterns": [
+    {
+      "signature": "reporting seq scan on orders-db-shared, holding connection pid=<N>",
+      "service": "reporting",
+      "count": 14,
+      "delta_vs_baseline": "+14",
+      "first_seen": "2026-06-18T13:54:40Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "orders-db-shared active_connections=<N>/200",
+      "service": "reporting",
+      "count": 9,
+      "delta_vs_baseline": "+9",
+      "first_seen": "2026-06-18T13:58:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "FATAL: too many connections to orders-db-shared",
+      "service": "orders",
+      "count": 6100,
+      "delta_vs_baseline": "+6100",
+      "first_seen": "2026-06-18T14:00:05Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "FATAL: sorry, too many clients already (orders-db-shared)",
+      "service": "billing",
+      "count": 2400,
+      "delta_vs_baseline": "+2400",
+      "first_seen": "2026-06-18T14:00:33Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "no connection slots available on orders-db-shared",
+      "service": "fulfillment",
+      "count": 1700,
+      "delta_vs_baseline": "+1700",
+      "first_seen": "2026-06-18T14:00:58Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "GET /promo 404 unknown_variant=express_banner_v3 (flag rollout)",
+      "service": "frontend",
+      "count": 60,
+      "delta_vs_baseline": "+58",
+      "first_seen": "2026-06-18T13:57:11Z",
+      "sentiment": "neutral"
+    }
+  ]
+}

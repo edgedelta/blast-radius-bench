@@ -1,0 +1,107 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are in ms.",
+  "traces": [
+    {
+      "trace_id": "tr-3201",
+      "spans": [
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "auth",
+          "name": "POST /auth/login",
+          "start": "2026-06-19T19:09:00.000Z",
+          "duration_ms": 5010,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "db.system": "redis",
+            "db.redis.instance": "session-cache-01",
+            "db.statement": "GET session:tok:...",
+            "error.msg": "redis session-cache-01 command timeout (blocked_clients high)"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-3204",
+      "spans": [
+        {
+          "span_id": "c1",
+          "parent_id": null,
+          "service": "cart",
+          "name": "GET /cart",
+          "start": "2026-06-19T19:09:20.000Z",
+          "duration_ms": 5008,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 500,
+            "db.system": "redis",
+            "db.redis.instance": "session-cache-01",
+            "db.statement": "HGETALL cart:org-7",
+            "error.msg": "redis session-cache-01 read timeout"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-3207",
+      "spans": [
+        {
+          "span_id": "r1",
+          "parent_id": null,
+          "service": "rate-limiter",
+          "name": "check /ratelimit",
+          "start": "2026-06-19T19:09:30.000Z",
+          "duration_ms": 5005,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "redis",
+            "db.redis.instance": "session-cache-01",
+            "db.statement": "INCR rl:ip:203.0.113.7",
+            "error.msg": "redis session-cache-01 timeout; key evicted under maxmemory"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-3210",
+      "spans": [
+        {
+          "span_id": "k1",
+          "parent_id": null,
+          "service": "catalog",
+          "name": "GET /catalog/products",
+          "start": "2026-06-19T19:09:10.000Z",
+          "duration_ms": 21,
+          "status": "OK",
+          "attributes": {
+            "http.status_code": 200,
+            "db.system": "postgres",
+            "db.name": "catalog-db",
+            "note": "unaffected, does not use session-cache-01"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-3150",
+      "spans": [
+        {
+          "span_id": "b1",
+          "parent_id": null,
+          "service": "auth",
+          "name": "POST /auth/login",
+          "start": "2026-06-19T18:54:30.000Z",
+          "duration_ms": 12,
+          "status": "OK",
+          "attributes": {
+            "http.status_code": 200,
+            "db.system": "redis",
+            "db.redis.instance": "session-cache-01",
+            "db.statement": "SETEX session:tok:..."
+          }
+        }
+      ]
+    }
+  ]
+}

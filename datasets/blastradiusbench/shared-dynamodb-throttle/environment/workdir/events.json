@@ -1,0 +1,29 @@
+{
+  "window": "2026-06-20T07:20:00Z..2026-06-20T07:42:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-20T07:26:30Z",
+      "type": "Deployment",
+      "object": "deploy/ai-scheduler",
+      "namespace": "oncall-ai",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled ai-scheduler to v6f8a0c2 (per-step checkpoint writes)"
+    },
+    {
+      "timestamp": "2026-06-20T07:31:10Z",
+      "type": "metric_threshold",
+      "object": "dynamodb/pipeline-states",
+      "namespace": "oncall-ai",
+      "reason": "WriteThrottleEvents",
+      "message": "CloudWatch WriteThrottleEvents > 0 on table pipeline-states (us-east-1); ConsumedWriteCapacityUnits 2480 vs ProvisionedWriteCapacityUnits 2000"
+    },
+    {
+      "timestamp": "2026-06-20T07:35:20Z",
+      "type": "Deployment",
+      "object": "deploy/notification-svc",
+      "namespace": "oncall-ai",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled notification-svc to v44 (template registry refactor)"
+    }
+  ]
+}

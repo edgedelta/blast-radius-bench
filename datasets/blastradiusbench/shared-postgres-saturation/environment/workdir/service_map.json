@@ -1,0 +1,71 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `datastores` field lists backing data stores a service connects to (these are NOT call edges between services).",
+  "generated_at": "2026-06-18T13:30:00Z",
+  "services": [
+    {
+      "name": "api-gateway",
+      "namespace": "edge",
+      "datastores": []
+    },
+    {
+      "name": "frontend",
+      "namespace": "web",
+      "datastores": []
+    },
+    {
+      "name": "orders",
+      "namespace": "commerce",
+      "datastores": ["orders-db-shared"]
+    },
+    {
+      "name": "billing",
+      "namespace": "finance",
+      "datastores": ["orders-db-shared"]
+    },
+    {
+      "name": "fulfillment",
+      "namespace": "logistics",
+      "datastores": ["orders-db-shared"]
+    },
+    {
+      "name": "reporting",
+      "namespace": "analytics",
+      "kind": "CronJob",
+      "datastores": ["orders-db-shared"]
+    },
+    {
+      "name": "search",
+      "namespace": "discovery",
+      "datastores": ["search-es"]
+    }
+  ],
+  "datastores": [
+    {
+      "name": "orders-db-shared",
+      "engine": "postgres",
+      "max_connections": 200,
+      "note": "shared Postgres instance; multiple tenants connect to it"
+    },
+    {
+      "name": "search-es",
+      "engine": "elasticsearch"
+    }
+  ],
+  "edges": [
+    {
+      "from": "api-gateway",
+      "to": "frontend",
+      "call_rate_rps": 220
+    },
+    {
+      "from": "frontend",
+      "to": "orders",
+      "call_rate_rps": 95
+    },
+    {
+      "from": "frontend",
+      "to": "search",
+      "call_rate_rps": 130
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "window": "2026-06-20T05:20:00Z..2026-06-20T07:42:00Z",
+  "deploys": [
+    {
+      "timestamp": "2026-06-20T07:26:30Z",
+      "service": "ai-scheduler",
+      "commit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
+      "version": "ai-scheduler-v6f8a0c2",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-20T07:35:20Z",
+      "service": "notification-svc",
+      "commit_sha": "c4f1b9e07a23c4f1b9e07a23c4f1b9e07a23c4f1",
+      "version": "notification-v44",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-20T06:10:00Z",
+      "service": "ai-memory-svc",
+      "commit_sha": "1b2c3d4e5f60718293a4b5c6d7e8f90112233445",
+      "version": "ai-memory-v218",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-20T05:55:00Z",
+      "service": "platform-api",
+      "commit_sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e",
+      "version": "platform-api-v648",
+      "rollout": "100%"
+    }
+  ]
+}

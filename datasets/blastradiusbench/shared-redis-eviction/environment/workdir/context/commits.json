@@ -1,0 +1,39 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-19T16:50:00Z..2026-06-19T19:12:00Z",
+  "commits": [
+    {
+      "sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f",
+      "author": "platform-team",
+      "timestamp": "2026-06-19T18:48:00Z",
+      "service": "cache-audit",
+      "message": "#platform add nightly cache-audit cron: KEYS * then bulk DEL of stale keys on session-cache-01",
+      "files_changed": ["charts/platform/cache-audit/cronjob.yaml", "scripts/cache_audit.sh"]
+    },
+    {
+      "sha": "c3b7e1a9d2f4c3b7e1a9d2f4c3b7e1a9d2f4c3b7",
+      "author": "platform-team",
+      "timestamp": "2026-06-19T19:00:30Z",
+      "service": "notification-svc",
+      "message": "#platform notification-svc switch smtp relay to new gateway endpoint",
+      "files_changed": ["services/notification/relay/client.go"]
+    },
+    {
+      "sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
+      "author": "commerce-team",
+      "timestamp": "2026-06-19T18:20:00Z",
+      "service": "cart",
+      "message": "#commerce cart bump session-cache client pool size",
+      "files_changed": ["services/cart/cache/client.go"]
+    },
+    {
+      "sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e",
+      "author": "identity-team",
+      "timestamp": "2026-06-19T17:30:00Z",
+      "service": "auth",
+      "message": "#identity auth add reqID propagation to login handler",
+      "files_changed": ["services/auth/handler/login.go"]
+    }
+  ]
+}

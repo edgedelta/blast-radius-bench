@@ -1,0 +1,54 @@
+{
+  "repo": "github.com/acme/shop",
+  "window": "2026-06-18T12:00:00Z..2026-06-18T14:10:00Z",
+  "commits": [
+    {
+      "sha": "9c2e71a",
+      "author": "dpatel",
+      "timestamp": "2026-06-18T13:40:00Z",
+      "service": "reporting",
+      "message": "reporting: nightly_revenue_rollup now joins line_items per order in a single long-lived session (no LIMIT)",
+      "files_changed": ["reporting/jobs/revenue_rollup.sql", "reporting/jobs/runner.go"]
+    },
+    {
+      "sha": "7af31c2",
+      "author": "lzhang",
+      "timestamp": "2026-06-18T13:56:00Z",
+      "service": "frontend",
+      "message": "frontend: roll out express_banner promo variant behind flag",
+      "files_changed": ["frontend/src/components/PromoBanner.tsx", "frontend/src/flags.ts"]
+    },
+    {
+      "sha": "c81f44d",
+      "author": "rmehta",
+      "timestamp": "2026-06-18T12:20:00Z",
+      "service": "orders",
+      "message": "orders: add structured logging to order-create path",
+      "files_changed": ["orders/internal/handler/create.go"]
+    },
+    {
+      "sha": "e1207ab",
+      "author": "jdoe",
+      "timestamp": "2026-06-18T12:50:00Z",
+      "service": "billing",
+      "message": "billing: tidy invoice rounding helper",
+      "files_changed": ["billing/pkg/money/round.go"]
+    },
+    {
+      "sha": "a4490cf",
+      "author": "akapoor",
+      "timestamp": "2026-06-18T13:35:00Z",
+      "service": "search",
+      "message": "search: bump elasticsearch client to 8.13",
+      "files_changed": ["search/clients/es.go", "search/go.mod"]
+    },
+    {
+      "sha": "d1029fe",
+      "author": "ssingh",
+      "timestamp": "2026-06-18T12:05:00Z",
+      "service": "api-gateway",
+      "message": "api-gateway: add request-id propagation header",
+      "files_changed": ["gateway/middleware/reqid.go"]
+    }
+  ]
+}

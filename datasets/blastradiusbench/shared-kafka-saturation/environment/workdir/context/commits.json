@@ -1,0 +1,39 @@
+{
+  "repo": "acme/platform",
+  "branch": "refs/heads/main",
+  "window": "2026-06-24T12:40:00Z..2026-06-24T14:57:00Z",
+  "commits": [
+    {
+      "sha": "f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd29c6c113",
+      "author": "ingest-team",
+      "timestamp": "2026-06-24T14:33:00Z",
+      "service": "kafka-config-operator",
+      "message": "#ingest Lower retention.ms on ingest-shared topics to reclaim broker disk",
+      "files_changed": ["ingest/kafka/topics.yaml", "ingest/kafka/retention.go"]
+    },
+    {
+      "sha": "29c6c113f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd",
+      "author": "ingest-team",
+      "timestamp": "2026-06-24T13:05:00Z",
+      "service": "metric-ingestor",
+      "message": "#ingest metric-ingestor bump consumer fetch.max.bytes",
+      "files_changed": ["ingest/metric/consumer.go"]
+    },
+    {
+      "sha": "0c7b3d9e2f1a8c40dd29c6c113f60a4b2d1e5f8a",
+      "author": "ingest-team",
+      "timestamp": "2026-06-24T12:50:00Z",
+      "service": "trace-ingestor",
+      "message": "#ingest trace-ingestor enable span batching",
+      "files_changed": ["ingest/trace/batch.go"]
+    },
+    {
+      "sha": "b9d4e1a07c2f3b6e8d5a9c1f4e7b2d8a0c3f6e91",
+      "author": "platform-team",
+      "timestamp": "2026-06-24T14:45:00Z",
+      "service": "auth-service",
+      "message": "#auth Rotate JWKS signing key kid=rotated-2026-06",
+      "files_changed": ["auth/gateway/jwks.go", "auth/gateway/verify.go"]
+    }
+  ]
+}

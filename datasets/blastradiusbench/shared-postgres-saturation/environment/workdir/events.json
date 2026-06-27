@@ -1,0 +1,28 @@
+{
+  "window": "2026-06-18T13:40:00Z..2026-06-18T14:10:00Z",
+  "events": [
+    {
+      "timestamp": "2026-06-18T13:43:00Z",
+      "type": "Deployment",
+      "object": "cronjob/reporting",
+      "namespace": "analytics",
+      "reason": "ScalingReplicaSet",
+      "message": "Deployed reporting nightly_revenue_rollup to v9c2e71a (query change)"
+    },
+    {
+      "timestamp": "2026-06-18T14:01:30Z",
+      "type": "Deployment",
+      "object": "deployment/frontend",
+      "namespace": "web",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled frontend to v7af31c2 (express_banner flag)"
+    },
+    {
+      "timestamp": "2026-06-18T13:58:10Z",
+      "type": "DatabaseAlert",
+      "object": "postgres/orders-db-shared",
+      "reason": "ConnectionLimitReached",
+      "message": "orders-db-shared active_connections=200 of max_connections=200; FATAL: remaining connection slots are reserved for non-replication superuser connections"
+    }
+  ]
+}

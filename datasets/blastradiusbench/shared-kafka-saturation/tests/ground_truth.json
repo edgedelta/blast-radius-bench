@@ -1,0 +1,48 @@
+{
+  "scenario": "shared-kafka-saturation",
+  "origin_service": "kafka:ingest-shared",
+  "root_cause_culprit_sha": "f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd29c6c113",
+  "root_cause_keywords": [
+    "ingest-shared",
+    "kafka",
+    "isr",
+    "in-sync replicas",
+    "under-replicated",
+    "underreplicatedpartitions",
+    "notenoughreplicas",
+    "broker-2",
+    "log dir",
+    "retention",
+    "shared cluster",
+    "produce timeout"
+  ],
+  "propagation_path": [
+    {
+      "from": "kafka:ingest-shared",
+      "to": "metric-ingestor"
+    },
+    {
+      "from": "kafka:ingest-shared",
+      "to": "log-ingestor"
+    },
+    {
+      "from": "kafka:ingest-shared",
+      "to": "trace-ingestor"
+    }
+  ],
+  "blast_radius": [
+    "metric-ingestor",
+    "log-ingestor",
+    "trace-ingestor"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "metric-ingestor",
+  "accept_origin_aliases": [
+    "kafka:ingest-shared",
+    "ingest-shared",
+    "kafka ingest-shared",
+    "kafka cluster ingest-shared"
+  ],
+  "notes": "SHARED-CLUSTER TRAP. metric-ingestor, log-ingestor and trace-ingestor are three UNRELATED consumers/producers on the SAME Kafka cluster ingest-shared but on different topics (metrics.raw, logs.raw, traces.raw); service_map.json shows NO service-call edge among them. A retention.ms config change (commit f60a4b2) applied at 14:38 made broker-2's log dir fill to 95%, dropping partitions out of the in-sync replica set CLUSTER-WIDE (UnderReplicatedPartitions 0->71). With isr < min.insync.replicas=2, produce/consume on ALL topics fails (NotEnoughReplicas / produce timeouts), so all three ingestors degrade within the same ~2-minute window. The only common link is the shared cluster, visible in service_map (kafka_cluster=ingest-shared on all three) and events.json (broker-2 log dir 95% / ISR shrink). billing (cluster billing-events + rds:billing-pg) and api-gateway are NOT on this cluster and stay healthy. auth-service deployed near onset (jwks rotation) with its own flat 401s and is off-cluster. metric-ingestor is loudest/paged but is one of three co-victims.",
+  "_design_note": "Paged on metric-ingestor because it is the most customer-visible ingestor. It is one of several producers/consumers that failed at the same time on cluster ingest-shared; check WHY (cluster-level ISR shrink from broker-2 disk), not just metric-ingestor's own logs."
+}

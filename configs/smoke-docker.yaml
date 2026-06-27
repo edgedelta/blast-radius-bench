@@ -15,4 +15,4 @@ agents:
 datasets:
   - path: datasets/blastradiusbench
     task_names:
-      - db-pool-cascade
+      - shared-postgres-saturation

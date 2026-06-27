@@ -1,0 +1,21 @@
+{
+  "window": "2026-06-19T16:50:00Z..2026-06-19T19:12:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-06-19T18:55:00Z",
+      "flag": "cart.new_cart_v2",
+      "service": "cart",
+      "from": false,
+      "to": true,
+      "actor": "commerce-team"
+    },
+    {
+      "timestamp": "2026-06-19T17:40:00Z",
+      "flag": "auth.token_streaming",
+      "service": "auth",
+      "from": false,
+      "to": true,
+      "actor": "identity-team"
+    }
+  ]
+}

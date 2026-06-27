@@ -1,0 +1,34 @@
+{
+  "window": "2026-06-24T12:40:00Z..2026-06-24T14:57:00Z",
+  "deploys": [
+    {
+      "timestamp": "2026-06-24T14:38:00Z",
+      "service": "kafka-config-operator",
+      "commit_sha": "f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd29c6c113",
+      "version": "kafka-config-operator-v0f60a4b",
+      "rollout": "100%",
+      "note": "applied retention.ms change to topics on cluster ingest-shared"
+    },
+    {
+      "timestamp": "2026-06-24T14:50:00Z",
+      "service": "auth-service",
+      "commit_sha": "b9d4e1a07c2f3b6e8d5a9c1f4e7b2d8a0c3f6e91",
+      "version": "auth-service-v212",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-24T13:10:00Z",
+      "service": "metric-ingestor",
+      "commit_sha": "29c6c113f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd",
+      "version": "metric-ingestor-v88",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-24T12:55:00Z",
+      "service": "trace-ingestor",
+      "commit_sha": "0c7b3d9e2f1a8c40dd29c6c113f60a4b2d1e5f8a",
+      "version": "trace-ingestor-v54",
+      "rollout": "100%"
+    }
+  ]
+}

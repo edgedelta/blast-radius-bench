@@ -1,0 +1,66 @@
+{
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `datastores` field lists the backing data stores (caches/databases) each service connects to directly.",
+  "generated_at": "2026-06-19T19:20:00Z",
+  "datastores": [
+    {
+      "name": "redis:session-cache-01",
+      "kind": "redis",
+      "role": "primary",
+      "note": "single primary, no replica; maxmemory-policy allkeys-lru"
+    },
+    {
+      "name": "pg:catalog-db",
+      "kind": "postgres",
+      "role": "primary"
+    }
+  ],
+  "services": [
+    {
+      "name": "api-gateway",
+      "namespace": "edge",
+      "datastores": []
+    },
+    {
+      "name": "auth",
+      "namespace": "identity",
+      "datastores": ["redis:session-cache-01"]
+    },
+    {
+      "name": "cart",
+      "namespace": "commerce",
+      "datastores": ["redis:session-cache-01"]
+    },
+    {
+      "name": "rate-limiter",
+      "namespace": "edge",
+      "datastores": ["redis:session-cache-01"]
+    },
+    {
+      "name": "catalog",
+      "namespace": "commerce",
+      "datastores": ["pg:catalog-db"]
+    },
+    {
+      "name": "notification-svc",
+      "namespace": "platform",
+      "datastores": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "api-gateway",
+      "to": "auth",
+      "call_rate_rps": 90
+    },
+    {
+      "from": "api-gateway",
+      "to": "cart",
+      "call_rate_rps": 60
+    },
+    {
+      "from": "api-gateway",
+      "to": "catalog",
+      "call_rate_rps": 75
+    }
+  ]
+}

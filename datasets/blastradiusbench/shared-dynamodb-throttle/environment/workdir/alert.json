@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-9609",
+  "monitor": "AI Memory Service Error Monitor",
+  "service": "ai-memory-svc",
+  "metric": "error_rate_pct",
+  "threshold": "error_rate_pct > 25",
+  "observed_value": "ai-memory-svc error_rate 46%",
+  "fired_at": "2026-06-20T07:35:00Z",
+  "severity": "high",
+  "summary": "ai-memory-svc returning 503s on agent memory writes (error rate 46%)"
+}

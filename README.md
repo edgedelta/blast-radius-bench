@@ -83,16 +83,16 @@ names, log signatures, k8s event types and node identifiers, all **fictional sta
 
 | Scenario | Tier | Origin | Why it's hard |
 |----------|------|--------|---------------|
-| `db-pool-cascade` | medium | `orders` DB connection-pool exhaustion | The edge gateway is loudest and pages, but is the last victim; the cascade fans out into a small tree, not a line. |
+| `shared-postgres-saturation` | medium | `orders` DB connection-pool exhaustion | The edge gateway is loudest and pages, but is the last victim; the cascade fans out into a small tree, not a line. |
 | `retry-storm-amplification` | hard | `recommendation` GC pauses | Aggressive client retries put the *observed* load spike on the caller `product-page`; the true origin is the slow downstream. Classic reversed-causality trap. |
 | `noisy-neighbor-node` | hard | `node-7` memory saturation | Three unrelated services fail simultaneously with no call edge between them; the only link is the shared node, visible only in infra events. |
 | `fdb-tso-flink-cascade` | hard | `olapdb-tso` FoundationDB transaction timeouts | The loud `FlinkJobUnhealthy` page on `stream-taskmanager` is the last victim; the origin is the Timestamp Oracle's FDB leader-election/CAS timeouts four hops upstream. |
 | `backend-connectivity-cascade` | hard | `olapdb-server` write-path connectivity loss | The loudest latency/5xx is at the `http-receiver` edge; the origin is the backend whose write shard lost capacity. |
-| `queue-backlog-ingestion-cascade` | medium | `metric-ingestor-1` slow consumer | The edge `http-receiver` shows the traffic+latency spike, but it is backpressure from a downstream slow queue consumer. Reversed-causality trap. |
+| `shared-kafka-saturation` | medium | `metric-ingestor-1` slow consumer | The edge `http-receiver` shows the traffic+latency spike, but it is backpressure from a downstream slow queue consumer. Reversed-causality trap. |
 | `disk-pressure-noisy-neighbor` | hard | `node:ip-10-0-37-88` DiskPressure | Three unrelated services in three namespaces evicted at once; the only link is the shared node, and each victim has its own red herring. |
-| `probe-crashloop-cascade` | medium | `workflow-engine` probe misconfig (CrashLoopBackOff) | Dependents page loudest with 5xx; the origin's app logs are clean — the kubelet is killing it on a misconfigured probe. |
+| `shared-redis-eviction` | medium | `workflow-engine` probe misconfig (CrashLoopBackOff) | Dependents page loudest with 5xx; the origin's app logs are clean — the kubelet is killing it on a misconfigured probe. |
 | `memory-pressure-eviction-cascade` | hard | `node:ip-10-0-37-15` MemoryPressure | Query-failure 5xx loudest on `platform-api`; the chain starts with a node eviction of a `olapdb-vw-write` pod, then a service cascade. |
-| `dynamodb-capacity-degradation` | medium | `ai-memory-svc` DynamoDB throttling | Retry amplification makes the *caller* `ai-agent-svc` look like the epicenter; the origin is the throttled DynamoDB-backed memory store. |
+| `shared-dynamodb-throttle` | medium | `ai-memory-svc` DynamoDB throttling | Retry amplification makes the *caller* `ai-agent-svc` look like the epicenter; the origin is the throttled DynamoDB-backed memory store. |
 
 ## Running it
 

@@ -16,7 +16,7 @@ hand-curated, but the intended pipeline is fault injection on a real app:
      or the OpenTelemetry Astronomy Shop) under steady synthetic load.
   2. Pin every service to a known git commit. Pick ONE commit to be the culprit and
      inject a realistic fault tied to that code change, e.g.:
-        - shrink a DB connection pool / hold a connection across an RPC  (db-pool-cascade)
+        - shrink a DB connection pool / hold a connection across an RPC  (shared-postgres-saturation)
         - add an unbounded in-memory batch that triggers GC pauses       (retry-storm)
         - drop a memory limit on a co-located batch job                  (noisy-neighbor)
   3. Let the cascade develop. Record the telemetry window (traces, metrics, logs,
@@ -264,7 +264,7 @@ earliest-error timing and the call-direction (callee -> caller) of the cascade.
     }, indent=2) + "\n")
 
     # reuse the shared grader + test.sh from an existing scenario
-    src = BENCH_DIR / "db-pool-cascade" / "tests"
+    src = BENCH_DIR / "shared-postgres-saturation" / "tests"
     write(sdir / "tests" / "test_outputs.py", (src / "test_outputs.py").read_text())
     write(sdir / "tests" / "test.sh", (src / "test.sh").read_text())
 

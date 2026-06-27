@@ -1,0 +1,21 @@
+{
+  "window": "2026-06-20T05:20:00Z..2026-06-20T07:42:00Z",
+  "changes": [
+    {
+      "timestamp": "2026-06-20T07:25:00Z",
+      "flag": "ai_scheduler.checkpoint_every_step",
+      "service": "ai-scheduler",
+      "from": false,
+      "to": true,
+      "actor": "oncall-ai-team"
+    },
+    {
+      "timestamp": "2026-06-20T06:40:00Z",
+      "flag": "notification.template_registry_v2",
+      "service": "notification-svc",
+      "from": false,
+      "to": true,
+      "actor": "platform-team"
+    }
+  ]
+}

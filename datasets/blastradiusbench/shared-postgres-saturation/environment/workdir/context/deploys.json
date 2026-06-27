@@ -1,0 +1,33 @@
+{
+  "window": "2026-06-18T12:00:00Z..2026-06-18T14:10:00Z",
+  "deploys": [
+    {
+      "timestamp": "2026-06-18T13:43:00Z",
+      "service": "reporting",
+      "commit_sha": "9c2e71a",
+      "version": "reporting-v55",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-18T14:01:30Z",
+      "service": "frontend",
+      "commit_sha": "7af31c2",
+      "version": "frontend-v889",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-18T13:38:00Z",
+      "service": "search",
+      "commit_sha": "a4490cf",
+      "version": "search-v78",
+      "rollout": "100%"
+    },
+    {
+      "timestamp": "2026-06-18T12:25:00Z",
+      "service": "orders",
+      "commit_sha": "c81f44d",
+      "version": "orders-v411",
+      "rollout": "100%"
+    }
+  ]
+}

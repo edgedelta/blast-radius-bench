@@ -1,0 +1,117 @@
+{
+  "description": "Sampled OpenTelemetry spans. parent_id links spans within a trace; status is OK or ERROR; times are absolute UTC.",
+  "traces": [
+    {
+      "trace_id": "tr-9001",
+      "spans": [
+        {
+          "span_id": "o1",
+          "parent_id": null,
+          "service": "orders",
+          "name": "POST /orders",
+          "start": "2026-06-18T14:00:05.000Z",
+          "duration_ms": 2042,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 503,
+            "db.system": "postgresql",
+            "db.name": "orders-db-shared",
+            "error.msg": "FATAL: remaining connection slots are reserved; too many connections to orders-db-shared"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-9002",
+      "spans": [
+        {
+          "span_id": "b1",
+          "parent_id": null,
+          "service": "billing",
+          "name": "POST /billing/invoice",
+          "start": "2026-06-18T14:00:33.000Z",
+          "duration_ms": 2310,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "postgresql",
+            "db.name": "orders-db-shared",
+            "error.msg": "FATAL: sorry, too many clients already (orders-db-shared)"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-9003",
+      "spans": [
+        {
+          "span_id": "f1",
+          "parent_id": null,
+          "service": "fulfillment",
+          "name": "POST /fulfillment/ship",
+          "start": "2026-06-18T14:00:58.000Z",
+          "duration_ms": 1980,
+          "status": "ERROR",
+          "attributes": {
+            "db.system": "postgresql",
+            "db.name": "orders-db-shared",
+            "error.msg": "no connection slots available on orders-db-shared"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-9004",
+      "spans": [
+        {
+          "span_id": "s1",
+          "parent_id": null,
+          "service": "search",
+          "name": "GET /search",
+          "start": "2026-06-18T14:03:30.000Z",
+          "duration_ms": 19,
+          "status": "OK",
+          "attributes": {
+            "db.system": "elasticsearch",
+            "db.name": "search-es",
+            "note": "search uses its own Elasticsearch, unaffected"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-9005",
+      "spans": [
+        {
+          "span_id": "g1",
+          "parent_id": null,
+          "service": "api-gateway",
+          "name": "GET /healthz",
+          "start": "2026-06-18T14:03:55.000Z",
+          "duration_ms": 7,
+          "status": "OK",
+          "attributes": {
+            "note": "no datastore dependency; healthy"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-9006",
+      "spans": [
+        {
+          "span_id": "fe1",
+          "parent_id": null,
+          "service": "frontend",
+          "name": "GET /promo",
+          "start": "2026-06-18T14:01:20.000Z",
+          "duration_ms": 11,
+          "status": "ERROR",
+          "attributes": {
+            "http.status_code": 404,
+            "error.msg": "unknown_variant=express_banner_v3 (feature flag rollout)"
+          }
+        }
+      ]
+    }
+  ]
+}

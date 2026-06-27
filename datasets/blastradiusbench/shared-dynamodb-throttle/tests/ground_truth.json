@@ -1,0 +1,45 @@
+{
+  "scenario": "shared-dynamodb-throttle",
+  "origin_service": "ddb:pipeline-states",
+  "root_cause_culprit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
+  "root_cause_keywords": [
+    "pipeline-states",
+    "dynamodb",
+    "provisionedthroughputexceeded",
+    "throttl",
+    "write capacity",
+    "write-capacity",
+    "provisioned",
+    "wcu",
+    "capacity"
+  ],
+  "propagation_path": [
+    {
+      "from": "ddb:pipeline-states",
+      "to": "ai-memory-svc"
+    },
+    {
+      "from": "ddb:pipeline-states",
+      "to": "ai-scheduler"
+    },
+    {
+      "from": "ddb:pipeline-states",
+      "to": "notification-worker"
+    }
+  ],
+  "blast_radius": [
+    "ai-memory-svc",
+    "ai-scheduler",
+    "notification-worker"
+  ],
+  "edge_overlap_threshold": 1.0,
+  "loudest_but_innocent": "ai-memory-svc",
+  "accept_origin_aliases": [
+    "ddb:pipeline-states",
+    "pipeline-states",
+    "dynamodb pipeline-states",
+    "ddb table pipeline-states"
+  ],
+  "notes": "SHARED-RESOURCE TRAP. The DynamoDB table pipeline-states is written by three UNRELATED services that share NO service-call edge: ai-memory-svc, ai-scheduler and notification-worker. ai-scheduler deployed commit 6f8a0c2e at 07:26 which checkpoints plan state on every step, doubling its write rate (~210->480 ddb_write_rps) against the table's fixed 2000 provisioned WCU. ConsumedWriteCapacityUnits crossed 2000 at 07:31 and the table began returning ProvisionedThroughputExceededException to ALL writers, so all three victims' error_rate spiked together at 07:34. The page fires on ai-memory-svc (highest error_rate ~46%), but it is just the most-visible victim, not the source. The coupling is the shared table, visible only via the per-service datastores field in service_map.json and the table-level WriteThrottleEvents in events.json/metrics.csv -- not any call edge. Controls ai-inference-runner and platform-api do not write the table and stay healthy. notification-svc (off-table, postgres templates) deployed v44 near onset and emits benign HTTP 422 template errors at a flat rate -- an errored-and-shipped wrong answer.",
+  "_design_note": "Paged on ai-memory-svc because it shows the highest error rate. Three services with no call edges between them fail in the same window only because they all write the same throttled table -- find the shared backing store, not a service-to-service cascade."
+}

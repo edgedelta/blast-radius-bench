@@ -1,0 +1,11 @@
+{
+  "alert_id": "PD-9588",
+  "monitor": "metric-ingestor Ingest Errors",
+  "service": "metric-ingestor",
+  "metric": "error_rate_pct / produce_timeout_rate",
+  "threshold": "error_rate > 5%",
+  "observed_value": "metric-ingestor 5xx 46%, produce timeouts to metrics.raw",
+  "fired_at": "2026-06-24T14:52:00Z",
+  "severity": "high",
+  "summary": "metric-ingestor failing: produce timeouts and NotEnoughReplicas, customer metrics not landing"
+}
