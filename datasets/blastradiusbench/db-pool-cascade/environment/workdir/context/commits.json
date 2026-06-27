@@ -29,9 +29,9 @@
     {
       "sha": "f4421cd",
       "author": "akapoor",
-      "timestamp": "2026-06-18T12:48:00Z",
+      "timestamp": "2026-06-18T13:54:00Z",
       "service": "search",
-      "message": "search: upgrade query parser to v2",
+      "message": "search: enable query parser v2 by default, stricter token validation",
       "files_changed": ["search/query/parser.go", "search/query/parser_test.go"]
     },
     {

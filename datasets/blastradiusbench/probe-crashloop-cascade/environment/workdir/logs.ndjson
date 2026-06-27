@@ -1,16 +1,18 @@
 {"timestamp":"2026-06-19T18:50:05Z","service":"workflow-engine","severity_text":"INFO","msg":"workflow-engine server listening on :8080, durable execution ready","trace_id":"tr-3001"}
-{"timestamp":"2026-06-19T18:52:10Z","service":"ai-agent-svc","severity_text":"INFO","msg":"AgenticLoopService/runMainLoop ok, workflow-engine ctx.run tool-agent_work_tracker","trace_id":"tr-3002","latency_ms":210}
-{"timestamp":"2026-06-19T18:54:40Z","service":"platform-api","severity_text":"DEBUG","msg":"admin GetConf isAgent=true shouldResolveContent=true reqID=p1 userID=org-7","trace_id":"tr-3003"}
-{"timestamp":"2026-06-19T18:58:30Z","service":"workflow-engine","severity_text":"INFO","msg":"deploy workflow-engine v8a0c2e4 live, workflow-engine server listening on :8080","trace_id":null}
-{"timestamp":"2026-06-19T19:02:10Z","service":"workflow-engine","severity_text":"WARN","msg":"kubelet Liveness probe failed: HTTP 404 from http://:9090/health (port serves /metrics only)","trace_id":"tr-3010"}
-{"timestamp":"2026-06-19T19:02:55Z","service":"workflow-engine","severity_text":"INFO","msg":"workflow-engine server listening on :8080, durable execution ready (app started cleanly)","trace_id":"tr-3011"}
-{"timestamp":"2026-06-19T19:03:20Z","service":"workflow-engine","severity_text":"ERROR","msg":"kubelet Killing container workflow-engine (liveness probe failed 3x), restartCount=1","trace_id":"tr-3012"}
-{"timestamp":"2026-06-19T19:04:10Z","service":"workflow-engine","severity_text":"ERROR","msg":"Back-off restarting failed container workflow-engine (CrashLoopBackOff), restartCount=2","trace_id":"tr-3013"}
-{"timestamp":"2026-06-19T19:05:00Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"workflow-engine call failed: dial tcp workflow-engine:8080 connection refused","trace_id":"tr-3020","latency_ms":50}
-{"timestamp":"2026-06-19T19:05:50Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"AgenticLoopService/runMainLoop failed: workflow-engine durable context unavailable (connection refused)","trace_id":"tr-3021","latency_ms":60}
-{"timestamp":"2026-06-19T19:06:30Z","service":"platform-api","severity_text":"INFO","msg":"deploy platform-api v646 live","trace_id":null}
-{"timestamp":"2026-06-19T19:07:10Z","service":"workflow-engine","severity_text":"ERROR","msg":"Back-off restarting failed container workflow-engine (CrashLoopBackOff), restartCount=5","trace_id":"tr-3030"}
-{"timestamp":"2026-06-19T19:08:00Z","service":"platform-api","severity_text":"ERROR","msg":"GetConf 500: downstream ai-agent-svc error (workflow-engine unavailable) reqID=p88 userID=org-7","trace_id":"tr-3040","latency_ms":300}
-{"timestamp":"2026-06-19T19:09:30Z","service":"platform-api","severity_text":"ERROR","msg":"Admin API HTTP 5xx: AI Teammate request failed 500 (5xx rate 39%)","trace_id":"tr-3041","latency_ms":320}
-{"timestamp":"2026-06-19T19:10:40Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"workflow-engine call failed: connection refused (workflow-engine restartCount=8)","trace_id":"tr-3050","latency_ms":55}
-{"timestamp":"2026-06-19T19:11:50Z","service":"platform-api","severity_text":"ERROR","msg":"Admin API HTTP 5xx 500 (errors/5m=4400)","trace_id":"tr-3051","latency_ms":330}
+{"timestamp":"2026-06-19T18:52:10Z","service":"ai-agent-svc","severity_text":"INFO","msg":"AgenticLoopService/runMainLoop ok, ctx.run tool-agent_work_tracker","trace_id":"tr-3002","latency_ms":210}
+{"timestamp":"2026-06-19T18:54:40Z","service":"platform-api","severity_text":"DEBUG","msg":"admin GetConf isAgent=true shouldResolveContent=true reqID=p1 userID=org-7","trace_id":"tr-3003","latency_ms":190}
+{"timestamp":"2026-06-19T18:58:30Z","service":"workflow-engine","severity_text":"INFO","msg":"workflow-engine server listening on :8080, durable execution ready","trace_id":null}
+{"timestamp":"2026-06-19T19:01:05Z","service":"notification-svc","severity_text":"INFO","msg":"notification-svc v2.4.0 started, worker pool=8","trace_id":null}
+{"timestamp":"2026-06-19T19:02:55Z","service":"workflow-engine","severity_text":"INFO","msg":"workflow-engine server listening on :8080, durable execution ready","trace_id":"tr-3011"}
+{"timestamp":"2026-06-19T19:03:30Z","service":"notification-svc","severity_text":"ERROR","msg":"webhook delivery failed: smtp relay cert verify: x509 certificate has expired","trace_id":"tr-3015"}
+{"timestamp":"2026-06-19T19:05:00Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"workflow-engine call failed: dial tcp workflow-engine:8080: connect: connection refused","trace_id":"tr-3020","latency_ms":50}
+{"timestamp":"2026-06-19T19:05:50Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"AgenticLoopService/runMainLoop aborted: context deadline exceeded calling workflow-engine ctx.run","trace_id":"tr-3021","latency_ms":30040}
+{"timestamp":"2026-06-19T19:06:20Z","service":"workflow-engine","severity_text":"INFO","msg":"workflow-engine server listening on :8080, durable execution ready","trace_id":"tr-3025"}
+{"timestamp":"2026-06-19T19:06:30Z","service":"platform-api","severity_text":"INFO","msg":"platform-api v646 started, handlers registered","trace_id":null}
+{"timestamp":"2026-06-19T19:06:45Z","service":"notification-svc","severity_text":"ERROR","msg":"webhook delivery failed: smtp relay cert verify: x509 certificate has expired","trace_id":"tr-3028"}
+{"timestamp":"2026-06-19T19:07:30Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"workflow-engine call failed: dial tcp workflow-engine:8080: connect: connection refused","trace_id":"tr-3035","latency_ms":48}
+{"timestamp":"2026-06-19T19:08:00Z","service":"platform-api","severity_text":"ERROR","msg":"GetConf 500: ai-agent-svc returned 503 (deadline exceeded) reqID=p88 userID=org-7","trace_id":"tr-3040","latency_ms":30000}
+{"timestamp":"2026-06-19T19:09:30Z","service":"platform-api","severity_text":"ERROR","msg":"Admin API HTTP 5xx: AI Teammate request failed 500, 5xx rate 39%","trace_id":"tr-3041","latency_ms":30120}
+{"timestamp":"2026-06-19T19:10:15Z","service":"ai-agent-svc","severity_text":"ERROR","msg":"AgenticLoopService/runMainLoop aborted: context deadline exceeded calling workflow-engine ctx.run","trace_id":"tr-3050","latency_ms":30020}
+{"timestamp":"2026-06-19T19:10:40Z","service":"notification-svc","severity_text":"ERROR","msg":"webhook delivery failed: smtp relay cert verify: x509 certificate has expired","trace_id":"tr-3052"}
+{"timestamp":"2026-06-19T19:11:50Z","service":"platform-api","severity_text":"ERROR","msg":"Admin API HTTP 5xx 500, errors/5m=4400","trace_id":"tr-3051","latency_ms":30330}

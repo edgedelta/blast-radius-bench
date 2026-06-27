@@ -11,18 +11,18 @@
     },
     {
       "timestamp": "2026-06-20T07:31:10Z",
-      "type": "event_threshold",
+      "type": "metric_threshold",
       "object": "dynamodb/pipeline-states",
       "namespace": "oncall-ai",
       "reason": "WriteThrottleEvents",
-      "message": "CloudWatch WriteThrottleEvents > 0 on table pipeline-states (us-east-1): ProvisionedThroughputExceeded"
+      "message": "CloudWatch WriteThrottleEvents > 0 on table pipeline-states (us-east-1); ConsumedWriteCapacityUnits 201 vs ProvisionedWriteCapacityUnits 100; SuccessfulRequestLatency p99 1.1s"
     },
     {
       "timestamp": "2026-06-20T07:33:40Z",
-      "type": "event_threshold",
+      "type": "metric_threshold",
       "object": "deploy/ai-agent-svc",
       "namespace": "oncall-ai",
-      "reason": "RetryStorm",
+      "reason": "OutboundCallRateHigh",
       "message": "ai-agent-svc outbound call rate to ai-memory 9x baseline"
     },
     {
@@ -31,7 +31,15 @@
       "object": "deploy/ai-agent-svc",
       "namespace": "oncall-ai",
       "reason": "ScalingReplicaSet",
-      "message": "Scaled up ai-agent-312 (innocent deploy near onset)"
+      "message": "Scaled up ai-agent-312"
+    },
+    {
+      "timestamp": "2026-06-20T07:35:20Z",
+      "type": "Deployment",
+      "object": "deploy/notification-svc",
+      "namespace": "oncall-ai",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled notification-svc to v44 (template registry refactor)"
     },
     {
       "timestamp": "2026-06-20T07:36:40Z",

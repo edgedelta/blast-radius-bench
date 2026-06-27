@@ -13,8 +13,7 @@
       "service": "kafka-metric-ingestor",
       "commit_sha": "9c6c113f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd2",
       "version": "kafka-metric-ingestor-v912",
-      "rollout": "100%",
-      "note": "deployed near incident onset"
+      "rollout": "100%"
     },
     {
       "timestamp": "2026-06-23T07:35:00Z",

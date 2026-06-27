@@ -11,7 +11,7 @@
       "sentiment": "negative"
     },
     {
-      "signature": "slow consumer: ed-olapdb-mt-1-metric-iq ApproximateAgeOfOldestMessage=<N>s and rising",
+      "signature": "ed-olapdb-mt-1-metric-iq ApproximateAgeOfOldestMessage=<N>s and rising; consumer_lag=<N>",
       "service": "metric-ingestor-1",
       "count": 410,
       "delta_vs_baseline": "+410",
@@ -19,7 +19,15 @@
       "sentiment": "negative"
     },
     {
-      "signature": "producer backpressure: ed-olapdb-mt-1-metric-iq near capacity, SQS ChangeMessageVisibility failing",
+      "signature": "token signature verification failed kid=rotated-2026-06",
+      "service": "auth-gateway",
+      "count": 18,
+      "delta_vs_baseline": "+18",
+      "first_seen": "2026-06-21T03:16:20Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "producer backpressure: ed-olapdb-mt-1-metric-iq near capacity, send buffer filling",
       "service": "kafka-metric-ingestor",
       "count": 2200,
       "delta_vs_baseline": "+2200",
@@ -27,7 +35,7 @@
       "sentiment": "negative"
     },
     {
-      "signature": "POST /v1/metrics 429: ingest buffer full",
+      "signature": "POST /v1/metrics 429: ingest buffer full, deadline exceeded calling kafka-metric-ingestor",
       "service": "http-receiver",
       "count": 9100,
       "delta_vs_baseline": "+9100",

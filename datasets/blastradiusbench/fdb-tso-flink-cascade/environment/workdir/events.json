@@ -15,15 +15,15 @@
       "object": "deploy/kafka-metric-ingestor",
       "namespace": "ingestion",
       "reason": "ScalingReplicaSet",
-      "message": "Scaled up kafka-metric-ingestor-912 (innocent deploy near onset)"
+      "message": "Scaled up kafka-metric-ingestor-912"
     },
     {
       "timestamp": "2026-06-23T09:13:20Z",
-      "type": "Warning",
+      "type": "Normal",
       "object": "statefulset/olapdb-tso",
       "namespace": "olapdb",
-      "reason": "Unhealthy",
-      "message": "Readiness probe failed: TSO not serving timestamps (FoundationDB transaction timeout)"
+      "reason": "Healthy",
+      "message": "Readiness probe ok; commit_ts allocation p99 4360ms, CAS leader-election wait elevated"
     },
     {
       "timestamp": "2026-06-23T09:16:00Z",
@@ -31,7 +31,15 @@
       "object": "pod/metric-ingestor-1-0",
       "namespace": "ingestion",
       "reason": "ProbeWarning",
-      "message": "write txn commit failures rising; ed-olapdb-mt-1-metric-iq consumption stalled"
+      "message": "write txn commit failures rising; commit_ts wait from olapdb-tso exceeding 5000ms; ed-olapdb-mt-1-metric-iq consumption stalled"
+    },
+    {
+      "timestamp": "2026-06-23T09:16:30Z",
+      "type": "Warning",
+      "object": "deploy/kafka-metric-ingestor",
+      "namespace": "ingestion",
+      "reason": "BackOff",
+      "message": "kafka-metric-ingestor-912 logging backpressure config rejects (sqs_receive_batch=0)"
     },
     {
       "timestamp": "2026-06-23T09:17:40Z",
@@ -39,7 +47,7 @@
       "object": "flinkjob/Metric_threshold_monitoring_job",
       "namespace": "streaming",
       "reason": "JobRestarting",
-      "message": "stream-taskmanager taskmanager job restarting: checkpoint expired"
+      "message": "stream-taskmanager taskmanager job restarting: checkpoint expired, source metric-ingestor-1 not advancing"
     },
     {
       "timestamp": "2026-06-23T09:19:00Z",

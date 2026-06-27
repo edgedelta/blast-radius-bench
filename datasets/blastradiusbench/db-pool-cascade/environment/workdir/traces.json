@@ -10,10 +10,11 @@
           "service": "api-gateway",
           "name": "GET /api/checkout",
           "start": "2026-06-18T14:03:01.000Z",
-          "duration_ms": 7010,
+          "duration_ms": 3050,
           "status": "ERROR",
           "attributes": {
-            "http.status_code": 504
+            "http.status_code": 504,
+            "error.msg": "504 from frontend"
           }
         },
         {
@@ -22,10 +23,11 @@
           "service": "frontend",
           "name": "render checkout",
           "start": "2026-06-18T14:03:01.020Z",
-          "duration_ms": 6960,
+          "duration_ms": 3030,
           "status": "ERROR",
           "attributes": {
-            "http.status_code": 504
+            "http.status_code": 504,
+            "error.msg": "504 from checkout"
           }
         },
         {
@@ -34,11 +36,11 @@
           "service": "checkout",
           "name": "POST /checkout/submit",
           "start": "2026-06-18T14:03:01.060Z",
-          "duration_ms": 6890,
+          "duration_ms": 3010,
           "status": "ERROR",
           "attributes": {
             "http.status_code": 504,
-            "error.msg": "upstream orders timeout"
+            "error.msg": "deadline exceeded calling orders (waited 3000ms, no response)"
           }
         },
         {
@@ -48,9 +50,11 @@
           "name": "GET /orders/lookup",
           "start": "2026-06-18T14:03:01.110Z",
           "duration_ms": 6800,
-          "status": "ERROR",
+          "status": "OK",
           "attributes": {
-            "error.msg": "timeout acquiring db connection from pool"
+            "db.pool.in_use": 50,
+            "db.pool.max": 50,
+            "db.pool.wait_ms": 6650
           }
         },
         {
@@ -58,12 +62,11 @@
           "parent_id": "s4",
           "service": "postgres-orders",
           "name": "BEGIN; SELECT orders",
-          "start": "2026-06-18T14:03:01.150Z",
-          "duration_ms": 6740,
-          "status": "ERROR",
+          "start": "2026-06-18T14:03:07.760Z",
+          "duration_ms": 90,
+          "status": "OK",
           "attributes": {
-            "db.system": "postgresql",
-            "error.msg": "pool: connection wait timeout (50/50 in use)"
+            "db.system": "postgresql"
           }
         },
         {
@@ -72,11 +75,11 @@
           "service": "payments",
           "name": "POST /payments/authorize",
           "start": "2026-06-18T14:03:01.080Z",
-          "duration_ms": 6700,
+          "duration_ms": 2950,
           "status": "ERROR",
           "attributes": {
             "http.status_code": 504,
-            "error.msg": "checkout call cancelled (sibling deadline)"
+            "error.msg": "request cancelled by caller checkout (context deadline exceeded)"
           }
         }
       ]
@@ -123,9 +126,11 @@
           "name": "GET /orders/lookup",
           "start": "2026-06-18T13:58:40.000Z",
           "duration_ms": 1850,
-          "status": "ERROR",
+          "status": "OK",
           "attributes": {
-            "error.msg": "slow: waited 1.8s for db connection"
+            "db.pool.in_use": 44,
+            "db.pool.max": 50,
+            "db.pool.wait_ms": 1760
           }
         },
         {
@@ -133,12 +138,29 @@
           "parent_id": "b4",
           "service": "postgres-orders",
           "name": "BEGIN; SELECT orders",
-          "start": "2026-06-18T13:58:40.050Z",
-          "duration_ms": 1790,
+          "start": "2026-06-18T13:58:41.760Z",
+          "duration_ms": 85,
+          "status": "OK",
+          "attributes": {
+            "db.system": "postgresql"
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-9004",
+      "spans": [
+        {
+          "span_id": "c1",
+          "parent_id": null,
+          "service": "search",
+          "name": "GET /search/query",
+          "start": "2026-06-18T14:02:12.000Z",
+          "duration_ms": 18,
           "status": "ERROR",
           "attributes": {
-            "db.system": "postgresql",
-            "error.msg": "pool near saturation (44/50)"
+            "http.status_code": 400,
+            "error.msg": "parser_v2: unsupported token in query, returning 400"
           }
         }
       ]

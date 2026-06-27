@@ -3,23 +3,23 @@
   "baseline_window": "2026-06-22T20:30:00Z..2026-06-22T22:30:00Z",
   "patterns": [
     {
-      "signature": "backend write RPC to <host>.olapdb-server-headless timed out after <N>ms",
+      "signature": "write_rpc wait <N>ms to <host>.olapdb-server-headless shard, retry_count <N>",
       "service": "olapdb-server",
-      "count": 288,
-      "delta_vs_baseline": "+288",
-      "first_seen": "2026-06-22T22:41:10Z",
-      "sentiment": "negative"
+      "count": 510,
+      "delta_vs_baseline": "+510",
+      "first_seen": "2026-06-22T22:39:40Z",
+      "sentiment": "neutral"
     },
     {
-      "signature": "connection reset by peer (olapdb-server-headless): backend connectivity loss on write path",
+      "signature": "commitParts write path slow: write_rpc wait <N>ms p99, queue depth <N>",
       "service": "olapdb-server",
       "count": 240,
       "delta_vs_baseline": "+240",
-      "first_seen": "2026-06-22T22:41:55Z",
-      "sentiment": "negative"
+      "first_seen": "2026-06-22T22:40:30Z",
+      "sentiment": "neutral"
     },
     {
-      "signature": "write txn failed: HTTP 500 from olapdb-server (commitParts timeout)",
+      "signature": "write txn failed: timeout calling olapdb-server commitParts (no response within <N>ms)",
       "service": "metric-ingestor-large",
       "count": 3100,
       "delta_vs_baseline": "+3100",
@@ -27,7 +27,23 @@
       "sentiment": "negative"
     },
     {
-      "signature": "POST /v1/ingest 500: downstream ingestor write failure",
+      "signature": "deadline exceeded calling olapdb-server; write batch dropped",
+      "service": "metric-ingestor-large",
+      "count": 2800,
+      "delta_vs_baseline": "+2800",
+      "first_seen": "2026-06-22T22:44:10Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "rule validation rejected legacy key <key>: HTTP 422 from rules-config",
+      "service": "transformer",
+      "count": 64,
+      "delta_vs_baseline": "+64",
+      "first_seen": "2026-06-22T22:45:05Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "POST /v1/ingest 500: ingestor write failure",
       "service": "http-receiver",
       "count": 14200,
       "delta_vs_baseline": "+14200",

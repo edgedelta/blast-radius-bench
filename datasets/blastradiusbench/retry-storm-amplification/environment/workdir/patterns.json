@@ -3,20 +3,20 @@
   "baseline_window": "2026-06-20T07:30:00Z..2026-06-20T09:00:00Z",
   "patterns": [
     {
-      "signature": "stop-the-world GC pause <N>ms (heap_used_mb=<N> batch_size=<N>)",
+      "signature": "GC pause <N>ms (heap_used_mb=<N> batch_size=<N>)",
       "service": "recommendation",
       "count": 1900,
-      "delta_vs_baseline": "+1898",
-      "first_seen": "2026-06-20T09:05:40Z",
-      "sentiment": "negative"
+      "delta_vs_baseline": "+1880",
+      "first_seen": "2026-06-20T09:03:12Z",
+      "sentiment": "neutral"
     },
     {
-      "signature": "request stalled during GC pause <N>ms",
+      "signature": "reco/score p99 latency <N>ms, batch loader holding full candidate slice (heap_used_mb=<N>)",
       "service": "recommendation",
       "count": 3400,
       "delta_vs_baseline": "+3400",
-      "first_seen": "2026-06-20T09:07:30Z",
-      "sentiment": "negative"
+      "first_seen": "2026-06-20T09:09:15Z",
+      "sentiment": "neutral"
     },
     {
       "signature": "reco call attempt=<N> deadline <N>ms exceeded, retrying",
@@ -27,11 +27,27 @@
       "sentiment": "negative"
     },
     {
+      "signature": "facet precompute job: 400 bad request from pricing API for sku-<N>, skipping",
+      "service": "catalog",
+      "count": 38,
+      "delta_vs_baseline": "+38",
+      "first_seen": "2026-06-20T09:06:05Z",
+      "sentiment": "negative"
+    },
+    {
       "signature": "outbound reco rps=<N> (<N>x baseline)",
       "service": "product-page",
       "count": 60,
       "delta_vs_baseline": "+60",
       "first_seen": "2026-06-20T09:10:30Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "all reco attempts failed after <N> retries (deadline exceeded calling recommendation), 502 to api-edge",
+      "service": "product-page",
+      "count": 4800,
+      "delta_vs_baseline": "+4800",
+      "first_seen": "2026-06-20T09:11:03Z",
       "sentiment": "negative"
     },
     {

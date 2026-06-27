@@ -31,7 +31,7 @@
       "object": "deploy/transformer",
       "namespace": "default",
       "reason": "ScalingReplicaSet",
-      "message": "Scaled up transformer-318 (innocent deploy near onset)"
+      "message": "Scaled up transformer-318 (rename-rule v318 rollout)"
     },
     {
       "timestamp": "2026-06-22T22:46:50Z",
@@ -39,7 +39,7 @@
       "object": "deploy/metric-ingestor-large",
       "namespace": "ingestion",
       "reason": "BackoffLimitReached",
-      "message": "write txns failing: olapdb-server write backend unreachable"
+      "message": "write txns failing: deadline exceeded calling olapdb-server commitParts"
     }
   ]
 }

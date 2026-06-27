@@ -1,22 +1,22 @@
 {"timestamp":"2026-06-22T02:00:01Z","service":"batch-importer","severity_text":"INFO","msg":"starting nightly catalog import (importer-v55)","trace_id":null,"node":"node-7"}
 {"timestamp":"2026-06-22T02:00:02Z","service":"auth","severity_text":"INFO","msg":"verify ok","trace_id":"tr-2800","latency_ms":44,"node":"node-7"}
 {"timestamp":"2026-06-22T02:00:05Z","service":"catalog","severity_text":"INFO","msg":"product served","trace_id":"tr-2801","latency_ms":80,"node":"node-3"}
-{"timestamp":"2026-06-22T02:01:30Z","service":"batch-importer","severity_text":"INFO","msg":"loading full catalog into memory (rows=4.2M)","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:03:20Z","service":"batch-importer","severity_text":"WARN","msg":"rss=6100MB and climbing, no chunking","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:04:05Z","service":"kubelet","severity_text":"WARN","msg":"node-7 MemoryPressure=True, available=220Mi","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:05:00Z","service":"kubelet","severity_text":"ERROR","msg":"SystemOOM on node-7, reclaiming kubepods memory","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:05:42Z","service":"auth","severity_text":"ERROR","msg":"process received SIGKILL (OOMKilled), restarting","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:06:01Z","service":"auth","severity_text":"ERROR","msg":"verify failed: connection refused, pod not ready","trace_id":"tr-3001","latency_ms":4100,"node":"node-7"}
-{"timestamp":"2026-06-22T02:06:25Z","service":"cart","severity_text":"ERROR","msg":"evicted: node low on memory, draining connections","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:06:30Z","service":"cart","severity_text":"ERROR","msg":"context canceled: pod evicted","trace_id":"tr-3002","latency_ms":3050,"node":"node-7"}
-{"timestamp":"2026-06-22T02:07:05Z","service":"image-resize","severity_text":"ERROR","msg":"connection refused (OOMKilled)","trace_id":"tr-3003","latency_ms":5100,"node":"node-7"}
-{"timestamp":"2026-06-22T02:07:12Z","service":"image-resize","severity_text":"ERROR","msg":"process received SIGKILL (OOMKilled)","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:01:30Z","service":"batch-importer","severity_text":"INFO","msg":"catalog snapshot loaded rows=4200000 rss_mb=2300","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:02:10Z","service":"cart","severity_text":"INFO","msg":"checkout ok","trace_id":"tr-2802","latency_ms":62,"node":"node-7"}
+{"timestamp":"2026-06-22T02:03:20Z","service":"batch-importer","severity_text":"INFO","msg":"upsert phase rss_mb=6100","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:04:50Z","service":"batch-importer","severity_text":"INFO","msg":"upsert phase rss_mb=7100","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:05:55Z","service":"auth","severity_text":"ERROR","msg":"process exited unexpectedly (signal: killed); supervisor restarting","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:06:01Z","service":"auth","severity_text":"ERROR","msg":"verify failed: connection refused (jwt_cache warmup incomplete)","trace_id":"tr-3001","latency_ms":4100,"node":"node-7"}
+{"timestamp":"2026-06-22T02:06:25Z","service":"cart","severity_text":"ERROR","msg":"request aborted mid-handler: context canceled","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:06:30Z","service":"cart","severity_text":"ERROR","msg":"GET /cart/items 503: handler did not complete","trace_id":"tr-3002","latency_ms":3050,"node":"node-7"}
+{"timestamp":"2026-06-22T02:07:05Z","service":"image-resize","severity_text":"ERROR","msg":"resize worker exited (signal: killed) during libvips encode","trace_id":"tr-3003","latency_ms":5100,"node":"node-7"}
+{"timestamp":"2026-06-22T02:07:12Z","service":"image-resize","severity_text":"ERROR","msg":"worker pool restart: child process terminated","trace_id":null,"node":"node-7"}
 {"timestamp":"2026-06-22T02:07:50Z","service":"catalog","severity_text":"INFO","msg":"product served","trace_id":"tr-3004","latency_ms":84,"node":"node-3"}
-{"timestamp":"2026-06-22T02:08:10Z","service":"auth","severity_text":"WARN","msg":"readiness probe failed: connection refused (restarting after OOM)","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:09:00Z","service":"batch-importer","severity_text":"WARN","msg":"rss=7400MB; job re-scheduled after eviction","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:10:30Z","service":"cart","severity_text":"ERROR","msg":"context canceled: pod evicted","trace_id":"tr-3010","latency_ms":2900,"node":"node-7"}
+{"timestamp":"2026-06-22T02:08:10Z","service":"auth","severity_text":"WARN","msg":"readiness probe failed: connection refused","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:09:00Z","service":"batch-importer","severity_text":"INFO","msg":"upsert phase rss_mb=7400","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:10:30Z","service":"cart","severity_text":"ERROR","msg":"GET /cart/items 503: handler did not complete","trace_id":"tr-3010","latency_ms":2900,"node":"node-7"}
 {"timestamp":"2026-06-22T02:11:00Z","service":"catalog","severity_text":"INFO","msg":"product served","trace_id":"tr-3011","latency_ms":83,"node":"node-3"}
-{"timestamp":"2026-06-22T02:12:00Z","service":"auth","severity_text":"ERROR","msg":"login error rate 37%, pods flapping on node-7","trace_id":null,"node":"node-7"}
-{"timestamp":"2026-06-22T02:12:30Z","service":"image-resize","severity_text":"ERROR","msg":"resize failed: OOMKilled mid-request","trace_id":"tr-3012","latency_ms":5300,"node":"node-7"}
-{"timestamp":"2026-06-22T02:13:40Z","service":"batch-importer","severity_text":"INFO","msg":"still running, rss=7600MB","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:12:00Z","service":"auth","severity_text":"ERROR","msg":"login error rate 37%; pods restarting","trace_id":null,"node":"node-7"}
+{"timestamp":"2026-06-22T02:12:30Z","service":"image-resize","severity_text":"ERROR","msg":"resize failed: worker terminated mid-request","trace_id":"tr-3012","latency_ms":5300,"node":"node-7"}
+{"timestamp":"2026-06-22T02:13:40Z","service":"batch-importer","severity_text":"INFO","msg":"upsert phase rss_mb=7600","trace_id":null,"node":"node-7"}
 {"timestamp":"2026-06-22T02:14:00Z","service":"catalog","severity_text":"INFO","msg":"product served","trace_id":"tr-3013","latency_ms":85,"node":"node-3"}

@@ -7,5 +7,5 @@
   "observed_value": "outbound calls 9x baseline, errors 6800/5m, CPU 88%",
   "fired_at": "2026-06-20T07:35:00Z",
   "severity": "high",
-  "summary": "ai-agent-svc error + call-volume storm (9x), high CPU \u2014 AI Teammate runtime degraded"
+  "summary": "ai-agent-svc error + call-volume storm (9x), high CPU"
 }

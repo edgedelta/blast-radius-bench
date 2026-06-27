@@ -42,7 +42,7 @@
       "namespace": "oncall-ai",
       "node": "ip-10-0-12-31.us-east-1",
       "reason": "ScalingReplicaSet",
-      "message": "Scaled up platform-api-647 (innocent deploy near onset)"
+      "message": "Scaled up platform-api-647"
     },
     {
       "timestamp": "2026-06-22T11:54:00Z",

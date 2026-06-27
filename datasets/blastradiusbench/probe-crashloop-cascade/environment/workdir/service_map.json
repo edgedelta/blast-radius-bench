@@ -13,6 +13,10 @@
     {
       "name": "workflow-engine",
       "namespace": "oncall-ai"
+    },
+    {
+      "name": "notification-svc",
+      "namespace": "platform"
     }
   ],
   "edges": [
@@ -24,8 +28,7 @@
     {
       "from": "ai-agent-svc",
       "to": "workflow-engine",
-      "call_rate_rps": 120,
-      "note": "durable execution calls; workflow-engine must be up for agent workflows"
+      "call_rate_rps": 120
     }
   ]
 }

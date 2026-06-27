@@ -3,23 +3,15 @@
   "baseline_window": "2026-06-23T07:00:00Z..2026-06-23T09:00:00Z",
   "patterns": [
     {
-      "signature": "FoundationDB transaction timeout during TSO leader-election (fdb_error=<N>)",
-      "service": "olapdb-tso",
-      "count": 140,
-      "delta_vs_baseline": "+140",
-      "first_seen": "2026-06-23T09:12:40Z",
-      "sentiment": "negative"
-    },
-    {
-      "signature": "CAS operation failed: commit_ts unavailable, FoundationDB transaction timed out",
+      "signature": "TSO commit_ts allocation slow: CAS retries=<N> leader_election_wait=<N>ms p99=<N>ms",
       "service": "olapdb-tso",
       "count": 96,
       "delta_vs_baseline": "+96",
-      "first_seen": "2026-06-23T09:13:05Z",
-      "sentiment": "negative"
+      "first_seen": "2026-06-23T09:12:40Z",
+      "sentiment": "neutral"
     },
     {
-      "signature": "CnchLock acquire timed out after <N>ms (upstream olapdb-tso commit_ts unavailable)",
+      "signature": "CnchLock acquire timed out after <N>ms waiting on commit_ts from olapdb-tso",
       "service": "metric-ingestor-1",
       "count": 880,
       "delta_vs_baseline": "+880",
@@ -27,7 +19,7 @@
       "sentiment": "negative"
     },
     {
-      "signature": "TransactionCoordinator commit failed: could not obtain commit timestamp",
+      "signature": "TransactionCoordinator commit failed: timeout calling olapdb-tso, could not obtain commit timestamp",
       "service": "metric-ingestor-1",
       "count": 740,
       "delta_vs_baseline": "+740",
@@ -35,7 +27,15 @@
       "sentiment": "negative"
     },
     {
-      "signature": "FlinkJobUnhealthy: job restart <N> of <N>",
+      "signature": "backpressure config invalid: sqs_receive_batch=0 rejected, falling back to default",
+      "service": "kafka-metric-ingestor",
+      "count": 3,
+      "delta_vs_baseline": "+3",
+      "first_seen": "2026-06-23T09:15:50Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "Flink job Metric_threshold_monitoring_job restarting: deadline exceeded reading from metric-ingestor-1",
       "service": "stream-taskmanager",
       "count": 9,
       "delta_vs_baseline": "+9",
@@ -43,7 +43,7 @@
       "sentiment": "negative"
     },
     {
-      "signature": "Admin API HTTP 5xx: 500 downstream stream-taskmanager unavailable",
+      "signature": "Admin API HTTP 5xx: 500 deadline exceeded calling stream-taskmanager",
       "service": "platform-api",
       "count": 1900,
       "delta_vs_baseline": "+1900",

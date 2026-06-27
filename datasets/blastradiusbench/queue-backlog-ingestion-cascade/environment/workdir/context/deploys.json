@@ -9,6 +9,13 @@
       "rollout": "100%"
     },
     {
+      "timestamp": "2026-06-21T03:17:30Z",
+      "service": "auth-gateway",
+      "commit_sha": "b9d4e1a07c2f3b6e8d5a9c1f4e7b2d8a0c3f6e91",
+      "version": "auth-gateway-v212",
+      "rollout": "100%"
+    },
+    {
       "timestamp": "2026-06-21T02:15:00Z",
       "service": "kafka-metric-ingestor",
       "commit_sha": "0c7b3d9e2f1a8c40dd29c6c113f60a4b2d1e5f8a",
@@ -20,8 +27,7 @@
       "service": "http-receiver",
       "commit_sha": "29c6c113f60a4b2d1e5f8a0c7b3d9e2f1a8c40dd",
       "version": "http-receiver-v640",
-      "rollout": "100%",
-      "note": "deployed near incident onset"
+      "rollout": "100%"
     }
   ]
 }

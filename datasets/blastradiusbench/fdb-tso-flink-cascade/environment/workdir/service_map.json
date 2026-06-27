@@ -1,5 +1,5 @@
 {
-  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B. The `node` field is the k8s node a service runs on.",
+  "description": "Directed service dependency graph. An edge {from: A, to: B} means A calls B.",
   "generated_at": "2026-06-23T09:30:00Z",
   "services": [
     "platform-api",
@@ -12,19 +12,16 @@
   "edges": [
     {
       "from": "platform-api",
-      "to": "stream-taskmanager",
-      "note": "reads stream-taskmanager Flink job output"
+      "to": "stream-taskmanager"
     },
     {
       "from": "stream-taskmanager",
-      "to": "metric-ingestor-1",
-      "note": "Flink job consumes the olapdb ingestion write path"
+      "to": "metric-ingestor-1"
     },
     {
       "from": "metric-ingestor-1",
       "to": "olapdb-tso",
-      "call_rate_rps": 600,
-      "note": "acquires commit timestamps + CnchLocks for every write txn"
+      "call_rate_rps": 600
     },
     {
       "from": "metric-ingestor-1",

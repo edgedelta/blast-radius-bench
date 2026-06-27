@@ -3,7 +3,7 @@
   "baseline_window": "2026-06-19T16:50:00Z..2026-06-19T18:50:00Z",
   "patterns": [
     {
-      "signature": "kubelet Liveness probe failed: HTTP 404 from :9090/health",
+      "signature": "Liveness probe failed: HTTP probe failed with statuscode: 404 (GET http://<ip>:9090/health)",
       "service": "workflow-engine",
       "count": 24,
       "delta_vs_baseline": "+24",
@@ -11,15 +11,15 @@
       "sentiment": "negative"
     },
     {
-      "signature": "kubelet Killing container workflow-engine (liveness probe failed 3x), restartCount=<N>",
+      "signature": "Back-off restarting failed container workflow-engine in pod workflow-engine-<hash>-<id>",
       "service": "workflow-engine",
       "count": 8,
       "delta_vs_baseline": "+8",
-      "first_seen": "2026-06-19T19:03:20Z",
+      "first_seen": "2026-06-19T19:04:10Z",
       "sentiment": "negative"
     },
     {
-      "signature": "workflow-engine call failed: dial tcp workflow-engine:8080 connection refused",
+      "signature": "workflow-engine call failed: dial tcp workflow-engine:8080: connect: connection refused",
       "service": "ai-agent-svc",
       "count": 2600,
       "delta_vs_baseline": "+2600",
@@ -35,12 +35,12 @@
       "sentiment": "negative"
     },
     {
-      "signature": "workflow-engine server listening on :8080, durable execution ready (app started cleanly)",
-      "service": "workflow-engine",
-      "count": 8,
-      "delta_vs_baseline": "+6",
-      "first_seen": "2026-06-19T18:58:30Z",
-      "sentiment": "neutral"
+      "signature": "webhook delivery failed: smtp relay cert verify: x509 certificate has expired",
+      "service": "notification-svc",
+      "count": 31,
+      "delta_vs_baseline": "+31",
+      "first_seen": "2026-06-19T19:03:30Z",
+      "sentiment": "negative"
     }
   ]
 }

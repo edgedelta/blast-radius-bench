@@ -29,10 +29,10 @@
     {
       "sha": "a07fe22",
       "author": "delgado",
-      "timestamp": "2026-06-20T07:52:00Z",
+      "timestamp": "2026-06-20T08:55:00Z",
       "service": "catalog",
-      "message": "catalog: precompute facet counts nightly",
-      "files_changed": ["catalog/jobs/facets.go"]
+      "message": "catalog: fetch live prices in facet precompute job, drop legacy bucket keys",
+      "files_changed": ["catalog/jobs/facets.go", "catalog/clients/pricing.go"]
     },
     {
       "sha": "d44ab18",

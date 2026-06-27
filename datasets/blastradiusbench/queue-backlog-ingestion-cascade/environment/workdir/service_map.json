@@ -4,7 +4,8 @@
   "services": [
     "http-receiver",
     "kafka-metric-ingestor",
-    "metric-ingestor-1"
+    "metric-ingestor-1",
+    "auth-gateway"
   ],
   "queues": [
     "ed-olapdb-mt-1-metric-iq"
@@ -20,7 +21,7 @@
       "from": "kafka-metric-ingestor",
       "to": "metric-ingestor-1",
       "via_queue": "ed-olapdb-mt-1-metric-iq",
-      "note": "produces to the queue; metric-ingestor-1 is the CONSUMER"
+      "note": "produces to ed-olapdb-mt-1-metric-iq; metric-ingestor-1 consumes from it"
     }
   ]
 }

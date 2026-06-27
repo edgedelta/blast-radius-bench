@@ -14,7 +14,7 @@
           "status": "ERROR",
           "attributes": {
             "http.status_code": 500,
-            "error.msg": "stream-taskmanager job output stale"
+            "error.msg": "deadline exceeded calling stream-taskmanager: job output stale"
           }
         },
         {
@@ -26,7 +26,7 @@
           "duration_ms": 5120,
           "status": "ERROR",
           "attributes": {
-            "error.msg": "job restarting, checkpoint expired"
+            "error.msg": "deadline exceeded reading from metric-ingestor-1: source not advancing, checkpoint expired"
           }
         },
         {
@@ -38,7 +38,7 @@
           "duration_ms": 5040,
           "status": "ERROR",
           "attributes": {
-            "error.msg": "TransactionCoordinator commit failed: commit_ts unavailable"
+            "error.msg": "timeout calling olapdb-tso allocate commit_ts: commit_ts unavailable after 5000ms"
           }
         },
         {
@@ -47,11 +47,12 @@
           "service": "olapdb-tso",
           "name": "allocate commit_ts (CAS)",
           "start": "2026-06-23T09:20:05.140Z",
-          "duration_ms": 5005,
-          "status": "ERROR",
+          "duration_ms": 4980,
+          "status": "OK",
           "attributes": {
             "db.system": "foundationdb",
-            "error.msg": "FoundationDB transaction timeout during TSO leader-election (fdb_error=1031)"
+            "tso.cas_retries": 14,
+            "tso.leader_election_wait_ms": 4870
           }
         }
       ]
@@ -68,7 +69,7 @@
           "duration_ms": 5001,
           "status": "ERROR",
           "attributes": {
-            "error.msg": "CnchLock acquire timed out (commit_ts unavailable)"
+            "error.msg": "CnchLock acquire timed out after 5000ms waiting on commit_ts from olapdb-tso"
           }
         },
         {
@@ -77,11 +78,43 @@
           "service": "olapdb-tso",
           "name": "allocate commit_ts (CAS)",
           "start": "2026-06-23T09:14:55.040Z",
-          "duration_ms": 4950,
-          "status": "ERROR",
+          "duration_ms": 4905,
+          "status": "OK",
           "attributes": {
             "db.system": "foundationdb",
-            "error.msg": "CAS operation failed: FoundationDB transaction timed out (fdb_error=1004)"
+            "tso.cas_retries": 11,
+            "tso.leader_election_wait_ms": 4780
+          }
+        }
+      ]
+    },
+    {
+      "trace_id": "tr-9200",
+      "spans": [
+        {
+          "span_id": "a1",
+          "parent_id": null,
+          "service": "metric-ingestor-1",
+          "name": "commit write txn",
+          "start": "2026-06-23T09:11:20.000Z",
+          "duration_ms": 1620,
+          "status": "OK",
+          "attributes": {
+            "txn.commit_ts_wait_ms": 1480
+          }
+        },
+        {
+          "span_id": "a2",
+          "parent_id": "a1",
+          "service": "olapdb-tso",
+          "name": "allocate commit_ts (CAS)",
+          "start": "2026-06-23T09:11:20.030Z",
+          "duration_ms": 1560,
+          "status": "OK",
+          "attributes": {
+            "db.system": "foundationdb",
+            "tso.cas_retries": 4,
+            "tso.leader_election_wait_ms": 1450
           }
         }
       ]
@@ -96,10 +129,7 @@
           "name": "write to olapdb-server",
           "start": "2026-06-23T09:22:30.000Z",
           "duration_ms": 70,
-          "status": "OK",
-          "attributes": {
-            "note": "kafka-metric-ingestor path healthy"
-          }
+          "status": "OK"
         },
         {
           "span_id": "k2",

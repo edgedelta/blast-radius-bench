@@ -13,7 +13,8 @@
           "duration_ms": 4200,
           "status": "ERROR",
           "attributes": {
-            "http.status_code": 503
+            "http.status_code": 503,
+            "k8s.node": "node-3"
           }
         },
         {
@@ -25,7 +26,7 @@
           "duration_ms": 4100,
           "status": "ERROR",
           "attributes": {
-            "error.msg": "connection refused (pod restarting after OOMKill)",
+            "error.msg": "connection refused",
             "k8s.node": "node-7",
             "k8s.pod": "auth-77b"
           }
@@ -44,7 +45,8 @@
           "duration_ms": 3100,
           "status": "ERROR",
           "attributes": {
-            "http.status_code": 503
+            "http.status_code": 503,
+            "k8s.node": "node-3"
           }
         },
         {
@@ -56,7 +58,7 @@
           "duration_ms": 3050,
           "status": "ERROR",
           "attributes": {
-            "error.msg": "context canceled: pod evicted",
+            "error.msg": "context canceled",
             "k8s.node": "node-7",
             "k8s.pod": "cart-5cc"
           }
@@ -73,7 +75,10 @@
           "name": "GET /catalog/p/881",
           "start": "2026-06-22T02:07:05.000Z",
           "duration_ms": 5200,
-          "status": "ERROR"
+          "status": "ERROR",
+          "attributes": {
+            "k8s.node": "node-3"
+          }
         },
         {
           "span_id": "i2",
@@ -84,7 +89,7 @@
           "duration_ms": 5100,
           "status": "ERROR",
           "attributes": {
-            "error.msg": "connection refused (OOMKilled)",
+            "error.msg": "worker terminated mid-request",
             "k8s.node": "node-7",
             "k8s.pod": "image-resize-9d1"
           }

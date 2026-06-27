@@ -20,8 +20,7 @@
       "service": "transformer",
       "commit_sha": "60a4b2d1e5f8a0c7b3d9e2f1a8c40dd29c6c113f",
       "version": "transformer-v318",
-      "rollout": "100%",
-      "note": "deployed near incident onset"
+      "rollout": "100%"
     },
     {
       "timestamp": "2026-06-22T21:00:00Z",

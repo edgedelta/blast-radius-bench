@@ -3,10 +3,10 @@
   "baseline_window": "2026-06-18T12:00:00Z..2026-06-18T13:50:00Z",
   "patterns": [
     {
-      "signature": "timeout acquiring db connection from pool (in_use=<N> max=<N> wait_count=<N>)",
+      "signature": "db pool fully checked out: in_use=<N> max=<N> wait_count=<N>, p99 connection wait <N>s",
       "service": "orders",
-      "count": 4120,
-      "delta_vs_baseline": "+4120",
+      "count": 3900,
+      "delta_vs_baseline": "+3900",
       "first_seen": "2026-06-18T13:59:30Z",
       "sentiment": "negative"
     },
@@ -15,11 +15,11 @@
       "service": "orders",
       "count": 880,
       "delta_vs_baseline": "+878",
-      "first_seen": "2026-06-18T13:57:50Z",
+      "first_seen": "2026-06-18T13:55:20Z",
       "sentiment": "negative"
     },
     {
-      "signature": "upstream orders timeout after <N>s",
+      "signature": "deadline exceeded calling orders after <N>s (no response)",
       "service": "checkout",
       "count": 2900,
       "delta_vs_baseline": "+2900",
@@ -48,6 +48,14 @@
       "count": 8200,
       "delta_vs_baseline": "+8200",
       "first_seen": "2026-06-18T14:03:03Z",
+      "sentiment": "negative"
+    },
+    {
+      "signature": "parser_v2: unsupported token in query, returning 400",
+      "service": "search",
+      "count": 96,
+      "delta_vs_baseline": "+96",
+      "first_seen": "2026-06-18T14:00:18Z",
       "sentiment": "negative"
     },
     {

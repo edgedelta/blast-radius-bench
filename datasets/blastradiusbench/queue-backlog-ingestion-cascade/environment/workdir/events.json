@@ -18,12 +18,20 @@
       "message": "CloudWatch ApproximateAgeOfOldestMessage >= 300 on ed-olapdb-mt-1-metric-iq (810s)"
     },
     {
+      "timestamp": "2026-06-21T03:17:30Z",
+      "type": "Deployment",
+      "object": "deploy/auth-gateway",
+      "namespace": "platform",
+      "reason": "ScalingReplicaSet",
+      "message": "Rolled auth-gateway to v212 (jwks key rotation kid=rotated-2026-06)"
+    },
+    {
       "timestamp": "2026-06-21T03:18:00Z",
       "type": "Deployment",
       "object": "deploy/http-receiver",
       "namespace": "default",
       "reason": "ScalingReplicaSet",
-      "message": "Scaled up http-receiver-640 (innocent deploy near onset)"
+      "message": "Scaled up http-receiver-640"
     },
     {
       "timestamp": "2026-06-21T03:19:30Z",

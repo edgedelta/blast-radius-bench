@@ -3,7 +3,7 @@
   "baseline_window": "2026-06-22T00:00:00Z..2026-06-22T02:00:00Z",
   "patterns": [
     {
-      "signature": "loading full catalog into memory (rows=<N>)",
+      "signature": "catalog snapshot loaded rows=<N> rss_mb=<N>",
       "service": "batch-importer",
       "count": 1,
       "delta_vs_baseline": "+1",
@@ -11,31 +11,31 @@
       "sentiment": "neutral"
     },
     {
-      "signature": "rss=<N>MB and climbing, no chunking",
+      "signature": "upsert phase rss_mb=<N>",
       "service": "batch-importer",
-      "count": 40,
-      "delta_vs_baseline": "+40",
+      "count": 12,
+      "delta_vs_baseline": "+12",
       "first_seen": "2026-06-22T02:03:20Z",
-      "sentiment": "negative"
+      "sentiment": "neutral"
     },
     {
-      "signature": "node-7 MemoryPressure=True, available=<N>Mi",
+      "signature": "kubelet node-7: allocatable memory <N>Mi",
       "service": "kubelet",
-      "count": 60,
-      "delta_vs_baseline": "+60",
-      "first_seen": "2026-06-22T02:04:05Z",
-      "sentiment": "negative"
+      "count": 4,
+      "delta_vs_baseline": "+4",
+      "first_seen": "2026-06-22T02:04:40Z",
+      "sentiment": "neutral"
     },
     {
-      "signature": "process received SIGKILL (OOMKilled), restarting",
+      "signature": "process exited unexpectedly (signal: killed); supervisor restarting",
       "service": "auth",
       "count": 410,
       "delta_vs_baseline": "+410",
-      "first_seen": "2026-06-22T02:05:42Z",
+      "first_seen": "2026-06-22T02:05:55Z",
       "sentiment": "negative"
     },
     {
-      "signature": "context canceled: pod evicted",
+      "signature": "request aborted mid-handler: context canceled",
       "service": "cart",
       "count": 380,
       "delta_vs_baseline": "+380",
@@ -43,7 +43,7 @@
       "sentiment": "negative"
     },
     {
-      "signature": "connection refused (OOMKilled)",
+      "signature": "resize worker exited (signal: killed) during libvips encode",
       "service": "image-resize",
       "count": 350,
       "delta_vs_baseline": "+350",
@@ -51,7 +51,7 @@
       "sentiment": "negative"
     },
     {
-      "signature": "login error rate <N>%, pods flapping on node-7",
+      "signature": "login error rate <N>%; pods restarting",
       "service": "auth",
       "count": 9100,
       "delta_vs_baseline": "+9100",

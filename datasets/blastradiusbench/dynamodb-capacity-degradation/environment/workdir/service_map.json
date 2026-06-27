@@ -14,6 +14,10 @@
       "name": "ai-memory-svc",
       "namespace": "oncall-ai",
       "backend": "DynamoDB:pipeline-states"
+    },
+    {
+      "name": "notification-svc",
+      "namespace": "oncall-ai"
     }
   ],
   "edges": [
@@ -23,10 +27,14 @@
       "call_rate_rps": 45
     },
     {
+      "from": "platform-api",
+      "to": "notification-svc",
+      "call_rate_rps": 12
+    },
+    {
       "from": "ai-agent-svc",
       "to": "ai-memory-svc",
-      "call_rate_rps": 130,
-      "note": "persists/loads agent state; RETRIES on throttle"
+      "call_rate_rps": 130
     }
   ]
 }

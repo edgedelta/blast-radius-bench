@@ -9,6 +9,13 @@
       "rollout": "100%"
     },
     {
+      "timestamp": "2026-06-19T19:01:05Z",
+      "service": "notification-svc",
+      "commit_sha": "c3b7e1a9d2f4c3b7e1a9d2f4c3b7e1a9d2f4c3b7",
+      "version": "notification-svc-v2.4.0",
+      "rollout": "100%"
+    },
+    {
       "timestamp": "2026-06-19T18:25:00Z",
       "service": "ai-agent-svc",
       "commit_sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
@@ -20,8 +27,7 @@
       "service": "platform-api",
       "commit_sha": "4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e",
       "version": "platform-api-v646",
-      "rollout": "100%",
-      "note": "deployed near incident onset"
+      "rollout": "100%"
     }
   ]
 }

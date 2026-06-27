@@ -12,11 +12,19 @@
       "files_changed": ["oncall-ai/memory/checkpoint.go", "oncall-ai/memory/dynamo_store.go"]
     },
     {
+      "sha": "c4f1b9e07a23c4f1b9e07a23c4f1b9e07a23c4f1",
+      "author": "platform-team",
+      "timestamp": "2026-06-20T07:18:00Z",
+      "service": "notification-svc",
+      "message": "#api Refactor notification template registry, migrate digest to digest_v2 key",
+      "files_changed": ["notify/templates/registry.go", "notify/templates/digest.go"]
+    },
+    {
       "sha": "8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f",
       "author": "oncall-ai-team",
       "timestamp": "2026-06-20T06:30:00Z",
       "service": "ai-agent-svc",
-      "message": "#ai Add exponential backoff retry to ai-memory client (note: still bursts on sustained throttle)",
+      "message": "#ai Add exponential backoff retry to ai-memory client",
       "files_changed": ["oncall-ai/agent/memory_client.go"]
     },
     {

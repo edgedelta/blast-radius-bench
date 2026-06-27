@@ -26,6 +26,14 @@
       "service": "http-receiver",
       "message": "#ingest http-receiver enable HTTP keepalive on inbound listener",
       "files_changed": ["receiver/http/listener.go"]
+    },
+    {
+      "sha": "b9d4e1a07c2f3b6e8d5a9c1f4e7b2d8a0c3f6e91",
+      "author": "platform-team",
+      "timestamp": "2026-06-21T03:10:00Z",
+      "service": "auth-gateway",
+      "message": "#auth Rotate JWKS signing key kid=rotated-2026-06",
+      "files_changed": ["auth/gateway/jwks.go", "auth/gateway/verify.go"]
     }
   ]
 }

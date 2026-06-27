@@ -9,6 +9,13 @@
       "message": "Scaled up replica set orders-412 to 6"
     },
     {
+      "timestamp": "2026-06-18T13:58:30Z",
+      "type": "Normal",
+      "object": "pod/orders-412-7c9",
+      "reason": "Probe",
+      "message": "Readiness probe slow: /healthz responded in 1.9s (db connection pool 44/50 in use)"
+    },
+    {
       "timestamp": "2026-06-18T14:00:35Z",
       "type": "Deployment",
       "object": "deploy/frontend",
@@ -20,21 +27,21 @@
       "type": "Warning",
       "object": "pod/orders-412-7c9",
       "reason": "Unhealthy",
-      "message": "Readiness probe failed: HTTP 503 from /healthz (db pool saturated)"
+      "message": "Readiness probe failed: /healthz timed out, db connection pool 50/50 in use, requests queueing"
     },
     {
       "timestamp": "2026-06-18T14:04:20Z",
       "type": "Warning",
       "object": "pod/orders-412-7c9",
       "reason": "Unhealthy",
-      "message": "Readiness probe failed: context deadline exceeded waiting for db connection"
+      "message": "Readiness probe failed: timed out waiting for a free db connection (pool 50/50)"
     },
     {
       "timestamp": "2026-06-18T14:06:10Z",
       "type": "Warning",
       "object": "deploy/checkout",
       "reason": "BackoffLimitReached",
-      "message": "checkout downstream orders unavailable, circuit breaker half-open"
+      "message": "checkout circuit breaker to orders half-open"
     },
     {
       "timestamp": "2026-06-18T14:08:00Z",

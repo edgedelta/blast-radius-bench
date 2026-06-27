@@ -1,27 +1,30 @@
 {"timestamp":"2026-06-18T13:52:01Z","service":"orders","severity_text":"INFO","msg":"order lookup ok","trace_id":"tr-8800","latency_ms":41}
 {"timestamp":"2026-06-18T13:52:03Z","service":"search","severity_text":"INFO","msg":"query served","trace_id":"tr-8801","latency_ms":39}
 {"timestamp":"2026-06-18T13:52:10Z","service":"api-gateway","severity_text":"INFO","msg":"GET /api/checkout 200","trace_id":"tr-8802","latency_ms":205}
-{"timestamp":"2026-06-18T13:55:40Z","service":"orders","severity_text":"INFO","msg":"order lookup ok","trace_id":"tr-8810","latency_ms":58}
+{"timestamp":"2026-06-18T13:55:20Z","service":"orders","severity_text":"INFO","msg":"db pool acquire slow: waited 120ms (in_use=31 max=50)","trace_id":"tr-8820","latency_ms":180}
+{"timestamp":"2026-06-18T13:55:40Z","service":"orders","severity_text":"INFO","msg":"order lookup ok","trace_id":"tr-8810","latency_ms":160}
 {"timestamp":"2026-06-18T13:57:50Z","service":"orders","severity_text":"WARN","msg":"db pool acquire slow: waited 410ms (in_use=44 max=50)","trace_id":"tr-8830","latency_ms":470}
 {"timestamp":"2026-06-18T13:58:40Z","service":"orders","severity_text":"WARN","msg":"db pool acquire slow: waited 1790ms (in_use=44 max=50)","trace_id":"tr-9003","latency_ms":1850}
 {"timestamp":"2026-06-18T13:59:05Z","service":"frontend","severity_text":"INFO","msg":"deploy frontend-v889 live","trace_id":null}
-{"timestamp":"2026-06-18T13:59:30Z","service":"orders","severity_text":"ERROR","msg":"timeout acquiring db connection from pool (in_use=50 max=50 wait_count=212)","trace_id":"tr-9010","latency_ms":3001}
-{"timestamp":"2026-06-18T14:00:01Z","service":"orders","severity_text":"ERROR","msg":"timeout acquiring db connection from pool (in_use=50 max=50 wait_count=318)","trace_id":"tr-9011","latency_ms":3002}
+{"timestamp":"2026-06-18T13:59:30Z","service":"orders","severity_text":"WARN","msg":"db pool fully checked out: in_use=50 max=50 wait_count=212, requests queueing","trace_id":"tr-9010","latency_ms":2400}
+{"timestamp":"2026-06-18T14:00:01Z","service":"orders","severity_text":"WARN","msg":"db pool fully checked out: in_use=50 max=50 wait_count=318, p99 connection wait 3.1s","trace_id":"tr-9011","latency_ms":3100}
 {"timestamp":"2026-06-18T14:00:02Z","service":"search","severity_text":"INFO","msg":"query served","trace_id":"tr-9012","latency_ms":42}
-{"timestamp":"2026-06-18T14:00:20Z","service":"checkout","severity_text":"WARN","msg":"upstream orders slow, response 2.1s","trace_id":"tr-9013","latency_ms":2100}
-{"timestamp":"2026-06-18T14:01:10Z","service":"orders","severity_text":"ERROR","msg":"timeout acquiring db connection from pool (in_use=50 max=50 wait_count=901)","trace_id":"tr-9020","latency_ms":3003}
-{"timestamp":"2026-06-18T14:01:55Z","service":"checkout","severity_text":"ERROR","msg":"upstream orders timeout after 3s","trace_id":"tr-9021","latency_ms":3050}
+{"timestamp":"2026-06-18T14:00:18Z","service":"search","severity_text":"ERROR","msg":"parser_v2: unsupported token in query, returning 400","trace_id":"tr-9014","latency_ms":17}
+{"timestamp":"2026-06-18T14:00:20Z","service":"checkout","severity_text":"WARN","msg":"orders response slow, 2.1s","trace_id":"tr-9013","latency_ms":2100}
+{"timestamp":"2026-06-18T14:01:10Z","service":"orders","severity_text":"WARN","msg":"db pool fully checked out: in_use=50 max=50 wait_count=901, p99 connection wait 4.0s","trace_id":"tr-9020","latency_ms":4000}
+{"timestamp":"2026-06-18T14:01:55Z","service":"checkout","severity_text":"ERROR","msg":"deadline exceeded calling orders after 3s (no response)","trace_id":"tr-9021","latency_ms":3050}
 {"timestamp":"2026-06-18T14:02:05Z","service":"payments","severity_text":"ERROR","msg":"request cancelled by caller checkout (context deadline exceeded)","trace_id":"tr-9022","latency_ms":2600}
+{"timestamp":"2026-06-18T14:02:12Z","service":"search","severity_text":"ERROR","msg":"parser_v2: unsupported token in query, returning 400","trace_id":"tr-9024","latency_ms":18}
 {"timestamp":"2026-06-18T14:02:40Z","service":"checkout","severity_text":"ERROR","msg":"circuit breaker to orders OPEN","trace_id":"tr-9023","latency_ms":1}
-{"timestamp":"2026-06-18T14:03:01Z","service":"orders","severity_text":"ERROR","msg":"timeout acquiring db connection from pool (in_use=50 max=50 wait_count=2401)","trace_id":"tr-9001","latency_ms":6800}
-{"timestamp":"2026-06-18T14:03:02Z","service":"checkout","severity_text":"ERROR","msg":"504 returned to frontend: orders unavailable","trace_id":"tr-9001","latency_ms":6890}
-{"timestamp":"2026-06-18T14:03:02Z","service":"payments","severity_text":"ERROR","msg":"504 returned to checkout","trace_id":"tr-9001","latency_ms":6700}
-{"timestamp":"2026-06-18T14:03:03Z","service":"frontend","severity_text":"ERROR","msg":"504 from checkout, rendering error page","trace_id":"tr-9001","latency_ms":6960}
-{"timestamp":"2026-06-18T14:03:03Z","service":"api-gateway","severity_text":"ERROR","msg":"504 Gateway Timeout GET /api/checkout","trace_id":"tr-9001","latency_ms":7010}
-{"timestamp":"2026-06-18T14:04:00Z","service":"api-gateway","severity_text":"ERROR","msg":"504 Gateway Timeout GET /api/checkout","trace_id":"tr-9030","latency_ms":7000}
+{"timestamp":"2026-06-18T14:03:00Z","service":"orders","severity_text":"WARN","msg":"db pool fully checked out: in_use=50 max=50 wait_count=2401, p99 connection wait 6.6s","trace_id":"tr-9001","latency_ms":6650}
+{"timestamp":"2026-06-18T14:03:02Z","service":"checkout","severity_text":"ERROR","msg":"504 returned to frontend: deadline exceeded calling orders","trace_id":"tr-9001","latency_ms":3010}
+{"timestamp":"2026-06-18T14:03:02Z","service":"payments","severity_text":"ERROR","msg":"504 returned to checkout","trace_id":"tr-9001","latency_ms":2950}
+{"timestamp":"2026-06-18T14:03:03Z","service":"frontend","severity_text":"ERROR","msg":"504 from checkout, rendering error page","trace_id":"tr-9001","latency_ms":3030}
+{"timestamp":"2026-06-18T14:03:03Z","service":"api-gateway","severity_text":"ERROR","msg":"504 Gateway Timeout GET /api/checkout","trace_id":"tr-9001","latency_ms":3050}
+{"timestamp":"2026-06-18T14:04:00Z","service":"api-gateway","severity_text":"ERROR","msg":"504 Gateway Timeout GET /api/checkout","trace_id":"tr-9030","latency_ms":3060}
 {"timestamp":"2026-06-18T14:04:30Z","service":"frontend","severity_text":"INFO","msg":"search path healthy, 200","trace_id":"tr-9031","latency_ms":58}
-{"timestamp":"2026-06-18T14:05:10Z","service":"api-gateway","severity_text":"ERROR","msg":"504 Gateway Timeout GET /api/checkout","trace_id":"tr-9040","latency_ms":7100}
-{"timestamp":"2026-06-18T14:06:00Z","service":"orders","severity_text":"ERROR","msg":"timeout acquiring db connection from pool (in_use=50 max=50 wait_count=4810)","trace_id":"tr-9050","latency_ms":7000}
-{"timestamp":"2026-06-18T14:07:00Z","service":"api-gateway","severity_text":"ERROR","msg":"504 Gateway Timeout GET /api/checkout (8200 errors/5m)","trace_id":"tr-9060","latency_ms":7000}
-{"timestamp":"2026-06-18T14:07:05Z","service":"payments","severity_text":"ERROR","msg":"504 returned to checkout","trace_id":"tr-9061","latency_ms":6800}
+{"timestamp":"2026-06-18T14:05:10Z","service":"api-gateway","severity_text":"ERROR","msg":"504 Gateway Timeout GET /api/checkout","trace_id":"tr-9040","latency_ms":3100}
+{"timestamp":"2026-06-18T14:06:00Z","service":"orders","severity_text":"WARN","msg":"db pool fully checked out: in_use=50 max=50 wait_count=4810, p99 connection wait 7.4s","trace_id":"tr-9050","latency_ms":7400}
+{"timestamp":"2026-06-18T14:07:00Z","service":"api-gateway","severity_text":"ERROR","msg":"504 Gateway Timeout GET /api/checkout (8200 errors/5m)","trace_id":"tr-9060","latency_ms":3070}
+{"timestamp":"2026-06-18T14:07:05Z","service":"payments","severity_text":"ERROR","msg":"504 returned to checkout","trace_id":"tr-9061","latency_ms":2900}
 {"timestamp":"2026-06-18T14:08:00Z","service":"search","severity_text":"INFO","msg":"query served","trace_id":"tr-9070","latency_ms":44}

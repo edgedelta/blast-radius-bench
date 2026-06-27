@@ -13,7 +13,8 @@
           "duration_ms": 905,
           "status": "ERROR",
           "attributes": {
-            "http.status_code": 503
+            "http.status_code": 503,
+            "error.msg": "502 from product-page"
           }
         },
         {
@@ -23,7 +24,10 @@
           "name": "render product",
           "start": "2026-06-20T09:11:02.010Z",
           "duration_ms": 880,
-          "status": "ERROR"
+          "status": "ERROR",
+          "attributes": {
+            "error.msg": "reco call failed after 3 attempts, returning 502"
+          }
         },
         {
           "span_id": "p1c",
@@ -35,16 +39,25 @@
           "status": "OK"
         },
         {
+          "span_id": "p1cs",
+          "parent_id": "p1c",
+          "service": "catalog",
+          "name": "GET /item/42",
+          "start": "2026-06-20T09:11:02.022Z",
+          "duration_ms": 27,
+          "status": "OK"
+        },
+        {
           "span_id": "r1",
           "parent_id": "p1",
           "service": "product-page",
           "name": "reco call attempt=1",
           "start": "2026-06-20T09:11:02.060Z",
-          "duration_ms": 205,
+          "duration_ms": 200,
           "status": "ERROR",
           "attributes": {
             "retry": 1,
-            "error.msg": "deadline 200ms exceeded"
+            "error.msg": "deadline 200ms exceeded calling recommendation"
           }
         },
         {
@@ -54,10 +67,10 @@
           "name": "POST /reco/score",
           "start": "2026-06-20T09:11:02.065Z",
           "duration_ms": 2600,
-          "status": "ERROR",
+          "status": "OK",
           "attributes": {
-            "error.msg": "request stalled during GC pause",
-            "gc_pause_ms": 2600
+            "reco.candidates_scored": 24,
+            "gc_pause_ms": 2380
           }
         },
         {
@@ -66,11 +79,11 @@
           "service": "product-page",
           "name": "reco call attempt=2",
           "start": "2026-06-20T09:11:02.270Z",
-          "duration_ms": 205,
+          "duration_ms": 200,
           "status": "ERROR",
           "attributes": {
             "retry": 2,
-            "error.msg": "deadline 200ms exceeded"
+            "error.msg": "deadline 200ms exceeded calling recommendation"
           }
         },
         {
@@ -80,9 +93,10 @@
           "name": "POST /reco/score",
           "start": "2026-06-20T09:11:02.275Z",
           "duration_ms": 2400,
-          "status": "ERROR",
+          "status": "OK",
           "attributes": {
-            "error.msg": "request stalled during GC pause"
+            "reco.candidates_scored": 24,
+            "gc_pause_ms": 2210
           }
         },
         {
@@ -91,11 +105,11 @@
           "service": "product-page",
           "name": "reco call attempt=3",
           "start": "2026-06-20T09:11:02.480Z",
-          "duration_ms": 205,
+          "duration_ms": 200,
           "status": "ERROR",
           "attributes": {
             "retry": 3,
-            "error.msg": "deadline 200ms exceeded"
+            "error.msg": "deadline 200ms exceeded calling recommendation"
           }
         },
         {
@@ -105,36 +119,55 @@
           "name": "POST /reco/score",
           "start": "2026-06-20T09:11:02.485Z",
           "duration_ms": 2200,
-          "status": "ERROR",
+          "status": "OK",
           "attributes": {
-            "error.msg": "request stalled during GC pause"
+            "reco.candidates_scored": 24,
+            "gc_pause_ms": 2040
           }
         }
       ]
     },
     {
-      "trace_id": "tr-7002",
+      "trace_id": "tr-6920",
       "spans": [
         {
-          "span_id": "x1",
+          "span_id": "b1",
           "parent_id": null,
+          "service": "api-edge",
+          "name": "GET /p/17",
+          "start": "2026-06-20T09:05:41.000Z",
+          "duration_ms": 1040,
+          "status": "OK"
+        },
+        {
+          "span_id": "b2",
+          "parent_id": "b1",
+          "service": "product-page",
+          "name": "render product",
+          "start": "2026-06-20T09:05:41.010Z",
+          "duration_ms": 1020,
+          "status": "OK"
+        },
+        {
+          "span_id": "b3",
+          "parent_id": "b2",
           "service": "recommendation",
           "name": "POST /reco/score",
-          "start": "2026-06-20T09:07:10.000Z",
-          "duration_ms": 1380,
-          "status": "ERROR",
+          "start": "2026-06-20T09:05:41.020Z",
+          "duration_ms": 980,
+          "status": "OK",
           "attributes": {
-            "error.msg": "stop-the-world GC pause 920ms",
-            "gc_pause_ms": 920,
-            "heap_used_mb": 1980
+            "reco.candidates_scored": 24,
+            "gc_pause_ms": 480,
+            "heap_used_mb": 1510
           }
         },
         {
-          "span_id": "x2",
-          "parent_id": "x1",
+          "span_id": "b4",
+          "parent_id": "b3",
           "service": "redis-cache",
           "name": "MGET items",
-          "start": "2026-06-20T09:07:10.010Z",
+          "start": "2026-06-20T09:05:41.025Z",
           "duration_ms": 6,
           "status": "OK"
         }

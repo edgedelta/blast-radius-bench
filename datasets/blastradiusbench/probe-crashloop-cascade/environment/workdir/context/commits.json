@@ -12,6 +12,14 @@
       "files_changed": ["charts/oncall-ai/workflow-engine/deployment.yaml"]
     },
     {
+      "sha": "c3b7e1a9d2f4c3b7e1a9d2f4c3b7e1a9d2f4c3b7",
+      "author": "platform-team",
+      "timestamp": "2026-06-19T19:00:30Z",
+      "service": "notification-svc",
+      "message": "#platform notification-svc switch smtp relay to new gateway endpoint",
+      "files_changed": ["services/notification/relay/client.go"]
+    },
+    {
       "sha": "6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d6f8a0c2e4d",
       "author": "oncall-ai-team",
       "timestamp": "2026-06-19T18:20:00Z",
