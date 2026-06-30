@@ -116,24 +116,23 @@ and have it write `failure_chain.json`, then run the scenario's `tests/test_outp
 
 ## Leaderboard
 
-Frozen run: **17 scenarios × 4 models × 3 attempts = 204 trials**, Harbor `terminus-2` over
-OpenRouter, 2026-06-27. A trial **passes** only if it gets the `origin_service` right **and**
-recovers the full causal chain (directed-edge recall = 1.0) with **zero** reversed edges, and
-does not name a blast-radius victim as the cause. Pass rate = trials passed / 51.
+Frozen run: **17 scenarios x 13 models x 3 attempts = 657 trials**, Harbor `terminus-2` over OpenRouter, 2026-06-30. Pass is the scenario grader's boolean verdict. Re-score any run yourself: `uv run scripts/process_results.py jobs/<run>`.
 
 | Model | Pass rate | easy | medium | hard |
-|-------|----------:|-----:|-------:|-----:|
-| gpt-5.2-codex   | **63%** (32/51) | 100% | 83% | 53% |
-| claude-opus-4.6 | **47%** (24/51) | 100% | 75% | 33% |
-| gemini-2.5-pro  | **39%** (20/51) | 33%  | 50% | 36% |
-| kimi-k2.5       | **39%** (20/51) | 67%  | 50% | 33% |
-
-Honesty is the product: if a model does badly here, that is a finding, not a bug. **Six
-shared-infrastructure scenarios** (`shared-postgres`, `shared-dynamodb`, `shared-nat-egress`,
-`disk-pressure`, `memory-pressure`, and one more) are failed by **every** model on **every**
-attempt — the cause is a shared resource that is *not an edge in the service graph*, so the
-models, which reconstruct call-graph cascades almost perfectly, have nothing to trace.
-Re-score any published trajectory yourself: `uv run scripts/process_results.py jobs/<run>`.
+|---|---|---|---|---|
+| gpt-5.4 | **62%** | 100% | 92% | 49% |
+| gpt-5.5 | **59%** | 100% | 100% | 42% |
+| gemini-3.1-pro-preview | **55%** | 100% | 64% | 49% |
+| claude-sonnet-4.6 | **49%** | 100% | 58% | 42% |
+| claude-opus-4.8 | **48%** | 100% | 75% | 34% |
+| gemini-3.5-flash | **47%** | 67% | 75% | 36% |
+| kimi-k2.5 | **46%** | 100% | 75% | 31% |
+| gpt-5.4-mini | **45%** | 67% | 67% | 36% |
+| gemini-3.1-flash-lite | **45%** | 100% | 67% | 33% |
+| kimi-k2-thinking | **42%** | 67% | 50% | 37% |
+| claude-haiku-4.5 | **27%** | 100% | 17% | 25% |
+| gpt-oss-120b | **25%** | 33% | 17% | 28% |
+| gpt-oss-20b | **6%** | 0% | 25% | 0% |
 
 ## How scenarios are generated
 
