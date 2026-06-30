@@ -1,0 +1,280 @@
+{
+ "TotalRuns": 663,
+ "TotalPassed": 281,
+ "TotalFailed": 382,
+ "TotalCostUSD": 93.04,
+ "ByModel": {
+  "openrouter/openai/gpt-5.4": {
+   "Runs": 51,
+   "Passed": 31,
+   "Failed": 20,
+   "PassRate": 60.8,
+   "TotalCostUSD": 5.5704,
+   "AvgCostUSD": 0.1092,
+   "AvgDurationSec": 104.4
+  },
+  "openrouter/openai/gpt-5.5": {
+   "Runs": 51,
+   "Passed": 30,
+   "Failed": 21,
+   "PassRate": 58.8,
+   "TotalCostUSD": 12.527,
+   "AvgCostUSD": 0.2456,
+   "AvgDurationSec": 128.7
+  },
+  "openrouter/google/gemini-3.1-pro-preview": {
+   "Runs": 51,
+   "Passed": 27,
+   "Failed": 24,
+   "PassRate": 52.9,
+   "TotalCostUSD": 15.6437,
+   "AvgCostUSD": 0.3067,
+   "AvgDurationSec": 375.6
+  },
+  "openrouter/anthropic/claude-sonnet-4.6": {
+   "Runs": 51,
+   "Passed": 25,
+   "Failed": 26,
+   "PassRate": 49.0,
+   "TotalCostUSD": 7.1861,
+   "AvgCostUSD": 0.1409,
+   "AvgDurationSec": 125.3
+  },
+  "openrouter/google/gemini-3.5-flash": {
+   "Runs": 51,
+   "Passed": 24,
+   "Failed": 27,
+   "PassRate": 47.1,
+   "TotalCostUSD": 13.2974,
+   "AvgCostUSD": 0.2607,
+   "AvgDurationSec": 233.2
+  },
+  "openrouter/anthropic/claude-opus-4.8": {
+   "Runs": 51,
+   "Passed": 24,
+   "Failed": 27,
+   "PassRate": 47.1,
+   "TotalCostUSD": 17.8806,
+   "AvgCostUSD": 0.3506,
+   "AvgDurationSec": 163.7
+  },
+  "openrouter/moonshotai/kimi-k2.5": {
+   "Runs": 51,
+   "Passed": 23,
+   "Failed": 28,
+   "PassRate": 45.1,
+   "TotalCostUSD": 1.8178,
+   "AvgCostUSD": 0.0356,
+   "AvgDurationSec": 602.5
+  },
+  "openrouter/openai/gpt-5.4-mini": {
+   "Runs": 51,
+   "Passed": 23,
+   "Failed": 28,
+   "PassRate": 45.1,
+   "TotalCostUSD": 1.1139,
+   "AvgCostUSD": 0.0218,
+   "AvgDurationSec": 65.2
+  },
+  "openrouter/google/gemini-3.1-flash-lite": {
+   "Runs": 51,
+   "Passed": 23,
+   "Failed": 28,
+   "PassRate": 45.1,
+   "TotalCostUSD": 0.3039,
+   "AvgCostUSD": 0.006,
+   "AvgDurationSec": 88.3
+  },
+  "openrouter/moonshotai/kimi-k2-thinking": {
+   "Runs": 51,
+   "Passed": 21,
+   "Failed": 30,
+   "PassRate": 41.2,
+   "TotalCostUSD": 4.0712,
+   "AvgCostUSD": 0.0798,
+   "AvgDurationSec": 371.6
+  },
+  "openrouter/anthropic/claude-haiku-4.5": {
+   "Runs": 51,
+   "Passed": 14,
+   "Failed": 37,
+   "PassRate": 27.5,
+   "TotalCostUSD": 13.1653,
+   "AvgCostUSD": 0.2581,
+   "AvgDurationSec": 406.0
+  },
+  "openrouter/openai/gpt-oss-120b": {
+   "Runs": 51,
+   "Passed": 13,
+   "Failed": 38,
+   "PassRate": 25.5,
+   "TotalCostUSD": 0.2523,
+   "AvgCostUSD": 0.0049,
+   "AvgDurationSec": 225.4
+  },
+  "openrouter/openai/gpt-oss-20b": {
+   "Runs": 51,
+   "Passed": 3,
+   "Failed": 48,
+   "PassRate": 5.9,
+   "TotalCostUSD": 0.2127,
+   "AvgCostUSD": 0.0042,
+   "AvgDurationSec": 649.0
+  }
+ },
+ "ByTask": {
+  "backend-connectivity-cascade": {
+   "Runs": 39,
+   "Passed": 35,
+   "Failed": 4,
+   "PassRate": 89.7,
+   "TotalCostUSD": 6.0168,
+   "AvgCostUSD": 0.1543,
+   "AvgDurationSec": 153.8
+  },
+  "cdn-origin-overload": {
+   "Runs": 39,
+   "Passed": 31,
+   "Failed": 8,
+   "PassRate": 79.5,
+   "TotalCostUSD": 3.8195,
+   "AvgCostUSD": 0.0979,
+   "AvgDurationSec": 140.8
+  },
+  "disk-pressure-noisy-neighbor": {
+   "Runs": 39,
+   "Passed": 0,
+   "Failed": 39,
+   "PassRate": 0.0,
+   "TotalCostUSD": 4.5704,
+   "AvgCostUSD": 0.1172,
+   "AvgDurationSec": 133.1
+  },
+  "dual-independent-incidents": {
+   "Runs": 39,
+   "Passed": 12,
+   "Failed": 27,
+   "PassRate": 30.8,
+   "TotalCostUSD": 5.561,
+   "AvgCostUSD": 0.1426,
+   "AvgDurationSec": 617.5
+  },
+  "fan-in-quiet-downstream": {
+   "Runs": 39,
+   "Passed": 34,
+   "Failed": 5,
+   "PassRate": 87.2,
+   "TotalCostUSD": 5.1358,
+   "AvgCostUSD": 0.1317,
+   "AvgDurationSec": 164.1
+  },
+  "fdb-tso-flink-cascade": {
+   "Runs": 39,
+   "Passed": 31,
+   "Failed": 8,
+   "PassRate": 79.5,
+   "TotalCostUSD": 4.5456,
+   "AvgCostUSD": 0.1166,
+   "AvgDurationSec": 1228.5
+  },
+  "grpc-deadline-chain": {
+   "Runs": 39,
+   "Passed": 31,
+   "Failed": 8,
+   "PassRate": 79.5,
+   "TotalCostUSD": 4.6361,
+   "AvgCostUSD": 0.1189,
+   "AvgDurationSec": 155.9
+  },
+  "memory-pressure-eviction-cascade": {
+   "Runs": 39,
+   "Passed": 0,
+   "Failed": 39,
+   "PassRate": 0.0,
+   "TotalCostUSD": 4.0628,
+   "AvgCostUSD": 0.1042,
+   "AvgDurationSec": 134.1
+  },
+  "mid-chain-cache-origin": {
+   "Runs": 39,
+   "Passed": 16,
+   "Failed": 23,
+   "PassRate": 41.0,
+   "TotalCostUSD": 7.384,
+   "AvgCostUSD": 0.1893,
+   "AvgDurationSec": 225.0
+  },
+  "noisy-neighbor-node": {
+   "Runs": 39,
+   "Passed": 31,
+   "Failed": 8,
+   "PassRate": 79.5,
+   "TotalCostUSD": 6.9264,
+   "AvgCostUSD": 0.1776,
+   "AvgDurationSec": 165.2
+  },
+  "retry-storm-amplification": {
+   "Runs": 39,
+   "Passed": 34,
+   "Failed": 5,
+   "PassRate": 87.2,
+   "TotalCostUSD": 4.7224,
+   "AvgCostUSD": 0.1211,
+   "AvgDurationSec": 165.2
+  },
+  "shared-dns-resolver-degradation": {
+   "Runs": 39,
+   "Passed": 9,
+   "Failed": 30,
+   "PassRate": 23.1,
+   "TotalCostUSD": 6.3578,
+   "AvgCostUSD": 0.163,
+   "AvgDurationSec": 274.1
+  },
+  "shared-dynamodb-throttle": {
+   "Runs": 39,
+   "Passed": 0,
+   "Failed": 39,
+   "PassRate": 0.0,
+   "TotalCostUSD": 4.9944,
+   "AvgCostUSD": 0.1281,
+   "AvgDurationSec": 157.6
+  },
+  "shared-kafka-saturation": {
+   "Runs": 39,
+   "Passed": 8,
+   "Failed": 31,
+   "PassRate": 20.5,
+   "TotalCostUSD": 7.2592,
+   "AvgCostUSD": 0.1861,
+   "AvgDurationSec": 198.1
+  },
+  "shared-nat-egress-saturation": {
+   "Runs": 39,
+   "Passed": 0,
+   "Failed": 39,
+   "PassRate": 0.0,
+   "TotalCostUSD": 6.3024,
+   "AvgCostUSD": 0.1616,
+   "AvgDurationSec": 192.7
+  },
+  "shared-postgres-saturation": {
+   "Runs": 39,
+   "Passed": 0,
+   "Failed": 39,
+   "PassRate": 0.0,
+   "TotalCostUSD": 5.12,
+   "AvgCostUSD": 0.1313,
+   "AvgDurationSec": 368.5
+  },
+  "shared-redis-eviction": {
+   "Runs": 39,
+   "Passed": 9,
+   "Failed": 30,
+   "PassRate": 23.1,
+   "TotalCostUSD": 5.6277,
+   "AvgCostUSD": 0.1443,
+   "AvgDurationSec": 153.6
+  }
+ }
+}
