@@ -35,6 +35,14 @@ agents:
     model_name: openrouter/moonshotai/kimi-k2.5
   - name: terminus-2
     model_name: openrouter/moonshotai/kimi-k2-thinking
+  - name: terminus-2
+    model_name: openrouter/z-ai/glm-5.2
+  - name: terminus-2
+    model_name: openrouter/qwen/qwen3-235b-a22b-2507
+  - name: terminus-2
+    model_name: openrouter/qwen/qwen3-32b
+  - name: terminus-2
+    model_name: openrouter/deepseek/deepseek-v4-flash
 
 datasets:
   - path: datasets/blastradiusbench

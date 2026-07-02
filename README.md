@@ -116,22 +116,26 @@ and have it write `failure_chain.json`, then run the scenario's `tests/test_outp
 
 ## Leaderboard
 
-Frozen run: **17 scenarios x 13 models x 3 attempts = 657 trials**, Harbor `terminus-2` over OpenRouter, 2026-06-30. Pass is the scenario grader's boolean verdict. Full per-trial results (outcome, cost, tokens, timing per model) + per-model/per-task rollups are committed under [`benchmark-results/`](benchmark-results/).
+Frozen run: **17 scenarios x 17 models x 3 attempts = 867 trials**, Harbor `terminus-2` over OpenRouter, 2026-06-30 (gpt-5.4 through gpt-oss-20b) / 2026-07-02 (glm-5.2, qwen3-235b-a22b-2507, qwen3-32b, deepseek-v4-flash). Pass is the scenario grader's boolean verdict. Full per-trial results (outcome, cost, tokens, timing per model) + per-model/per-task rollups are committed under [`benchmark-results/`](benchmark-results/).
 
 | Model | Pass rate | easy | medium | hard |
 |---|---|---|---|---|
+| glm-5.2 | **63%** | 100% | 83% | 53% |
 | gpt-5.4 | **62%** | 100% | 92% | 49% |
 | gpt-5.5 | **59%** | 100% | 100% | 42% |
 | gemini-3.1-pro-preview | **55%** | 100% | 64% | 49% |
 | claude-sonnet-4.6 | **49%** | 100% | 58% | 42% |
 | claude-opus-4.8 | **48%** | 100% | 75% | 34% |
 | gemini-3.5-flash | **47%** | 67% | 75% | 36% |
+| deepseek-v4-flash | **47%** | 100% | 83% | 31% |
 | kimi-k2.5 | **46%** | 100% | 75% | 31% |
 | gpt-5.4-mini | **45%** | 67% | 67% | 36% |
 | gemini-3.1-flash-lite | **45%** | 100% | 67% | 33% |
 | kimi-k2-thinking | **42%** | 67% | 50% | 37% |
+| qwen3-235b-a22b-2507 | **41%** | 67% | 50% | 36% |
 | claude-haiku-4.5 | **27%** | 100% | 17% | 25% |
 | gpt-oss-120b | **25%** | 33% | 17% | 28% |
+| qwen3-32b | **20%** | 33% | 17% | 19% |
 | gpt-oss-20b | **6%** | 0% | 25% | 0% |
 
 ## How scenarios are generated
