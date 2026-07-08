@@ -1,0 +1,39 @@
+name: oracle-check
+
+# Benchmark integrity gate (no Docker, no model calls):
+#  - every scenario's oracle (solution/solve.sh) must satisfy its own grader,
+#    match ground truth on every field, and the data must be internally
+#    consistent (culprit/decoy/deploy SHAs resolve against commits.json)
+#  - no degenerate baseline (latest-commit / always-none) may pass any
+#    real-culprit scenario it shouldn't
+on:
+  push:
+    branches: [main]
+    paths:
+      - "datasets/**"
+      - "scripts/check_oracle.py"
+      - "scripts/run_baselines.py"
+      - ".github/workflows/oracle-check.yml"
+  pull_request:
+    paths:
+      - "datasets/**"
+      - "scripts/check_oracle.py"
+      - "scripts/run_baselines.py"
+      - ".github/workflows/oracle-check.yml"
+
+jobs:
+  oracle-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Oracle + data integrity check
+        run: python3 scripts/check_oracle.py
+
+      - name: Baseline gameability check
+        run: python3 scripts/run_baselines.py --check
