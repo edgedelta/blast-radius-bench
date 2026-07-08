@@ -15,6 +15,13 @@ SECONDARY (printed, never fails — for the writeup):
   - blast_radius set overlap (Jaccard) vs truth
   - root_cause keyword check (did the model name the originating fault).
 
+GRADED reward (reporting only, never gates pass/fail): 0.0 for either cardinal
+sin (naming a blast-radius victim as origin, or inverting any causal edge);
+0.5 + 0.5 x edge-recall when the origin is right; 0.25 x blast-radius Jaccard
+when the origin is wrong but sane. Emitted as a `BLASTRADIUSBENCH_METRICS
+{json}` stdout line and, under Harbor, /logs/verifier/metrics.json —
+leaderboards rank on mean graded reward instead of coarse pass counts.
+
 The tests/ directory is injected only at verification time, so the agent never
 sees ground_truth.json.
 """
@@ -25,6 +32,7 @@ import sys
 
 ANSWER_PATH = "/workdir/failure_chain.json"
 GROUND_TRUTH_PATH = os.path.join(os.path.dirname(__file__), "ground_truth.json")
+METRICS_PATH = os.environ.get("BLASTRADIUSBENCH_METRICS_PATH", "/logs/verifier/metrics.json")
 
 # Default edge-overlap bar. 1.0 = the model must recover the FULL causal chain.
 DEFAULT_EDGE_THRESHOLD = 1.0
@@ -173,7 +181,47 @@ def test_secondary_metrics_report():
         print(f"[root_cause] keyword match: {matched}")
     else:
         print(f"[root_cause] NO keyword match against {kws} -- model may have described a symptom")
+
+    _emit_metrics(ans, truth, br_overlap, bool(matched))
     assert True
+
+
+def _emit_metrics(ans, truth, br_overlap, keyword_match):
+    """Graded reward: reporting only, never gates pass/fail."""
+    got = norm(ans["origin_service"])
+    accepted = {norm(truth["origin_service"])} | {norm(a) for a in truth.get("accept_origin_aliases", [])}
+    origin_correct = got in accepted
+    origin_is_victim = got in {norm(v) for v in truth.get("blast_radius", [])}
+    model_edges = edge_set(ans["propagation_path"])
+    true_edges = edge_set(truth["propagation_path"])
+    recall = directed_edge_recall(model_edges, true_edges)
+    rev = len(reversed_edges(model_edges, true_edges))
+    threshold = float(truth.get("edge_overlap_threshold", DEFAULT_EDGE_THRESHOLD))
+
+    if origin_is_victim or rev:
+        graded = 0.0
+    elif origin_correct:
+        graded = round(0.5 + 0.5 * recall, 4)
+    else:
+        graded = round(0.25 * br_overlap, 4)
+    metrics = {
+        "scenario": truth.get("scenario"),
+        "origin_correct": origin_correct,
+        "origin_is_victim": origin_is_victim,
+        "edge_recall": round(recall, 4),
+        "reversed_edges": rev,
+        "blast_radius_jaccard": round(br_overlap, 4),
+        "root_cause_keyword_match": keyword_match,
+        "passed": bool(origin_correct and not origin_is_victim and not rev and recall >= threshold),
+        "graded_reward": graded,
+    }
+    print(f"BLASTRADIUSBENCH_METRICS {json.dumps(metrics, sort_keys=True)}")
+    try:
+        if os.path.isdir(os.path.dirname(METRICS_PATH)):
+            with open(METRICS_PATH, "w") as f:
+                json.dump(metrics, f, indent=1)
+    except OSError:
+        pass  # metrics file is best-effort; never fail grading over it
 
 
 if __name__ == "__main__":

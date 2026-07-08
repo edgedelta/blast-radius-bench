@@ -1,0 +1,35 @@
+# blast-radius-bench — v2 fable leg: claude-fable-5 alone.
+# The model rate-limits at 8 concurrent agents on OpenRouter; 2 stays under it.
+jobs_dir: jobs
+n_attempts: 3
+n_concurrent_trials: 2
+quiet: false
+
+environment:
+  type: docker
+
+agents:
+  - name: terminus-2
+    model_name: openrouter/anthropic/claude-fable-5
+    override_timeout_sec: 1800
+
+datasets:
+  - path: datasets/blastradiusbench
+    task_names:
+      - backend-connectivity-cascade
+      - cdn-origin-overload
+      - disk-pressure-noisy-neighbor
+      - dual-independent-incidents
+      - fan-in-quiet-downstream
+      - fdb-tso-flink-cascade
+      - grpc-deadline-chain
+      - memory-pressure-eviction-cascade
+      - mid-chain-cache-origin
+      - noisy-neighbor-node
+      - retry-storm-amplification
+      - shared-dns-resolver-degradation
+      - shared-dynamodb-throttle
+      - shared-kafka-saturation
+      - shared-nat-egress-saturation
+      - shared-postgres-saturation
+      - shared-redis-eviction

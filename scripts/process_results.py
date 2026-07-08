@@ -25,6 +25,9 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from blastradius_metrics import graded_of
+
 try:
     import tomllib  # py3.11+
 except ModuleNotFoundError:  # pragma: no cover
@@ -75,6 +78,7 @@ def difficulty_of(scenario: str, cache: dict[str, str]) -> str:
 
 def collect(job_dirs: list[Path]):
     cells: dict[tuple[str, str], list[float]] = defaultdict(list)
+    graded_cells: dict[tuple[str, str], list[float]] = defaultdict(list)
     files: list[Path] = []
     for d in job_dirs:
         files.extend(sorted(d.glob("*/result.json")))
@@ -88,8 +92,12 @@ def collect(job_dirs: list[Path]):
             print(f"  skip {f}: {e}", file=sys.stderr)
             continue
         scenario = r.get("task_name") or f.parent.name.split("__")[0]
-        cells[(model_of(r), scenario)].append(reward_of(r, f.parent))
-    return cells, len(files)
+        key = (model_of(r), scenario)
+        cells[key].append(reward_of(r, f.parent))
+        graded = graded_of(f.parent)
+        if graded and graded.get("graded_reward") is not None:
+            graded_cells[key].append(float(graded["graded_reward"]))
+    return cells, graded_cells, len(files)
 
 
 def pct(rewards: list[float]) -> str:
@@ -99,12 +107,24 @@ def pct(rewards: list[float]) -> str:
     return f"{100 * passed / len(rewards):.0f}% ({passed}/{len(rewards)})"
 
 
+def graded_str(vals: list[float]) -> str:
+    """Mean graded reward (0 for cardinal sins, else origin+chain credit) ± 95% CI."""
+    if not vals:
+        return "—"
+    mean = sum(vals) / len(vals)
+    if len(vals) < 2:
+        return f"{mean:.3f}"
+    var = sum((x - mean) ** 2 for x in vals) / (len(vals) - 1)
+    ci = 1.96 * (var ** 0.5) / (len(vals) ** 0.5)
+    return f"{mean:.3f} ± {ci:.3f}"
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)
     job_dirs = [Path(p) for p in sys.argv[1:]]
-    cells, n = collect(job_dirs)
+    cells, graded_cells, n = collect(job_dirs)
 
     models = sorted({m for (m, _) in cells})
     scenarios = sorted({s for (_, s) in cells})
@@ -113,16 +133,19 @@ def main():
 
     print(f"\n# Benchmark results — {n} trials, {len(models)} models, {len(scenarios)} scenarios\n")
 
-    # Per-model overall
-    print("## Overall pass rate\n")
-    print("| Model | Pass rate |")
-    print("|---|---|")
+    # Per-model overall — ranked on mean graded reward (finer than pass rate),
+    # pass rate shown alongside as the headline binary.
+    print("## Overall\n")
+    print("| Model | Mean graded reward (95% CI) | Pass rate |")
+    print("|---|---|---|")
     overall = []
     for m in models:
         rw = [x for (mm, _), xs in cells.items() if mm == m for x in xs]
-        overall.append((m, rw))
-    for m, rw in sorted(overall, key=lambda kv: -(sum(1 for x in kv[1] if x >= 1.0) / len(kv[1]) if kv[1] else 0)):
-        print(f"| {m} | {pct(rw)} |")
+        gr = [x for (mm, _), xs in graded_cells.items() if mm == m for x in xs]
+        overall.append((m, rw, gr))
+    for m, rw, gr in sorted(overall,
+                            key=lambda kv: -(sum(kv[2]) / len(kv[2]) if kv[2] else 0)):
+        print(f"| {m} | {graded_str(gr)} | {pct(rw)} |")
 
     # Scenario x model matrix (scenarios as rows — readable for many scenarios)
     print("\n## By scenario\n")
@@ -132,16 +155,19 @@ def main():
         cellvals = [pct(cells.get((m, s), [])) for m in models]
         print(f"| {s} | {difficulty_of(s, diff_cache)} | " + " | ".join(cellvals) + " |")
 
-    # Per-difficulty breakdown
+    # Per-difficulty breakdown (pass rate + mean graded reward per tier)
     print("\n## By difficulty\n")
-    print("| Model | " + " | ".join(difficulties) + " |")
-    print("|---|" + "---|" * len(difficulties))
+    print("| Model | " + " | ".join(f"{d} | {d} graded" for d in difficulties) + " |")
+    print("|---|" + "---|" * (2 * len(difficulties)))
     for m in models:
         row = [m]
         for d in difficulties:
             rw = [x for (mm, s), xs in cells.items()
                   if mm == m and difficulty_of(s, diff_cache) == d for x in xs]
+            gr = [x for (mm, s), xs in graded_cells.items()
+                  if mm == m and difficulty_of(s, diff_cache) == d for x in xs]
             row.append(pct(rw))
+            row.append(graded_str(gr))
         print("| " + " | ".join(row) + " |")
 
     # Explicit failures (what the old script masked)

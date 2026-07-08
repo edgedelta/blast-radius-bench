@@ -1,0 +1,756 @@
+{
+  "summary": {
+    "loudest-service": {
+      "passed": 0,
+      "total": 17,
+      "pass_rate_pct": 0.0,
+      "blamed_a_victim": 17,
+      "scenarios_with_reversed_edges": 0,
+      "by_tier": {
+        "easy": "0/1",
+        "hard": "0/12",
+        "medium": "0/4"
+      }
+    },
+    "first-service": {
+      "passed": 0,
+      "total": 17,
+      "pass_rate_pct": 0.0,
+      "blamed_a_victim": 8,
+      "scenarios_with_reversed_edges": 0,
+      "by_tier": {
+        "easy": "0/1",
+        "hard": "0/12",
+        "medium": "0/4"
+      }
+    },
+    "blame-datastore": {
+      "passed": 1,
+      "total": 17,
+      "pass_rate_pct": 5.9,
+      "blamed_a_victim": 10,
+      "scenarios_with_reversed_edges": 0,
+      "by_tier": {
+        "easy": "1/1",
+        "hard": "0/12",
+        "medium": "0/4"
+      }
+    },
+    "deep-walk": {
+      "passed": 3,
+      "total": 17,
+      "pass_rate_pct": 17.6,
+      "blamed_a_victim": 5,
+      "scenarios_with_reversed_edges": 1,
+      "by_tier": {
+        "easy": "0/1",
+        "hard": "1/12",
+        "medium": "2/4"
+      }
+    },
+    "request-flow-path": {
+      "passed": 0,
+      "total": 17,
+      "pass_rate_pct": 0.0,
+      "blamed_a_victim": 5,
+      "scenarios_with_reversed_edges": 10,
+      "by_tier": {
+        "easy": "0/1",
+        "hard": "0/12",
+        "medium": "0/4"
+      }
+    }
+  },
+  "by_scenario": {
+    "loudest-service": {
+      "backend-connectivity-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "cdn-origin-overload": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "easy"
+      },
+      "disk-pressure-noisy-neighbor": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "dual-independent-incidents": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "fan-in-quiet-downstream": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "fdb-tso-flink-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "grpc-deadline-chain": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "memory-pressure-eviction-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "mid-chain-cache-origin": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "noisy-neighbor-node": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "retry-storm-amplification": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dns-resolver-degradation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dynamodb-throttle": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-kafka-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-nat-egress-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-postgres-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-redis-eviction": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      }
+    },
+    "first-service": {
+      "backend-connectivity-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "cdn-origin-overload": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "easy"
+      },
+      "disk-pressure-noisy-neighbor": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "dual-independent-incidents": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "fan-in-quiet-downstream": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "fdb-tso-flink-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "grpc-deadline-chain": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "memory-pressure-eviction-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "mid-chain-cache-origin": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "noisy-neighbor-node": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "retry-storm-amplification": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dns-resolver-degradation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dynamodb-throttle": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-kafka-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-nat-egress-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-postgres-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-redis-eviction": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      }
+    },
+    "blame-datastore": {
+      "backend-connectivity-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.5,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "cdn-origin-overload": {
+        "passed": true,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 1.0,
+        "reversed_edges": 0,
+        "difficulty": "easy"
+      },
+      "disk-pressure-noisy-neighbor": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "dual-independent-incidents": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.5,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "fan-in-quiet-downstream": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "fdb-tso-flink-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "grpc-deadline-chain": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "memory-pressure-eviction-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "mid-chain-cache-origin": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "noisy-neighbor-node": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "retry-storm-amplification": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dns-resolver-degradation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dynamodb-throttle": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-kafka-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-nat-egress-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-postgres-saturation": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-redis-eviction": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      }
+    },
+    "deep-walk": {
+      "backend-connectivity-cascade": {
+        "passed": true,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 1.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "cdn-origin-overload": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 1.0,
+        "reversed_edges": 0,
+        "difficulty": "easy"
+      },
+      "disk-pressure-noisy-neighbor": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "dual-independent-incidents": {
+        "passed": true,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 1.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "fan-in-quiet-downstream": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "fdb-tso-flink-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "grpc-deadline-chain": {
+        "passed": true,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 1.0,
+        "reversed_edges": 0,
+        "difficulty": "medium"
+      },
+      "memory-pressure-eviction-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "mid-chain-cache-origin": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.667,
+        "reversed_edges": 1,
+        "difficulty": "medium"
+      },
+      "noisy-neighbor-node": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "retry-storm-amplification": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.5,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dns-resolver-degradation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dynamodb-throttle": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-kafka-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-nat-egress-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-postgres-saturation": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-redis-eviction": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.333,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      }
+    },
+    "request-flow-path": {
+      "backend-connectivity-cascade": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 2,
+        "difficulty": "hard"
+      },
+      "cdn-origin-overload": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 1,
+        "difficulty": "easy"
+      },
+      "disk-pressure-noisy-neighbor": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "dual-independent-incidents": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 2,
+        "difficulty": "medium"
+      },
+      "fan-in-quiet-downstream": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 1,
+        "difficulty": "medium"
+      },
+      "fdb-tso-flink-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 1,
+        "difficulty": "hard"
+      },
+      "grpc-deadline-chain": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 3,
+        "difficulty": "medium"
+      },
+      "memory-pressure-eviction-cascade": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 1,
+        "difficulty": "hard"
+      },
+      "mid-chain-cache-origin": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.333,
+        "reversed_edges": 2,
+        "difficulty": "medium"
+      },
+      "noisy-neighbor-node": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "retry-storm-amplification": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 1,
+        "difficulty": "hard"
+      },
+      "shared-dns-resolver-degradation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-dynamodb-throttle": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-kafka-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-nat-egress-saturation": {
+        "passed": false,
+        "origin_correct": false,
+        "origin_is_victim": true,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-postgres-saturation": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 0,
+        "difficulty": "hard"
+      },
+      "shared-redis-eviction": {
+        "passed": false,
+        "origin_correct": true,
+        "origin_is_victim": false,
+        "edge_recall": 0.0,
+        "reversed_edges": 1,
+        "difficulty": "hard"
+      }
+    }
+  }
+}
