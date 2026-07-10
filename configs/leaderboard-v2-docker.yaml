@@ -1,4 +1,4 @@
-# blast-radius-bench — leaderboard v2: full re-run, all 19 models (Docker).
+# blast-radius-bench — leaderboard v2: full re-run, all 20 models (Docker).
 #
 # Changes vs the v1 frozen run (2026-06-30/07-02):
 #   - override_timeout_sec: 1800 for every agent (v1's 600s cap cost glm-5.2
@@ -79,6 +79,9 @@ agents:
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/sakana/fugu-ultra
+    override_timeout_sec: 1800
+  - name: terminus-2
+    model_name: openrouter/x-ai/grok-4.5
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/z-ai/glm-5.2
