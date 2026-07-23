@@ -1,0 +1,37 @@
+# blast-radius-bench — add moonshotai/kimi-k3 to the leaderboard (Docker).
+# Same conditions as the v2 frozen run: 1800s agent timeout, graded capture.
+# OpenRouter flags this model's upstream capacity as limited (frequent 429s);
+# run at n_concurrent_trials: 2 and retry rate-limited trials as infra errors.
+jobs_dir: jobs
+n_attempts: 3
+n_concurrent_trials: 2
+quiet: false
+
+environment:
+  type: docker
+
+agents:
+  - name: terminus-2
+    model_name: openrouter/moonshotai/kimi-k3
+    override_timeout_sec: 1800
+
+datasets:
+  - path: datasets/blastradiusbench
+    task_names:
+      - backend-connectivity-cascade
+      - cdn-origin-overload
+      - disk-pressure-noisy-neighbor
+      - dual-independent-incidents
+      - fan-in-quiet-downstream
+      - fdb-tso-flink-cascade
+      - grpc-deadline-chain
+      - memory-pressure-eviction-cascade
+      - mid-chain-cache-origin
+      - noisy-neighbor-node
+      - retry-storm-amplification
+      - shared-dns-resolver-degradation
+      - shared-dynamodb-throttle
+      - shared-kafka-saturation
+      - shared-nat-egress-saturation
+      - shared-postgres-saturation
+      - shared-redis-eviction
