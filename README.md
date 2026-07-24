@@ -134,7 +134,7 @@ and have it write `failure_chain.json`, then run the scenario's `tests/test_outp
 
 ## Leaderboard
 
-Frozen run (v2): **17 scenarios x 21 models x 3 attempts = 1071 trials**, Harbor `terminus-2` over OpenRouter, 2026-07-08/10/23, all agents at an 1800s timeout. Models are ranked on **mean graded reward** (0.0 for either cardinal sin; 0.5 + 0.5 × edge-recall for a correct origin; 0.25 × blast-radius Jaccard otherwise; ± 95% CI over the 51 trials), with binary pass rates alongside. Four trials that died to infra errors (`AgentTimeoutError`, `BadRequestError`) were re-run per methodology — all four passed on retry. Full per-trial results (outcome, graded reward, cost, tokens, timing per model) + rollups are committed under [`benchmark-results/`](benchmark-results/).
+Frozen run (v2): **17 scenarios x 22 models x 3 attempts = 1122 trials**, Harbor `terminus-2` over OpenRouter, 2026-07-08/10/23/24, all agents at an 1800s timeout. Models are ranked on **mean graded reward** (0.0 for either cardinal sin; 0.5 + 0.5 × edge-recall for a correct origin; 0.25 × blast-radius Jaccard otherwise; ± 95% CI over the 51 trials), with binary pass rates alongside. Four trials that died to infra errors (`AgentTimeoutError`, `BadRequestError`) were re-run per methodology — all four passed on retry. Full per-trial results (outcome, graded reward, cost, tokens, timing per model) + rollups are committed under [`benchmark-results/`](benchmark-results/).
 
 > v1 → v2: raises the agent timeout 600s → 1800s (v1 cost glm-5.2 and kimi-k2.5 one
 > trial each and gpt-oss-20b nine as `AgentTimeoutError`), adds sakana/fugu-ultra and
@@ -148,6 +148,7 @@ Frozen run (v2): **17 scenarios x 21 models x 3 attempts = 1071 trials**, Harbor
 | glm-5.2 | **0.679 ± 0.116** | 59% | 100% | 83% | 47% |
 | fugu-ultra | **0.675 ± 0.116** | 61% | 100% | 100% | 44% |
 | gpt-5.5 | **0.672 ± 0.117** | 61% | 100% | 100% | 44% |
+| gpt-5.6-sol | **0.655 ± 0.118** | 57% | 100% | 75% | 47% |
 | gemini-3.1-pro-preview | **0.653 ± 0.123** | 59% | 100% | 58% | 56% |
 | claude-fable-5 | **0.637 ± 0.120** | 57% | 100% | 83% | 44% |
 | gpt-5.4 | **0.632 ± 0.123** | 57% | 100% | 75% | 47% |
