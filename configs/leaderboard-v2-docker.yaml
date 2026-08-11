@@ -1,4 +1,4 @@
-# blast-radius-bench — leaderboard v2: full re-run, all 23 models (Docker).
+# blast-radius-bench — leaderboard v2: full re-run, all 25 models (Docker).
 #
 # Changes vs the v1 frozen run (2026-06-30/07-02):
 #   - override_timeout_sec: 1800 for every agent (v1's 600s cap cost glm-5.2
@@ -52,6 +52,12 @@ agents:
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/google/gemini-3.5-flash
+    override_timeout_sec: 1800
+  - name: terminus-2
+    model_name: openrouter/meta/muse-glimmer-30b
+    override_timeout_sec: 1800
+  - name: terminus-2
+    model_name: openrouter/meta/muse-spark-1.2
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/moonshotai/kimi-k2-thinking
