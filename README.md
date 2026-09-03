@@ -134,7 +134,7 @@ and have it write `failure_chain.json`, then run the scenario's `tests/test_outp
 
 ## Leaderboard
 
-Frozen run (v2): **17 scenarios x 28 models x 3 attempts = 1428 trials**, Harbor `terminus-2` over OpenRouter, 2026-07-08/10/23 + 2026-08-11/24 + 2026-08-16 + 2026-08-31 + 2026-09-03, all agents at an 1800s timeout. Models are ranked on **mean graded reward** (0.0 for either cardinal sin; 0.5 + 0.5 × edge-recall for a correct origin; 0.25 × blast-radius Jaccard otherwise; ± 95% CI over the 51 trials), with binary pass rates alongside. Four trials that died to infra errors (`AgentTimeoutError`, `BadRequestError`) were re-run per methodology — all four passed on retry. Full per-trial results (outcome, graded reward, cost, tokens, timing per model) + rollups are committed under [`benchmark-results/`](benchmark-results/).
+Frozen run (v2): **17 scenarios x 29 models x 3 attempts = 1479 trials**, Harbor `terminus-2` over OpenRouter, 2026-07-08/10/23 + 2026-08-11/24 + 2026-08-16 + 2026-08-31 + 2026-09-03, all agents at an 1800s timeout. Models are ranked on **mean graded reward** (0.0 for either cardinal sin; 0.5 + 0.5 × edge-recall for a correct origin; 0.25 × blast-radius Jaccard otherwise; ± 95% CI over the 51 trials), with binary pass rates alongside. Four trials that died to infra errors (`AgentTimeoutError`, `BadRequestError`) were re-run per methodology — all four passed on retry. Full per-trial results (outcome, graded reward, cost, tokens, timing per model) + rollups are committed under [`benchmark-results/`](benchmark-results/).
 
 > v1 → v2: raises the agent timeout 600s → 1800s (v1 cost glm-5.2 and kimi-k2.5 one
 > trial each and gpt-oss-20b nine as `AgentTimeoutError`), adds sakana/fugu-ultra and
@@ -157,6 +157,7 @@ Frozen run (v2): **17 scenarios x 28 models x 3 attempts = 1428 trials**, Harbor
 | muse-glimmer-30b | **0.631 ± 0.119** | 53% | 100% | 67% | 44% |
 | gpt-5.4-mini | **0.626 ± 0.120** | 53% | 67% | 75% | 44% |
 | qwen3.8-27b | **0.623 ± 0.119** | 55% | 100% | 92% | 39% |
+| claude-fable-5.1 | **0.612 ± 0.123** | 55% | 100% | 75% | 44% |
 | muse-spark-1.2 | **0.605 ± 0.124** | 53% | 100% | 50% | 50% |
 | claude-opus-5 | **0.603 ± 0.121** | 53% | 100% | 75% | 39% |
 | grok-4.5 | **0.602 ± 0.122** | 53% | 100% | 75% | 42% |
