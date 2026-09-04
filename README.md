@@ -134,7 +134,7 @@ and have it write `failure_chain.json`, then run the scenario's `tests/test_outp
 
 ## Leaderboard
 
-Frozen run (v2): **17 scenarios x 29 models x 3 attempts = 1479 trials**, Harbor `terminus-2` over OpenRouter, 2026-07-08/10/23 + 2026-08-11/24 + 2026-08-16 + 2026-08-31 + 2026-09-03, all agents at an 1800s timeout. Models are ranked on **mean graded reward** (0.0 for either cardinal sin; 0.5 + 0.5 × edge-recall for a correct origin; 0.25 × blast-radius Jaccard otherwise; ± 95% CI over the 51 trials), with binary pass rates alongside. Four trials that died to infra errors (`AgentTimeoutError`, `BadRequestError`) were re-run per methodology — all four passed on retry. Full per-trial results (outcome, graded reward, cost, tokens, timing per model) + rollups are committed under [`benchmark-results/`](benchmark-results/).
+Frozen run (v2): **17 scenarios x 30 models x 3 attempts = 1530 trials**, Harbor `terminus-2` over OpenRouter, 2026-07-08/10/23 + 2026-08-11/24 + 2026-08-16 + 2026-08-31 + 2026-09-03 + 2026-09-05, all agents at an 1800s timeout. Models are ranked on **mean graded reward** (0.0 for either cardinal sin; 0.5 + 0.5 × edge-recall for a correct origin; 0.25 × blast-radius Jaccard otherwise; ± 95% CI over the 51 trials), with binary pass rates alongside. Four trials that died to infra errors (`AgentTimeoutError`, `BadRequestError`) were re-run per methodology — all four passed on retry. Full per-trial results (outcome, graded reward, cost, tokens, timing per model) + rollups are committed under [`benchmark-results/`](benchmark-results/).
 
 > v1 → v2: raises the agent timeout 600s → 1800s (v1 cost glm-5.2 and kimi-k2.5 one
 > trial each and gpt-oss-20b nine as `AgentTimeoutError`), adds sakana/fugu-ultra and
@@ -145,6 +145,7 @@ Frozen run (v2): **17 scenarios x 29 models x 3 attempts = 1479 trials**, Harbor
 
 | Model | Mean graded reward (95% CI) | Pass rate | easy | medium | hard |
 |---|---|---|---|---|---|
+| gpt-6-astra | **0.726 ± 0.114** | 65% | 100% | 75% | 58% |
 | glm-5.2 | **0.679 ± 0.116** | 59% | 100% | 83% | 47% |
 | fugu-ultra | **0.675 ± 0.116** | 61% | 100% | 100% | 44% |
 | gpt-5.5 | **0.672 ± 0.117** | 61% | 100% | 100% | 44% |
