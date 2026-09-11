@@ -134,7 +134,7 @@ and have it write `failure_chain.json`, then run the scenario's `tests/test_outp
 
 ## Leaderboard
 
-Frozen run (v2): **17 scenarios x 30 models x 3 attempts = 1530 trials**, Harbor `terminus-2` over OpenRouter, 2026-07-08/10/23 + 2026-08-11/24 + 2026-08-16 + 2026-08-31 + 2026-09-03 + 2026-09-05, all agents at an 1800s timeout. Models are ranked on **mean graded reward** (0.0 for either cardinal sin; 0.5 + 0.5 × edge-recall for a correct origin; 0.25 × blast-radius Jaccard otherwise; ± 95% CI over the 51 trials), with binary pass rates alongside. Four trials that died to infra errors (`AgentTimeoutError`, `BadRequestError`) were re-run per methodology — all four passed on retry. Full per-trial results (outcome, graded reward, cost, tokens, timing per model) + rollups are committed under [`benchmark-results/`](benchmark-results/).
+Frozen run (v2): **17 scenarios x 31 models x 3 attempts = 1581 trials**, Harbor `terminus-2` over OpenRouter, 2026-07-08/10/23 + 2026-08-11/24 + 2026-08-16 + 2026-08-31 + 2026-09-03 + 2026-09-05 + 2026-09-11, all agents at an 1800s timeout. Models are ranked on **mean graded reward** (0.0 for either cardinal sin; 0.5 + 0.5 × edge-recall for a correct origin; 0.25 × blast-radius Jaccard otherwise; ± 95% CI over the 51 trials), with binary pass rates alongside. Four trials that died to infra errors (`AgentTimeoutError`, `BadRequestError`) were re-run per methodology — all four passed on retry. Full per-trial results (outcome, graded reward, cost, tokens, timing per model) + rollups are committed under [`benchmark-results/`](benchmark-results/).
 
 > v1 → v2: raises the agent timeout 600s → 1800s (v1 cost glm-5.2 and kimi-k2.5 one
 > trial each and gpt-oss-20b nine as `AgentTimeoutError`), adds sakana/fugu-ultra and
@@ -166,6 +166,7 @@ Frozen run (v2): **17 scenarios x 30 models x 3 attempts = 1530 trials**, Harbor
 | claude-opus-4.8 | **0.562 ± 0.120** | 47% | 100% | 75% | 33% |
 | kimi-k3 | **0.556 ± 0.119** | 45% | 100% | 67% | 33% |
 | gemini-3.5-flash | **0.554 ± 0.123** | 47% | 100% | 58% | 39% |
+| deepseek-v4.1-flash | **0.550 ± 0.119** | 43% | 100% | 58% | 33% |
 | deepseek-v4-flash | **0.548 ± 0.116** | 41% | 100% | 67% | 28% |
 | gemini-3.1-flash-lite | **0.542 ± 0.116** | 37% | 100% | 67% | 22% |
 | qwen3-235b-a22b-2507 | **0.496 ± 0.126** | 41% | 67% | 58% | 33% |
