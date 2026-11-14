@@ -1,4 +1,4 @@
-# blast-radius-bench — leaderboard v2: full re-run, all 34 models (Docker).
+# blast-radius-bench — leaderboard v2: full re-run, all 39 models (Docker).
 #
 # Changes vs the v1 frozen run (2026-06-30/07-02):
 #   - override_timeout_sec: 1800 for every agent (v1's 600s cap cost glm-5.2
@@ -33,6 +33,9 @@ agents:
     model_name: openrouter/anthropic/claude-fable-5.1
     override_timeout_sec: 1800
   - name: terminus-2
+    model_name: openrouter/anthropic/claude-fable-5.2
+    override_timeout_sec: 1800
+  - name: terminus-2
     model_name: openrouter/anthropic/claude-opus-5
     override_timeout_sec: 1800
   - name: terminus-2
@@ -40,6 +43,9 @@ agents:
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/anthropic/claude-haiku-4.5
+    override_timeout_sec: 1800
+  - name: terminus-2
+    model_name: openrouter/anthropic/claude-haiku-5.5
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/anthropic/claude-opus-4.8
@@ -64,6 +70,12 @@ agents:
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/google/gemini-4-argon
+    override_timeout_sec: 1800
+  - name: terminus-2
+    model_name: openrouter/google/gemini-4-carbon
+    override_timeout_sec: 1800
+  - name: terminus-2
+    model_name: openrouter/google/gemini-4-hydrogen
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/meta/muse-glimmer-30b
@@ -127,6 +139,9 @@ agents:
     override_timeout_sec: 1800
   - name: terminus-2
     model_name: openrouter/z-ai/glm-5.3
+    override_timeout_sec: 1800
+  - name: terminus-2
+    model_name: openrouter/z-ai/glm-5.3-flash
     override_timeout_sec: 1800
 
 datasets:
